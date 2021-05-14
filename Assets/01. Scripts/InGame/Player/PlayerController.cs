@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Movetype
+{
+    MOVE,
+    JUMP
+};
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
@@ -27,12 +33,7 @@ public class PlayerController : MonoBehaviour
         isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f, 1 << LayerMask.NameToLayer("Ground"));
 
         AnimParametersSet();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f);
+        AbilityKey();
     }
 
     void FixedUpdate()
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if(type == Movetype.JUMP)
         {
             // มกวม
-            if (Input.GetButtonDown("Jump") && isGround)
+            if (PlayerInput.KeyJump && isGround)
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * jumpSpeed);
@@ -76,11 +77,20 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y < -4f) an.SetBool("falling", true);
         if (rb.velocity.y < -15f) an.SetBool("land", true);
     }
+
+    void AbilityKey()
+    {
+        if(PlayerInput.KeyAbility)
+        {
+            IAbility ability = transform.GetComponent<IAbility>();
+
+            ability.OnAbility();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f);
+    }
 }
-
-
-enum Movetype
-{
-    MOVE,
-    JUMP
-};
