@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
     private Animator an;
     private SpriteRenderer sr;
 
+    [SerializeField] private Transform playerAnim = null;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        an = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
+        an = playerAnim.GetComponent<Animator>();
+        sr = playerAnim.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -93,5 +95,18 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f);
+    }
+
+    [ContextMenu("게임오버")]
+    public void GameOver()
+    {
+        an.SetTrigger("dead");
+    }
+
+    [ContextMenu("떨어져서 게임오버")]
+    public void FallGameOver()
+    {
+        rb.simulated = false;
+        an.SetTrigger("falldead");
     }
 }

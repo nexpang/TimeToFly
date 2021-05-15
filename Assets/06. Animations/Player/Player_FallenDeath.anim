@@ -97,9 +97,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 6757282713640645180, guid: 5c8511c9d93593a4e8aa6966c59a194b, type: 3}
+      value: {fileID: 6757282713640645180, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
     - time: 3
-      value: {fileID: 6757282713640645180, guid: 5c8511c9d93593a4e8aa6966c59a194b, type: 3}
+      value: {fileID: 6757282713640645180, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -133,8 +133,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 6757282713640645180, guid: 5c8511c9d93593a4e8aa6966c59a194b, type: 3}
-    - {fileID: 6757282713640645180, guid: 5c8511c9d93593a4e8aa6966c59a194b, type: 3}
+    - {fileID: 6757282713640645180, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+    - {fileID: 6757282713640645180, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -244,14 +244,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: PlayerStop
+    functionName: PlayerStunEventStart
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4
-    functionName: BackToNow
+    functionName: PlayerDeadAnimEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
