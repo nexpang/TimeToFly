@@ -6,6 +6,6 @@ public class FollowMove : MonoBehaviour
 {
     private void Update()
     {
-       this.gameObject.transform.position = Vector2.Lerp(this.gameObject.transform.position, new Vector2(64, 35), 1f * Time.deltaTime);
+       gameObject.transform.position = Vector2.Lerp(gameObject.transform.position, new Vector2(64, 35), 1f * Time.deltaTime);
     }
 }

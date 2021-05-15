@@ -58,8 +58,9 @@ public class PlayerController : MonoBehaviour
         else if(type == Movetype.MOVE)
         {
             // ¿Ãµø
-            float axis = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.fixedDeltaTime;
-            transform.Translate(new Vector2(axis, 0));
+            float axis = PlayerInput.KeyHorizontalRaw * moveSpeed * Time.fixedDeltaTime;
+            float simpleAxis = Mathf.Round(axis * 1000) / 1000;
+            transform.Translate(new Vector2(simpleAxis, 0));
 
             if (axis != 0)
             {
