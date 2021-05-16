@@ -27,6 +27,20 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
     private void Update()
     {
+        if(!Input.GetMouseButton(0))
+        {
+            isPressed = false;
+
+            switch (controllerType)
+            {
+                case ControllerType.LEFT:
+                case ControllerType.RIGHT:
+                    PlayerInput.Instance.JoyStickHorizontalRaw(0);
+                    PlayerInput.Instance.joystickKeyHorizontal = 0;
+                    break;
+            }
+        }
+
         if(isPressed)
         {
             controllerBtn.sprite = pressedSpr;

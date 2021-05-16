@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         an = playerAnim.GetComponent<Animator>();
         sr = playerAnim.GetComponent<SpriteRenderer>();
+        playerState = PlayerState.NORMAL;
     }
 
     private void Update()

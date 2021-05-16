@@ -56,13 +56,14 @@ public class Ability_FutureCreate : Ability, IAbility
 
         Debug.Log("´É·Â »Ñ½¹ºü½¹");
         clockUI.SetActive(true);
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.5f, 2f);
+        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
         playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
-        GlitchEffect.Instance.colorIntensity = 0.306f;
+        GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
         StartCoroutine(Clock());
         sleepPlayer.position = transform.position;
+        sleepPlayer.GetComponent<SpriteRenderer>().flipX = playerAn.GetComponent<SpriteRenderer>().flipX;
         abilityEffectAnim.SetTrigger("BlueT");
         isSleep = true;
     }
@@ -165,6 +166,7 @@ public class Ability_FutureCreate : Ability, IAbility
         GlitchEffect.Instance.intensity = 0;
 
         playerRb.transform.position = sleepPlayer.position;
+        playerAn.GetComponent<SpriteRenderer>().flipX = sleepPlayer.GetComponent<SpriteRenderer>().flipX;
         sleepPlayer.GetComponent<SleepingPlayer>().BubbleAwake();
         sleepPlayer.position = new Vector3(-18, 10, 0);
         abilityEffectAnim.SetTrigger("OrangeT");
