@@ -89,6 +89,8 @@ public class PlayerController : MonoBehaviour
         an.SetFloat("ySpeed", rb.velocity.y);
         if (rb.velocity.y < -4f) an.SetBool("falling", true);
         if (rb.velocity.y < -15f) an.SetBool("land", true);
+
+        an.SetBool("isDead", playerState == PlayerState.DEAD);
     }
 
     void AbilityKey()
@@ -126,15 +128,21 @@ public class PlayerController : MonoBehaviour
     [ContextMenu("게임오버")]
     public void GameOver()
     {
-        playerState = PlayerState.DEAD;
-        an.SetTrigger("dead");
+        if (playerState != PlayerState.DEAD)
+        {
+            playerState = PlayerState.DEAD;
+            an.SetTrigger("dead");
+        }
     }
 
     [ContextMenu("떨어져서 게임오버")]
     public void FallGameOver()
     {
-        playerState = PlayerState.DEAD;
-        rb.simulated = false;
-        an.SetTrigger("falldead");
+        if (playerState != PlayerState.DEAD)
+        {
+            playerState = PlayerState.DEAD;
+            rb.simulated = false;
+            an.SetTrigger("falldead");
+        }
     }
 }
