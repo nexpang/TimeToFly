@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
 
     [SerializeField] private Transform playerAnim = null;
+    [SerializeField] private Transform playerAbility = null;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if(type == Movetype.JUMP)
         {
             // 점프
-            if (PlayerInput.KeyJump && isGround)
+            if (PlayerInput.Instance.KeyJump && isGround)
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(Vector2.up * jumpSpeed);
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
         else if(type == Movetype.MOVE)
         {
             // 이동
-            float axis = PlayerInput.KeyHorizontalRaw * moveSpeed * Time.fixedDeltaTime;
+            float axis = PlayerInput.Instance.KeyHorizontalRaw * moveSpeed * Time.fixedDeltaTime;
             float simpleAxis = Mathf.Round(axis * 1000) / 1000;
             transform.Translate(new Vector2(simpleAxis, 0));
 
@@ -83,9 +84,9 @@ public class PlayerController : MonoBehaviour
 
     void AbilityKey()
     {
-        if(PlayerInput.KeyAbility)
+        if(PlayerInput.Instance.KeyAbility)
         {
-            IAbility ability = transform.GetComponent<IAbility>();
+            IAbility ability = playerAbility.GetComponent<IAbility>();
 
             ability.OnAbility();
         }

@@ -19,7 +19,7 @@ public class BackgroundMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset.x += speed * Time.deltaTime * (PlayerInput.KeyHorizontal + 0.3f);
+        offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + 0.3f);
         BGImg.material.SetTextureOffset("_MainTex", offset);
     }
 }
