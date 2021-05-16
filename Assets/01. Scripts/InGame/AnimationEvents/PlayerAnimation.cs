@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 해당 클래스는 직접적으로 호출되지 않고 애니메이션 이벤트에 의해서만 호출됩니다.
+/// </summary>
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] Transform playerRigid = null;
@@ -33,8 +37,19 @@ public class PlayerAnimation : MonoBehaviour
         playerController.isStun = false;
     }
 
-    void PlayerDeadAnimEnd()
+    public void PlayerDeadAnimEnd() // 해당 함수는 Player_Death, Player_FallenDeath에 들어있음.
     {
-        // TO DO : 녹화중이었다면 다시 과거로, 아니라면 게임 오버
+        Ability_FutureCreate ability = FindObjectOfType<Ability_FutureCreate>();
+        if (ability != null && ability.IsSleep()) // 만약 능력 1이고 자고있는 상태면
+        {
+            ability.ResetPlayer(); // 리셋시킨다.
+            playerController.isStun = false;
+            animator.Play("Player_Idle");
+        }
+        else // 아니라면
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // TO DO : 녹화중이었다면 다시 과거로, 아니라면 게임 오버
+        }
     }
 }

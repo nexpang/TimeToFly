@@ -8,6 +8,12 @@ enum Movetype
     JUMP
 };
 
+public enum PlayerState
+{
+    NORMAL,
+    DEAD
+}
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
@@ -15,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isGround;
     public bool isStun;
+
+    public static PlayerState playerState = PlayerState.NORMAL;
 
     private Rigidbody2D rb;
     private Animator an;
@@ -98,15 +106,33 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("DEADABLE"))
+        {
+            GameOver();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("DEADABLE"))
+        {
+            GameOver();
+        }
+    }
+
     [ContextMenu("게임오버")]
     public void GameOver()
     {
+        playerState = PlayerState.DEAD;
         an.SetTrigger("dead");
     }
 
     [ContextMenu("떨어져서 게임오버")]
     public void FallGameOver()
     {
+        playerState = PlayerState.DEAD;
         rb.simulated = false;
         an.SetTrigger("falldead");
     }

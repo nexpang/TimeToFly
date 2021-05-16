@@ -11,14 +11,14 @@ public class Ability : MonoBehaviour
     [SerializeField] Sprite abilityBtnSpr = null;
     [SerializeField] protected float abilityCooldown = 30f;
     protected float abilityCurrentCoolDownTime;
-    protected float abilityCurrentCoolDown = 0f;
+    [SerializeField]  protected float abilityCurrentCoolDown = 0f;
 
-    private void Start()
+    protected void Start()
     {
         abilityBtn.sprite = abilityBtnSpr;
     }
 
-    private void Update()
+    protected void Update()
     {
         abilityCooldownCircle.fillAmount = abilityCurrentCoolDown / abilityCooldown;
 

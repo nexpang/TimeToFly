@@ -17,6 +17,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     [SerializeField] ControllerType controllerType;
     private Image controllerBtn = null;
     private bool isPressed = false;
+    [SerializeField] private Sprite defaultSpr = null;
+    [SerializeField] private Sprite pressedSpr = null;
 
     private void Start()
     {
@@ -25,10 +27,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
     private void Update()
     {
-        isPressed = controllerBtn.color == Color.gray;
-
         if(isPressed)
         {
+            controllerBtn.sprite = pressedSpr;
             switch (controllerType)
             {
                 case ControllerType.LEFT:
@@ -39,11 +40,15 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     break;
             }
         }
+        else
+        {
+            controllerBtn.sprite = defaultSpr;
+        }
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        controllerBtn.color = Color.gray;
+        isPressed = true;
 
         switch (controllerType)
         {
@@ -64,7 +69,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
-        controllerBtn.color = Color.white;
+        isPressed = false;
 
         switch (controllerType)
         {
@@ -80,7 +85,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     {
         if (Input.GetMouseButton(0))
         {
-            controllerBtn.color = Color.gray;
+            isPressed = true;
 
             switch (controllerType)
             {
@@ -96,7 +101,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        controllerBtn.color = Color.white;
+        isPressed = false;
 
         switch (controllerType)
         {
