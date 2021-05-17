@@ -16,26 +16,30 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpSpeed;
+    public static PlayerController Instance;
+
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpSpeed;
 
     public bool isGround;
     public bool isStun;
 
-    public static PlayerState playerState = PlayerState.NORMAL;
+    public PlayerState playerState = PlayerState.NORMAL;
 
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
 
     [SerializeField] private Transform playerAnim = null;
-    [SerializeField] private Transform playerAbility = null;
+    private Transform playerAbility = null;
 
     private void Awake()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         an = playerAnim.GetComponent<Animator>();
         sr = playerAnim.GetComponent<SpriteRenderer>();
+        playerAbility = GameObject.FindGameObjectWithTag("Ability").transform;
         playerState = PlayerState.NORMAL;
     }
 
@@ -114,6 +118,10 @@ public class PlayerController : MonoBehaviour
         if(collision.CompareTag("DEADABLE"))
         {
             GameOver();
+        }
+        else if(collision.CompareTag("FALLINGABLE"))
+        {
+            FallGameOver();
         }
     }
 

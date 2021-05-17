@@ -40,7 +40,7 @@ public class Ability_FutureCreate : Ability, IAbility
     private PlayerAnimation playerAn = null;
     [SerializeField] private Transform recordedPlayer = null;//---------------------------- TO DO : 이거 프리팹으로 만들어서 자동 생성되게 해야한다.
 
-    void Start()
+    new void Start()
     {
         base.Start();
         playerRb = FindObjectOfType<PlayerController>();
@@ -68,7 +68,7 @@ public class Ability_FutureCreate : Ability, IAbility
         isSleep = true;
     }
 
-    void Update()
+    new void Update()
     {
         base.Update();
         clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
@@ -76,7 +76,7 @@ public class Ability_FutureCreate : Ability, IAbility
         RecordPlayer();
         PlayPlayer();
 
-        if (PlayerController.playerState == PlayerState.DEAD)//만약 죽은상태라면
+        if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
         {
             StopCoroutine(Clock()); // 시계를 정지시킨다.
         }
@@ -158,7 +158,7 @@ public class Ability_FutureCreate : Ability, IAbility
         isSleep = false;
         isFuturePlay = true;
         currentTime = abilityDefaultTime;
-        PlayerController.playerState = PlayerState.NORMAL;
+        PlayerController.Instance.playerState = PlayerState.NORMAL;
         DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
         playerAn.GetComponent<SpriteRenderer>().color = Color.white;
         GlitchEffect.Instance.colorIntensity = 0;
@@ -169,6 +169,7 @@ public class Ability_FutureCreate : Ability, IAbility
         playerAn.GetComponent<SpriteRenderer>().flipX = sleepPlayer.GetComponent<SpriteRenderer>().flipX;
         sleepPlayer.GetComponent<SleepingPlayer>().BubbleAwake();
         sleepPlayer.position = new Vector3(-18, 10, 0);
+        playerRb.GetComponent<Rigidbody2D>().simulated = true;
         abilityEffectAnim.SetTrigger("OrangeT");
         Debug.Log("녹화 플레이");
     }
@@ -181,13 +182,13 @@ public class Ability_FutureCreate : Ability, IAbility
         {
             currentTime--;
             yield return new WaitForSeconds(1);
-            if(PlayerController.playerState == PlayerState.DEAD)//만약 죽은상태라면
+            if(PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
             }
         }
 
-        if (PlayerController.playerState != PlayerState.DEAD)
+        if (PlayerController.Instance.playerState != PlayerState.DEAD)
         {
             ResetPlayer();
         }
