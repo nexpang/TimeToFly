@@ -99,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
     void AbilityKey()
     {
+        if (playerState == PlayerState.DEAD) return;
+
         if(PlayerInput.Instance.KeyAbility)
         {
             IAbility ability = playerAbility.GetComponent<IAbility>();
