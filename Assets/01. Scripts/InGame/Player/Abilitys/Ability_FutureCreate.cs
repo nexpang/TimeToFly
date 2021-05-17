@@ -40,12 +40,16 @@ public class Ability_FutureCreate : Ability, IAbility
     private PlayerAnimation playerAn = null;
     [SerializeField] private Transform recordedPlayer = null;//---------------------------- TO DO : 이거 프리팹으로 만들어서 자동 생성되게 해야한다.
 
+    // 함정 리셋
+    ResetAbleTrap[] traps = null;
+
     new void Start()
     {
         base.Start();
         playerRb = FindObjectOfType<PlayerController>();
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;
+        traps = FindObjectsOfType<ResetAbleTrap>();
     }
 
     public void OnAbility()
@@ -157,20 +161,39 @@ public class Ability_FutureCreate : Ability, IAbility
     {
         isSleep = false;
         isFuturePlay = true;
+
+        //능력 시간 초기화
         currentTime = abilityDefaultTime;
+
+        // DEAD에서 바꾼다.
         PlayerController.Instance.playerState = PlayerState.NORMAL;
+
+        // 시계 UI 사라지게
         DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+
+        // 파란색 닭에서 다시 기본 닭으로!
         playerAn.GetComponent<SpriteRenderer>().color = Color.white;
+
+        // 카메라 글리치 효과 초기화
         GlitchEffect.Instance.colorIntensity = 0;
         GlitchEffect.Instance.flipIntensity = 0;
         GlitchEffect.Instance.intensity = 0;
 
+        // 자고있는 닭 상태로 다시 돌아간다.
         playerRb.transform.position = sleepPlayer.position;
         playerAn.GetComponent<SpriteRenderer>().flipX = sleepPlayer.GetComponent<SpriteRenderer>().flipX;
         sleepPlayer.GetComponent<SleepingPlayer>().BubbleAwake();
         sleepPlayer.position = new Vector3(-18, 10, 0);
         playerRb.GetComponent<Rigidbody2D>().simulated = true;
+
+        // 현재로 돌아가는 화면 이펙트
         abilityEffectAnim.SetTrigger("OrangeT");
+
+        // 트랩들 리셋
+        foreach(ResetAbleTrap trap in traps)
+        {
+            trap.Reset();
+        }
         Debug.Log("녹화 플레이");
     }
 

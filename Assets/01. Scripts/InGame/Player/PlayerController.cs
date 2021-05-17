@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
+    public Ability_FutureCreate ability1;
 
     [SerializeField] private Transform playerAnim = null;
     private Transform playerAbility = null;
@@ -41,6 +42,11 @@ public class PlayerController : MonoBehaviour
         sr = playerAnim.GetComponent<SpriteRenderer>();
         playerAbility = GameObject.FindGameObjectWithTag("Ability").transform;
         playerState = PlayerState.NORMAL;
+    }
+
+    private void Start()
+    {
+        ability1 = FindObjectOfType<Ability_FutureCreate>();
     }
 
     private void Update()
@@ -141,6 +147,7 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
+            rb.simulated = false;
             an.SetTrigger("dead");
         }
     }
