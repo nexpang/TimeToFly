@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
+    private float speed = 1f;
+    public float _speed {
+        get { return speed; }
+        set { speed = value; }
+    }
 
     public bool isGround;
     public bool isStun;
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
+    public Ability_FutureCreate ability1;
 
     [SerializeField] private Transform playerAnim = null;
     private Transform playerAbility = null;
@@ -41,6 +47,11 @@ public class PlayerController : MonoBehaviour
         sr = playerAnim.GetComponent<SpriteRenderer>();
         playerAbility = GameObject.FindGameObjectWithTag("Ability").transform;
         playerState = PlayerState.NORMAL;
+    }
+
+    private void Start()
+    {
+        ability1 = FindObjectOfType<Ability_FutureCreate>();
     }
 
     private void Update()
@@ -59,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove(Movetype type)
     {
+        Debug.Log(speed);
         if (isStun) return;
 
         if(type == Movetype.JUMP)
@@ -67,14 +79,14 @@ public class PlayerController : MonoBehaviour
             if (PlayerInput.Instance.KeyJump && isGround)
             {
                 rb.velocity = Vector2.zero;
-                rb.AddForce(Vector2.up * jumpSpeed);
+                rb.AddForce(Vector2.up * jumpSpeed * (speed*1f)); // speed 능력2를 구현하기위함
                 an.SetTrigger("jumpT");
             }
         }
         else if(type == Movetype.MOVE)
         {
             // 이동
-            float axis = PlayerInput.Instance.KeyHorizontalRaw * moveSpeed * Time.fixedDeltaTime;
+            float axis = PlayerInput.Instance.KeyHorizontalRaw * moveSpeed * speed * Time.fixedDeltaTime; // speed 능력2를 구현하기위함
             float simpleAxis = Mathf.Round(axis * 1000) / 1000;
             transform.Translate(new Vector2(simpleAxis, 0));
 
@@ -141,6 +153,7 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
+            rb.simulated = false;
             an.SetTrigger("dead");
         }
     }

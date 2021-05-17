@@ -17,9 +17,11 @@ public class BackgroundMove : MonoBehaviour
 
     [SerializeField]
     private float speed = 0.1f;
-
     [SerializeField]
-    private float autoMove = 0.1f;
+    private float autoMoveDefault = 0.5f;
+    private float autoMoveCurrent = 0.5f;
+
+    private Ability_FutureCreate ability1 = null;
 
     [Header("Sub일때만 하세요")]
     [SerializeField]
@@ -27,6 +29,8 @@ public class BackgroundMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        autoMoveCurrent = autoMoveDefault;
+        ability1 = FindObjectOfType<Ability_FutureCreate>();
         BGImg = gameObject.GetComponent<Image>();
 
         if (type == BackgroundType.SUB) offset.x = transform.localPosition.x;
@@ -37,9 +41,14 @@ public class BackgroundMove : MonoBehaviour
     {
         if (PlayerController.Instance.playerState == PlayerState.DEAD || PlayerController.Instance.isStun) return;
 
+        if (ability1 != null)
+        {
+            autoMoveCurrent = ability1.IsSleep() ? 30 : autoMoveDefault;
+        }
+
         if (type == BackgroundType.MAIN)
         {
-            offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + autoMove);
+            offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + autoMoveCurrent);
             BGImg.material.SetTextureOffset("_MainTex", offset);
         }
         else
@@ -48,7 +57,6 @@ public class BackgroundMove : MonoBehaviour
         }
     }
 
-    [ContextMenu("테스트")]
     void Clamp()
     {
         offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal;
