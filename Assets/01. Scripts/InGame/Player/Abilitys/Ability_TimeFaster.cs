@@ -19,7 +19,7 @@ public class Ability_TimeFaster : Ability, IAbility
 
     public float speedUp = 2f;
     [SerializeField] GameObject effect = null;
-    [SerializeField] SpriteRenderer player = null;
+    [SerializeField] GameObject player = null;
 
     new void Start()
     {
@@ -46,6 +46,8 @@ public class Ability_TimeFaster : Ability, IAbility
         IsTimeFast = true;
         PlayerController.Instance._speed = speedUp;
         effect.SetActive(true);
+        Time.timeScale = 1f / speedUp;
+        player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
         Debug.Log("능력 속도업");
     }
     new void Update()
@@ -54,6 +56,7 @@ public class Ability_TimeFaster : Ability, IAbility
         clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
         clockUINeedle.rotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
 
+        Using();
         //effect.GetComponent<ParticleSystemRenderer>().material.mainTexture = player.sprite.texture; 안됨
 
         if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
@@ -62,9 +65,17 @@ public class Ability_TimeFaster : Ability, IAbility
         }
     }
 
+    void Using()
+    {
+        if (!IsTimeFast) return;
+
+    }
+
     public void ResetPlayer()
     {
         //능력 중단
+        player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
+        Time.timeScale = 1f;
         IsTimeFast = false;
         effect.SetActive(false);
         PlayerController.Instance._speed = 1;
