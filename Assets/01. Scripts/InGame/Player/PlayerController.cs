@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove(Movetype type)
     {
-        Debug.Log(speed);
         if (isStun) return;
 
         if(type == Movetype.JUMP)
