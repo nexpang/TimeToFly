@@ -34,7 +34,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
+    [HideInInspector]
     public Ability_FutureCreate ability1;
+
+    [SerializeField] GameObject[] abilitys;
+    public int abilityNumber = 0;
 
     [SerializeField] private Transform playerAnim = null;
     private Transform playerAbility = null;
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        PlayerAbilitySet();
         rb = GetComponent<Rigidbody2D>();
         an = playerAnim.GetComponent<Animator>();
         sr = playerAnim.GetComponent<SpriteRenderer>();
@@ -70,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove(Movetype type)
     {
-        Debug.Log(speed);
         if (isStun) return;
 
         if(type == Movetype.JUMP)
@@ -79,7 +84,8 @@ public class PlayerController : MonoBehaviour
             if (PlayerInput.Instance.KeyJump && isGround)
             {
                 rb.velocity = Vector2.zero;
-                rb.AddForce(Vector2.up * jumpSpeed * (speed*1f)); // speed 능력2를 구현하기위함
+                float jS = speed != 1f ? speed * 0.8f : 1f;
+                rb.AddForce(Vector2.up * jumpSpeed * jS); // speed 능력2를 구현하기위함
                 an.SetTrigger("jumpT");
             }
         }
@@ -102,11 +108,24 @@ public class PlayerController : MonoBehaviour
     void AnimParametersSet()
     {
         an.SetBool("jump", !isGround);
-        an.SetFloat("ySpeed", rb.velocity.y);
+        an.SetFloat("ySpeed", rb.velocity.y / _speed);
         if (rb.velocity.y < -4f) an.SetBool("falling", true);
         if (rb.velocity.y < -15f) an.SetBool("land", true);
 
         an.SetBool("isDead", playerState == PlayerState.DEAD);
+    }
+
+    void PlayerAbilitySet()
+    {
+        //abilityNumber  0이면 기상이, 1이면 시한이, 2이면 동진이, 3이면 지향이, 4면 소전이
+
+        playerAnim.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
+
+        abilitys[0].SetActive(abilityNumber == 1);
+        abilitys[1].SetActive(abilityNumber == 2);
+        abilitys[2].SetActive(abilityNumber == 3);
+        abilitys[3].SetActive(abilityNumber == 4);
+        abilitys[4].SetActive(abilityNumber == 0);
     }
 
     void AbilityKey()
@@ -153,7 +172,6 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
-            rb.simulated = false;
             an.SetTrigger("dead");
         }
     }

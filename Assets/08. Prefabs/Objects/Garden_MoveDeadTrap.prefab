@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2836846481271254516}
   - component: {fileID: 2836846481271254518}
   - component: {fileID: 2836846481271254519}
-  - component: {fileID: 2836846481271254517}
   - component: {fileID: 2836846481271254512}
+  - component: {fileID: 8895354098756224358}
   m_Layer: 0
   m_Name: NongGiGu
   m_TagString: DEADABLE
@@ -106,7 +106,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2836846481271254517
+--- !u!114 &2836846481271254512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836846481271254523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd934908d58f984d95e1cf78c383038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &8895354098756224358
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,20 +144,12 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.03125, y: 0.34375}
+      - {x: -0.03125, y: -0.265625}
+      - {x: -0.109375, y: -0.375}
       - {x: 0, y: -0.5}
+      - {x: 0.109375, y: -0.375}
+      - {x: 0.03125, y: -0.265625}
       - {x: 0.03125, y: 0.34375}
---- !u!114 &2836846481271254512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836846481271254523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cd934908d58f984d95e1cf78c383038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2836846481542654494
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +244,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2836846481542654494}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7330af27da2f6994e857199aea25b60b, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -271,4 +275,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dir: {x: 0, y: -1}
   speed: 7
+  space: 0
   isRigidBody: 1

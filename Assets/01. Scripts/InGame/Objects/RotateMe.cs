@@ -8,11 +8,13 @@ public class RotateMe : MonoBehaviour
     private Vector3 rotateCurrent;
 
     private Ability_FutureCreate ability1 = null;
+    private Ability_TimeFaster ability2 = null;
 
     private void Start()
     {
         rotateCurrent = rotate;
         ability1 = FindObjectOfType<Ability_FutureCreate>();
+        ability2 = FindObjectOfType<Ability_TimeFaster>();
     }
 
     void Update()
@@ -20,6 +22,10 @@ public class RotateMe : MonoBehaviour
         if (ability1 != null)
         {
             rotateCurrent = ability1.IsSleep() ? rotate * 30 : rotate;
+        }
+        else if(ability2 != null)
+        {
+            rotateCurrent = ability2.IsTimeFast ? rotate * 0 : rotate;
         }
 
         transform.Rotate(rotateCurrent * Time.deltaTime);    
