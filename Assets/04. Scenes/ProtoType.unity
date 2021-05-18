@@ -11730,7 +11730,7 @@ MonoBehaviour:
   - {fileID: 856824130}
   - {fileID: 110000874}
   - {fileID: 1745309822}
-  abilityNumber: 2
+  abilityNumber: 1
   playerAnim: {fileID: 1957919228}
 --- !u!212 &1558494635
 SpriteRenderer:
