@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     void AnimParametersSet()
     {
         an.SetBool("jump", !isGround);
-        an.SetFloat("ySpeed", rb.velocity.y);
+        an.SetFloat("ySpeed", rb.velocity.y / _speed);
         if (rb.velocity.y < -4f) an.SetBool("falling", true);
         if (rb.velocity.y < -15f) an.SetBool("land", true);
 

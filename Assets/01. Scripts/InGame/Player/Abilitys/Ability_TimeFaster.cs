@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class TestAbility2 : Ability, IAbility
+public class Ability_TimeFaster : Ability, IAbility
 {
     [Header("능력 별 변수들")]
     [SerializeField] GameObject clockUI = null;
@@ -13,6 +13,9 @@ public class TestAbility2 : Ability, IAbility
     [SerializeField] RectTransform clockUINeedle = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
+
+    private bool isTimeFast = false;
+    public bool IsTimeFast { get { return isTimeFast; } set { isTimeFast = value; } }
 
     public float speedUp = 2f;
     [SerializeField] GameObject effect = null;
@@ -40,6 +43,7 @@ public class TestAbility2 : Ability, IAbility
         abilityEffectAnim.SetTrigger("BlueT");
 
         //능력 시작
+        IsTimeFast = true;
         PlayerController.Instance._speed = speedUp;
         effect.SetActive(true);
         Debug.Log("능력 속도업");
@@ -61,6 +65,7 @@ public class TestAbility2 : Ability, IAbility
     public void ResetPlayer()
     {
         //능력 중단
+        IsTimeFast = false;
         effect.SetActive(false);
         PlayerController.Instance._speed = 1;
 

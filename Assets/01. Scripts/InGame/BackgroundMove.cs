@@ -22,6 +22,7 @@ public class BackgroundMove : MonoBehaviour
     private float autoMoveCurrent = 0.5f;
 
     private Ability_FutureCreate ability1 = null;
+    private Ability_TimeFaster ability2 = null;
 
     [Header("Sub일때만 하세요")]
     [SerializeField]
@@ -31,6 +32,7 @@ public class BackgroundMove : MonoBehaviour
     {
         autoMoveCurrent = autoMoveDefault;
         ability1 = FindObjectOfType<Ability_FutureCreate>();
+        ability2 = FindObjectOfType<Ability_TimeFaster>();
         BGImg = gameObject.GetComponent<Image>();
 
         if (type == BackgroundType.SUB) offset.x = transform.localPosition.x;
@@ -44,6 +46,10 @@ public class BackgroundMove : MonoBehaviour
         if (ability1 != null)
         {
             autoMoveCurrent = ability1.IsSleep() ? 30 : autoMoveDefault;
+        }
+        else if (ability2 != null)
+        {
+            autoMoveCurrent = ability2.IsTimeFast ? 0 : autoMoveDefault;
         }
 
         if (type == BackgroundType.MAIN)
