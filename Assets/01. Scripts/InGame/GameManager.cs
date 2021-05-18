@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         Instance = this; // ΩÃ±€≈Ê
         timer = defaultTimer; // ≈∏¿Ã∏” √ ±‚»≠
     }
