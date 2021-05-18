@@ -84,7 +84,8 @@ public class PlayerController : MonoBehaviour
             if (PlayerInput.Instance.KeyJump && isGround)
             {
                 rb.velocity = Vector2.zero;
-                rb.AddForce(Vector2.up * jumpSpeed * (speed*1f)); // speed 능력2를 구현하기위함
+                float jS = speed != 1f ? speed * 0.8f : 1f;
+                rb.AddForce(Vector2.up * jumpSpeed * jS); // speed 능력2를 구현하기위함
                 an.SetTrigger("jumpT");
             }
         }
