@@ -152,7 +152,6 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
-            rb.simulated = false;
             an.SetTrigger("dead");
         }
     }
