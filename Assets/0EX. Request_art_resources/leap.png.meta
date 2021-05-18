@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 54c6a188cc8007245880a196b64837b7
+guid: 610130dc5e12e4f488d119cb9e7eb44d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2823742754735806438
-    second: DeathEffect_0
+      213: -2058102481636132610
+    second: leap_0
   - first:
-      213: 1068679924289981105
-    second: DeathEffect_1
+      213: 172082661581711764
+    second: leap_1
   - first:
-      213: -3418193699171384888
-    second: DeathEffect_2
-  - first:
-      213: 7200026126569137616
-    second: DeathEffect_3
-  - first:
-      213: 7992030313582881891
-    second: DeathEffect_4
-  - first:
-      213: 8126200503894129166
-    second: DeathEffect_5
+      213: -4255016157463116734
+    second: leap_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeathEffect_0
+      name: leap_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 9
-        height: 12
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +126,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a18a3e6ecec00d8d0800000000000000
-      internalID: -2823742754735806438
+      spriteID: ef87abe72b62073e0800000000000000
+      internalID: -2058102481636132610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeathEffect_1
+      name: leap_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 1
-        width: 10
-        height: 13
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ba45e1aab6b4de00800000000000000
-      internalID: 1068679924289981105
+      spriteID: 499e49bd44c536200800000000000000
+      internalID: 172082661581711764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DeathEffect_2
+      name: leap_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 2
-        width: 11
-        height: 12
+        x: 32
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,71 +168,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c14963e0f22090d0800000000000000
-      internalID: -3418193699171384888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DeathEffect_3
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 2
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d56faf5d91abe360800000000000000
-      internalID: 7200026126569137616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DeathEffect_4
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 2
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36ce2430a3569ee60800000000000000
-      internalID: 7992030313582881891
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DeathEffect_5
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 3
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0ab538cd4016c070800000000000000
-      internalID: 8126200503894129166
+      spriteID: 2440ddc495523f4c0800000000000000
+      internalID: -4255016157463116734
       vertices: []
       indices: 
       edges: []
