@@ -6993,7 +6993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &626052441
 Transform:
   m_ObjectHideFlags: 0
@@ -11724,6 +11724,13 @@ MonoBehaviour:
   isStun: 0
   playerState: 0
   ability1: {fileID: 0}
+  abilitys:
+  - {fileID: 626052440}
+  - {fileID: 1176652839}
+  - {fileID: 856824130}
+  - {fileID: 110000874}
+  - {fileID: 1745309822}
+  abilityNumber: 2
   playerAnim: {fileID: 1957919228}
 --- !u!212 &1558494635
 SpriteRenderer:
@@ -12711,7 +12718,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 3115193097903416228, guid: b55289bf8335a164c9c5bd9627cb173b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13053,7 +13060,7 @@ MonoBehaviour:
     - {fileID: 2393308677314426644, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
-  targetSheet: 2
+  targetSheet: 0
 --- !u!1001 &2022157593
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,7 +34,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
+    [HideInInspector]
     public Ability_FutureCreate ability1;
+
+    [SerializeField] GameObject[] abilitys;
+    public int abilityNumber = 0;
 
     [SerializeField] private Transform playerAnim = null;
     private Transform playerAbility = null;
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        PlayerAbilitySet();
         rb = GetComponent<Rigidbody2D>();
         an = playerAnim.GetComponent<Animator>();
         sr = playerAnim.GetComponent<SpriteRenderer>();
@@ -106,6 +112,19 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y < -15f) an.SetBool("land", true);
 
         an.SetBool("isDead", playerState == PlayerState.DEAD);
+    }
+
+    void PlayerAbilitySet()
+    {
+        //abilityNumber  0이면 기상이, 1이면 시한이, 2이면 동진이, 3이면 지향이, 4면 소전이
+
+        playerAnim.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
+
+        abilitys[0].SetActive(abilityNumber == 1);
+        abilitys[1].SetActive(abilityNumber == 2);
+        abilitys[2].SetActive(abilityNumber == 3);
+        abilitys[3].SetActive(abilityNumber == 4);
+        abilitys[4].SetActive(abilityNumber == 0);
     }
 
     void AbilityKey()
