@@ -432,19 +432,21 @@ PlayableDirector:
     value: {fileID: 1897624427}
   - key: {fileID: 1406944163415893941, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 1391815651}
-  - key: {fileID: 6229850299503506971, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: -2574803876603689384, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 1926998884}
-  - key: {fileID: 2537779047292754670, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: 271087613838811530, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 2094367840}
-  - key: {fileID: 7688418167708290877, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
-    value: {fileID: 100293331}
-  - key: {fileID: -4370152061768334064, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: 78346888989353325, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 1926998884}
-  - key: {fileID: 3769448401652187431, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: -7972924026901839598, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+    value: {fileID: 1926998884}
+  - key: {fileID: 7263086681958501508, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 2094367840}
-  - key: {fileID: -6887993791166977672, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: -6514119430487509521, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+    value: {fileID: 2094367840}
+  - key: {fileID: 3409080778710868651, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 1129099255}
-  - key: {fileID: 4617891128181429064, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
+  - key: {fileID: 4484131747442975690, guid: e2e52fd5e1218ef498f3e2ab5b465c95, type: 2}
     value: {fileID: 1129099255}
   m_ExposedReferences:
     m_References:
@@ -734,7 +736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001358434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.75, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 143317784}
@@ -765,7 +767,7 @@ Animator:
   m_GameObject: {fileID: 1001358434}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 707262d0164b3ce4db95ac1427e62638, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9f12a7377f710274583c708a7180e0ea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -884,8 +886,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129099252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.34, y: -2.02, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.8762221, y: -1.8696295, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930314904}
@@ -965,7 +967,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6476020496741556544, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  m_Sprite: {fileID: -1722908438485552760, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1004,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391815646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: -1}
+  m_LocalPosition: {x: 0, y: -6.5, z: -1}
   m_LocalScale: {x: 67.6612, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 434091167}
@@ -1320,7 +1322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897624422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: -1}
+  m_LocalPosition: {x: 0, y: 6.5, z: -1}
   m_LocalScale: {x: 67, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 434091167}
@@ -1454,7 +1456,7 @@ GameObject:
   - component: {fileID: 1926998884}
   - component: {fileID: 1926998885}
   m_Layer: 0
-  m_Name: swichingDack_1
+  m_Name: swichingDack_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1467,8 +1469,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926998881}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -3.1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3518527, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 100293330}
@@ -1514,7 +1516,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6476020496741556544, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  m_Sprite: {fileID: 4576200162830151585, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1535,7 +1537,7 @@ Animator:
   m_GameObject: {fileID: 1926998881}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f57a3f24a03afaf458402312328aad4e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 71725cb87483b1f4fa3932c7e17045fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1639,7 +1641,7 @@ GameObject:
   - component: {fileID: 2094367840}
   - component: {fileID: 2094367839}
   m_Layer: 0
-  m_Name: swichingDack_2
+  m_Name: swichingDack_W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,8 +1654,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094367837}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.5, y: -3.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000004371139}
+  m_LocalPosition: {x: 3.2851858, y: -3.1, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 100293330}
@@ -1733,9 +1735,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6476020496741556544, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  m_Sprite: {fileID: -2812111548000859311, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
