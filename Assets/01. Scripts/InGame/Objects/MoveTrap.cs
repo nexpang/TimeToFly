@@ -6,6 +6,7 @@ public class MoveTrap : ResetAbleTrap
 {
     [SerializeField] Vector2 dir;
     [SerializeField] float speed;
+    [SerializeField] Space space = Space.World;
 
     [Header("이때 리짓바디 컴포넌트가 필요하다.")]
     [Header("만약 떨어뜨릴꺼라면, 리짓바디를 켜준다.")]
@@ -55,7 +56,7 @@ public class MoveTrap : ResetAbleTrap
     {
         if(isTrigger)
         {
-            child.transform.Translate(dir * speed * Time.deltaTime);
+            child.transform.Translate(dir * speed * Time.deltaTime, space);
         }
     }
 
