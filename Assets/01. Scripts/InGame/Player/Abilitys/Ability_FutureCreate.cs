@@ -14,6 +14,7 @@ public class Ability_FutureCreate : Ability, IAbility
     [SerializeField] RectTransform clockUINeedle = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
+    [SerializeField] TrailRenderer effect = null;
 
     [Header("미래 예지 플레이어 기억")]
     public List<Vector2> RecordNumber_XY = new List<Vector2>();
@@ -69,6 +70,11 @@ public class Ability_FutureCreate : Ability, IAbility
         sleepPlayer.position = transform.position;
         sleepPlayer.GetComponent<SpriteRenderer>().flipX = playerAn.GetComponent<SpriteRenderer>().flipX;
         abilityEffectAnim.SetTrigger("BlueT");
+
+        effect.transform.SetParent(this.transform);
+        effect.time = 0;
+        effect.transform.localPosition = Vector3.zero;
+        effect.time = 10;
         isSleep = true;
     }
 
@@ -179,6 +185,10 @@ public class Ability_FutureCreate : Ability, IAbility
         GlitchEffect.Instance.flipIntensity = 0;
         GlitchEffect.Instance.intensity = 0;
 
+        //trail Effect 남기고
+        effect.transform.SetParent(null);
+        effect.transform.position = playerRb.transform.position;
+
         // 자고있는 닭 상태로 다시 돌아간다.
         playerRb.transform.position = sleepPlayer.position;
         playerAn.GetComponent<SpriteRenderer>().flipX = sleepPlayer.GetComponent<SpriteRenderer>().flipX;
@@ -190,7 +200,7 @@ public class Ability_FutureCreate : Ability, IAbility
         abilityEffectAnim.SetTrigger("OrangeT");
 
         // 트랩들 리셋
-        foreach(ResetAbleTrap trap in traps)
+        foreach (ResetAbleTrap trap in traps)
         {
             trap.Reset();
         }
