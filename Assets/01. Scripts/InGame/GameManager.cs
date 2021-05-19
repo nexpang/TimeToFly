@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] int defaultTimer;
+    [SerializeField] bool isNeedTimer = true;
     private int _timer;
     public int timer
     {
@@ -25,10 +26,13 @@ public class GameManager : MonoBehaviour
     private float currentTime = 0;
     private void Update()
     {
-        currentTime = Time.time;
-        if(currentTime > targetTime)
+        if (isNeedTimer)
         {
-            Timer();
+            currentTime = Time.time;
+            if (currentTime > targetTime)
+            {
+                Timer();
+            }
         }
     }
 
