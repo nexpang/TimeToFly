@@ -1,97 +1,82 @@
 fileFormatVersion: 2
-guid: cd23babceb8694e4b88aea4ec4b7320a
+guid: 722cabbfa59b37a4690f26aad553446e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4615059067086326227
-    second: palyer_01_0
+      213: -6284718132161823125
+    second: hutgan_tileSet_0
   - first:
-      213: -1108071142752974829
-    second: palyer_01_1
+      213: -197985766872523867
+    second: hutgan_tileSet_1
   - first:
-      213: -6789343768089862433
-    second: palyer_01_2
+      213: 3360569995102143721
+    second: hutgan_tileSet_2
   - first:
-      213: 7608490913346549296
-    second: palyer_01_3
+      213: 6282575917527230018
+    second: hutgan_tileSet_3
   - first:
-      213: -8167124073295883255
-    second: palyer_01_4
+      213: 8381635586026538854
+    second: hutgan_tileSet_4
   - first:
-      213: 3788810998390678535
-    second: palyer_01_5
+      213: -5563076337552060423
+    second: hutgan_tileSet_5
   - first:
-      213: -5657559692905572895
-    second: palyer_01_6
+      213: -266927185678404068
+    second: hutgan_tileSet_6
   - first:
-      213: -8073708313491677910
-    second: palyer_01_7
+      213: 224199102226642308
+    second: hutgan_tileSet_7
   - first:
-      213: -373100578930070710
-    second: palyer_01_8
+      213: -7324868662151992959
+    second: hutgan_tileSet_8
   - first:
-      213: -6346279865658169141
-    second: palyer_01_9
+      213: -5979133781418428281
+    second: hutgan_tileSet_9
   - first:
-      213: -1236486312981282416
-    second: palyer_01_10
+      213: -4703946705305525026
+    second: hutgan_tileSet_10
   - first:
-      213: -3253405633510534140
-    second: palyer_01_11
+      213: 4090580167656044066
+    second: hutgan_tileSet_11
   - first:
-      213: -9030584774482083115
-    second: palyer_01_12
+      213: 4289596772196550413
+    second: hutgan_tileSet_12
   - first:
-      213: -5372174311237883277
-    second: palyer_01_13
+      213: -6520993865848521783
+    second: hutgan_tileSet_13
   - first:
-      213: 4610994699292701570
-    second: palyer_01_14
+      213: 3448822319185045692
+    second: hutgan_tileSet_14
   - first:
-      213: -9162380812432137356
-    second: palyer_01_15
+      213: -139994664835213413
+    second: hutgan_tileSet_15
   - first:
-      213: -6538412898873164772
-    second: palyer_01_16
+      213: -5721549692781639920
+    second: hutgan_tileSet_16
   - first:
-      213: 2199815015610853958
-    second: palyer_01_17
+      213: 6938327940880504445
+    second: hutgan_tileSet_17
   - first:
-      213: 3280819293611182502
-    second: palyer_01_18
+      213: 7370028989191046531
+    second: hutgan_tileSet_18
   - first:
-      213: -2865461328635075681
-    second: palyer_01_19
+      213: 4205805583144542637
+    second: hutgan_tileSet_19
   - first:
-      213: -3903853326103281169
-    second: palyer_01_20
+      213: -7731076785669190723
+    second: hutgan_tileSet_20
   - first:
-      213: -3219521497239169531
-    second: palyer_01_21
+      213: -6069123241478600766
+    second: hutgan_tileSet_21
   - first:
-      213: 819064326532109549
-    second: palyer_01_22
+      213: -5575880892536477310
+    second: hutgan_tileSet_22
   - first:
-      213: -3884703730488454211
-    second: palyer_01_23
+      213: -7327599787456240933
+    second: hutgan_tileSet_23
   - first:
-      213: -509098512545927167
-    second: palyer_01_24
-  - first:
-      213: -4012466571107888257
-    second: palyer_01_25
-  - first:
-      213: -3165491350002179056
-    second: palyer_01_26
-  - first:
-      213: -4655492781472976807
-    second: palyer_01_27
-  - first:
-      213: 7486495760547470940
-    second: palyer_01_28
-  - first:
-      213: 2258606548919462518
-    second: palyer_01_29
+      213: 8218947978938052381
+    second: hutgan_tileSet_24
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -193,133 +178,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: palyer_01_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d9402715cbfb0040800000000000000
-      internalID: 4615059067086326227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 318095e9a275f90f0800000000000000
-      internalID: -1108071142752974829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdeddfc70d767c1a0800000000000000
-      internalID: -6789343768089862433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 036fec69c2ac69960800000000000000
-      internalID: 7608490913346549296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 90458a63deb88ae80800000000000000
-      internalID: -8167124073295883255
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7046b20778f849430800000000000000
-      internalID: 3788810998390678535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_6
+      name: hutgan_tileSet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -333,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e59bc03f6f4c71b0800000000000000
-      internalID: -5657559692905572895
+      spriteID: b6eb90b182238c8a0800000000000000
+      internalID: -6284718132161823125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_7
+      name: hutgan_tileSet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -354,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2dd532b01d64ff80800000000000000
-      internalID: -8073708313491677910
+      spriteID: 5abdaf67efc904df0800000000000000
+      internalID: -197985766872523867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_8
+      name: hutgan_tileSet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -375,35 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4b616f000b72daf0800000000000000
-      internalID: -373100578930070710
+      spriteID: 9e446e00b9423ae20800000000000000
+      internalID: 3360569995102143721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_9
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc82b32161c7de7a0800000000000000
-      internalID: -6346279865658169141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_10
+      name: hutgan_tileSet_3
       rect:
         serializedVersion: 2
         x: 64
@@ -417,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0914e11ef3e17dee0800000000000000
-      internalID: -1236486312981282416
+      spriteID: 24662aea281303750800000000000000
+      internalID: 6282575917527230018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_11
+      name: hutgan_tileSet_4
       rect:
         serializedVersion: 2
         x: 80
@@ -438,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 404995840d499d2d0800000000000000
-      internalID: -3253405633510534140
+      spriteID: 66782ed582d815470800000000000000
+      internalID: 8381635586026538854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_12
+      name: hutgan_tileSet_5
       rect:
         serializedVersion: 2
         x: 0
@@ -459,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2c1f26efaeca280800000000000000
-      internalID: -9030584774482083115
+      spriteID: 9ff04d1ab8bfbc2b0800000000000000
+      internalID: -5563076337552060423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_13
+      name: hutgan_tileSet_6
       rect:
         serializedVersion: 2
         x: 16
@@ -480,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37aef2b4de33275b0800000000000000
-      internalID: -5372174311237883277
+      spriteID: c167ebc832fab4cf0800000000000000
+      internalID: -266927185678404068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_14
+      name: hutgan_tileSet_7
       rect:
         serializedVersion: 2
         x: 32
@@ -501,56 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 283fc88bf3b8dff30800000000000000
-      internalID: 4610994699292701570
+      spriteID: 4853e2745e38c1300800000000000000
+      internalID: 224199102226642308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_15
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 473a02a023fa8d080800000000000000
-      internalID: -9162380812432137356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_16
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c1c35d74c14e245a0800000000000000
-      internalID: -6538412898873164772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_17
+      name: hutgan_tileSet_8
       rect:
         serializedVersion: 2
         x: 80
@@ -564,14 +360,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64a2e010a10578e10800000000000000
-      internalID: 2199815015610853958
+      spriteID: 1892a06b2c6d85a90800000000000000
+      internalID: -7324868662151992959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_18
+      name: hutgan_tileSet_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788340e2189d50da0800000000000000
+      internalID: -5979133781418428281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hutgan_tileSet_10
       rect:
         serializedVersion: 2
         x: 0
@@ -585,14 +402,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a941f7d3cfc78d20800000000000000
-      internalID: 3280819293611182502
+      spriteID: ed425e3e46938beb0800000000000000
+      internalID: -4703946705305525026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_19
+      name: hutgan_tileSet_11
       rect:
         serializedVersion: 2
         x: 16
@@ -606,14 +423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f93661d7a16db38d0800000000000000
-      internalID: -2865461328635075681
+      spriteID: 226756a5df8a4c830800000000000000
+      internalID: 4090580167656044066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_20
+      name: hutgan_tileSet_12
       rect:
         serializedVersion: 2
         x: 32
@@ -627,56 +444,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe1036a551ab2d9c0800000000000000
-      internalID: -3903853326103281169
+      spriteID: d07007c7985b78b30800000000000000
+      internalID: 4289596772196550413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_21
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 506535a8146f153d0800000000000000
-      internalID: -3219521497239169531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de414275aa6ed5b00800000000000000
-      internalID: 819064326532109549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_23
+      name: hutgan_tileSet_13
       rect:
         serializedVersion: 2
         x: 80
@@ -690,14 +465,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db3d9960a82c61ac0800000000000000
-      internalID: -3884703730488454211
+      spriteID: 9cbf893f0a6c085a0800000000000000
+      internalID: -6520993865848521783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_24
+      name: hutgan_tileSet_14
       rect:
         serializedVersion: 2
         x: 0
@@ -711,14 +486,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1003504a9915fe8f0800000000000000
-      internalID: -509098512545927167
+      spriteID: cb8a67c60adacdf20800000000000000
+      internalID: 3448822319185045692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_25
+      name: hutgan_tileSet_15
       rect:
         serializedVersion: 2
         x: 16
@@ -732,14 +507,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f731cfb99ead058c0800000000000000
-      internalID: -4012466571107888257
+      spriteID: b971c041893ae0ef0800000000000000
+      internalID: -139994664835213413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_26
+      name: hutgan_tileSet_16
       rect:
         serializedVersion: 2
         x: 32
@@ -753,56 +528,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0146c8f736ae114d0800000000000000
-      internalID: -3165491350002179056
+      spriteID: 01741055ed8f890b0800000000000000
+      internalID: -5721549692781639920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palyer_01_27
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95078e92bfd546fb0800000000000000
-      internalID: -4655492781472976807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_28
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5e56e3aa3065e760800000000000000
-      internalID: 7486495760547470940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: palyer_01_29
+      name: hutgan_tileSet_17
       rect:
         serializedVersion: 2
         x: 80
@@ -816,8 +549,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67a27bb80be285f10800000000000000
-      internalID: 2258606548919462518
+      spriteID: d76995b5084e94060800000000000000
+      internalID: 6938327940880504445
       vertices: []
       indices: 
       edges: []

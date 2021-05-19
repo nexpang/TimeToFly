@@ -21,6 +21,7 @@ public class BackgroundMove : MonoBehaviour
     private float autoMoveDefault = 0.5f;
     private float autoMoveCurrent = 0.5f;
 
+    private PlayerController playerRb = null;
     private Ability_FutureCreate ability1 = null;
     private Ability_TimeFaster ability2 = null;
 
@@ -31,6 +32,7 @@ public class BackgroundMove : MonoBehaviour
     void Start()
     {
         autoMoveCurrent = autoMoveDefault;
+        playerRb = FindObjectOfType<PlayerController>();
         ability1 = FindObjectOfType<Ability_FutureCreate>();
         ability2 = FindObjectOfType<Ability_TimeFaster>();
         BGImg = gameObject.GetComponent<Image>();
@@ -52,9 +54,11 @@ public class BackgroundMove : MonoBehaviour
             autoMoveCurrent = ability2.IsTimeFast ? 0 : autoMoveDefault;
         }
 
+
         if (type == BackgroundType.MAIN)
         {
-            offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + autoMoveCurrent);
+            offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + autoMoveCurrent) * PlayerController.Instance.currentMoveS * 7;
+            offset.x = Mathf.Clamp(offset.x, 0, 10);
             BGImg.material.SetTextureOffset("_MainTex", offset);
         }
         else
@@ -65,7 +69,7 @@ public class BackgroundMove : MonoBehaviour
 
     void Clamp()
     {
-        offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal;
+        offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * PlayerController.Instance.currentMoveS * 7;
         offset.x = Mathf.Clamp(offset.x, clampOffect.x, clampOffect.y);
 
         transform.localPosition = new Vector3(offset.x, transform.localPosition.y);

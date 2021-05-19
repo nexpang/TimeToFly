@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
+    private Vector3 lastPos = Vector3.zero;
+
+    [HideInInspector] public float currentMoveS; // 현재 속도를 감지함.
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     private float speed = 1f;
@@ -67,6 +71,14 @@ public class PlayerController : MonoBehaviour
 
         AnimParametersSet();
         AbilityKey();
+
+
+    }
+
+    private void LateUpdate()
+    {
+        currentMoveS = Mathf.Abs(transform.position.x - lastPos.x);
+        lastPos = transform.position;
     }
 
     void FixedUpdate()
