@@ -68,7 +68,7 @@ public class Ability_TimeBomb : Ability, IAbility
         isAnimationPlaying = true;
         Invoke("EndAnimation", 1.5f);
         hasTimeBoom = true;
-        myBoom = Instantiate(timeBoom, new Vector3(0f, 1f, 0f), Quaternion.identity, transform);
+        myBoom = Instantiate(timeBoom, new Vector3(transform.position.x,  transform.position.y+0.8f, 0f), Quaternion.identity, transform);
     }
 
     void EndAnimation()

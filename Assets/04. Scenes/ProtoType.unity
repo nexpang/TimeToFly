@@ -7474,17 +7474,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b49aa53b9848a848bb671d5da27f41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityBtn: {fileID: 0}
-  abilityCooldownCircle: {fileID: 0}
+  abilityBtn: {fileID: 676108900}
+  abilityCooldownCircle: {fileID: 270041088}
   abilityBtnSpr: {fileID: 0}
   abilityCooldown: 30
   abilityCurrentCoolDown: 0
   clockUI: {fileID: 0}
-  abilityEffectAnim: {fileID: 0}
+  abilityEffectAnim: {fileID: 1821836605}
   abilityDefaultTime: 15
   currentTime: 15
-  player: {fileID: 0}
-  timeBoom: {fileID: 0}
+  player: {fileID: 1957919223}
+  timeBoom: {fileID: 6608642458180005343, guid: ae034b4bf43b42b418e326a2b35b0830, type: 3}
 --- !u!1 &892245305
 GameObject:
   m_ObjectHideFlags: 0
@@ -11751,7 +11751,7 @@ MonoBehaviour:
   - {fileID: 856824130}
   - {fileID: 110000874}
   - {fileID: 1745309822}
-  abilityNumber: 1
+  abilityNumber: 3
   playerAnim: {fileID: 1957919228}
 --- !u!212 &1558494635
 SpriteRenderer:
