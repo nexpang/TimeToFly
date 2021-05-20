@@ -4,13 +4,18 @@ using DG.Tweening;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private Text startTxt = null;
+    [SerializeField] 
+    private Text startTxt = null;
     [SerializeField]
     private GameObject exit = null;
+    [SerializeField]
+    private GameObject clearPanel = null;
+    
     
 
     private void Awake()
     {
+        DontDestroyOnLoad(clearPanel);
         Time.timeScale = 1;
     }
 
