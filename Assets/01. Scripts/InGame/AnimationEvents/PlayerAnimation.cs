@@ -23,6 +23,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetBool("land", false);
         animator.SetBool("falling", false);
+        playerController.isStun = false;
     }
 
     void PlayerStunEventStart() // 해당 함수는 Player_AfterJumpWait에 들어있음.
