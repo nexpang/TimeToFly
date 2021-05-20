@@ -38,7 +38,6 @@ public class Ability_TimeBomb : Ability, IAbility
         }
         if (hasTimeBoom)
         {
-            timeBoom.transform.localPosition = new Vector3(0f, 1.5f, 0f);
             timeBoom.transform.SetParent(null);
             circleCol.enabled = true;
             rigid = timeBoom.AddComponent<Rigidbody2D>();
@@ -57,6 +56,8 @@ public class Ability_TimeBomb : Ability, IAbility
         else
         {
             if (abilityCurrentCoolDown > 0) return; // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
+            timeBoom.transform.localPosition = new Vector3(0f, 1.2f, 0f);
+            timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
             PlayerController.Instance._speed = 0f;
             //Time.timeScale = 0.6f;
             Using();
