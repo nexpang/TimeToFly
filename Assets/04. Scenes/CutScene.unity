@@ -1203,7 +1203,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805358852}
-  - component: {fileID: 805358853}
   m_Layer: 0
   m_Name: VcamFollowDacks2
   m_TagString: Untagged
@@ -1225,18 +1224,6 @@ Transform:
   m_Father: {fileID: 1808289504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &805358853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805358851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f9f8b61a453c34c94d3d52128dd017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &805944212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,7 +1233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805944213}
-  - component: {fileID: 805944214}
   m_Layer: 0
   m_Name: VcamFollowHigh
   m_TagString: Untagged
@@ -1268,18 +1254,6 @@ Transform:
   m_Father: {fileID: 971602202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &805944214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805944212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f9f8b61a453c34c94d3d52128dd017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &845012226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1496,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963144301}
-  - component: {fileID: 963144302}
   m_Layer: 0
   m_Name: VcamFollowDacks
   m_TagString: Untagged
@@ -1544,18 +1517,6 @@ Transform:
   m_Father: {fileID: 971602202}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963144302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963144300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f9f8b61a453c34c94d3d52128dd017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &971602201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,7 +2394,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.8937497
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2462,7 +2423,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.12, z: 0}
 --- !u!114 &1649811413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3184,7 +3145,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927417933}
-  - component: {fileID: 1927417934}
   m_Layer: 0
   m_Name: VcamFollowHigh2
   m_TagString: Untagged
@@ -3206,18 +3166,6 @@ Transform:
   m_Father: {fileID: 1808289504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1927417934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927417932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f9f8b61a453c34c94d3d52128dd017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2048732978
 GameObject:
   m_ObjectHideFlags: 0
