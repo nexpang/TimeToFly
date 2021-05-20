@@ -48,8 +48,11 @@ public class PlayerAnimation : MonoBehaviour
         }
         else // 아니라면
         {
+            if(!GameManager.Instance.IsInfinityLife) SaveManager.Instance.gameData.TempLife--;
+
+            // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            // TO DO : 녹화중이었다면 다시 과거로, 아니라면 게임 오버
         }
     }
 }

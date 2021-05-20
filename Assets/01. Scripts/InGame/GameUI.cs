@@ -30,6 +30,6 @@ public class GameUI : MonoBehaviour
 
     void TimerUpdate()
     {
-        text.text = string.Format("TIME\n{0}", GameManager.Instance.timer);
+        text.text = string.Format("TIME\n{0:D3}", GameManager.Instance.timer);
     }
 }

@@ -12,8 +12,6 @@ public class UI : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
-
-        
     }
 
     void Start()
@@ -32,6 +30,7 @@ public class UI : MonoBehaviour
     {
         exit.SetActive(false);
     }
+
     public void ExitBtn()
     {
         Application.Quit();

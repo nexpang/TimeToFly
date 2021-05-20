@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] int defaultTimer;
     [SerializeField] bool isNeedTimer = true;
+    [SerializeField] int life = 5;
+    [SerializeField] bool isInfinityLife = false;
+    public bool IsInfinityLife { get { return isInfinityLife; } set { isInfinityLife = value; } }
+    [SerializeField] CanvasGroup gameStartScreen = null;
+    [SerializeField] Text lifeCount = null;
+
     private int _timer;
     public int timer
     {
@@ -17,9 +24,18 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 1;
+        Debug();
+
+        Time.timeScale = 0;
         Instance = this; // 싱글톤
-        timer = defaultTimer; // 타이머 초기화
+
+        life = SaveManager.Instance.gameData.TempLife;
+        lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+
+        DOTween.To(() => gameStartScreen.alpha, value => gameStartScreen.alpha = value, 0f, 2f).OnComplete(() => {
+            gameStartScreen.gameObject.SetActive(false);
+            Time.timeScale = 1;
+        }).SetUpdate(true).SetDelay(2);
     }
 
     private float targetTime = 1;
@@ -40,5 +56,20 @@ public class GameManager : MonoBehaviour
     {
         timer--;
         targetTime = currentTime + 1;
+    }
+
+    private void Debug() // 초기화
+    {
+        SaveManager.Instance.gameData.TempLife = SaveManager.Instance.gameData.GetStage()[0].stageLife;
+        timer = SaveManager.Instance.gameData.GetStage()[0].stageTimer;
+
+        if (SaveManager.Instance.gameData.TempLife == -10) IsInfinityLife = true;
+
+        isNeedTimer = (timer != -10);
+
+        if (timer == -10)
+        {
+            timer = 999;
+        }
     }
 }
