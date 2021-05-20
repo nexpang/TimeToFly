@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool isInfinityLife = false;
     public bool IsInfinityLife { get { return isInfinityLife; } set { isInfinityLife = value; } }
     [SerializeField] CanvasGroup gameStartScreen = null;
+    [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text lifeCount = null;
+    SpriteRenderer playerSpr = null;
 
     private int _timer;
     public int timer
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Instance = this; // ½Ì±ÛÅæ
 
+        playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
         life = SaveManager.Instance.gameData.TempLife;
         lifeCount.text = isInfinityLife ? "¡Ä" : life.ToString();
 
@@ -39,10 +42,18 @@ public class GameManager : MonoBehaviour
         }).SetUpdate(true).SetDelay(2);
     }
 
+    private void Start()
+    {
+        
+    }
+
     private float targetTime = 1;
     private float currentTime = 0;
     private void Update()
     {
+        if(gameStartScreenChicken.sprite != playerSpr.sprite)
+            gameStartScreenChicken.sprite = playerSpr.sprite;
+
         if (isNeedTimer)
         {
             currentTime = Time.time;

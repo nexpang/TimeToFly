@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         if(type == Movetype.JUMP)
         {
             // มกวม
-            if (PlayerInput.Instance.KeyJump && isGround)
+            if (PlayerInput.Instance.KeyJump && isGround && Time.timeScale != 0)
             {
                 rb.velocity = Vector2.zero;
                 float jS = speed != 1f ? speed * 0.8f : 1f;
