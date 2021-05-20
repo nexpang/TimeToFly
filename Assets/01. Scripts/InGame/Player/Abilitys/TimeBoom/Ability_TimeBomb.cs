@@ -22,6 +22,9 @@ public class Ability_TimeBomb : Ability, IAbility
     CircleCollider2D circleCol = null;
     Rigidbody2D rigid = null;
 
+
+    [SerializeField] float explosionTime = 10f;
+
     new void Start()
     {
         base.Start();
@@ -56,7 +59,7 @@ public class Ability_TimeBomb : Ability, IAbility
         else
         {
             if (abilityCurrentCoolDown > 0) return; // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
-            timeBoom.transform.localPosition = new Vector3(0f, 1.2f, 0f);
+            timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
             PlayerController.Instance._speed = 0f;
             //Time.timeScale = 0.6f;
@@ -65,10 +68,25 @@ public class Ability_TimeBomb : Ability, IAbility
             abilityEffectAnim.SetTrigger("BlueT");
         }
     }
+    void ExTime()
+    {
+        if (hasTimeBoom)
+        {
+            timeBoom.GetComponent<TimeBoom>().isAlreadyExplosion = true;
+            timeBoom.transform.SetParent(null);
+            circleCol.enabled = true;
+            //rigid = timeBoom.AddComponent<Rigidbody2D>();
+
+            hasTimeBoom = false;
+            PlayerController.Instance._speed = 1f;
+
+            abilityCurrentCoolDown = abilityCooldown;
+            abilityCurrentCoolDownTime = Time.time;
+        }
+    }
     new void Update()
     {
         base.Update();
-
         //effect.GetComponent<ParticleSystemRenderer>().material.mainTexture = player.sprite.texture; ¾ÈµÊ
     }
 
@@ -83,5 +101,7 @@ public class Ability_TimeBomb : Ability, IAbility
     void EndAnimation()
     {
         isAnimationPlaying = false;
+        Debug.Log("»ý¼º ³¡³²");
+        Invoke("ExTime", explosionTime);
     }
 }

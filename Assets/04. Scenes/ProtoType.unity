@@ -7586,6 +7586,7 @@ MonoBehaviour:
   timeBoom: {fileID: 3673387985229851920}
   boomUpForce: 5
   boomFForce: 10
+  explosionTime: 10
 --- !u!1 &892245305
 GameObject:
   m_ObjectHideFlags: 0
@@ -19036,8 +19037,10 @@ MonoBehaviour:
   ability: {fileID: 856824130}
   explosionEffect: {fileID: 1018218730}
   sATimeBoom: {fileID: 856824132}
-  explosionTime: 10
+  tileMap: {fileID: 360919526}
   defaultEffectCool: 1
+  animator: {fileID: 1386497821466488812}
+  spriteRenderer: {fileID: 8050706999859897198}
   defaultSprite: {fileID: 4229762222284172830, guid: 8712da0aef3ee564ea4a56875e3bb478, type: 3}
   warningEffect: {fileID: 6269968403267052048, guid: 8712da0aef3ee564ea4a56875e3bb478, type: 3}
   explosionRadius: 1

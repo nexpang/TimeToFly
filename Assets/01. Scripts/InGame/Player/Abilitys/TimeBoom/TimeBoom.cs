@@ -9,34 +9,36 @@ public class TimeBoom : MonoBehaviour
 
     [SerializeField] Ability_TimeBomb sATimeBoom = null;
 
-    [SerializeField] float explosionTime = 10f;
+    [SerializeField] GameObject tileMap = null;
+
     [SerializeField] float defaultEffectCool = 1f;
     float effectCool = 1f;
     bool coolStart = false;
-    bool isAlreadyExplosion = false;
 
-    SpriteRenderer spriteRenderer = null;
+    public bool isAlreadyExplosion = false;
+
+
+    [SerializeField] Animator animator = null;
+    [SerializeField] SpriteRenderer spriteRenderer = null;
     [SerializeField]Sprite defaultSprite = null;
     [SerializeField]Sprite warningEffect = null;
 
     [SerializeField] float explosionRadius = 1f;
 
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
     private void OnEnable()
     {
+        animator.enabled = true;
         coolStart = false;
         isAlreadyExplosion = false;
     }
 
     private void Update()
     {
+        if (isAlreadyExplosion)
+            Boom();
         if(sATimeBoom.isAnimationPlaying == false && !coolStart)
         {
             coolStart = true;
-            Invoke("ExTime", explosionTime);
             effectCool = defaultEffectCool;
             StartCoroutine(ShowEffect());
         }
@@ -44,44 +46,41 @@ public class TimeBoom : MonoBehaviour
         {
             Debug.Log("»ç¶óÁü");
             transform.SetParent(ability.transform);
-            Destroy(GetComponent<Rigidbody2D>());
+            if(GetComponent<Rigidbody2D>() != null)
+                Destroy(GetComponent<Rigidbody2D>());
             GetComponent<CircleCollider2D>().enabled = false;
             gameObject.SetActive(false);
         }
     }
 
-    void ExTime()
-    {
-        if(!isAlreadyExplosion)
-            Boom();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        transform.SetParent(ability.transform);
-        Destroy(GetComponent<Rigidbody2D>());
-        GetComponent<CircleCollider2D>().enabled = false;
         Boom();
-        gameObject.SetActive(false);
         Debug.Log("Æø¹ß");
     }
 
     void Boom()
     {
-        isAlreadyExplosion = true;
+        transform.SetParent(ability.transform);
+        if (GetComponent<Rigidbody2D>() != null)
+            Destroy(GetComponent<Rigidbody2D>());
+        GetComponent<CircleCollider2D>().enabled = false;
+
+        isAlreadyExplosion = false;
         explosionEffect.SetActive(true);
         explosionEffect.transform.position = transform.position;
         RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.up);
         foreach (var hit in raycastHit2D)
         {
-            if(hit.collider.tag == "DEADABLE")
+            if(hit.collider.tag == "DEADABLE" && hit.collider.gameObject != tileMap)
             {
                 Debug.Log(hit.collider.name + "À» ¾ø¾Ú");
                 hit.collider.gameObject.SetActive(false);
             }
             Debug.Log(hit.collider.tag);
         }
-        
+
+        gameObject.SetActive(false);
     }
     private void OnDrawGizmos()
     {
@@ -90,11 +89,15 @@ public class TimeBoom : MonoBehaviour
 
     IEnumerator ShowEffect()
     {
+        animator.enabled = false;
+        Debug.Log("¿ö´×");
         yield return new WaitForSeconds(effectCool);
         spriteRenderer.sprite = warningEffect;
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.sprite = defaultSprite;
-        effectCool -= 0.1f;
+        effectCool -= 0.08f;
+        if (effectCool < 0.1f)
+            effectCool = 0.05f;
         StartCoroutine(ShowEffect());
     }
 }
