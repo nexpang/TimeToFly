@@ -7558,6 +7558,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6922278595347687512}
+  - {fileID: 1018218731}
   m_Father: {fileID: 2138832406}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7581,7 +7582,7 @@ MonoBehaviour:
   abilityEffectAnim: {fileID: 1821836605}
   abilityDefaultTime: 15
   currentTime: 15
-  player: {fileID: 1957919223}
+  isAnimationPlaying: 0
   timeBoom: {fileID: 3673387985229851920}
   boomUpForce: 5
   boomFForce: 10
@@ -7942,6 +7943,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+--- !u!1 &1018218730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018218731}
+  - component: {fileID: 1018218732}
+  m_Layer: 0
+  m_Name: ExplosionEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1018218731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018218730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 856824131}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018218732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018218730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ca11d20c997824589e1d664850e78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1025663898
 GameObject:
   m_ObjectHideFlags: 0
@@ -8322,7 +8366,7 @@ GameObject:
   - component: {fileID: 1105725994}
   m_Layer: 0
   m_Name: DeadAble
-  m_TagString: Untagged
+  m_TagString: DEADABLE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16898,7 +16942,7 @@ MonoBehaviour:
   - {fileID: 856824130}
   - {fileID: 110000874}
   - {fileID: 429168818}
-  abilityNumber: 0
+  abilityNumber: 3
   playerAnim: {fileID: 1957919228}
 --- !u!212 &1558494635
 SpriteRenderer:
@@ -18990,6 +19034,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: {fileID: 856824130}
+  explosionEffect: {fileID: 1018218730}
+  sATimeBoom: {fileID: 856824132}
+  explosionTime: 10
+  defaultEffectCool: 1
+  defaultSprite: {fileID: 4229762222284172830, guid: 8712da0aef3ee564ea4a56875e3bb478, type: 3}
+  warningEffect: {fileID: 6269968403267052048, guid: 8712da0aef3ee564ea4a56875e3bb478, type: 3}
+  explosionRadius: 1
 --- !u!4 &6922278595347687512
 Transform:
   m_ObjectHideFlags: 0

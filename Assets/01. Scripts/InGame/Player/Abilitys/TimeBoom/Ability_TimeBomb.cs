@@ -11,11 +11,11 @@ public class Ability_TimeBomb : Ability, IAbility
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
 
-    bool isAnimationPlaying = false;
+    public bool isAnimationPlaying = false;
     private bool hasTimeBoom = false;
     public bool _hasTimeBoom { get { return hasTimeBoom; } set { hasTimeBoom = value; } }
 
-    [SerializeField] GameObject player = null;
+    //[SerializeField] GameObject player = null;
     [SerializeField] GameObject timeBoom = null;
     [SerializeField] float boomUpForce = 1f;
     [SerializeField] float boomFForce = 1f;
