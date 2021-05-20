@@ -9394,7 +9394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.5
+  speed: 0.8
   autoMoveDefault: 0
   clampOffect: {x: -485, y: 497}
 --- !u!114 &1351542287

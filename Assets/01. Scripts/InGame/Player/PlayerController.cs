@@ -71,19 +71,14 @@ public class PlayerController : MonoBehaviour
 
         AnimParametersSet();
         AbilityKey();
-
-
-    }
-
-    private void LateUpdate()
-    {
-        currentMoveS = Mathf.Abs(transform.position.x - lastPos.x);
-        lastPos = transform.position;
     }
 
     void FixedUpdate()
     {
         PlayerMove(Movetype.MOVE);
+
+        currentMoveS = Mathf.Abs(transform.position.x - lastPos.x);
+        lastPos = transform.position;
     }
 
     void PlayerMove(Movetype type)
