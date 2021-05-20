@@ -108,10 +108,11 @@ public class PlayerController : MonoBehaviour
             float simpleAxis = Mathf.Round(axis * 1000) / 1000;
             transform.Translate(new Vector2(simpleAxis, 0));
 
+            if(PlayerInput.Instance.KeyHorizontalRaw!= 0)
+                sr.flipX = (PlayerInput.Instance.KeyHorizontalRaw < 0);
             if (axis != 0)
             {
                 an.SetBool("walk", true);
-                sr.flipX = (axis < 0);
             }
             else an.SetBool("walk", false);
         }
