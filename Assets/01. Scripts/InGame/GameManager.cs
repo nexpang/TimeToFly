@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] int currentStage = 0; // 디버그용으로 있는 변수
     [SerializeField] bool isNeedTimer = true;
     [SerializeField] int life = 5;
     [SerializeField] bool isInfinityLife = false;
@@ -60,8 +61,9 @@ public class GameManager : MonoBehaviour
 
     private void Debug() // 초기화
     {
-        SaveManager.Instance.gameData.TempLife = SaveManager.Instance.gameData.GetStage()[0].stageLife;
-        timer = SaveManager.Instance.gameData.GetStage()[0].stageTimer;
+        SaveManager.Instance.gameData.CurrentStage = currentStage; // 디버그용으로 있는 줄
+        SaveManager.Instance.gameData.TempLife = SaveManager.Instance.gameData.GetStage()[SaveManager.Instance.gameData.CurrentStage].stageLife;
+        timer = SaveManager.Instance.gameData.GetStage()[SaveManager.Instance.gameData.CurrentStage].stageTimer;
 
         if (SaveManager.Instance.gameData.TempLife == -10) IsInfinityLife = true;
 

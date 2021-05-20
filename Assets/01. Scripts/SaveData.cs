@@ -6,6 +6,9 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
+    [SerializeField] private int currentStage = 0;
+    public int CurrentStage { get { return currentStage; } set { currentStage = value; } }
+
     [SerializeField] private int tempLife = 0;
     public int TempLife { get { return tempLife; } set { tempLife = value; } }
 
