@@ -12262,6 +12262,7 @@ GameObject:
   - component: {fileID: 676108901}
   - component: {fileID: 676108900}
   - component: {fileID: 676108899}
+  - component: {fileID: 676108902}
   m_Layer: 5
   m_Name: AbilityBtn
   m_TagString: Untagged
@@ -12342,6 +12343,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676108897}
   m_CullTransparentMesh: 1
+--- !u!114 &676108902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676108897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1001 &692080810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22785,7 +22799,7 @@ MonoBehaviour:
   - {fileID: 856824130}
   - {fileID: 110000874}
   - {fileID: 429168818}
-  abilityNumber: 1
+  abilityNumber: 3
   playerAnim: {fileID: 1957919228}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
   Audio_playerDead: {fileID: 8300000, guid: 35cec1845de230b489682bbf9747a43f, type: 3}
