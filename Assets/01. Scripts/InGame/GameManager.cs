@@ -90,4 +90,11 @@ public class GameManager : MonoBehaviour
             timer = 999;
         }
     }
+
+    public static void SetAudio(AudioSource aS, AudioClip clip, bool Looping = false)
+    {
+        aS.clip = clip;
+        aS.loop = Looping;
+        if (!aS.isPlaying) aS.Play();
+    }
 }

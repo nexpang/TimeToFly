@@ -29,7 +29,15 @@ public class Ability_TimeFaster : Ability, IAbility
 
     public void OnAbility()
     {
-        if (abilityCurrentCoolDown > 0) return; // 쿨타임이 아직 안됐다.
+        if (abilityCurrentCoolDown > 0)
+        {
+            GameManager.SetAudio(audioSource, Audio_deniedAbility, false);
+            abilityCooldownCircle.DOComplete();
+            abilityCooldownCircle.color = Color.red;
+            abilityCooldownCircle.DOColor(Color.black, 0.5f);
+            return;
+        }// 쿨타임이 아직 안됐다.
+
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;
 

@@ -58,7 +58,14 @@ public class Ability_TimeBomb : Ability, IAbility
         }
         else
         {
-            if (abilityCurrentCoolDown > 0) return; // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
+            if (abilityCurrentCoolDown > 0)
+            {
+                GameManager.SetAudio(audioSource, Audio_deniedAbility, false);
+                abilityCooldownCircle.DOComplete();
+                abilityCooldownCircle.color = Color.red;
+                abilityCooldownCircle.DOColor(Color.black, 0.5f);
+                return;
+            } // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
             PlayerController.Instance._speed = 0f;
