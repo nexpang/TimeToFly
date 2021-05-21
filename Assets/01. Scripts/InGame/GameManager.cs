@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool isNeedTimer = true;
     [SerializeField] int life = 5;
     [SerializeField] bool isInfinityLife = false;
+    [SerializeField] bool isDebug = false;
     public bool IsInfinityLife { get { return isInfinityLife; } set { isInfinityLife = value; } }
     [SerializeField] CanvasGroup gameStartScreen = null;
     [SerializeField] Image gameStartScreenChicken = null;
@@ -33,18 +34,22 @@ public class GameManager : MonoBehaviour
         Instance = this; // 싱글톤
 
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
-        life = SaveManager.Instance.gameData.TempLife;
+        life = Temp.Instance.TempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
 
-        DOTween.To(() => gameStartScreen.alpha, value => gameStartScreen.alpha = value, 0f, 2f).OnComplete(() => {
-            gameStartScreen.gameObject.SetActive(false);
+        if (!isDebug)
+        {
+            gameStartScreen.gameObject.SetActive(true);
+            DOTween.To(() => gameStartScreen.alpha, value => gameStartScreen.alpha = value, 0f, 2f).OnComplete(() =>
+            {
+                gameStartScreen.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }).SetUpdate(true).SetDelay(2);
+        }
+        else
+        {
             Time.timeScale = 1;
-        }).SetUpdate(true).SetDelay(2);
-    }
-
-    private void Start()
-    {
-        
+        }
     }
 
     private float targetTime = 1;
@@ -72,11 +77,11 @@ public class GameManager : MonoBehaviour
 
     private void Debug() // 초기화
     {
-        SaveManager.Instance.gameData.CurrentStage = currentStage; // 디버그용으로 있는 줄
-        SaveManager.Instance.gameData.TempLife = SaveManager.Instance.gameData.GetStage()[SaveManager.Instance.gameData.CurrentStage].stageLife;
-        timer = SaveManager.Instance.gameData.GetStage()[SaveManager.Instance.gameData.CurrentStage].stageTimer;
+/*        Temp.Instance.CurrentStage = currentStage; 
+        Temp.Instance.TempLife = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageLife;*/ // 디버그용으로 있는 줄, 게임 시작전에 해주는게 원래 맞음
+        timer = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageTimer;
 
-        if (SaveManager.Instance.gameData.TempLife == -10) IsInfinityLife = true;
+        if (Temp.Instance.TempLife == -10) IsInfinityLife = true;
 
         isNeedTimer = (timer != -10);
 

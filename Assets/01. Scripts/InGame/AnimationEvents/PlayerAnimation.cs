@@ -49,7 +49,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         else // 아니라면
         {
-            if(!GameManager.Instance.IsInfinityLife) SaveManager.Instance.gameData.TempLife--;
+            if(!GameManager.Instance.IsInfinityLife) Temp.Instance.TempLife--;
 
             // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
 

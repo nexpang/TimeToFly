@@ -21,7 +21,6 @@ public class BackgroundMove : MonoBehaviour
     private float autoMoveDefault = 0.5f;
     private float autoMoveCurrent = 0.5f;
 
-    private PlayerController playerRb = null;
     private Ability_FutureCreate ability1 = null;
     private Ability_TimeFaster ability2 = null;
 
@@ -32,7 +31,6 @@ public class BackgroundMove : MonoBehaviour
     void Start()
     {
         autoMoveCurrent = autoMoveDefault;
-        playerRb = FindObjectOfType<PlayerController>();
         ability1 = FindObjectOfType<Ability_FutureCreate>();
         ability2 = FindObjectOfType<Ability_TimeFaster>();
         BGImg = gameObject.GetComponent<Image>();
@@ -57,7 +55,8 @@ public class BackgroundMove : MonoBehaviour
 
         if (type == BackgroundType.MAIN)
         {
-            offset.x += speed * Time.deltaTime * (PlayerInput.Instance.KeyHorizontal + autoMoveCurrent) * PlayerController.Instance.currentMoveS * 7;
+            offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * PlayerController.Instance.currentMoveS * 7;
+            offset.x += autoMoveCurrent * Time.deltaTime;
             offset.x = Mathf.Clamp(offset.x, 0, 10);
             BGImg.material.SetTextureOffset("_MainTex", offset);
         }
