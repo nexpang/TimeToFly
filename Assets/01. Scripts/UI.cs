@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(clearPanel);
+        
         Time.timeScale = 1;
     }
 
@@ -36,8 +37,14 @@ public class UI : MonoBehaviour
         exit.SetActive(false);
     }
 
+    public void NextScene() 
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void ExitBtn()
     {
         Application.Quit();
     }
+
 }
