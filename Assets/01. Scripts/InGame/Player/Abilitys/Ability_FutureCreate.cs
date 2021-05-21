@@ -11,6 +11,7 @@ public class Ability_FutureCreate : Ability, IAbility
     [SerializeField] GameObject clockUI = null;
     [SerializeField] RectTransform clockUIClock = null;
     [SerializeField] RectTransform clockUISandClock = null;
+    [SerializeField] RectTransform clockUISecondHand = null;
     [SerializeField] RawImage stringEffect = null;
     [SerializeField] RawImage featherEffect = null;
     [SerializeField] ParticleSystem abilityParticle = null;
@@ -102,6 +103,7 @@ public class Ability_FutureCreate : Ability, IAbility
         {
             clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
             clockUISandClock.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
+            clockUISecondHand.rotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
             rectX += Time.deltaTime * stringEffectSpeed;
             rectY += Time.deltaTime * featherEffectSpeed;
 

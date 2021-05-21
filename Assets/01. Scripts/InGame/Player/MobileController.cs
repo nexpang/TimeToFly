@@ -43,7 +43,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
         if(isPressed)
         {
-            controllerBtn.sprite = pressedSpr;
+            if (controllerType != ControllerType.ABILITY) controllerBtn.sprite = pressedSpr;
+
             switch (controllerType)
             {
                 case ControllerType.LEFT:
@@ -56,7 +57,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
         }
         else
         {
-            controllerBtn.sprite = defaultSpr;
+            if(controllerType != ControllerType.ABILITY) controllerBtn.sprite = defaultSpr;
         }
     }
 
