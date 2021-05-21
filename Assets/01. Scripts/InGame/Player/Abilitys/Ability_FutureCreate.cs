@@ -9,9 +9,22 @@ public class Ability_FutureCreate : Ability, IAbility
 {
     [Header("능력 별 변수들")]
     [SerializeField] GameObject clockUI = null;
-    [SerializeField] Image clockUIFill = null;
+    [SerializeField] RectTransform clockUIClock = null;
+    [SerializeField] RectTransform clockUISandClock = null;
+    [SerializeField] RawImage stringEffect = null;
+    [SerializeField] RawImage featherEffect = null;
+    [SerializeField] ParticleSystem abilityParticle = null;
+
+    Rect stringRect = new Rect(0, 0, 1, 1);
+    float rectX = 0;
+    Rect featherRect = new Rect(0, 0, 1, 1);
+    float rectY = 0;
+
+    [SerializeField] float rotateSpeed = 1;
+    [SerializeField] float stringEffectSpeed = 1;
+    [SerializeField] float featherEffectSpeed = 1
+        ;
     [SerializeField] Animator abilityEffectAnim = null;
-    [SerializeField] RectTransform clockUINeedle = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
     [SerializeField] TrailRenderer effect = null;
@@ -71,6 +84,8 @@ public class Ability_FutureCreate : Ability, IAbility
         sleepPlayer.GetComponent<SpriteRenderer>().flipX = playerAn.GetComponent<SpriteRenderer>().flipX;
         abilityEffectAnim.SetTrigger("BlueT");
 
+        abilityParticle.gameObject.SetActive(true);
+        abilityParticle.Play();
         effect.transform.SetParent(this.transform);
         effect.time = 0;
         effect.transform.localPosition = Vector3.zero;
@@ -81,8 +96,27 @@ public class Ability_FutureCreate : Ability, IAbility
     new void Update()
     {
         base.Update();
-        clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
-        clockUINeedle.rotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
+        //clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
+
+        if (isSleep)
+        {
+            clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
+            clockUISandClock.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
+            rectX += Time.deltaTime * stringEffectSpeed;
+            rectY += Time.deltaTime * featherEffectSpeed;
+
+            stringRect.Set(-rectX, 0, 1, 1);
+            featherRect.Set(0, rectY, 1, 1);
+
+            stringEffect.uvRect = stringRect;
+            featherEffect.uvRect = featherRect;
+        }
+        else
+        {
+            abilityParticle.Stop();
+            abilityParticle.gameObject.SetActive(false);
+        }
+
         RecordPlayer();
         PlayPlayer();
 
@@ -175,7 +209,10 @@ public class Ability_FutureCreate : Ability, IAbility
         PlayerController.Instance.playerState = PlayerState.NORMAL;
 
         // 시계 UI 사라지게
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() =>
+        {
+            clockUI.SetActive(false);
+        });
 
         // 파란색 닭에서 다시 기본 닭으로!
         playerAn.GetComponent<SpriteRenderer>().color = Color.white;
