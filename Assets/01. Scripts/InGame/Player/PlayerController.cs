@@ -71,19 +71,14 @@ public class PlayerController : MonoBehaviour
 
         AnimParametersSet();
         AbilityKey();
-
-
-    }
-
-    private void LateUpdate()
-    {
-        currentMoveS = Mathf.Abs(transform.position.x - lastPos.x);
-        lastPos = transform.position;
     }
 
     void FixedUpdate()
     {
         PlayerMove(Movetype.MOVE);
+
+        currentMoveS = Mathf.Abs(transform.position.x - lastPos.x);
+        lastPos = transform.position;
     }
 
     void PlayerMove(Movetype type)
@@ -93,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if(type == Movetype.JUMP)
         {
             // มกวม
-            if (PlayerInput.Instance.KeyJump && isGround)
+            if (PlayerInput.Instance.KeyJump && isGround && Time.timeScale != 0)
             {
                 rb.velocity = Vector2.zero;
                 float jS = speed != 1f ? speed * 0.8f : 1f;
