@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 2836846481542654490}
   m_Layer: 0
   m_Name: Garden_MoveDeadTrap
-  m_TagString: Untagged
+  m_TagString: TrapTrigger
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,3 +277,4 @@ MonoBehaviour:
   speed: 7
   space: 0
   isRigidBody: 1
+  Audio_Falling: {fileID: 8300000, guid: 2de4188f719ac1847b1efbf3db4e27af, type: 3}

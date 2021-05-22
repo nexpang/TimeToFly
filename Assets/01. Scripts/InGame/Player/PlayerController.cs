@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 enum Movetype
 {
@@ -50,10 +52,16 @@ public class PlayerController : MonoBehaviour
 
     [Header("오디오 클립")]
     AudioSource audioSource = null;
+    [SerializeField] AudioSource bgAudioSource = null;
     [SerializeField] AudioClip Audio_playerJump = null;
     [SerializeField] AudioClip Audio_playerDead = null;
     [SerializeField] AudioClip Audio_playerWing = null;
     public AudioClip getAudioWing() => Audio_playerWing; // 잠시 get좀 하겠습니다. PlayerAnimation.cs
+
+    [Header("데스 스크린")]
+    [SerializeField] Image deathScreen = null;
+    [SerializeField] ParticleSystem featherEffect = null;
+    [SerializeField] Texture[] featherTextures = null;
 
     private void Awake()
     {
@@ -203,9 +211,10 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.DEAD;
 
-            GameManager.Instance.SetAudio(audioSource, Audio_playerDead, 0.8f, false);
+            GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerDead, 0.8f, false);
 
             an.SetTrigger("dead");
+            RealDeath();
         }
     }
 
@@ -216,10 +225,26 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.DEAD;
 
-           GameManager.Instance.SetAudio(audioSource, Audio_playerDead, 0.8f, false);
+           GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerDead, 0.8f, false);
 
             rb.simulated = false;
             an.SetTrigger("falldead");
+            RealDeath();
         }
+    }
+
+    private void RealDeath()
+    {
+        if (ability1 != null)
+        {
+            if (ability1.IsSleep()) return;
+        }
+        deathScreen.gameObject.SetActive(true);
+        deathScreen.color = new Color(0, 0, 0, 0);
+        deathScreen.DOFade(0.75f, 1);
+        bgAudioSource.DOPitch(0, 2);
+        featherEffect.Play();
+        featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
+        playerAnim.GetComponent<SpriteRenderer>().sortingOrder = 17;
     }
 }

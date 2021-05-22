@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
         set { _timer = value; }
     }
 
+    private float timerScale = 1;
+    public float TimerScale
+    {
+        get { return timerScale; }
+        set { timerScale = value; }
+    }
+
     private void Awake()
     {
         Debug();
@@ -89,7 +96,7 @@ public class GameManager : MonoBehaviour
     private void Timer()
     {
         timer--;
-        targetTime = currentTime + 1;
+        targetTime = currentTime + 1 * TimerScale;
     }
 
     private void Debug() // √ ±‚»≠
@@ -114,5 +121,12 @@ public class GameManager : MonoBehaviour
         aS.loop = Looping;
         aS.volume = volume;
         if (!aS.isPlaying) aS.Play();
+    }
+
+    public void SetAudioImmediate(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
+    {
+        aS.loop = Looping;
+        aS.volume = volume;
+        aS.PlayOneShot(clip);
     }
 }

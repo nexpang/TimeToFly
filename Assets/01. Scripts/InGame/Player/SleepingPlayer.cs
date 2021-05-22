@@ -31,6 +31,10 @@ public class SleepingPlayer : MonoBehaviour
 
     public void PlayerDeadAnimEnd() // 해당 함수는 Sleeping_Player_Death에 들어있음.
     {
+        if (!GameManager.Instance.IsInfinityLife) Temp.Instance.TempLife--;
+
+        // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

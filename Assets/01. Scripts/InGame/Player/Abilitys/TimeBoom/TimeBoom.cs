@@ -55,6 +55,7 @@ public class TimeBoom : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.CompareTag("Player")) return;
         Boom();
         Debug.Log("Æø¹ß");
     }
@@ -72,7 +73,7 @@ public class TimeBoom : MonoBehaviour
         RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.up);
         foreach (var hit in raycastHit2D)
         {
-            if(hit.collider.tag == "DEADABLE" && hit.collider.gameObject != tileMap)
+            if((hit.collider.CompareTag("DEADABLE") || hit.collider.CompareTag("TrapTrigger")) && hit.collider.gameObject != tileMap)
             {
                 Debug.Log(hit.collider.name + "À» ¾ø¾Ú");
                 hit.collider.gameObject.SetActive(false);

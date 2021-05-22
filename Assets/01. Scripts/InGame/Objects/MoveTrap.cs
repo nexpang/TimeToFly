@@ -12,6 +12,9 @@ public class MoveTrap : ResetAbleTrap
     [Header("¸¸¾à ¶³¾î¶ß¸±²¨¶ó¸é, ¸®Áþ¹Ùµð¸¦ ÄÑÁØ´Ù.")]
     [SerializeField] bool isRigidBody;
 
+    [Header("È¿°úÀ½")]
+    [SerializeField] AudioClip Audio_Falling;
+
     Vector2 originPos;
     Quaternion originRotation;
 
@@ -32,6 +35,9 @@ public class MoveTrap : ResetAbleTrap
     {
         if(collision.CompareTag("Player"))
         {
+            if (childRb.simulated || isTrigger) return;
+
+
             if (isRigidBody)
             {
                 childRb.simulated = true;
@@ -41,6 +47,7 @@ public class MoveTrap : ResetAbleTrap
                 isTrigger = true;
             }
 
+            PlaySFX.PlaySound(Audio_Falling, 0.8f, true);
 
             if (PlayerController.Instance.ability1 != null)
             {

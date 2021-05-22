@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
 
     void TimerUpdate()
     {
+        text.color = GameManager.Instance.timer <= 99 ? Color.red : Color.black;
         text.text = string.Format("TIME\n{0:D3}", GameManager.Instance.timer);
     }
 }

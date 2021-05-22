@@ -8,6 +8,7 @@ TagManager:
   - Ability
   - FALLINGABLE
   - Ground
+  - TrapTrigger
   layers:
   - Default
   - TransparentFX
