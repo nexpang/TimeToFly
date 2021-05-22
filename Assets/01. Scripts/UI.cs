@@ -39,7 +39,7 @@ public class UI : MonoBehaviour
 
     public void NextScene() 
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void ExitBtn()
