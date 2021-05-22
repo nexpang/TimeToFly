@@ -23,12 +23,21 @@ public class Ability_FutureCreate : Ability, IAbility
 
     [SerializeField] float rotateSpeed = 1;
     [SerializeField] float stringEffectSpeed = 1;
-    [SerializeField] float featherEffectSpeed = 1
-        ;
+    [SerializeField] float featherEffectSpeed = 1;
     [SerializeField] Animator abilityEffectAnim = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
     [SerializeField] TrailRenderer effect = null;
+
+    [Header("효과음")]
+    [SerializeField] AudioSource bgAudioSource = null;
+    [SerializeField] AudioSource audioClockSoundSource = null;
+    [SerializeField] AudioClip Audio_futureEnter = null;
+    [SerializeField] AudioClip Audio_presentEnter = null;
+    [SerializeField] AudioClip Audio_tik = null;
+    [SerializeField] AudioClip Audio_tok = null;
+    [SerializeField] AudioClip Audio_futureBGM = null;
+    [SerializeField] AudioClip Audio_futureBGM2 = null;
 
     [Header("미래 예지 플레이어 기억")]
     public List<Vector2> RecordNumber_XY = new List<Vector2>();
@@ -69,13 +78,19 @@ public class Ability_FutureCreate : Ability, IAbility
 
     public void OnAbility()
     {
-        if (abilityCurrentCoolDown > 0) return; // 쿨타임이 아직 안됐다.
+        if (abilityCurrentCoolDown > 0)
+        {
+            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
+            abilityCooldownCircle.DOComplete();
+            abilityCooldownCircle.color = Color.red;
+            abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
+            return;
+        }// 쿨타임이 아직 안됐다.
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;
 
-        Debug.Log("능력 뿌슝빠슝");
         clockUI.SetActive(true);
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
+        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
         playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
@@ -91,6 +106,32 @@ public class Ability_FutureCreate : Ability, IAbility
         effect.time = 0;
         effect.transform.localPosition = Vector3.zero;
         effect.time = 10;
+
+        GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
+        int random = UnityEngine.Random.Range(0, 4);
+        if(random == 0)
+        {
+            bgAudioSource.time = 0;
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM, 0.8f, true);
+        }
+        else if (random == 1)
+        {
+            bgAudioSource.time = 22;
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM, 0.8f, true);
+        }
+        else if (random == 2)
+        {
+            bgAudioSource.time = 0;
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
+        }
+        else if (random == 3)
+        {
+            bgAudioSource.time = 22;
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
+        }
+
+
+
         isSleep = true;
     }
 
@@ -112,6 +153,20 @@ public class Ability_FutureCreate : Ability, IAbility
 
             stringEffect.uvRect = stringRect;
             featherEffect.uvRect = featherRect;
+
+            int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
+
+            if (PlayerController.Instance.playerState != PlayerState.DEAD)
+            {
+                if (seconds % 2 == 1)
+                {
+                    GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tik, 1,false);
+                }
+                else
+                {
+                    GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tok, 1, false);
+                }
+            }
         }
         else
         {
@@ -140,7 +195,6 @@ public class Ability_FutureCreate : Ability, IAbility
                 RecordNumber_XY.Clear();
                 RecordNumber_Sprite.Clear();
                 RecordNumber_SpriteFlipX.Clear();
-                Debug.Log("녹화중");
             }
         }
         else
@@ -243,7 +297,10 @@ public class Ability_FutureCreate : Ability, IAbility
         {
             trap.Reset();
         }
-        Debug.Log("녹화 플레이");
+
+        // 소리 바꾸고
+        GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
+        GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.defaultBGM, 1, true);
     }
 
     IEnumerator Clock()

@@ -19,17 +19,25 @@ public class PlayerAnimation : MonoBehaviour
         playerController = playerRigid.GetComponent<PlayerController>();
     }
 
+    void ReadyToJump() // 해당 함수는 startJump1에 들어있음. 목적 : 사운드때문에...
+    {
+        PlayerController.Instance.isPressJump = true;
+    }
+
     void InGround() // 해당 함수는 Player_Idle에 들어있음.
     {
         animator.SetBool("land", false);
         animator.SetBool("falling", false);
+
         playerController.isStun = false;
+        PlayerController.Instance.isPressJump = false;
     }
 
     void PlayerStunEventStart() // 해당 함수는 Player_AfterJumpWait에 들어있음.
     {
         animator.SetBool("land", false);
         animator.SetBool("falling", false);
+
         playerController.isStun = true;
     }
 

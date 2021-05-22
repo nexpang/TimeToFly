@@ -21,6 +21,12 @@ public class Ability_TimeFaster : Ability, IAbility
     [SerializeField] GameObject effect = null;
     [SerializeField] GameObject player = null;
 
+    [Header("효과음")]
+    [SerializeField] AudioSource bgAudioSource = null;
+    [SerializeField] AudioSource playerAudioSource = null;
+    [SerializeField] AudioClip Audio_futureEnter = null;
+    [SerializeField] AudioClip Audio_presentEnter = null;
+
     new void Start()
     {
         base.Start();
@@ -29,7 +35,15 @@ public class Ability_TimeFaster : Ability, IAbility
 
     public void OnAbility()
     {
-        if (abilityCurrentCoolDown > 0) return; // 쿨타임이 아직 안됐다.
+        if (abilityCurrentCoolDown > 0)
+        {
+            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
+            abilityCooldownCircle.DOComplete();
+            abilityCooldownCircle.color = Color.red;
+            abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
+            return;
+        }// 쿨타임이 아직 안됐다.
+
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;
 
@@ -41,6 +55,11 @@ public class Ability_TimeFaster : Ability, IAbility
         GlitchEffect.Instance.intensity = 0.194f;
         StartCoroutine(Clock());
         abilityEffectAnim.SetTrigger("BlueT");
+
+        GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
+        bgAudioSource.DOPitch(1.5f, 3);
+        playerAudioSource.DOPitch(1.5f, 3);
+        DOTween.To(() => bgAudioSource.volume, value => bgAudioSource.volume = value, 0.4f, 2f);
 
         //능력 시작
         IsTimeFast = true;
@@ -89,6 +108,10 @@ public class Ability_TimeFaster : Ability, IAbility
         GlitchEffect.Instance.intensity = 0;
 
         abilityEffectAnim.SetTrigger("OrangeT");
+        bgAudioSource.DOPitch(1, 2);
+        playerAudioSource.DOPitch(1, 2);
+        DOTween.To(() => bgAudioSource.volume, value => bgAudioSource.volume = value, GameManager.Instance.defaultBGMvolume, 2f);
+        GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
     }
 
     IEnumerator Clock()

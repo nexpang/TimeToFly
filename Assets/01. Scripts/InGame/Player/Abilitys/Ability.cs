@@ -12,6 +12,8 @@ public class Ability : MonoBehaviour
     [SerializeField] protected float abilityCooldown = 30f;
     protected float abilityCurrentCoolDownTime;
     [SerializeField]  protected float abilityCurrentCoolDown = 0f;
+    [SerializeField] protected AudioSource audioSource = null;
+    [SerializeField] protected AudioClip Audio_deniedAbility = null;
 
     protected void Start()
     {
