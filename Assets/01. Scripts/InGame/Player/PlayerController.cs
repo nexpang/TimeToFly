@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isGround;
     public bool isStun;
-    [HideInInspector] public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
+    public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
 
     public PlayerState playerState = PlayerState.NORMAL;
 
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             // 점프
             if (PlayerInput.Instance.KeyJump && isGround && Time.timeScale != 0)
             {
-                GameManager.SetAudio(audioSource, Audio_playerJump, false);
+                GameManager.Instance.SetAudio(audioSource, Audio_playerJump, 0.7f, false);
 
                 rb.velocity = Vector2.zero;
                 float jS = speed != 1f ? speed * 0.8f : 1f;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         else if(type == Movetype.MOVE)
         {
             // 이동
-            float axis = PlayerInput.Instance.KeyHorizontalRaw * moveSpeed * speed * Time.fixedDeltaTime; // speed 능력2를 구현하기위함
+            float axis = PlayerInput.Instance.KeyHorizontalRaw * moveSpeed * speed * speed * Time.fixedDeltaTime; // speed 능력2를 구현하기위함
             float simpleAxis = Mathf.Round(axis * 1000) / 1000;
             transform.Translate(new Vector2(simpleAxis, 0));
 
@@ -131,12 +131,12 @@ public class PlayerController : MonoBehaviour
         an.SetFloat("ySpeed", rb.velocity.y / _speed);
 
         // 점프키를 눌러서 점프하고 3.5 미만이거나, 그냥 -4 미만이거나
-        if(((isPressJump && rb.velocity.y < 3.5f) || rb.velocity.y < -4f) && !isGround && playerState != PlayerState.DEAD)
+        if(((isPressJump && an.GetFloat("ySpeed") < 3.5f) || an.GetFloat("ySpeed") < -4f) && !isGround && playerState != PlayerState.DEAD)
         {
-            GameManager.SetAudio(audioSource, Audio_playerWing, true);
+            GameManager.Instance.SetAudio(audioSource, Audio_playerWing, 0.8f, true);
         }else if(audioSource.clip == Audio_playerWing)
         {
-            GameManager.SetAudio(audioSource, null, false);
+            GameManager.Instance.SetAudio(audioSource, null, 1, false);
         }
 
         if (rb.velocity.y < -4f) an.SetBool("falling", true);
@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.DEAD;
 
-            GameManager.SetAudio(audioSource, Audio_playerDead, false);
+            GameManager.Instance.SetAudio(audioSource, Audio_playerDead, 0.8f, false);
 
             an.SetTrigger("dead");
         }
@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.DEAD;
 
-           GameManager.SetAudio(audioSource, Audio_playerDead, false);
+           GameManager.Instance.SetAudio(audioSource, Audio_playerDead, 0.8f, false);
 
             rb.simulated = false;
             an.SetTrigger("falldead");

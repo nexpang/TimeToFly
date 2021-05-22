@@ -60,10 +60,10 @@ public class Ability_TimeBomb : Ability, IAbility
         {
             if (abilityCurrentCoolDown > 0)
             {
-                GameManager.SetAudio(audioSource, Audio_deniedAbility, false);
+                GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
                 abilityCooldownCircle.DOComplete();
                 abilityCooldownCircle.color = Color.red;
-                abilityCooldownCircle.DOColor(Color.black, 0.5f);
+                abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
                 return;
             } // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);

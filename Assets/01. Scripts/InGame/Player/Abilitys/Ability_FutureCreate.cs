@@ -80,10 +80,10 @@ public class Ability_FutureCreate : Ability, IAbility
     {
         if (abilityCurrentCoolDown > 0)
         {
-            GameManager.SetAudio(audioSource, Audio_deniedAbility, false);
+            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
             abilityCooldownCircle.DOComplete();
             abilityCooldownCircle.color = Color.red;
-            abilityCooldownCircle.DOColor(Color.black, 0.5f);
+            abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
             return;
         }// 쿨타임이 아직 안됐다.
         abilityCurrentCoolDown = abilityCooldown;
@@ -107,27 +107,27 @@ public class Ability_FutureCreate : Ability, IAbility
         effect.transform.localPosition = Vector3.zero;
         effect.time = 10;
 
-        GameManager.SetAudio(audioSource, Audio_futureEnter, false);
+        GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
         int random = UnityEngine.Random.Range(0, 4);
         if(random == 0)
         {
             bgAudioSource.time = 0;
-            GameManager.SetAudio(bgAudioSource, Audio_futureBGM, true);
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM, 0.8f, true);
         }
         else if (random == 1)
         {
             bgAudioSource.time = 22;
-            GameManager.SetAudio(bgAudioSource, Audio_futureBGM, true);
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM, 0.8f, true);
         }
         else if (random == 2)
         {
             bgAudioSource.time = 0;
-            GameManager.SetAudio(bgAudioSource, Audio_futureBGM2, true);
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
         }
         else if (random == 3)
         {
             bgAudioSource.time = 22;
-            GameManager.SetAudio(bgAudioSource, Audio_futureBGM2, true);
+            GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
         }
 
 
@@ -155,17 +155,16 @@ public class Ability_FutureCreate : Ability, IAbility
             featherEffect.uvRect = featherRect;
 
             int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
-            Debug.Log(seconds);
 
             if (PlayerController.Instance.playerState != PlayerState.DEAD)
             {
                 if (seconds % 2 == 1)
                 {
-                    GameManager.SetAudio(audioClockSoundSource, Audio_tik, false);
+                    GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tik, 1,false);
                 }
                 else
                 {
-                    GameManager.SetAudio(audioClockSoundSource, Audio_tok, false);
+                    GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tok, 1, false);
                 }
             }
         }
@@ -300,8 +299,8 @@ public class Ability_FutureCreate : Ability, IAbility
         }
 
         // 소리 바꾸고
-        GameManager.SetAudio(audioSource, Audio_presentEnter);
-        GameManager.SetAudio(bgAudioSource, null, false);
+        GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
+        GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.defaultBGM, 1, true);
     }
 
     IEnumerator Clock()

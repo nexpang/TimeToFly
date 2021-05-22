@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Ability_Wink : Ability, IAbility
 {
@@ -17,7 +19,14 @@ public class Ability_Wink : Ability, IAbility
 
     void IAbility.OnAbility()
     {
-        if (abilityCurrentCoolDown > 0) return; // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
+        if (abilityCurrentCoolDown > 0)
+        {
+            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
+            abilityCooldownCircle.DOComplete();
+            abilityCooldownCircle.color = Color.red;
+            abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
+            return;
+        }// ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;
         playerAnimation.SetTrigger("WinkT");

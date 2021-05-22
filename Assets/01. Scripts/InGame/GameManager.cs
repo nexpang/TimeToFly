@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] CanvasGroup gameStartScreen = null;
     [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text lifeCount = null;
+
+    [Header("¹è°æÀ½¾Ç")]
+    [SerializeField] AudioSource bgAudioSource = null;
+    public AudioClip defaultBGM = null;
+    public float defaultBGMvolume = 1;
+
     SpriteRenderer playerSpr = null;
 
     private int _timer;
@@ -34,9 +40,12 @@ public class GameManager : MonoBehaviour
         Instance = this; // ½Ì±ÛÅæ
 
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
+
+        // ¸ñ¼û ¹Þ¾Æ¿À°í
         life = Temp.Instance.TempLife;
         lifeCount.text = isInfinityLife ? "¡Ä" : life.ToString();
 
+        // µð¹ö±×¿ë ÄÚµå
         if (!isDebug)
         {
             gameStartScreen.gameObject.SetActive(true);
@@ -44,10 +53,18 @@ public class GameManager : MonoBehaviour
             {
                 gameStartScreen.gameObject.SetActive(false);
                 Time.timeScale = 1;
+
+                bgAudioSource.clip = defaultBGM;
+                bgAudioSource.volume = defaultBGMvolume;
+                bgAudioSource.Play();
+
             }).SetUpdate(true).SetDelay(2);
         }
         else
         {
+            bgAudioSource.clip = defaultBGM;
+            bgAudioSource.volume = defaultBGMvolume;
+            bgAudioSource.Play();
             Time.timeScale = 1;
         }
     }
@@ -91,10 +108,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void SetAudio(AudioSource aS, AudioClip clip, bool Looping = false)
+    public void SetAudio(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
     {
         aS.clip = clip;
         aS.loop = Looping;
+        aS.volume = volume;
         if (!aS.isPlaying) aS.Play();
     }
 }
