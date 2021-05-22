@@ -9,6 +9,7 @@ public class Ability_Wink : Ability, IAbility
     [Header("능력 별 변수들")]
     [SerializeField] ParticleSystem effect = null;
     [SerializeField] AudioClip Audio_playerWink = null;
+    [SerializeField] AudioClip Audio_playerWink2 = null;
     Animator playerAnimation = null;
 
     new void Start()
@@ -32,6 +33,7 @@ public class Ability_Wink : Ability, IAbility
         abilityCurrentCoolDownTime = Time.time;
         playerAnimation.SetTrigger("WinkT");
         GameManager.Instance.SetAudio(audioSource, Audio_playerWink, 0.6f);
+        GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerWink2, 0.6f);
         effect.Play();
     }
 }

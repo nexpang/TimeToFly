@@ -11268,7 +11268,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.96000004, z: 0}
   m_MaxChunkCount: 16
@@ -11697,6 +11697,7 @@ MonoBehaviour:
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
   effect: {fileID: 1535563045}
   Audio_playerWink: {fileID: 8300000, guid: 08739ea8a1a464d44ba5a49aff6ccae6, type: 3}
+  Audio_playerWink2: {fileID: 8300000, guid: 62beec60b7ffee042993927721552a59, type: 3}
 --- !u!1 &460430390
 GameObject:
   m_ObjectHideFlags: 0
