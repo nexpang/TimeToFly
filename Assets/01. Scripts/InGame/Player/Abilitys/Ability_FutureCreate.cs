@@ -43,7 +43,7 @@ public class Ability_FutureCreate : Ability, IAbility
     public List<Vector2> RecordNumber_XY = new List<Vector2>();
     public List<Sprite> RecordNumber_Sprite = new List<Sprite>();
     public List<bool> RecordNumber_SpriteFlipX = new List<bool>();
-    [SerializeField] private Transform sleepPlayer = null;//----------------------------------- TO DO : 이거랑
+    [SerializeField] private GameObject sleepPlayer = null;
 
     private bool isSleep = false;
     public bool IsSleep() => isSleep;
@@ -62,7 +62,7 @@ public class Ability_FutureCreate : Ability, IAbility
 
     private PlayerController playerRb = null;
     private PlayerAnimation playerAn = null;
-    [SerializeField] private Transform recordedPlayer = null;//---------------------------- TO DO : 이거 프리팹으로 만들어서 자동 생성되게 해야한다.
+    [SerializeField] private GameObject recordedPlayer = null;
 
     // 함정 리셋
     ResetAbleTrap[] traps = null;
@@ -74,6 +74,9 @@ public class Ability_FutureCreate : Ability, IAbility
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;
         traps = FindObjectsOfType<ResetAbleTrap>();
+
+        sleepPlayer = Instantiate(sleepPlayer, new Vector2(-18, 10), Quaternion.identity);
+        recordedPlayer = Instantiate(recordedPlayer, new Vector2(-20, 10), Quaternion.identity);
     }
 
     public void OnAbility()
@@ -96,7 +99,7 @@ public class Ability_FutureCreate : Ability, IAbility
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
         StartCoroutine(Clock());
-        sleepPlayer.position = transform.position;
+        sleepPlayer.transform.position = transform.position;
         sleepPlayer.GetComponent<SpriteRenderer>().flipX = playerAn.GetComponent<SpriteRenderer>().flipX;
         abilityEffectAnim.SetTrigger("BlueT");
 
@@ -231,7 +234,7 @@ public class Ability_FutureCreate : Ability, IAbility
                 Sprite futurePlayerSprite = RecordNumber_Sprite[playframe];
                 bool futurePlayerSpriteFlipX = RecordNumber_SpriteFlipX[playframe];
 
-                recordedPlayer.position = futurePlayerXY;
+                recordedPlayer.transform.position = futurePlayerXY;
                 recordedPlayer.GetComponent<SpriteRenderer>().sprite = futurePlayerSprite;
                 recordedPlayer.GetComponent<SpriteRenderer>().flipX = futurePlayerSpriteFlipX;
 
@@ -246,7 +249,7 @@ public class Ability_FutureCreate : Ability, IAbility
         }
         else
         {
-            recordedPlayer.position = new Vector3(-20, 10, 0);
+            recordedPlayer.transform.position = new Vector3(-20, 10, 0);
             playTime = 0f;
             playDelay = 0.03f;
             playframe = 0;
@@ -283,10 +286,10 @@ public class Ability_FutureCreate : Ability, IAbility
         effect.transform.position = playerRb.transform.position;
 
         // 자고있는 닭 상태로 다시 돌아간다.
-        playerRb.transform.position = sleepPlayer.position;
+        playerRb.transform.position = sleepPlayer.transform.position;
         playerAn.GetComponent<SpriteRenderer>().flipX = sleepPlayer.GetComponent<SpriteRenderer>().flipX;
         sleepPlayer.GetComponent<SleepingPlayer>().BubbleAwake();
-        sleepPlayer.position = new Vector3(-18, 10, 0);
+        sleepPlayer.transform.position = new Vector3(-18, 10, 0);
         playerRb.GetComponent<Rigidbody2D>().simulated = true;
 
         // 현재로 돌아가는 화면 이펙트

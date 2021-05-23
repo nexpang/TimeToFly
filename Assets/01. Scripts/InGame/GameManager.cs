@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     SpriteRenderer playerSpr = null;
 
+    [Header("스테이지")]
+    [SerializeField] GameObject[] stages = null;
+
     private int _timer;
     public int timer
     {
@@ -41,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        stages[0].SetActive(true);
+
         Debug();
 
         Time.timeScale = 0;
