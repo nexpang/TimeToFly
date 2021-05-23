@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clear : MonoBehaviour
+public class DontDestroyUI : MonoBehaviour
 {
-    public static Clear Instance;
+    public static DontDestroyUI Instance;
     [SerializeField]
     private CanvasGroup clearCG;
     [SerializeField]
-    private Canvas clear;
+    private Canvas clearCanvas;
+    [SerializeField]
+    private GameObject clear;
+    [SerializeField]
+    private GameObject menu;
+
     [SerializeField]
     private Camera main;
+
 
     void Awake()
     {
@@ -27,11 +33,10 @@ public class Clear : MonoBehaviour
     private void Start()
     {
         clearCG = GetComponent<CanvasGroup>();
-        clear = GetComponent<Canvas>();
         main = GameObject.Find("Main Camera").GetComponent<Camera>();
         if (!main) 
         {
-            clear.worldCamera = main;
+            clearCanvas.worldCamera = main;
         }
     }
 
@@ -44,16 +49,36 @@ public class Clear : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 clearCG.alpha = 0f;
+                clear.SetActive(false);
+                menu.SetActive(false);
                 clearCG.blocksRaycasts = false;
             }
             else
             {
                 Time.timeScale = 0f;
                 clearCG.alpha = 1f;
+                clear.SetActive(true);
                 clearCG.blocksRaycasts = true;
             }
             
-
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) 
+        {
+            if (clearCG.alpha == 1) 
+            {
+                Time.timeScale = 1f;
+                clearCG.alpha = 0f;
+                menu.SetActive(false);
+                clear.SetActive(false);
+                clearCG.blocksRaycasts = false;
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                clearCG.alpha = 1f;
+                menu.SetActive(true);
+                clearCG.blocksRaycasts = true;
+            }
         }
 
     }
