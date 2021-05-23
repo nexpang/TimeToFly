@@ -18,7 +18,7 @@ public class TimeBoomEffect : MonoBehaviour
         transform.DOScale(1.5f, 1).OnComplete(() =>
         {
             transform.DOScaleY(6, 0.5f);
-            GetComponent<ParticleSystemRenderer>().material.DOColor(Color.black,1);
+            GetComponent<ParticleSystemRenderer>().material.DOColor(Color.blue,1);
             transform.DOScaleX(0.5f, 0.5f).OnComplete(() =>
             {
                 distortion.transform.DOScale(0, 0);
