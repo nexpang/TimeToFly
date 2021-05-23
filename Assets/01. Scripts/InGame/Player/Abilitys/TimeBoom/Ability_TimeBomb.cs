@@ -22,8 +22,10 @@ public class Ability_TimeBomb : Ability, IAbility
     CircleCollider2D circleCol = null;
     Rigidbody2D rigid = null;
 
-
     [SerializeField] float explosionTime = 10f;
+
+    [Header("오디오 클립")]
+    [SerializeField] AudioClip Audio_futureEnter = null;
 
     new void Start()
     {
@@ -66,6 +68,8 @@ public class Ability_TimeBomb : Ability, IAbility
                 abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
                 return;
             } // 쿨타임이 아직 안됐다.
+
+            GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
             PlayerController.Instance._speed = 0f;

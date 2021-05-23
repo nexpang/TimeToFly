@@ -25,6 +25,10 @@ public class TimeBoom : MonoBehaviour
 
     [SerializeField] float explosionRadius = 1f;
 
+    [Header("오디오 클립")]
+    [SerializeField] AudioSource SFXSpeaker = null;
+    [SerializeField] AudioClip Audio_TimeBomb = null;
+
     private void OnEnable()
     {
         animator.enabled = true;
@@ -62,6 +66,8 @@ public class TimeBoom : MonoBehaviour
 
     void Boom()
     {
+        GameManager.Instance.SetAudio(SFXSpeaker, Audio_TimeBomb, 1, false);
+
         transform.SetParent(ability.transform);
         if (GetComponent<Rigidbody2D>() != null)
             Destroy(GetComponent<Rigidbody2D>());
