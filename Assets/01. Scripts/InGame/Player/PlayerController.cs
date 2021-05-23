@@ -41,14 +41,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator an;
     private SpriteRenderer sr;
-    [HideInInspector]
+
     public Ability_FutureCreate ability1;
+    public Ability_TimeFaster ability2;
 
     [SerializeField] GameObject[] abilitys;
     public int abilityNumber = 0;
 
     [SerializeField] private Transform playerAnim = null;
-    private Transform playerAbility = null;
+    [SerializeField] private Transform playerAbility = null;
 
     [Header("오디오 클립")]
     AudioSource audioSource = null;
@@ -63,6 +64,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem featherEffect = null;
     [SerializeField] Texture[] featherTextures = null;
 
+    //TO DO : 튜토리얼
+    // playerAbility 바꾸기
+    // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
+
+
     private void Awake()
     {
         Instance = this;
@@ -74,11 +80,6 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         playerAbility = GameObject.FindGameObjectWithTag("Ability").transform;
         playerState = PlayerState.NORMAL;
-    }
-
-    private void Start()
-    {
-        ability1 = FindObjectOfType<Ability_FutureCreate>();
     }
 
     private void Update()
@@ -235,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
     private void RealDeath()
     {
-        if (ability1 != null)
+        if (ability1.enabled)
         {
             if (ability1.IsSleep()) return;
         }

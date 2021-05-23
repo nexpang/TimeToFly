@@ -32466,15 +32466,17 @@ MonoBehaviour:
   isStun: 0
   isPressJump: 0
   playerState: 0
-  ability1: {fileID: 0}
+  ability1: {fileID: 626052442}
+  ability2: {fileID: 1176652841}
   abilitys:
   - {fileID: 626052440}
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
   - {fileID: 429168818}
-  abilityNumber: 1
+  abilityNumber: 2
   playerAnim: {fileID: 1957919228}
+  playerAbility: {fileID: 0}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
   Audio_playerDead: {fileID: 8300000, guid: 35cec1845de230b489682bbf9747a43f, type: 3}

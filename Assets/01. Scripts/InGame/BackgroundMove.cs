@@ -21,9 +21,6 @@ public class BackgroundMove : MonoBehaviour
     private float autoMoveDefault = 0.5f;
     private float autoMoveCurrent = 0.5f;
 
-    private Ability_FutureCreate ability1 = null;
-    private Ability_TimeFaster ability2 = null;
-
     [Header("Sub일때만 하세요")]
     [SerializeField]
     private Vector2 clampOffect = Vector2.zero;
@@ -31,8 +28,6 @@ public class BackgroundMove : MonoBehaviour
     void Start()
     {
         autoMoveCurrent = autoMoveDefault;
-        ability1 = FindObjectOfType<Ability_FutureCreate>();
-        ability2 = FindObjectOfType<Ability_TimeFaster>();
         BGImg = gameObject.GetComponent<Image>();
 
         if (type == BackgroundType.SUB) offset.x = transform.localPosition.x;
@@ -43,13 +38,13 @@ public class BackgroundMove : MonoBehaviour
     {
         if (PlayerController.Instance.playerState == PlayerState.DEAD || PlayerController.Instance.isStun) return;
 
-        if (ability1 != null)
+        if (PlayerController.Instance.ability1.enabled)
         {
-            autoMoveCurrent = ability1.IsSleep() ? 30 : autoMoveDefault;
+            autoMoveCurrent = PlayerController.Instance.ability1.IsSleep() ? 30 : autoMoveDefault;
         }
-        else if (ability2 != null)
+        else if (PlayerController.Instance.ability2.enabled)
         {
-            autoMoveCurrent = ability2.IsTimeFast ? 0 : autoMoveDefault;
+            autoMoveCurrent = PlayerController.Instance.ability2.IsTimeFast ? 0 : autoMoveDefault;
         }
 
 

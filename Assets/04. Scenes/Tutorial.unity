@@ -22252,7 +22252,8 @@ MonoBehaviour:
   isStun: 0
   isPressJump: 0
   playerState: 0
-  ability1: {fileID: 0}
+  ability1: {fileID: 626052442}
+  ability2: {fileID: 1176652841}
   abilitys:
   - {fileID: 626052440}
   - {fileID: 1176652839}
