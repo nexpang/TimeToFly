@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public int abilityNumber = 0;
 
     [SerializeField] private Transform playerAnim = null;
-    [SerializeField] private Transform playerAbility = null;
+    private Transform playerAbility = null;
 
     [Header("오디오 클립")]
     AudioSource audioSource = null;
@@ -65,7 +65,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Texture[] featherTextures = null;
 
     //TO DO : 튜토리얼
-    // playerAbility 바꾸기
     // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
 
 
@@ -78,7 +77,6 @@ public class PlayerController : MonoBehaviour
         an = playerAnim.GetComponent<Animator>();
         sr = playerAnim.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        playerAbility = GameObject.FindGameObjectWithTag("Ability").transform;
         playerState = PlayerState.NORMAL;
     }
 
@@ -160,12 +158,27 @@ public class PlayerController : MonoBehaviour
         //abilityNumber  0이면 기상이, 1이면 시한이, 2이면 동진이, 3이면 지향이, 4면 소전이
 
         playerAnim.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
+        playerAbility = abilitys[abilityNumber].transform;
 
-        abilitys[0].SetActive(abilityNumber == 1);
-        abilitys[1].SetActive(abilityNumber == 2);
-        abilitys[2].SetActive(abilityNumber == 3);
-        abilitys[3].SetActive(abilityNumber == 4);
-        abilitys[4].SetActive(abilityNumber == 0);
+        abilitys[0].SetActive(abilityNumber == 0);
+        abilitys[1].SetActive(abilityNumber == 1);
+        abilitys[2].SetActive(abilityNumber == 2);
+        abilitys[3].SetActive(abilityNumber == 3);
+        abilitys[4].SetActive(abilityNumber == 4);
+    }
+
+    //number로 능력을 설정함 (튜토리얼 전용)
+    public void PlayerAbilitySet(int number)
+    {
+        abilityNumber = number;
+        playerAnim.GetComponent<PlayerSprites>().targetSheet = number;
+        playerAbility = abilitys[number].transform;
+
+        abilitys[0].SetActive(number == 0);
+        abilitys[1].SetActive(number == 1);
+        abilitys[2].SetActive(number == 2);
+        abilitys[3].SetActive(number == 3);
+        abilitys[4].SetActive(number == 4);
     }
 
     void AbilityKey()
@@ -248,5 +261,14 @@ public class PlayerController : MonoBehaviour
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
         playerAnim.GetComponent<SpriteRenderer>().sortingOrder = 17;
+    }
+
+
+    [SerializeField] ChickenObject a;
+
+    [ContextMenu("디버그")]
+    private void DebugAbility()
+    {
+        a.OnInteraction();
     }
 }

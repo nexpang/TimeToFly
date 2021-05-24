@@ -5795,7 +5795,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2138832406}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128838731
 GameObject:
@@ -11757,7 +11757,7 @@ GameObject:
   - component: {fileID: 429168819}
   - component: {fileID: 429168820}
   m_Layer: 0
-  m_Name: Ability5
+  m_Name: Ability0
   m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11776,7 +11776,7 @@ Transform:
   m_Children:
   - {fileID: 1535563043}
   m_Father: {fileID: 2138832406}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &429168820
 MonoBehaviour:
@@ -16981,7 +16981,7 @@ Transform:
   m_Children:
   - {fileID: 1950154743}
   m_Father: {fileID: 2138832406}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &626052442
 MonoBehaviour:
@@ -17966,7 +17966,7 @@ Transform:
   - {fileID: 6922278595347687512}
   - {fileID: 1018218731}
   m_Father: {fileID: 2138832406}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &856824132
 MonoBehaviour:
@@ -24191,7 +24191,7 @@ Transform:
   m_Children:
   - {fileID: 65145564}
   m_Father: {fileID: 2138832406}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1176652841
 MonoBehaviour:
@@ -32554,14 +32554,13 @@ MonoBehaviour:
   ability1: {fileID: 626052442}
   ability2: {fileID: 1176652841}
   abilitys:
+  - {fileID: 429168818}
   - {fileID: 626052440}
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
-  - {fileID: 429168818}
   abilityNumber: 3
   playerAnim: {fileID: 1957919228}
-  playerAbility: {fileID: 0}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
   Audio_playerDead: {fileID: 8300000, guid: 35cec1845de230b489682bbf9747a43f, type: 3}
@@ -32574,6 +32573,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c62eb9e3b0b6fac45a0dbe922a85dac8, type: 3}
   - {fileID: 2800000, guid: 53ad826ffb6063a49978d5ab80e1ba3b, type: 3}
   - {fileID: 2800000, guid: 54c6a188cc8007245880a196b64837b7, type: 3}
+  a: {fileID: 0}
 --- !u!212 &1558494635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35476,11 +35476,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 429168819}
   - {fileID: 626052441}
   - {fileID: 1176652840}
   - {fileID: 856824131}
   - {fileID: 110000875}
-  - {fileID: 429168819}
   - {fileID: 1775422742}
   - {fileID: 1646307700}
   m_Father: {fileID: 1558494631}
@@ -35604,7 +35604,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_AttackTime: 2
       m_SustainTime: 0.1
-      m_DecayTime: 0.7
+      m_DecayTime: 2
       m_ScaleWithImpact: 1
       m_HoldForever: 0
     m_ImpactRadius: 100
