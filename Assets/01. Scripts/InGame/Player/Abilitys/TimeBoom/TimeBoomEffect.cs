@@ -10,24 +10,28 @@ public class TimeBoomEffect : MonoBehaviour
     [SerializeField] GameObject boomObj = null;
     [SerializeField] GameObject boomObj2 = null;
 
+    GameObject boom;
+    GameObject boom2;
+
     private void OnEnable()
     {
-        boomObj = Instantiate(boomObj, transform.position, Quaternion.identity);
-        boomObj2 = Instantiate(boomObj2, transform.position, Quaternion.identity);
+        boom = Instantiate(boomObj, transform.position, Quaternion.identity);
+        boom2 = Instantiate(boomObj2, transform.position, Quaternion.identity);
+        GetComponent<ParticleSystemRenderer>().material.color = Color.cyan;
         transform.SetParent(null);
-        transform.DOScale(1.5f, 1).OnComplete(() =>
+        transform.DOScale(1.5f, 2).OnComplete(() =>
         {
-            transform.DOScaleY(6, 0.5f);
-            GetComponent<ParticleSystemRenderer>().material.DOColor(Color.blue,1);
-            transform.DOScaleX(0.5f, 0.5f).OnComplete(() =>
+            transform.DOScaleY(6, 1f);
+            GetComponent<ParticleSystemRenderer>().material.DOColor(new Color(0.3f, 0.3f, 1), 4);
+            transform.DOScaleX(0.5f, 1f).OnComplete(() =>
             {
-                distortion.transform.DOScale(0, 0);
-                transform.DOScaleY(0, 0.5f);
-                transform.DOScaleX(7f, 0.5f).OnComplete(() =>
+                distortion.transform.DOScale(new Vector3(7, 0, 0), 1);
+                transform.DOScaleY(0, 1f);
+                transform.DOScaleX(7f, 1f).OnComplete(() =>
                 {
                     transform.SetParent(originTransform);
-                    Destroy(boomObj);
-                    Destroy(boomObj2);
+                    Destroy(boom);
+                    Destroy(boom2);
                     gameObject.SetActive(false);
                 });
             });
@@ -37,8 +41,8 @@ public class TimeBoomEffect : MonoBehaviour
 
     private void Update()
     {
-        boomObj.transform.position = transform.position;
-        boomObj2.transform.position = transform.position;
+        boom.transform.position = transform.position;
+        boom2.transform.position = transform.position;
     }
 
     private void OnDisable()

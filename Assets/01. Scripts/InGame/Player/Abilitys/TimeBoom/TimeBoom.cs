@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TimeBoom : MonoBehaviour
 {
@@ -82,7 +83,22 @@ public class TimeBoom : MonoBehaviour
             if((hit.collider.CompareTag("DEADABLE") || hit.collider.CompareTag("TrapTrigger")) && hit.collider.gameObject != tileMap)
             {
                 Debug.Log(hit.collider.name + "À» ¾ø¾Ú");
-                hit.collider.gameObject.SetActive(false);
+                SpriteRenderer sr = hit.collider.GetComponent<SpriteRenderer>();
+
+                if (sr != null)
+                {
+                    hit.collider.enabled = false;
+                    sr.DOColor(Color.cyan, 1).OnComplete(() =>
+                    {
+                        sr.DOFade(0, 1).OnComplete(() =>
+                        {
+
+                            hit.collider.gameObject.SetActive(false);
+                        });
+                    });
+                }
+                else
+                    hit.collider.gameObject.SetActive(false);
             }
             Debug.Log(hit.collider.tag);
         }

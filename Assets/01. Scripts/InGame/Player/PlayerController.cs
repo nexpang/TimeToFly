@@ -137,7 +137,8 @@ public class PlayerController : MonoBehaviour
     void AnimParametersSet()
     {
         an.SetBool("jump", !isGround);
-        an.SetFloat("ySpeed", rb.velocity.y / _speed);
+
+        an.SetFloat("ySpeed", (_speed != 0) ? rb.velocity.y / _speed : 0);
 
         // 점프키를 눌러서 점프하고 3.5 미만이거나, 그냥 -4 미만이거나
         if(((isPressJump && an.GetFloat("ySpeed") < 3.5f) || an.GetFloat("ySpeed") < -4f) && !isGround && playerState != PlayerState.DEAD)
