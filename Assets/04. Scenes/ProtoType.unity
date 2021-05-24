@@ -5776,6 +5776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110000875}
+  - component: {fileID: 110000876}
   m_Layer: 0
   m_Name: Ability4
   m_TagString: Ability
@@ -5797,6 +5798,34 @@ Transform:
   m_Father: {fileID: 2138832406}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &110000876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110000874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebb5b12535d7b2418bea17f1b53e0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityBtn: {fileID: 676108900}
+  abilityCooldownCircle: {fileID: 270041088}
+  abilityBtnSpr: {fileID: 0}
+  abilityCooldown: 30
+  abilityCurrentCoolDown: 0
+  audioSource: {fileID: 0}
+  Audio_deniedAbility: {fileID: 0}
+  clockUI: {fileID: 1714552269}
+  clockUIFill: {fileID: 75714655}
+  abilityEffectAnim: {fileID: 1821836605}
+  clockUINeedle: {fileID: 83354302}
+  abilityDefaultTime: 15
+  currentTime: 15
+  joystick: {fileID: 44111992}
+  joystickBack: {fileID: 386144649}
+  player: {fileID: 1957919223}
 --- !u!1 &128838731
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,6 +6217,7 @@ RectTransform:
   m_LocalScale: {x: 1.0003718, y: 1.0003718, z: 1.0003718}
   m_Children:
   - {fileID: 44111993}
+  - {fileID: 386144650}
   - {fileID: 676108898}
   - {fileID: 1483824390}
   - {fileID: 1025663899}
@@ -11733,6 +11763,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
   m_PrefabInstance: {fileID: 1769813276}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &386144649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386144650}
+  - component: {fileID: 386144652}
+  - component: {fileID: 386144651}
+  m_Layer: 5
+  m_Name: JoustickBack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &386144650
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386144649}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9996283, y: 0.9996283, z: 0.9996283}
+  m_Children: []
+  m_Father: {fileID: 268345611}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -48.339188, y: 332.11267}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &386144651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386144649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &386144652
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386144649}
+  m_CullTransparentMesh: 1
 --- !u!1 &399116743
 GameObject:
   m_ObjectHideFlags: 0
@@ -17154,7 +17259,7 @@ RectTransform:
   m_Children:
   - {fileID: 270041087}
   m_Father: {fileID: 268345611}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -23480,7 +23585,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 268345611}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25491,7 +25596,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 268345611}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -32728,7 +32833,7 @@ MonoBehaviour:
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
-  abilityNumber: 3
+  abilityNumber: 4
   playerAnim: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
