@@ -16,6 +16,11 @@ public class Ability_TimeBomb : Ability, IAbility
     public bool _hasTimeBoom { get { return hasTimeBoom; } set { hasTimeBoom = value; } }
 
     //[SerializeField] GameObject player = null;
+
+    [SerializeField] GameObject chargingBar = null; //託臓郊たたたたたたたたたたたたたたたたた
+    [SerializeField] Image i_chargingBar = null; //託臓郊たたたたたたたたたたたたたたたたた
+
+    [SerializeField] int useTime = 10;
     [SerializeField] GameObject timeBoom = null;
 
     float boomUpForce = 2f;
@@ -65,6 +70,8 @@ public class Ability_TimeBomb : Ability, IAbility
                 return;
             } // 悌展績戚 焼送 照菊陥.
 
+            GameManager.Instance.timer -= useTime;
+
             GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -98,12 +105,14 @@ public class Ability_TimeBomb : Ability, IAbility
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
+                chargingBar.SetActive(false);
                 //Debug.Log(PlayerInput.Instance.KeyAbilityHold);
                 isCharging = false;
                 ThrowBoom();
             }
             else
             {
+                chargingBar.SetActive(true);
                 Charging();
             }
         }
@@ -124,6 +133,7 @@ public class Ability_TimeBomb : Ability, IAbility
         if (throwForce + (addForce * Time.deltaTime) > 3f || throwForce + (addForce * Time.deltaTime) < 1f)
             addForce *= -1f;
         throwForce += (addForce * Time.deltaTime);
+        i_chargingBar.fillAmount = (throwForce-1f) / 2f;
     }
 
     void ThrowBoom()

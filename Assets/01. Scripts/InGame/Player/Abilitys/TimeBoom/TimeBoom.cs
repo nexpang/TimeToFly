@@ -60,7 +60,7 @@ public class TimeBoom : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player")) return;
+        //if (collision.collider.CompareTag("Player")) return;
         Boom();
         Debug.Log("Æø¹ß");
     }
