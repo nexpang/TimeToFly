@@ -14,11 +14,14 @@ public class PlayerInput : MonoBehaviour
 
     public bool KeyJump = false;
     public bool KeyAbility = false;
+    public bool KeyAbilityHold = false;
     public float KeyHorizontalRaw;
     public float KeyHorizontal;
 
     private bool joystickKeyJump = false;
     private bool joystickKeyAbility = false;
+    public bool joystickKeyAbilityHold = false;
+    public bool joystickKeyAbilityOn = false;
 
     public float joystickKeyHorizontal = 0;
     [SerializeField]  private float joystickKeyHorizontalRaw = 0;
@@ -33,6 +36,7 @@ public class PlayerInput : MonoBehaviour
     {
         KeyJump = Input.GetButtonDown("Jump");
         KeyAbility = Input.GetKeyDown(KeyCode.K);
+        KeyAbilityHold = Input.GetKey(KeyCode.K);
         KeyHorizontal = Input.GetAxis("Horizontal");
         KeyHorizontalRaw = Input.GetAxisRaw("Horizontal");
 
@@ -41,11 +45,23 @@ public class PlayerInput : MonoBehaviour
             joystickKeyJump = false;
             KeyJump = true;
         }
-
         if (joystickKeyAbility)
         {
             joystickKeyAbility = false;
             KeyAbility = true;
+            KeyAbilityHold = true;
+        }
+
+        if(joystickKeyAbilityHold)
+        {
+            KeyAbilityHold = true;
+        }
+
+        if (joystickKeyAbilityOn)
+        {
+            joystickKeyAbilityHold = false;
+            joystickKeyAbilityOn = false;
+            KeyAbilityHold = false;
         }
 
         if(joystickKeyHorizontal != 0)
@@ -67,6 +83,15 @@ public class PlayerInput : MonoBehaviour
     public void JoyStickAbility()
     {
         joystickKeyAbility = true;
+        joystickKeyAbilityHold = true;
+    }
+    public void JoyStickAbilityHold()
+    {
+        joystickKeyAbilityHold = true;
+    }
+    public void JoyStickAbilityOn()
+    {
+        joystickKeyAbilityOn = true;
     }
 
     public void JoyStickHorizontalRaw(float horizontalRaw)

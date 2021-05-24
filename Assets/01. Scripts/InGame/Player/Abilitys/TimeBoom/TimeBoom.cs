@@ -113,7 +113,7 @@ public class TimeBoom : MonoBehaviour
     IEnumerator ShowEffect()
     {
         animator.enabled = false;
-        Debug.Log("¿ö´×");
+        //Debug.Log("¿ö´×");
         yield return new WaitForSeconds(effectCool);
         spriteRenderer.sprite = warningEffect;
         yield return new WaitForSeconds(0.1f);

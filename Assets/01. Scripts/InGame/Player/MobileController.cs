@@ -93,6 +93,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 PlayerInput.Instance.JoyStickHorizontalRaw(0);
                 PlayerInput.Instance.joystickKeyHorizontal = 0;
                 break;
+            case ControllerType.ABILITY:
+                PlayerInput.Instance.JoyStickAbilityOn();
+                break;
         }
     }
     
@@ -109,6 +112,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     break;
                 case ControllerType.RIGHT:
                     PlayerInput.Instance.JoyStickHorizontalRaw(1);
+                    break;
+                case ControllerType.ABILITY:
+                    PlayerInput.Instance.JoyStickAbilityHold();
                     break;
             }
         }

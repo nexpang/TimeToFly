@@ -17,8 +17,13 @@ public class Ability_TimeBomb : Ability, IAbility
 
     //[SerializeField] GameObject player = null;
     [SerializeField] GameObject timeBoom = null;
-    [SerializeField] float boomUpForce = 1f;
-    [SerializeField] float boomFForce = 1f;
+
+    float boomUpForce = 2f;
+    float boomFForce = 3f;
+    [SerializeField] float throwForce = 5f;//1~3
+    [SerializeField] float defaultAddForce = 0.1f;
+    [SerializeField] float addForce = 0.1f;
+
     CircleCollider2D circleCol = null;
     Rigidbody2D rigid = null;
 
@@ -26,6 +31,8 @@ public class Ability_TimeBomb : Ability, IAbility
 
     [Header("¿Àµð¿À Å¬¸³")]
     [SerializeField] AudioClip Audio_futureEnter = null;
+
+    bool isCharging = false;
 
     new void Start()
     {
@@ -43,20 +50,9 @@ public class Ability_TimeBomb : Ability, IAbility
         }
         if (hasTimeBoom)
         {
-            timeBoom.transform.SetParent(null);
-            circleCol.enabled = true;
-            rigid = timeBoom.AddComponent<Rigidbody2D>();
-
-            rigid.AddForce(Vector2.up * boomUpForce, ForceMode2D.Impulse);
-            rigid.AddForce(Vector2.right * boomFForce * PlayerInput.Instance.KeyHorizontalRaw, ForceMode2D.Impulse);
-
-            hasTimeBoom = false;
-            PlayerController.Instance._speed = 1f;
-            //Time.timeScale = 1f;
-
-
-            abilityCurrentCoolDown = abilityCooldown;
-            abilityCurrentCoolDownTime = Time.time;
+            isCharging = true;
+            throwForce = 1f;
+            addForce = defaultAddForce;
         }
         else
         {
@@ -98,6 +94,19 @@ public class Ability_TimeBomb : Ability, IAbility
     new void Update()
     {
         base.Update();
+        if (hasTimeBoom && isCharging)
+        {
+            if (!PlayerInput.Instance.KeyAbilityHold)
+            {
+                //Debug.Log(PlayerInput.Instance.KeyAbilityHold);
+                isCharging = false;
+                ThrowBoom();
+            }
+            else
+            {
+                Charging();
+            }
+        }
         //effect.GetComponent<ParticleSystemRenderer>().material.mainTexture = player.sprite.texture; ¾ÈµÊ
     }
 
@@ -107,6 +116,32 @@ public class Ability_TimeBomb : Ability, IAbility
         Invoke("EndAnimation", 1.5f);
         hasTimeBoom = true;
         timeBoom.SetActive(true);
+    }
+
+    void Charging()
+    {
+        //Debug.Log("Â÷Â¡Áß");
+        if (throwForce + (addForce * Time.deltaTime) > 3f || throwForce + (addForce * Time.deltaTime) < 1f)
+            addForce *= -1f;
+        throwForce += (addForce * Time.deltaTime);
+    }
+
+    void ThrowBoom()
+    {
+        timeBoom.transform.SetParent(null);
+        circleCol.enabled = true;
+        rigid = timeBoom.AddComponent<Rigidbody2D>();
+
+        rigid.AddForce(Vector2.up * (boomUpForce * throwForce), ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.right * (boomFForce * throwForce) * PlayerInput.Instance.KeyHorizontalRaw, ForceMode2D.Impulse);
+
+        hasTimeBoom = false;
+        PlayerController.Instance._speed = 1f;
+        //Time.timeScale = 1f;
+
+
+        abilityCurrentCoolDown = abilityCooldown;
+        abilityCurrentCoolDownTime = Time.time;
     }
 
     void EndAnimation()

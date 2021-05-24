@@ -17992,8 +17992,9 @@ MonoBehaviour:
   currentTime: 15
   isAnimationPlaying: 0
   timeBoom: {fileID: 3673387985229851920}
-  boomUpForce: 5
-  boomFForce: 10
+  throwForce: 5
+  defaultAddForce: 2
+  addForce: 0.1
   explosionTime: 10
   Audio_futureEnter: {fileID: 8300000, guid: 046cfb2565da36e48bf7d74d958d8525, type: 3}
 --- !u!82 &856824133
@@ -34667,8 +34668,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyJump: 0
   KeyAbility: 0
+  KeyAbilityHold: 0
   KeyHorizontalRaw: 0
   KeyHorizontal: 0
+  joystickKeyAbilityHold: 0
+  joystickKeyAbilityOn: 0
   joystickKeyHorizontal: 0
   joystickKeyHorizontalRaw: 0
 --- !u!114 &1957919233
