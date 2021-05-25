@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public Ability_FutureCreate ability1;
     public Ability_TimeFaster ability2;
 
-    [SerializeField] GameObject[] abilitys;
+    public GameObject[] abilitys;
     public int abilityNumber = 0;
 
     [SerializeField] private Transform playerAnim = null;
@@ -261,14 +261,5 @@ public class PlayerController : MonoBehaviour
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
         playerAnim.GetComponent<SpriteRenderer>().sortingOrder = 17;
-    }
-
-
-    [SerializeField] ChickenObject a;
-
-    [ContextMenu("µð¹ö±×")]
-    private void DebugAbility()
-    {
-        a.OnInteraction();
     }
 }

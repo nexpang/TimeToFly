@@ -325,4 +325,9 @@ public class Ability_FutureCreate : Ability, IAbility
             ResetPlayer();
         }
     }
+
+    private void OnDisable() // 튜토리얼용 코드
+    {
+        recordedPlayer.transform.position = new Vector3(-20, 10, 0);
+    }
 }
