@@ -29,6 +29,8 @@ public class Ability_TimeBomb : Ability, IAbility
     [SerializeField] float defaultAddForce = 0.1f;
     [SerializeField] float addForce = 0.1f;
 
+    [SerializeField] GameObject player = null;
+
     CircleCollider2D circleCol = null;
     Rigidbody2D rigid = null;
 
@@ -112,6 +114,7 @@ public class Ability_TimeBomb : Ability, IAbility
             }
             else
             {
+                chargingBar.transform.position = player.transform.position - (Vector3.right * 1f);
                 chargingBar.SetActive(true);
                 Charging();
             }
