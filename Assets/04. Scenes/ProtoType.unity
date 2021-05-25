@@ -5817,13 +5817,15 @@ MonoBehaviour:
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 0}
   Audio_deniedAbility: {fileID: 0}
+  isReady: 0
   clockUI: {fileID: 1714552269}
   clockUIFill: {fileID: 75714655}
   abilityEffectAnim: {fileID: 1821836605}
   clockUINeedle: {fileID: 83354302}
   abilityDefaultTime: 15
   currentTime: 15
-  joystick: {fileID: 44111992}
+  defaultParent: {fileID: 268345611}
+  joystick: {fileID: 676108897}
   joystickBack: {fileID: 386144649}
   player: {fileID: 1957919223}
 --- !u!1 &128838731
@@ -6417,8 +6419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: 0}
-  m_SizeDelta: {x: 100, y: 500}
+  m_AnchoredPosition: {x: -170, y: -170}
+  m_SizeDelta: {x: 100, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298933059
 MonoBehaviour:
@@ -6440,7 +6442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2458135864375629588, guid: 11e6be75262fa7b4eaea0a6baf8782d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11820,7 +11822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 32099873820da564b9bc26c032f08464, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11991,6 +11993,7 @@ MonoBehaviour:
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 1775422743}
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
+  isReady: 0
   effect: {fileID: 1535563045}
   Audio_playerWink: {fileID: 8300000, guid: 08739ea8a1a464d44ba5a49aff6ccae6, type: 3}
   Audio_playerWink2: {fileID: 8300000, guid: 62beec60b7ffee042993927721552a59, type: 3}
@@ -17196,6 +17199,7 @@ MonoBehaviour:
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 1775422743}
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
+  isReady: 0
   clockUI: {fileID: 569188569}
   clockUIClock: {fileID: 1353249258}
   clockUISandClock: {fileID: 1537729757}
@@ -18181,6 +18185,7 @@ MonoBehaviour:
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 856824133}
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
+  isReady: 0
   abilityEffectAnim: {fileID: 1821836605}
   abilityDefaultTime: 15
   currentTime: 15
@@ -18192,6 +18197,7 @@ MonoBehaviour:
   throwForce: 5
   defaultAddForce: 2
   addForce: 0.1
+  player: {fileID: 1558494630}
   explosionTime: 10
   Audio_futureEnter: {fileID: 8300000, guid: 046cfb2565da36e48bf7d74d958d8525, type: 3}
 --- !u!82 &856824133
@@ -24411,6 +24417,7 @@ MonoBehaviour:
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 1775422743}
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
+  isReady: 0
   clockUI: {fileID: 1714552269}
   clockUIFill: {fileID: 75714655}
   abilityEffectAnim: {fileID: 1821836605}
@@ -25691,7 +25698,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 500}
+  m_SizeDelta: {x: 100, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1504316919
 MonoBehaviour:
@@ -25713,7 +25720,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4919711977263231113, guid: 30322a90be7e21549875916cec6fcc5d, type: 3}
+  m_Sprite: {fileID: -6281969036422341682, guid: 11e6be75262fa7b4eaea0a6baf8782d7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32847,7 +32854,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c62eb9e3b0b6fac45a0dbe922a85dac8, type: 3}
   - {fileID: 2800000, guid: 53ad826ffb6063a49978d5ab80e1ba3b, type: 3}
   - {fileID: 2800000, guid: 54c6a188cc8007245880a196b64837b7, type: 3}
-  a: {fileID: 0}
 --- !u!212 &1558494635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34942,6 +34948,7 @@ MonoBehaviour:
   KeyJump: 0
   KeyAbility: 0
   KeyAbilityHold: 0
+  KeyInteraction: 0
   KeyHorizontalRaw: 0
   KeyHorizontal: 0
   joystickKeyAbilityHold: 0

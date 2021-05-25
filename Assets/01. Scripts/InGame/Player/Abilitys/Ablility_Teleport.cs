@@ -14,7 +14,7 @@ public class Ablility_Teleport : Ability, IAbility
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
 
-
+    [SerializeField] Transform defaultParent = null;
     [SerializeField] GameObject joystick = null;
     [SerializeField] GameObject joystickBack = null;
     private bool isUsing = false;
@@ -64,7 +64,7 @@ public class Ablility_Teleport : Ability, IAbility
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
                 isUsing = false;
-                joystick.transform.SetParent(null);
+                joystick.transform.SetParent(defaultParent);
                 joystickBack.SetActive(false);
 
                 abilityCurrentCoolDown = abilityCooldown;
@@ -77,6 +77,10 @@ public class Ablility_Teleport : Ability, IAbility
                 GlitchEffect.Instance.flipIntensity = 0.194f;
                 GlitchEffect.Instance.intensity = 0.194f;
                 StartCoroutine(Clock());
+            }
+            else
+            {
+                Debug.Log("누르는중");
             }
         }
     }
