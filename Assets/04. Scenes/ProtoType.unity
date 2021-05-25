@@ -5825,6 +5825,7 @@ MonoBehaviour:
   abilityDefaultTime: 15
   currentTime: 15
   defaultParent: {fileID: 268345611}
+  defaultjoyStickPos: {x: 0, y: 0, z: 0}
   joystick: {fileID: 676108897}
   joystickBack: {fileID: 386144649}
   player: {fileID: 1957919223}
@@ -6216,7 +6217,7 @@ RectTransform:
   m_GameObject: {fileID: 268345610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0003718, y: 1.0003718, z: 1.0003718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 44111993}
   - {fileID: 386144650}
@@ -11792,16 +11793,16 @@ RectTransform:
   m_GameObject: {fileID: 386144649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9996283, y: 0.9996283, z: 0.9996283}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 268345611}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -48.33911, y: 332.11267}
-  m_SizeDelta: {x: 300, y: 300}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -198, y: 464.00006}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386144651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11815,7 +11816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17267,9 +17268,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -98, y: 382}
+  m_AnchoredPosition: {x: -198, y: 464.00006}
   m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676108899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17573,7 +17574,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -32840,7 +32841,7 @@ MonoBehaviour:
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
-  abilityNumber: 3
+  abilityNumber: 4
   playerAnim: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}

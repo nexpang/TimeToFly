@@ -15,14 +15,21 @@ public class Ablility_Teleport : Ability, IAbility
     public float currentTime = 15;
 
     [SerializeField] Transform defaultParent = null;
+    [SerializeField] Vector3 defaultjoyStickPos = Vector3.zero;
     [SerializeField] GameObject joystick = null;
     [SerializeField] GameObject joystickBack = null;
+    private RectTransform joystickRect = null;
+    private RectTransform joystickBackRect = null;
     private bool isUsing = false;
     [SerializeField] GameObject player = null;
+
+    private float fSqr = 0f;
 
     new void Start()
     {
         base.Start();
+        joystickRect = joystick.GetComponent<RectTransform>();
+        joystickBackRect = joystickBack.GetComponent<RectTransform>();
     }
 
     public void OnAbility()
@@ -36,9 +43,11 @@ public class Ablility_Teleport : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         //능력 사용
+        defaultjoyStickPos = joystick.transform.position;
         isUsing = true;
         joystickBack.SetActive(true);
         joystick.transform.SetParent(joystickBack.transform);
+        joystickRect.transform.localPosition = Vector2.zero;
         abilityEffectAnim.SetTrigger("BlueT");
     }
     new void Update()
@@ -64,6 +73,9 @@ public class Ablility_Teleport : Ability, IAbility
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
                 isUsing = false;
+                //joystick.transform.position = defaultjoyStickPos;
+                joystickRect.localPosition = Vector2.zero;
+
                 joystick.transform.SetParent(defaultParent);
                 joystickBack.SetActive(false);
 
@@ -80,7 +92,30 @@ public class Ablility_Teleport : Ability, IAbility
             }
             else
             {
-                Debug.Log("누르는중");
+
+                /* 이거 쓸려면 캔버스 설정 바꿔야됨 근데 그러면안됨
+                Vector2 touchPos = Input.mousePosition;
+                Vector2 vec = new Vector2(touchPos.x - (joystickBackRect.localPosition.x + defaultParent.localPosition.x + Screen.width / 2), touchPos.y - (joystickBackRect.localPosition.y + defaultParent.localPosition.y + Screen.height / 2));
+                Debug.Log(defaultParent.localPosition);
+
+                float radius = joystickBackRect.rect.width * 0.5f;
+
+                //vec = Vector2.ClampMagnitude(vec, radius);
+                joystickRect.localPosition = vec;
+
+                fSqr = (joystickBackRect.position - joystickBackRect.position).sqrMagnitude / (radius * radius);
+
+                Vector2 vecNormal = vec.normalized;
+                */
+
+                /*
+                Vector3 touchPos = Input.mousePosition;
+                touchPos = new Vector3 (Camera.main.ScreenToWorldPoint(touchPos).x, Camera.main.ScreenToWorldPoint(touchPos).y, 0f);
+
+                touchPos = Vector2.ClampMagnitude(touchPos, (joystickBack.GetComponent<RectTransform>().rect.width * 0.5f));
+
+                joystick.transform.position = touchPos;
+                */
             }
         }
     }
