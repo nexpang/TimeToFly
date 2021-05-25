@@ -28,7 +28,9 @@ public class TimeBoom : MonoBehaviour
 
     [Header("오디오 클립")]
     [SerializeField] AudioSource SFXSpeaker = null;
+    [SerializeField] AudioSource SFXSpeaker2 = null;
     [SerializeField] AudioClip Audio_TimeBomb = null;
+    [SerializeField] AudioClip Audio_BombTimer = null;
 
     private void OnEnable()
     {
@@ -116,6 +118,7 @@ public class TimeBoom : MonoBehaviour
         //Debug.Log("워닝");
         yield return new WaitForSeconds(effectCool);
         spriteRenderer.sprite = warningEffect;
+        GameManager.Instance.SetAudioImmediate(SFXSpeaker2, Audio_BombTimer, 1, false);
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.sprite = defaultSprite;
         effectCool -= 0.08f;

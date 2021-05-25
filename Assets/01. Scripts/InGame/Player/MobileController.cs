@@ -9,7 +9,8 @@ public enum ControllerType
     LEFT,
     RIGHT,
     JUMP,
-    ABILITY
+    ABILITY,
+    INTERACTION
 }
 
 public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler, IPointerExitHandler
@@ -72,6 +73,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 break;
             case ControllerType.ABILITY:
                 PlayerInput.Instance.JoyStickAbility();
+                break;
+            case ControllerType.INTERACTION:
+                PlayerInput.Instance.JoyStickInteration();
                 break;
             case ControllerType.LEFT:
                 PlayerInput.Instance.JoyStickHorizontalRaw(-1);

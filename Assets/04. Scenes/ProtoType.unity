@@ -11797,7 +11797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -48.339188, y: 332.11267}
+  m_AnchoredPosition: {x: -48.33911, y: 332.11267}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &386144651
@@ -32833,7 +32833,7 @@ MonoBehaviour:
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
-  abilityNumber: 4
+  abilityNumber: 3
   playerAnim: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
@@ -35846,7 +35846,9 @@ MonoBehaviour:
   warningEffect: {fileID: 6269968403267052048, guid: 8712da0aef3ee564ea4a56875e3bb478, type: 3}
   explosionRadius: 3
   SFXSpeaker: {fileID: 1775422743}
+  SFXSpeaker2: {fileID: 1646307701}
   Audio_TimeBomb: {fileID: 8300000, guid: dd69b662002eec84bb1d4d0b3721fc57, type: 3}
+  Audio_BombTimer: {fileID: 8300000, guid: 5205ac334b915c7498c933504e4a9d31, type: 3}
 --- !u!114 &3673387985229851923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40663,7 +40665,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

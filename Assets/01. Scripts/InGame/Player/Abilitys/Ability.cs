@@ -14,6 +14,7 @@ public class Ability : MonoBehaviour
     [SerializeField]  protected float abilityCurrentCoolDown = 0f;
     [SerializeField] protected AudioSource audioSource = null;
     [SerializeField] protected AudioClip Audio_deniedAbility = null;
+    [HideInInspector] public bool isReady;// 쿨타임이 끝나고 준비가 되었나? (튜토리얼 용)
 
     protected void Start()
     {
@@ -33,5 +34,7 @@ public class Ability : MonoBehaviour
         {
             abilityCurrentCoolDown = -(Time.time - abilityCurrentCoolDownTime) + abilityCooldown;
         }
+
+        isReady = abilityCurrentCoolDown <= 0;
     }
 }

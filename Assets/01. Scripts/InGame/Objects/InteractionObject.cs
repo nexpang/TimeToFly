@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class InteractionObject : MonoBehaviour
 {
-    public virtual void OnInteraction()
+    public float interactionDistance = 1;
+    public virtual bool OnInteraction()
     {
-
+        return true;
     }
 }
