@@ -2187,8 +2187,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 6
-    tilesY: 1
+    tilesX: 1
+    tilesY: 6
     animationType: 1
     rowIndex: 0
     cycles: 1
@@ -20210,8 +20210,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 6
-    tilesY: 1
+    tilesX: 1
+    tilesY: 6
     animationType: 1
     rowIndex: 0
     cycles: 3
@@ -38325,7 +38325,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.96000004, z: 0}
   m_MaxChunkCount: 16
@@ -43255,11 +43255,11 @@ MonoBehaviour:
   deathScreen: {fileID: 1844990091}
   featherEffect: {fileID: 737332964}
   featherTextures:
-  - {fileID: 2800000, guid: 54c6a188cc8007245880a196b64837b7, type: 3}
+  - {fileID: 2800000, guid: 3374a0d0c387ba64cbe8facadf1d804d, type: 3}
   - {fileID: 2800000, guid: 193b6cd1254b12f44be8110c0154a4d4, type: 3}
-  - {fileID: 2800000, guid: c62eb9e3b0b6fac45a0dbe922a85dac8, type: 3}
+  - {fileID: 2800000, guid: e5188294ce3a35c4c9dc2081bdd4803e, type: 3}
   - {fileID: 2800000, guid: 53ad826ffb6063a49978d5ab80e1ba3b, type: 3}
-  - {fileID: 2800000, guid: 54c6a188cc8007245880a196b64837b7, type: 3}
+  - {fileID: 2800000, guid: 3374a0d0c387ba64cbe8facadf1d804d, type: 3}
 --- !u!212 &1558494635
 SpriteRenderer:
   m_ObjectHideFlags: 0
