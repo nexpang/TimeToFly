@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -5367738790471152598
     second: ability_ui_4
+  - first:
+      213: -4045818880393019130
+    second: ability_ui_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -218,6 +221,27 @@ TextureImporter:
       bones: []
       spriteID: a2cc1e27206f185b0800000000000000
       internalID: -5367738790471152598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ability_ui_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6010b98f92d5ad7c0800000000000000
+      internalID: -4045818880393019130
       vertices: []
       indices: 
       edges: []
