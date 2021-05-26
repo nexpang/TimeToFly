@@ -8,7 +8,7 @@ public class Ability : MonoBehaviour
     [Header("±âº»°ª")]
     [SerializeField] protected Image abilityBtn = null;
     [SerializeField] protected Image abilityCooldownCircle = null;
-    [SerializeField] Sprite abilityBtnSpr = null;
+    [SerializeField] protected Sprite abilityBtnSpr = null;
     [SerializeField] protected float abilityCooldown = 30f;
     protected float abilityCurrentCoolDownTime;
     [SerializeField]  protected float abilityCurrentCoolDown = 0f;

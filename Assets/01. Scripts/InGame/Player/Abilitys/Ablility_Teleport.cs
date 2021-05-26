@@ -15,21 +15,32 @@ public class Ablility_Teleport : Ability, IAbility
     public float currentTime = 15;
 
     [SerializeField] Transform defaultParent = null;
-    [SerializeField] Vector3 defaultjoyStickPos = Vector3.zero;
     [SerializeField] GameObject joystick = null;
     [SerializeField] GameObject joystickBack = null;
     private RectTransform joystickRect = null;
-    private RectTransform joystickBackRect = null;
     private bool isUsing = false;
     [SerializeField] GameObject player = null;
+    [SerializeField] Transform playerPos = null;
+    [SerializeField] GameObject teleportPosObj = null;
+    private Transform teleportPosObjTrans = null;
+    [SerializeField] Sprite joystickSpr = null;
+
+    [SerializeField] float timeSlow = 4f;
+    [SerializeField] float minusTimeForS = 10f;
 
     private float fSqr = 0f;
+    [SerializeField]
+    private float radius = 1f;
+
+    [SerializeField, Range(1f, 10f)]
+    private float teleportPower = 10f;
+    private Vector2 teleportPos;
 
     new void Start()
     {
         base.Start();
         joystickRect = joystick.GetComponent<RectTransform>();
-        joystickBackRect = joystickBack.GetComponent<RectTransform>();
+        teleportPosObjTrans = teleportPosObj.GetComponent<Transform>();
     }
 
     public void OnAbility()
@@ -43,12 +54,16 @@ public class Ablility_Teleport : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         //능력 사용
-        defaultjoyStickPos = joystick.transform.position;
         isUsing = true;
         joystickBack.SetActive(true);
+        teleportPosObj.SetActive(true);
         joystick.transform.SetParent(joystickBack.transform);
         joystickRect.transform.localPosition = Vector2.zero;
+        abilityBtn.sprite = joystickSpr;
         abilityEffectAnim.SetTrigger("BlueT");
+        Time.timeScale = 1f / timeSlow;
+        GameManager.Instance.TimerScale = 1f / (minusTimeForS * timeSlow);
+        PlayerController.Instance._speed = 0f;
     }
     new void Update()
     {
@@ -72,12 +87,20 @@ public class Ablility_Teleport : Ability, IAbility
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
+                Time.timeScale = 1f;
+                GameManager.Instance.TimerScale = 1f;
+                PlayerController.Instance._speed = 1f;
                 isUsing = false;
                 //joystick.transform.position = defaultjoyStickPos;
                 joystickRect.localPosition = Vector2.zero;
+                abilityBtn.sprite = abilityBtnSpr;
 
                 joystick.transform.SetParent(defaultParent);
                 joystickBack.SetActive(false);
+
+                playerPos.position = teleportPos;
+                teleportPosObjTrans.position = Vector3.zero;
+                teleportPosObj.SetActive(false);
 
                 abilityCurrentCoolDown = abilityCooldown;
                 abilityCurrentCoolDownTime = Time.time;
@@ -92,7 +115,27 @@ public class Ablility_Teleport : Ability, IAbility
             }
             else
             {
+                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                touchPos.z = 0f;
+                Vector3 firstJPos = joystickBack.transform.position;
+                firstJPos.z = 0f;
+                Vector3 vec = (touchPos - firstJPos).normalized;
+                float dist = Vector2.Distance(touchPos, joystickBack.transform.position);
+                Debug.Log(dist);
 
+                if(dist < radius)
+                {
+                    fSqr = dist;
+                }
+                else
+                {
+                    fSqr = radius;
+                }
+                joystick.transform.position = joystickBack.transform.position + vec * fSqr;
+
+                teleportPos = playerPos.position + vec * (fSqr * teleportPower);
+
+                teleportPosObjTrans.position = teleportPos;
                 /* 이거 쓸려면 캔버스 설정 바꿔야됨 근데 그러면안됨
                 Vector2 touchPos = Input.mousePosition;
                 Vector2 vec = new Vector2(touchPos.x - (joystickBackRect.localPosition.x + defaultParent.localPosition.x + Screen.width / 2), touchPos.y - (joystickBackRect.localPosition.y + defaultParent.localPosition.y + Screen.height / 2));
@@ -106,15 +149,6 @@ public class Ablility_Teleport : Ability, IAbility
                 fSqr = (joystickBackRect.position - joystickBackRect.position).sqrMagnitude / (radius * radius);
 
                 Vector2 vecNormal = vec.normalized;
-                */
-
-                /*
-                Vector3 touchPos = Input.mousePosition;
-                touchPos = new Vector3 (Camera.main.ScreenToWorldPoint(touchPos).x, Camera.main.ScreenToWorldPoint(touchPos).y, 0f);
-
-                touchPos = Vector2.ClampMagnitude(touchPos, (joystickBack.GetComponent<RectTransform>().rect.width * 0.5f));
-
-                joystick.transform.position = touchPos;
                 */
             }
         }
