@@ -61,7 +61,7 @@ public class PlayerAnimation : MonoBehaviour
 
             // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
     }
 }
