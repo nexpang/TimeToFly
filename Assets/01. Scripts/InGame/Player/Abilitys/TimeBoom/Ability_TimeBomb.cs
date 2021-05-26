@@ -28,6 +28,7 @@ public class Ability_TimeBomb : Ability, IAbility
     [SerializeField] float throwForce = 5f;//1~3
     [SerializeField] float defaultAddForce = 0.1f;
     [SerializeField] float addForce = 0.1f;
+    private float throwDir = 1;
 
     [SerializeField] GameObject player = null;
 
@@ -103,6 +104,8 @@ public class Ability_TimeBomb : Ability, IAbility
     new void Update()
     {
         base.Update();
+        if(PlayerInput.Instance.KeyHorizontalRaw!=0f)
+            throwDir = PlayerInput.Instance.KeyHorizontalRaw;
         if (hasTimeBoom && isCharging)
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
@@ -146,7 +149,7 @@ public class Ability_TimeBomb : Ability, IAbility
         rigid = timeBoom.AddComponent<Rigidbody2D>();
 
         rigid.AddForce(Vector2.up * (boomUpForce * throwForce), ForceMode2D.Impulse);
-        rigid.AddForce(Vector2.right * (boomFForce * throwForce) * PlayerInput.Instance.KeyHorizontalRaw, ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.right * (boomFForce * throwForce) * throwDir, ForceMode2D.Impulse);
 
         hasTimeBoom = false;
         PlayerController.Instance._speed = 1f;

@@ -32841,7 +32841,7 @@ MonoBehaviour:
   - {fileID: 1176652839}
   - {fileID: 856824130}
   - {fileID: 110000874}
-  abilityNumber: 4
+  abilityNumber: 3
   playerAnim: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
