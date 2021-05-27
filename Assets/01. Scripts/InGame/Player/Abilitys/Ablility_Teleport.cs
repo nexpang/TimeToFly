@@ -159,29 +159,35 @@ public class Ablility_Teleport : Ability, IAbility
             }
             else
             {
-                Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                touchPos.z = 0f;
-                Vector3 firstJPos = joystickBack.transform.position;
-                firstJPos.z = 0f;
-                Vector3 vec = (touchPos - firstJPos).normalized;
-                float dist = Vector2.Distance(touchPos, joystickBack.transform.position);
-
-                if(dist < radius)
-                {
-                    fSqr = dist;
-                }
-                else
-                {
-                    fSqr = radius;
-                }
-
-                joystick.transform.position = joystickBack.transform.position + vec * fSqr;
-
-                teleportPos = playerPos.position + vec * (fSqr * teleportPower);
-
-                teleportPosObjTrans.position = teleportPos;
+                SetTeleportPos();
             }
         }
+    }
+
+    private void SetTeleportPos()
+    {
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        touchPos.z = 0f;
+        Vector3 firstJPos = joystickBack.transform.position;
+        firstJPos.z = 0f;
+        Vector3 vec = (touchPos - firstJPos).normalized;
+        float dist = Vector2.Distance(touchPos, joystickBack.transform.position);
+
+        if (dist < radius)
+        {
+            fSqr = dist;
+        }
+        else
+        {
+            fSqr = radius;
+        }
+
+        joystick.transform.position = joystickBack.transform.position + vec * fSqr;
+
+        teleportPos = playerPos.position + vec * (fSqr * teleportPower);
+
+        teleportPosObjTrans.position = teleportPos;
+
     }
 
     public void ResetPlayer()
