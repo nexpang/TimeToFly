@@ -174,31 +174,19 @@ public class Ablility_Teleport : Ability, IAbility
                 {
                     fSqr = radius;
                 }
+
                 joystick.transform.position = joystickBack.transform.position + vec * fSqr;
 
                 teleportPos = playerPos.position + vec * (fSqr * teleportPower);
 
                 teleportPosObjTrans.position = teleportPos;
-                /* 이거 쓸려면 캔버스 설정 바꿔야됨 근데 그러면안됨
-                Vector2 touchPos = Input.mousePosition;
-                Vector2 vec = new Vector2(touchPos.x - (joystickBackRect.localPosition.x + defaultParent.localPosition.x + Screen.width / 2), touchPos.y - (joystickBackRect.localPosition.y + defaultParent.localPosition.y + Screen.height / 2));
-                Debug.Log(defaultParent.localPosition);
-
-                float radius = joystickBackRect.rect.width * 0.5f;
-
-                //vec = Vector2.ClampMagnitude(vec, radius);
-                joystickRect.localPosition = vec;
-
-                fSqr = (joystickBackRect.position - joystickBackRect.position).sqrMagnitude / (radius * radius);
-
-                Vector2 vecNormal = vec.normalized;
-                */
             }
         }
     }
 
     public void ResetPlayer()
     {
+        playerPos.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //능력 중단
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         Time.timeScale = 1f;
