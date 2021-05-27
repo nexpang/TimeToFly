@@ -24,6 +24,7 @@ public class Ability_FutureCreate : Ability, IAbility
     [SerializeField] float rotateSpeed = 1;
     [SerializeField] float stringEffectSpeed = 1;
     [SerializeField] float featherEffectSpeed = 1;
+
     [SerializeField] Animator abilityEffectAnim = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
