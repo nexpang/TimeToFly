@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DontDestroyUI : MonoBehaviour
 {
@@ -28,13 +27,12 @@ public class DontDestroyUI : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        Debug.Log("¹«¾ßÈ£!");
     }
     private void Start()
     {
         clearCG = GetComponent<CanvasGroup>();
         main = GameObject.Find("Main Camera").GetComponent<Camera>();
-        if (!main) 
+        if (!main)
         {
             clearCanvas.worldCamera = main;
         }
@@ -43,9 +41,9 @@ public class DontDestroyUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow)) 
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (clearCG.alpha == 1) 
+            if (clearCG.alpha == 1)
             {
                 Time.timeScale = 1f;
                 clearCG.alpha = 0f;
@@ -60,11 +58,11 @@ public class DontDestroyUI : MonoBehaviour
                 clear.SetActive(true);
                 clearCG.blocksRaycasts = true;
             }
-            
+
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) 
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (clearCG.alpha == 1) 
+            if (clearCG.alpha == 1)
             {
                 Time.timeScale = 1f;
                 clearCG.alpha = 0f;
@@ -83,6 +81,24 @@ public class DontDestroyUI : MonoBehaviour
 
     }
 
+    public void OnClickExitBtn()
+    {
+        Application.Quit();
+    }
+    public void OnClickContinueBtn() 
+    {
+        if (clearCG.alpha == 1)
+        {
+            Time.timeScale = 1f;
+            clearCG.alpha = 0f;
+            menu.SetActive(false);
+            clear.SetActive(false);
+            clearCG.blocksRaycasts = false;
+        }
+    }
+    public void OnClickTitleBtn() 
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync("Title");
 
-
+    }
 }
