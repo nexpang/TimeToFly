@@ -59,6 +59,8 @@ public class Ablility_Teleport : Ability, IAbility
     [SerializeField] AudioClip Audio_tik = null;
     [SerializeField] AudioClip Audio_tok = null;
 
+    Tween tween;
+
     new void Start()
     {
         base.Start();
@@ -92,7 +94,10 @@ public class Ablility_Teleport : Ability, IAbility
         PlayerController.Instance._speed = 0f;
 
         clockUI.SetActive(true);
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
+
+        tween.Kill();
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
+
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
@@ -164,6 +169,7 @@ public class Ablility_Teleport : Ability, IAbility
         }
     }
 
+
     private void SetTeleportPos()
     {
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -171,7 +177,7 @@ public class Ablility_Teleport : Ability, IAbility
         Vector3 firstJPos = joystickBack.transform.position;
         firstJPos.z = 0f;
         Vector3 vec = (touchPos - firstJPos).normalized;
-        float dist = Vector2.Distance(touchPos, joystickBack.transform.position);
+        float dist = Vector2.Distance(touchPos, firstJPos);
 
         if (dist < radius)
         {
@@ -182,7 +188,7 @@ public class Ablility_Teleport : Ability, IAbility
             fSqr = radius;
         }
 
-        joystick.transform.position = joystickBack.transform.position + vec * fSqr;
+        joystick.transform.position = firstJPos + vec * fSqr;
 
         teleportPos = playerPos.position + vec * (fSqr * teleportPower);
 
@@ -201,7 +207,9 @@ public class Ablility_Teleport : Ability, IAbility
 
         currentTime = abilityDefaultTime;
 
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+
+        tween.Kill();
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
 
         GlitchEffect.Instance.colorIntensity = 0;
         GlitchEffect.Instance.flipIntensity = 0;
@@ -221,7 +229,7 @@ public class Ablility_Teleport : Ability, IAbility
 
         teleportPosObjTrans.position = Vector3.zero;
         teleportPosObj.SetActive(false);
-        //StopCoroutine(Clock());
+        StopCoroutine(Clock());
     }
 
     IEnumerator Clock()
