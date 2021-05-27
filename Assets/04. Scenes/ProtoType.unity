@@ -5777,6 +5777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110000875}
   - component: {fileID: 110000876}
+  - component: {fileID: 110000877}
   m_Layer: 0
   m_Name: Ability4
   m_TagString: Ability
@@ -5816,13 +5817,20 @@ MonoBehaviour:
   abilityBtnSpr: {fileID: -2624990006924415790, guid: 65dae4cc4b6572c4285f2bc131c753b0, type: 3}
   abilityCooldown: 30
   abilityCurrentCoolDown: 0
-  audioSource: {fileID: 0}
-  Audio_deniedAbility: {fileID: 0}
+  audioSource: {fileID: 110000877}
+  Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}
   isReady: 0
-  clockUI: {fileID: 1714552269}
-  clockUIFill: {fileID: 75714655}
+  clockUI: {fileID: 569188569}
+  clockUIClock: {fileID: 1353249258}
+  clockUISandClock: {fileID: 1537729757}
+  clockUISecondHand: {fileID: 336548802}
+  stringEffect: {fileID: 1289758621}
+  featherEffect: {fileID: 759233934}
+  abilityParticle: {fileID: 560508065}
+  rotateSpeed: 5.5
+  stringEffectSpeed: 0.5
+  featherEffectSpeed: 0.1
   abilityEffectAnim: {fileID: 1821836605}
-  clockUINeedle: {fileID: 83354302}
   abilityDefaultTime: 15
   currentTime: 15
   defaultParent: {fileID: 268345611}
@@ -5832,8 +5840,111 @@ MonoBehaviour:
   playerPos: {fileID: 1558494631}
   teleportPosObj: {fileID: 1925896755}
   joystickSpr: {fileID: 21300000, guid: f0d73f3de6072f143922dece9c2130ee, type: 3}
+  timeSlow: 4
+  minusTimeForS: 10
   radius: 1
   teleportPower: 6
+  audioClockSoundSource: {fileID: 1646307701}
+  Audio_futureEnter: {fileID: 8300000, guid: 046cfb2565da36e48bf7d74d958d8525, type: 3}
+  Audio_presentEnter: {fileID: 8300000, guid: 4d998c45f82c0d84baf231674f0b1b92, type: 3}
+  Audio_tik: {fileID: 8300000, guid: 94b6aa396aba6824a9bae6d4bf2584ef, type: 3}
+  Audio_tok: {fileID: 8300000, guid: 35b070cad8e744b46a5128cbe85b1fa1, type: 3}
+--- !u!82 &110000877
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110000874}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &128838731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5975,7 +6086,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -34342,7 +34453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886265420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.82, y: 1.32, z: -10}
+  m_LocalPosition: {x: -3.35, y: -0.14999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 792315483}
@@ -34658,9 +34769,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 5120993146704117575, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  m_Color: {r: 0.94360787, g: 0.76792455, b: 1, a: 0.5254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
