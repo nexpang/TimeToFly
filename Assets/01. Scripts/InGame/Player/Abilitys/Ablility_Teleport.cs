@@ -72,6 +72,7 @@ public class Ablility_Teleport : Ability, IAbility
     {
         if (abilityCurrentCoolDown > 0)
         {
+            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
             abilityCooldownCircle.DOComplete();
             abilityCooldownCircle.color = Color.red;
             abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
@@ -92,6 +93,7 @@ public class Ablility_Teleport : Ability, IAbility
         Time.timeScale = 1f / timeSlow;
         GameManager.Instance.TimerScale = 1f / (minusTimeForS * timeSlow);
         PlayerController.Instance._speed = 0f;
+        GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
 
@@ -198,6 +200,9 @@ public class Ablility_Teleport : Ability, IAbility
 
     public void ResetPlayer()
     {
+        abilityCurrentCoolDown = abilityCooldown;
+        abilityCurrentCoolDownTime = Time.time;
+
         playerPos.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //능력 중단
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
@@ -236,7 +241,7 @@ public class Ablility_Teleport : Ability, IAbility
     {
         yield return new WaitForSecondsRealtime(1);
 
-        while (currentTime > 0)
+        while (currentTime > 0 && isUsing)
         {
             currentTime--;
             yield return new WaitForSecondsRealtime(1);

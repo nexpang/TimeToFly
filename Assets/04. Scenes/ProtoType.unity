@@ -5815,7 +5815,7 @@ MonoBehaviour:
   abilityBtn: {fileID: 676108900}
   abilityCooldownCircle: {fileID: 270041088}
   abilityBtnSpr: {fileID: -2624990006924415790, guid: 65dae4cc4b6572c4285f2bc131c753b0, type: 3}
-  abilityCooldown: 30
+  abilityCooldown: 7
   abilityCurrentCoolDown: 0
   audioSource: {fileID: 110000877}
   Audio_deniedAbility: {fileID: 8300000, guid: 33580f9ea2cb9b34f9e007aa33d123a0, type: 3}

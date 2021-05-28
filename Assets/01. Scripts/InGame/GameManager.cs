@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Timer()
+    public void Timer()
     {
         timer--;
         targetTime = currentTime + 1 * TimerScale;
