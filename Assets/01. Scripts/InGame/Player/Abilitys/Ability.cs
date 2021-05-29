@@ -21,7 +21,7 @@ public class Ability : MonoBehaviour
         abilityBtn.sprite = abilityBtnSpr;
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         abilityBtn.sprite = abilityBtnSpr;
     }

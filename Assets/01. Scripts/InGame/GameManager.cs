@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     [Header("스테이지")]
     [SerializeField] GameObject[] stages = null;
 
+
+    [HideInInspector] public Tween tween; // 시계 없어지는거 방지용 트윈
+
+
     private int _timer;
     public int timer
     {
@@ -96,6 +100,7 @@ public class GameManager : MonoBehaviour
                 Timer();
             }
         }
+        else timer = 999;
     }
 
     public void Timer()

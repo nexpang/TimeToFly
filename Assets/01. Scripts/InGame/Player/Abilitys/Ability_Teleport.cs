@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Ablility_Teleport : Ability, IAbility
+public class Ability_Teleport : Ability, IAbility
 {
     [Header("능력 별 변수들(모래시계)")]
     [SerializeField] GameObject clockUI = null;
@@ -35,9 +35,14 @@ public class Ablility_Teleport : Ability, IAbility
     [SerializeField] GameObject joystickBack = null;
     private RectTransform joystickRect = null;
     private bool isUsing = false;
+    public bool IsUsing { get { return isUsing; } }
     [SerializeField] GameObject player = null;
     [SerializeField] Transform playerPos = null;
-    [SerializeField] GameObject teleportPosObj = null;
+    [SerializeField] GameObject teleportPosObj = null; // -------둘이 포지션이 같다.
+    [SerializeField] GameObject teleportPosFinalPoint = null; // -------^
+    [SerializeField] LineRenderer teleportLine = null;
+    Vector3[] teleportWayPoints = new Vector3[2];
+
     private Transform teleportPosObjTrans = null;
     [SerializeField] Sprite joystickSpr = null;
 
@@ -53,13 +58,12 @@ public class Ablility_Teleport : Ability, IAbility
     private Vector2 teleportPos;
 
     [Header("사운드 이펙트")]
+    [SerializeField] AudioSource bgAudioSource = null;
     [SerializeField] AudioSource audioClockSoundSource = null;
     [SerializeField] AudioClip Audio_futureEnter = null;
     [SerializeField] AudioClip Audio_presentEnter = null;
     [SerializeField] AudioClip Audio_tik = null;
     [SerializeField] AudioClip Audio_tok = null;
-
-    Tween tween;
 
     new void Start()
     {
@@ -83,6 +87,9 @@ public class Ablility_Teleport : Ability, IAbility
         isUsing = true;
         joystickBack.SetActive(true);
         teleportPosObj.SetActive(true);
+        teleportPosFinalPoint.SetActive(true);
+        teleportLine.gameObject.SetActive(true);
+
         joystick.transform.SetParent(joystickBack.transform);
         joystickRect.transform.localPosition = Vector2.zero;
         abilityBtn.sprite = joystickSpr;
@@ -97,8 +104,8 @@ public class Ablility_Teleport : Ability, IAbility
 
         clockUI.SetActive(true);
 
-        tween.Kill();
-        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
+        GameManager.Instance.tween.Kill();
+        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
 
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
@@ -159,10 +166,17 @@ public class Ablility_Teleport : Ability, IAbility
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
-                Debug.Log("능력 뿌슝빠슝");
                 ResetPlayer();
                 StopCoroutine(Clock());
-                playerPos.position = teleportPos;
+                playerPos.DOScale(0, 0.25f).OnComplete(()=>
+                {
+                    playerPos.position = teleportPos;
+                    playerPos.DOScale(1, 0.25f).SetEase(Ease.InOutBack);
+
+                    GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
+                    abilityEffectAnim.SetTrigger("OrangeT");
+                    bgAudioSource.volume = GameManager.Instance.defaultBGMvolume;
+                }).SetEase(Ease.InOutBack);
             }
             else
             {
@@ -193,9 +207,20 @@ public class Ablility_Teleport : Ability, IAbility
         joystick.transform.position = firstJPos + vec * fSqr;
 
         teleportPos = playerPos.position + vec * (fSqr * teleportPower);
+        teleportPos.y = Mathf.Clamp(teleportPos.y, transform.position.y, transform.position.y + 10);
 
         teleportPosObjTrans.position = teleportPos;
+        teleportPosFinalPoint.transform.position = teleportPosObjTrans.position;
 
+        teleportWayPoints[0] = transform.position;
+        teleportWayPoints[1] = teleportPos;
+
+        teleportLine.SetPositions(teleportWayPoints);
+
+        bgAudioSource.volume = 0;
+
+        float width = teleportLine.startWidth;
+        teleportLine.material.mainTextureScale = new Vector2(1f / width, 1.0f);
     }
 
     public void ResetPlayer()
@@ -213,15 +238,12 @@ public class Ablility_Teleport : Ability, IAbility
         currentTime = abilityDefaultTime;
 
 
-        tween.Kill();
-        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+        GameManager.Instance.tween.Kill();
+        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
 
         GlitchEffect.Instance.colorIntensity = 0;
         GlitchEffect.Instance.flipIntensity = 0;
         GlitchEffect.Instance.intensity = 0;
-
-        GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
-        abilityEffectAnim.SetTrigger("OrangeT");
 
 
         isUsing = false;
@@ -234,6 +256,9 @@ public class Ablility_Teleport : Ability, IAbility
 
         teleportPosObjTrans.position = Vector3.zero;
         teleportPosObj.SetActive(false);
+        teleportPosFinalPoint.SetActive(false);
+        teleportLine.gameObject.SetActive(false);
+
         StopCoroutine(Clock());
     }
 
@@ -244,6 +269,8 @@ public class Ablility_Teleport : Ability, IAbility
         while (currentTime > 0 && isUsing)
         {
             currentTime--;
+            if (currentTime == 0)
+                currentTime = abilityDefaultTime;
             yield return new WaitForSecondsRealtime(1);
             if (PlayerController.Instance.playerState == PlayerState.DEAD || !isUsing)//만약 죽은상태라면
             {

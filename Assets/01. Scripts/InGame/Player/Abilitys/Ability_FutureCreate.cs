@@ -90,20 +90,32 @@ public class Ability_FutureCreate : Ability, IAbility
             abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
             return;
         }// 쿨타임이 아직 안됐다.
-        abilityCurrentCoolDown = abilityCooldown;
-        abilityCurrentCoolDownTime = Time.time;
 
-        clockUI.SetActive(true);
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
-        playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
+        abilityCurrentCoolDown = abilityCooldown;
+        abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
+
+        clockUI.SetActive(true); // 시계 UI를 켜준다.
+        GameManager.Instance.tween.Kill(); // 트윈 초기화
+        // 시계 알파값 닷트윈으로 올려주고
+        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
+        playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1); // 플레이어를 파란색으로
+
+        // 글리치 이펙트 켜주고
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
+
+        // 시계 초가 시작된다.
         StartCoroutine(Clock());
+
+        // 잠든 플레이어를 만들어준다.
         sleepPlayer.transform.position = transform.position;
         sleepPlayer.GetComponent<SpriteRenderer>().flipX = playerAn.GetComponent<SpriteRenderer>().flipX;
+
+        // 미래 이펙트 실행시켜준다.
         abilityEffectAnim.SetTrigger("BlueT");
 
+        // 미래예지 Trail
         abilityParticle.gameObject.SetActive(true);
         abilityParticle.Play();
         effect.transform.SetParent(this.transform);
@@ -111,6 +123,7 @@ public class Ability_FutureCreate : Ability, IAbility
         effect.transform.localPosition = Vector3.zero;
         effect.time = 10;
 
+        // 미래 예지 효과음
         GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
         int random = UnityEngine.Random.Range(0, 4);
         if(random == 0)
@@ -133,8 +146,6 @@ public class Ability_FutureCreate : Ability, IAbility
             bgAudioSource.time = 22;
             GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
         }
-
-
 
         isSleep = true;
     }
@@ -329,6 +340,7 @@ public class Ability_FutureCreate : Ability, IAbility
 
     private void OnDisable() // 튜토리얼용 코드
     {
+        base.OnEnable();
         if (recordedPlayer)
         {
             recordedPlayer.transform.position = new Vector3(-20, 10, 0);

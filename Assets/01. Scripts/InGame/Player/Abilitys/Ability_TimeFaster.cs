@@ -6,11 +6,30 @@ using DG.Tweening;
 
 public class Ability_TimeFaster : Ability, IAbility
 {
-    [Header("능력 별 변수들")]
+    [Header("능력 별 변수들(모래시계)")]
     [SerializeField] GameObject clockUI = null;
-    [SerializeField] Image clockUIFill = null;
+    [SerializeField] RectTransform clockUIClock = null;
+    [SerializeField] RectTransform clockUISandClock = null;
+    [SerializeField] RectTransform clockUISecondHand = null;
+    [SerializeField] RawImage stringEffect = null;
+    [SerializeField] RawImage featherEffect = null;
+    [SerializeField] ParticleSystem abilityParticle = null;
+
+    Rect stringRect = new Rect(0, 0, 1, 1);
+    float rectX = 0;
+    Rect featherRect = new Rect(0, 0, 1, 1);
+    float rectY = 0;
+
+    [SerializeField] float rotateSpeed = 1;
+    [SerializeField] float stringEffectSpeed = 1;
+    [SerializeField] float featherEffectSpeed = 1;
+    [SerializeField] Image sandClockWhite = null;
+    [SerializeField] Sprite brokenClock;
+    Sprite defaultClock;
+    //=================================여기까지 시계 이펙트다.=============
+
+    [Header("능력 별 변수들")]
     [SerializeField] Animator abilityEffectAnim = null;
-    [SerializeField] RectTransform clockUINeedle = null;
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
 
@@ -24,13 +43,30 @@ public class Ability_TimeFaster : Ability, IAbility
     [Header("효과음")]
     [SerializeField] AudioSource bgAudioSource = null;
     [SerializeField] AudioSource playerAudioSource = null;
+    [SerializeField] AudioSource audioClockSoundSource = null;
     [SerializeField] AudioClip Audio_futureEnter = null;
     [SerializeField] AudioClip Audio_presentEnter = null;
+    [SerializeField] AudioClip Audio_tik = null;
+    [SerializeField] AudioClip Audio_tok = null;
+    [SerializeField] AudioClip Audio_glassBroken = null;
+
+    private void OnEnable() // 필요할때만 켜지게
+    {
+        base.OnEnable();
+        sandClockWhite.gameObject.SetActive(true);
+        clockUISandClock.eulerAngles = Vector3.zero;
+    }
+
+    private void OnDisable()
+    {
+        sandClockWhite.gameObject.SetActive(false);
+    }
 
     new void Start()
     {
         base.Start();
         currentTime = abilityDefaultTime;
+        defaultClock = clockUISandClock.GetComponent<Image>().sprite;
     }
 
     public void OnAbility()
@@ -45,21 +81,29 @@ public class Ability_TimeFaster : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         abilityCurrentCoolDown = abilityCooldown;
-        abilityCurrentCoolDownTime = Time.time;
+        abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
 
-        Debug.Log("능력 뿌슝빠슝");
-        clockUI.SetActive(true);
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
+        clockUI.SetActive(true); // 시계 UI를 켜준다.
+        GameManager.Instance.tween.Kill(); // 트윈 초기화
+        // 시계 알파값 닷트윈으로 올려주고
+        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
+
+        // 글리치 이펙트 켜주고
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
+
+        // 시계 초가 시작된다.
         StartCoroutine(Clock());
+
+        // 미래 이펙트 실행시켜준다.
         abilityEffectAnim.SetTrigger("BlueT");
 
+        // 미래 예지 효과음
         GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
         bgAudioSource.DOPitch(1.5f, 3);
-        playerAudioSource.DOPitch(1.5f, 3);
-        DOTween.To(() => bgAudioSource.volume, value => bgAudioSource.volume = value, 0.4f, 2f);
+        playerAudioSource.DOPitch(1.5f, 3); // 빠른 애이기때문에 피치를 올려준다.
+        DOTween.To(() => bgAudioSource.volume, value => bgAudioSource.volume = value, 0.4f, 2f); // 볼륨은 낮춘다.
 
         //능력 시작
         IsTimeFast = true;
@@ -67,16 +111,29 @@ public class Ability_TimeFaster : Ability, IAbility
         effect.SetActive(true);
         Time.timeScale = 1f / speedUp;
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
-        Debug.Log("능력 속도업");
+
+        int randomRotate = Random.Range(0, 2);
+
+        sandClockWhite.material.DOFade(1, 0.25f).SetDelay(1).OnComplete(() =>
+        {
+            GameManager.Instance.SetAudio(audioSource, Audio_glassBroken, 1, false);
+            abilityParticle.Play();
+            sandClockWhite.material.color = new Color(1, 1, 1, 0);
+            clockUISandClock.GetComponent<Image>().sprite = brokenClock;
+            clockUISandClock.DOAnchorPos(new Vector2(Random.Range(-180,180), -1477), 2).SetEase(Ease.InOutCubic);
+            //clockUIClock.DOAnchorPos(new Vector2(Random.Range(-180, 180), -1477), 2).SetEase(Ease.InOutCubic);
+            clockUISandClock.DORotate(new Vector3(0, 0, (randomRotate == 0 ) ? 180 : -180), 3);
+            //clockUIClock.DORotate(new Vector3(0, 0, (randomRotate == 0) ? 180 : -180), 3);
+        });
+        DOTween.To(() => rotateSpeed, value => rotateSpeed = value, 350, 5);
+        DOTween.To(() => stringEffectSpeed, value => stringEffectSpeed = value, 3, 5).SetEase(Ease.InOutCubic);
+        DOTween.To(() => featherEffectSpeed, value => featherEffectSpeed = value, 3, 5);
     }
     new void Update()
     {
         base.Update();
-        clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
-        clockUINeedle.rotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
 
         Using();
-        //effect.GetComponent<ParticleSystemRenderer>().material.mainTexture = player.sprite.texture; 안됨
 
         if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
         {
@@ -88,6 +145,30 @@ public class Ability_TimeFaster : Ability, IAbility
     {
         if (!IsTimeFast) return;
 
+        clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
+        clockUISecondHand.localRotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
+        rectX += Time.deltaTime * stringEffectSpeed;
+        rectY += Time.deltaTime * featherEffectSpeed;
+
+        stringRect.Set(-rectX, 0, 1, 1);
+        featherRect.Set(0, rectY, 1, 1);
+
+        stringEffect.uvRect = stringRect;
+        featherEffect.uvRect = featherRect;
+
+        int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
+
+        if (PlayerController.Instance.playerState != PlayerState.DEAD)
+        {
+            if (seconds % 2 == 1)
+            {
+                GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tik, 1, false);
+            }
+            else
+            {
+                GameManager.Instance.SetAudio(audioClockSoundSource, Audio_tok, 1, false);
+            }
+        }
     }
 
     public void ResetPlayer()
@@ -101,7 +182,19 @@ public class Ability_TimeFaster : Ability, IAbility
 
         currentTime = abilityDefaultTime;
 
-        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+        DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => {
+            clockUI.SetActive(false);
+            clockUISandClock.anchoredPosition = Vector2.zero;
+            //clockUIClock.anchoredPosition = Vector2.zero;
+            clockUISandClock.eulerAngles = Vector3.zero;
+            //clockUIClock.eulerAngles = Vector3.zero;
+
+            clockUISandClock.GetComponent<Image>().sprite = defaultClock;
+
+            rotateSpeed = 10;
+            stringEffectSpeed = 0.5f;
+            featherEffectSpeed = 0.1f;
+        });
 
         GlitchEffect.Instance.colorIntensity = 0;
         GlitchEffect.Instance.flipIntensity = 0;

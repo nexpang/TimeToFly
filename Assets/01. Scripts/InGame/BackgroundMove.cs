@@ -24,6 +24,10 @@ public class BackgroundMove : MonoBehaviour
     [Header("Sub일때만 하세요")]
     [SerializeField]
     private Vector2 clampOffect = Vector2.zero;
+
+    [Header("메인이 clamp가 필요한가요?")]
+    [SerializeField]
+    bool isNeedClamp = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,21 +42,21 @@ public class BackgroundMove : MonoBehaviour
     {
         if (PlayerController.Instance.playerState == PlayerState.DEAD || PlayerController.Instance.isStun) return;
 
-        if (PlayerController.Instance.ability1.enabled)
+        if (PlayerController.Instance.ability1.gameObject.activeSelf)
         {
-            autoMoveCurrent = PlayerController.Instance.ability1.IsSleep() ? 30 : autoMoveDefault;
+            autoMoveCurrent = PlayerController.Instance.ability1.IsSleep() ? -30 : autoMoveDefault;
         }
-        else if (PlayerController.Instance.ability2.enabled)
+        else if (PlayerController.Instance.ability2.gameObject.activeSelf)
         {
-            autoMoveCurrent = PlayerController.Instance.ability2.IsTimeFast ? 0 : autoMoveDefault;
+            autoMoveCurrent = PlayerController.Instance.ability2.IsTimeFast ? 100 : autoMoveDefault;
         }
 
 
         if (type == BackgroundType.MAIN)
         {
             offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * PlayerController.Instance.currentMoveS * 7;
-            offset.x += autoMoveCurrent * Time.deltaTime;
-            offset.x = Mathf.Clamp(offset.x, 0, 10);
+            offset.x += speed * autoMoveCurrent * Time.deltaTime;
+            if(isNeedClamp) offset.x = Mathf.Clamp(offset.x, 0, 10);
             BGImg.material.SetTextureOffset("_MainTex", offset);
         }
         else

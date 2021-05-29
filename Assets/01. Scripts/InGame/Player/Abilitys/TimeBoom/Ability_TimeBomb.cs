@@ -53,7 +53,7 @@ public class Ability_TimeBomb : Ability, IAbility
     {
         if (isAnimationPlaying)
         {
-            Debug.Log("애니메이션 실행중");
+            //Debug.Log("애니메이션 실행중");
             return;
         }
         if (hasTimeBoom)
@@ -79,7 +79,6 @@ public class Ability_TimeBomb : Ability, IAbility
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
             PlayerController.Instance._speed = 0f;
-            //Time.timeScale = 0.6f;
             Using();
 
             abilityEffectAnim.SetTrigger("BlueT");
@@ -92,7 +91,6 @@ public class Ability_TimeBomb : Ability, IAbility
             timeBoom.GetComponent<TimeBoom>().isAlreadyExplosion = true;
             timeBoom.transform.SetParent(null);
             circleCol.enabled = true;
-            //rigid = timeBoom.AddComponent<Rigidbody2D>();
 
             hasTimeBoom = false;
             PlayerController.Instance._speed = 1f;
@@ -111,7 +109,6 @@ public class Ability_TimeBomb : Ability, IAbility
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
                 chargingBar.SetActive(false);
-                //Debug.Log(PlayerInput.Instance.KeyAbilityHold);
                 isCharging = false;
                 ThrowBoom();
             }
@@ -122,7 +119,6 @@ public class Ability_TimeBomb : Ability, IAbility
                 Charging();
             }
         }
-        //effect.GetComponent<ParticleSystemRenderer>().material.mainTexture = player.sprite.texture; 안됨
     }
 
     void Using()
@@ -153,8 +149,6 @@ public class Ability_TimeBomb : Ability, IAbility
 
         hasTimeBoom = false;
         PlayerController.Instance._speed = 1f;
-        //Time.timeScale = 1f;
-
 
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;
@@ -163,7 +157,6 @@ public class Ability_TimeBomb : Ability, IAbility
     void EndAnimation()
     {
         isAnimationPlaying = false;
-        Debug.Log("생성 끝남");
         Invoke("ExTime", explosionTime);
     }
 }
