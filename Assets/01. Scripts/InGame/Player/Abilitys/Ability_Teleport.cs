@@ -42,6 +42,8 @@ public class Ability_Teleport : Ability, IAbility
     [SerializeField] GameObject teleportPosFinalPoint = null; // -------^
     [SerializeField] LineRenderer teleportLine = null;
     Vector3[] teleportWayPoints = new Vector3[2];
+    [SerializeField] BoxCollider2D teleportRange = null;
+    Vector2 teleportRangePos;
 
     private Transform teleportPosObjTrans = null;
     [SerializeField] Sprite joystickSpr = null;
@@ -59,7 +61,9 @@ public class Ability_Teleport : Ability, IAbility
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
+    [SerializeField] AudioSource playerAudioSource = null;
     [SerializeField] AudioSource audioClockSoundSource = null;
+    [SerializeField] AudioClip Audio_teleport = null;
     [SerializeField] AudioClip Audio_futureEnter = null;
     [SerializeField] AudioClip Audio_presentEnter = null;
     [SerializeField] AudioClip Audio_tik = null;
@@ -70,6 +74,7 @@ public class Ability_Teleport : Ability, IAbility
         base.Start();
         joystickRect = joystick.GetComponent<RectTransform>();
         teleportPosObjTrans = teleportPosObj.GetComponent<Transform>();
+        teleportRangePos = teleportRange.transform.position;
     }
 
     public void OnAbility()
@@ -95,6 +100,7 @@ public class Ability_Teleport : Ability, IAbility
         abilityBtn.sprite = joystickSpr;
 
         GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
+        playerAudioSource.DOPitch(0.3f, 1);
         abilityEffectAnim.SetTrigger("BlueT");
 
         Time.timeScale = 1f / timeSlow;
@@ -103,6 +109,8 @@ public class Ability_Teleport : Ability, IAbility
         GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
+
+        abilityParticle.Play();
 
         GameManager.Instance.tween.Kill();
         GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
@@ -147,10 +155,10 @@ public class Ability_Teleport : Ability, IAbility
         else
         {
             abilityParticle.Stop();
-            abilityParticle.gameObject.SetActive(false);
         }
 
         Using();
+        teleportRange.transform.position = teleportRangePos;
 
         if (PlayerController.Instance.playerState == PlayerState.DEAD && isUsing)//만약 죽은상태라면
         {
@@ -177,6 +185,8 @@ public class Ability_Teleport : Ability, IAbility
                     abilityEffectAnim.SetTrigger("OrangeT");
                     bgAudioSource.volume = GameManager.Instance.defaultBGMvolume;
                 }).SetEase(Ease.InOutBack);
+                GameManager.Instance.SetAudio(audioClockSoundSource, Audio_teleport, 1, false);
+                playerAudioSource.DOPitch(1f, 1);
             }
             else
             {
@@ -207,7 +217,11 @@ public class Ability_Teleport : Ability, IAbility
         joystick.transform.position = firstJPos + vec * fSqr;
 
         teleportPos = playerPos.position + vec * (fSqr * teleportPower);
-        teleportPos.y = Mathf.Clamp(teleportPos.y, transform.position.y, transform.position.y + 10);
+
+        Vector2 teleportRangeOffset = new Vector2(teleportRange.offset.x + teleportRange.transform.position.x,teleportRange.offset.y + teleportRange.transform.position.y);
+
+        teleportPos.x = Mathf.Clamp(teleportPos.x, teleportRangeOffset.x - teleportRange.size.x / 2, teleportRangeOffset.x + teleportRange.size.x / 2);
+        teleportPos.y = Mathf.Clamp(teleportPos.y, teleportRangeOffset.y - teleportRange.size.y / 2, teleportRangeOffset.y + teleportRange.size.y / 2);
 
         teleportPosObjTrans.position = teleportPos;
         teleportPosFinalPoint.transform.position = teleportPosObjTrans.position;

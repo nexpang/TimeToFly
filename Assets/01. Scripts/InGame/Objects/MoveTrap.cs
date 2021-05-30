@@ -47,7 +47,7 @@ public class MoveTrap : ResetAbleTrap
                 isTrigger = true;
             }
 
-            PlaySFX.PlaySound(Audio_Falling, 0.8f, true);
+            PlaySFX.PlaySound(Audio_Falling, 1f, true);
 
             if (PlayerController.Instance.ability1 != null)
             {
