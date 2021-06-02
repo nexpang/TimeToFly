@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetAbleTrap : MonoBehaviour
+public abstract class ResetAbleTrap : MonoBehaviour
 {
-    public virtual void Reset()
-    {
-
-    }
+    public abstract void Reset();
 }
