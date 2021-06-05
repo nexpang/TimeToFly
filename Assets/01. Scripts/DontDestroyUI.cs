@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DontDestroyUI : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class DontDestroyUI : MonoBehaviour
 
     [SerializeField]
     private Camera main;
+    [SerializeField]
+    private Button soundBtn;
+
+    private bool isMute;
 
 
     void Awake()
@@ -27,11 +32,13 @@ public class DontDestroyUI : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+       
     }
     private void Start()
     {
         clearCG = GetComponent<CanvasGroup>();
         main = GameObject.Find("Main Camera").GetComponent<Camera>();
+        soundBtn = GameObject.Find("MuteButton").GetComponent<Button>();
         if (!main)
         {
             clearCanvas.worldCamera = main;
@@ -100,5 +107,22 @@ public class DontDestroyUI : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync("Title");
 
+    }
+    public void SoundOnOffBtn()
+    {
+        if (isMute)
+        {
+            isMute = false;
+            PlayerPrefs.SetInt("Mute", 0);
+            soundBtn.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            AudioListener.volume = 1;
+        }
+        else
+        {
+            isMute = true;
+            PlayerPrefs.SetInt("Mute", 1);
+            soundBtn.GetComponent<Image>().color = new Color(0.7843137f, 0.7843137f, 0.7843137f, 0.5019608f);
+            AudioListener.volume = 0;
+        }
     }
 }

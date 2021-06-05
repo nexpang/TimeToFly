@@ -18,6 +18,9 @@ public class UI : MonoBehaviour
     {
         
         Time.timeScale = 1;
+
+
+
     }
 
     void Start()
