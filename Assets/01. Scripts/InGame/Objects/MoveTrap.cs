@@ -56,6 +56,8 @@ public class MoveTrap : ResetAbleTrap
                     isRealTrigger = true;
                 }
             }
+
+            Destroy(this.gameObject, 2f);
         }
     }
 
