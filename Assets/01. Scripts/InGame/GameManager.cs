@@ -50,15 +50,15 @@ public class GameManager : MonoBehaviour
     {
         stages[0].SetActive(true);
 
-        Debug();
 
         Time.timeScale = 0;
         Instance = this; // 싱글톤
 
+       // StartCoroutine(LateDebug());
+
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
 
         // 목숨 받아오고
-        life = Temp.Instance.TempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
 
         // 디버그용 코드
@@ -83,6 +83,14 @@ public class GameManager : MonoBehaviour
             bgAudioSource.Play();
             Time.timeScale = 1;
         }
+    }
+
+    private void Start()
+    {
+        Debug();
+        // 목숨 받아오고
+        life = Temp.Instance.TempLife;
+        lifeCount.text = isInfinityLife ? "∞" : life.ToString();
     }
 
     private float targetTime = 1;
@@ -125,6 +133,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void SetAudio(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
     {
         aS.clip = clip;
@@ -139,4 +148,14 @@ public class GameManager : MonoBehaviour
         aS.volume = volume;
         aS.PlayOneShot(clip);
     }
+
+/*    private IEnumerator LateDebug()
+    {
+        yield return null;
+        Debug();
+        // 목숨 받아오고
+        life = Temp.Instance.TempLife;
+        lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+
+    }*/
 }

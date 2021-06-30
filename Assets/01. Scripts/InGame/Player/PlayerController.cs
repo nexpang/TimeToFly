@@ -262,4 +262,6 @@ public class PlayerController : MonoBehaviour
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
         playerAnim.GetComponent<SpriteRenderer>().sortingOrder = 17;
     }
+
+   
 }
