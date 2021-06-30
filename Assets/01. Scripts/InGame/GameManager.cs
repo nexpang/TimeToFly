@@ -87,10 +87,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug();
+        //Debug();
         // 목숨 받아오고
-        life = Temp.Instance.TempLife;
-        lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+        //life = Temp.Instance.TempLife;
+        //lifeCount.text = isInfinityLife ? "∞" : life.ToString();
     }
 
     private float targetTime = 1;
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
 /*        Temp.Instance.CurrentStage = currentStage; 
         Temp.Instance.TempLife = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageLife;*/ // 디버그용으로 있는 줄, 게임 시작전에 해주는게 원래 맞음
-        timer = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageTimer;
+        //timer = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageTimer;
 
         if (Temp.Instance.TempLife == -10) IsInfinityLife = true;
 
