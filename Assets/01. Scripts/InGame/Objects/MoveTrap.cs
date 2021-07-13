@@ -23,7 +23,7 @@ public class MoveTrap : ResetAbleTrap
     bool isTrigger = false;
     bool isRealTrigger = false;
 
-    private void Awake()
+    private void Start()
     {
         child = transform.GetChild(0);
         childRb = child.GetComponent<Rigidbody2D>();
@@ -49,15 +49,13 @@ public class MoveTrap : ResetAbleTrap
 
             PlaySFX.PlaySound(Audio_Falling, 1f, true);
 
-            if (PlayerController.Instance.ability1 != null)
+            if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
-                if (!PlayerController.Instance.ability1.IsSleep())
+                if (!GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
                 {
                     isRealTrigger = true;
                 }
             }
-
-            Destroy(this.gameObject, 2f);
         }
     }
 

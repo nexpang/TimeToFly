@@ -21,7 +21,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void ReadyToJump() // 해당 함수는 startJump1에 들어있음. 목적 : 사운드때문에...
     {
-        PlayerController.Instance.isPressJump = true;
+        GameManager.Instance.player.isPressJump = true;
     }
 
     void InGround() // 해당 함수는 Player_Idle에 들어있음.
@@ -30,7 +30,7 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool("falling", false);
 
         playerController.isStun = false;
-        PlayerController.Instance.isPressJump = false;
+        GameManager.Instance.player.isPressJump = false;
     }
 
     void PlayerStunEventStart() // 해당 함수는 Player_AfterJumpWait에 들어있음.
@@ -48,8 +48,8 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerDeadAnimEnd() // 해당 함수는 Player_Death, Player_FallenDeath에 들어있음.
     {
-        Ability_FutureCreate ability = FindObjectOfType<Ability_FutureCreate>();
-        if (ability != null && ability.IsSleep()) // 만약 능력 1이고 자고있는 상태면
+        Ability_FutureCreate ability = (Ability_FutureCreate)GameManager.Instance.player.abilitys[(int)Chickens.BROWN];
+        if (ability.enabled && ability.isAbilityEnable) // 만약 능력 1이고 자고있는 상태면
         {
             ability.ResetPlayer(); // 리셋시킨다.
             playerController.isStun = false;
@@ -57,8 +57,8 @@ public class PlayerAnimation : MonoBehaviour
         }
         else // 아니라면
         {
-            if(!GameManager.Instance.IsInfinityLife) Temp.Instance.TempLife--;
-
+            if(!GameManager.Instance.IsInfinityLife) GameManager.Instance.tempLife--;
+            SecurityPlayerPrefs.SetInt(GameManager.Instance.tempLifekey, GameManager.Instance.tempLife);
             // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
 
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);

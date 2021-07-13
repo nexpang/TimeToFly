@@ -4,11 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+public enum Chapter
+{
+    FARM,
+    FOREST,
+    MOUNTAIN,
+    CAVE,
+    SKY,
+    TUTORIAL
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] int currentStage = 0; // 디버그용으로 있는 변수
+    public int currentStage = 0;
+    public Chapter currentChapter; // 이거 두개를 스크립트에서 바꿔야하고
+
     [SerializeField] bool isNeedTimer = true;
     [SerializeField] int life = 5;
     [SerializeField] bool isInfinityLife = false;
@@ -18,6 +30,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text lifeCount = null;
 
+    [Header("플레이어")]
+    public PlayerController player;
+
     [Header("배경음악")]
     [SerializeField] AudioSource bgAudioSource = null;
     public AudioClip defaultBGM = null;
@@ -26,42 +41,34 @@ public class GameManager : MonoBehaviour
     SpriteRenderer playerSpr = null;
 
     [Header("스테이지")]
-    [SerializeField] GameObject[] stages = null;
+    public ChapterInfo[] chapters = null;
 
+    [HideInInspector] public string tempLifekey = "inGame.tempLife";
 
-    [HideInInspector] public Tween tween; // 시계 없어지는거 방지용 트윈
-
-
-    private int _timer;
-    public int timer
-    {
-        get { return _timer; }
-        set { _timer = value; }
-    }
-
-    private float timerScale = 1;
-    public float TimerScale
-    {
-        get { return timerScale; }
-        set { timerScale = value; }
-    }
+    public int tempLife = 0;
+    public int timer;
+    public float timerScale;
 
     private void Awake()
     {
-        stages[0].SetActive(true);
-
-
-        Time.timeScale = 0;
         Instance = this; // 싱글톤
+    }
 
-       // StartCoroutine(LateDebug());
+    private void Start()
+    {
+        Time.timeScale = 0;
 
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
 
         // 목숨 받아오고
+        tempLife = SecurityPlayerPrefs.GetInt(tempLifekey, life);
+        life = tempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+        timer = chapters[(int)currentChapter].stageInfos[currentStage].stageTimer;
 
-        // 디버그용 코드
+        // 위에 애들 Awake말고 다른 스크립에서 바꾸기로 하든지 말든지 이제 귀찮다 이제
+
+        // 디버그용 코드 : 스타트 스크린 스킵 디버그
         if (!isDebug)
         {
             gameStartScreen.gameObject.SetActive(true);
@@ -85,14 +92,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //Debug();
-        // 목숨 받아오고
-        //life = Temp.Instance.TempLife;
-        //lifeCount.text = isInfinityLife ? "∞" : life.ToString();
-    }
-
     private float targetTime = 1;
     private float currentTime = 0;
     private void Update()
@@ -114,25 +113,8 @@ public class GameManager : MonoBehaviour
     public void Timer()
     {
         timer--;
-        targetTime = currentTime + 1 * TimerScale;
+        targetTime = currentTime + 1 * timerScale;
     }
-
-    private void Debug() // 초기화
-    {
-/*        Temp.Instance.CurrentStage = currentStage; 
-        Temp.Instance.TempLife = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageLife;*/ // 디버그용으로 있는 줄, 게임 시작전에 해주는게 원래 맞음
-        //timer = Temp.Instance.GetStage()[Temp.Instance.CurrentStage].stageTimer;
-
-        if (Temp.Instance.TempLife == -10) IsInfinityLife = true;
-
-        isNeedTimer = (timer != -10);
-
-        if (timer == -10)
-        {
-            timer = 999;
-        }
-    }
-
 
     public void SetAudio(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
     {
@@ -148,14 +130,4 @@ public class GameManager : MonoBehaviour
         aS.volume = volume;
         aS.PlayOneShot(clip);
     }
-
-/*    private IEnumerator LateDebug()
-    {
-        yield return null;
-        Debug();
-        // 목숨 받아오고
-        life = Temp.Instance.TempLife;
-        lifeCount.text = isInfinityLife ? "∞" : life.ToString();
-
-    }*/
 }

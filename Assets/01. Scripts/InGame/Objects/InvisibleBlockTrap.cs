@@ -54,9 +54,9 @@ public class InvisibleBlockTrap : ResetAbleTrap
                 // TO DO :소리가 있다면 실행
 
 
-                if (PlayerController.Instance.ability1 != null)
+                if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
-                    if (!PlayerController.Instance.ability1.IsSleep())
+                    if (!GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
                     {
                         isRealTrigger = true;
                     }
@@ -82,9 +82,9 @@ public class InvisibleBlockTrap : ResetAbleTrap
                 // TO DO :소리가 있다면 실행
 
 
-                if (PlayerController.Instance.ability1 != null)
+                if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
-                    if (!PlayerController.Instance.ability1.IsSleep())
+                    if (!GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
                     {
                         isRealTrigger = true;
                     }

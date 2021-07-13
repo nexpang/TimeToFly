@@ -40,21 +40,21 @@ public class BackgroundMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.Instance.playerState == PlayerState.DEAD || PlayerController.Instance.isStun) return;
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isStun) return;
 
-        if (PlayerController.Instance.ability1.gameObject.activeSelf)
+        if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
         {
-            autoMoveCurrent = PlayerController.Instance.ability1.IsSleep() ? -30 : autoMoveDefault;
+            autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? -30 : autoMoveDefault;
         }
-        else if (PlayerController.Instance.ability2.gameObject.activeSelf)
+        else if (GameManager.Instance.player.abilitys[(int)Chickens.BLUE].gameObject.activeSelf)
         {
-            autoMoveCurrent = PlayerController.Instance.ability2.IsTimeFast ? 100 : autoMoveDefault;
+            autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? 100 : autoMoveDefault;
         }
 
 
         if (type == BackgroundType.MAIN)
         {
-            offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * PlayerController.Instance.currentMoveS * 7;
+            offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
             offset.x += speed * autoMoveCurrent * Time.deltaTime;
             if(isNeedClamp) offset.x = Mathf.Clamp(offset.x, 0, 10);
             BGImg.material.SetTextureOffset("_MainTex", offset);
@@ -67,7 +67,7 @@ public class BackgroundMove : MonoBehaviour
 
     void Clamp()
     {
-        offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * PlayerController.Instance.currentMoveS * 7;
+        offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
         offset.x = Mathf.Clamp(offset.x, clampOffect.x, clampOffect.y);
 
         transform.localPosition = new Vector3(offset.x, transform.localPosition.y);

@@ -46,9 +46,6 @@ public class Ability_FutureCreate : Ability, IAbility
     public List<bool> RecordNumber_SpriteFlipX = new List<bool>();
     [SerializeField] private GameObject sleepPlayer = null;
 
-    private bool isSleep = false;
-    public bool IsSleep() => isSleep;
-
     private bool isRecording = false;
     private float recordTime = 0f;
     private float recordDelay = 0.03f;
@@ -95,9 +92,9 @@ public class Ability_FutureCreate : Ability, IAbility
         abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
 
         clockUI.SetActive(true); // 시계 UI를 켜준다.
-        GameManager.Instance.tween.Kill(); // 트윈 초기화
+        tween.Kill(); // 트윈 초기화
         // 시계 알파값 닷트윈으로 올려주고
-        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
         playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1); // 플레이어를 파란색으로
 
         // 글리치 이펙트 켜주고
@@ -147,7 +144,7 @@ public class Ability_FutureCreate : Ability, IAbility
             GameManager.Instance.SetAudio(bgAudioSource, Audio_futureBGM2, 0.8f, true);
         }
 
-        isSleep = true;
+        isAbilityEnable = true;
     }
 
     new void Update()
@@ -155,7 +152,7 @@ public class Ability_FutureCreate : Ability, IAbility
         base.Update();
         //clockUIFill.fillAmount = 1 - (currentTime / abilityDefaultTime);
 
-        if (isSleep)
+        if (isAbilityEnable)
         {
             clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
             clockUISandClock.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
@@ -171,7 +168,7 @@ public class Ability_FutureCreate : Ability, IAbility
 
             int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
 
-            if (PlayerController.Instance.playerState != PlayerState.DEAD)
+            if (GameManager.Instance.player.playerState != PlayerState.DEAD)
             {
                 if (seconds % 2 == 1)
                 {
@@ -192,7 +189,7 @@ public class Ability_FutureCreate : Ability, IAbility
         RecordPlayer();
         PlayPlayer();
 
-        if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD)//만약 죽은상태라면
         {
             StopCoroutine(Clock()); // 시계를 정지시킨다.
         }
@@ -201,7 +198,7 @@ public class Ability_FutureCreate : Ability, IAbility
 
     void RecordPlayer()
     {
-        if (isSleep)
+        if (isAbilityEnable)
         {
             if (!isRecording)
             {
@@ -270,14 +267,14 @@ public class Ability_FutureCreate : Ability, IAbility
 
     public void ResetPlayer()
     {
-        isSleep = false;
+        isAbilityEnable = false;
         isFuturePlay = true;
 
         //능력 시간 초기화
         currentTime = abilityDefaultTime;
 
         // DEAD에서 바꾼다.
-        PlayerController.Instance.playerState = PlayerState.NORMAL;
+        GameManager.Instance.player.playerState = PlayerState.NORMAL;
 
         // 시계 UI 사라지게
         DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() =>
@@ -326,13 +323,13 @@ public class Ability_FutureCreate : Ability, IAbility
         {
             currentTime--;
             yield return new WaitForSeconds(1);
-            if(PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
+            if(GameManager.Instance.player.playerState == PlayerState.DEAD)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
             }
         }
 
-        if (PlayerController.Instance.playerState != PlayerState.DEAD)
+        if (GameManager.Instance.player.playerState != PlayerState.DEAD)
         {
             ResetPlayer();
         }

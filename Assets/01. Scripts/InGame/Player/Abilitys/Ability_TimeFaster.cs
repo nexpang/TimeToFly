@@ -33,9 +33,6 @@ public class Ability_TimeFaster : Ability, IAbility
     [SerializeField] float abilityDefaultTime = 15;
     public float currentTime = 15;
 
-    private bool isTimeFast = false;
-    public bool IsTimeFast { get { return isTimeFast; } set { isTimeFast = value; } }
-
     public float speedUp = 2f;
     [SerializeField] GameObject effect = null;
     [SerializeField] GameObject player = null;
@@ -84,9 +81,9 @@ public class Ability_TimeFaster : Ability, IAbility
         abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
 
         clockUI.SetActive(true); // 시계 UI를 켜준다.
-        GameManager.Instance.tween.Kill(); // 트윈 초기화
+        tween.Kill(); // 트윈 초기화
         // 시계 알파값 닷트윈으로 올려주고
-        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f);
 
         // 글리치 이펙트 켜주고
         GlitchEffect.Instance.colorIntensity = 0.100f;
@@ -106,8 +103,8 @@ public class Ability_TimeFaster : Ability, IAbility
         DOTween.To(() => bgAudioSource.volume, value => bgAudioSource.volume = value, 0.4f, 2f); // 볼륨은 낮춘다.
 
         //능력 시작
-        IsTimeFast = true;
-        PlayerController.Instance._speed = speedUp;
+        isAbilityEnable = true;
+        GameManager.Instance.player._speed = speedUp;
         effect.SetActive(true);
         Time.timeScale = 1f / speedUp;
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -135,7 +132,7 @@ public class Ability_TimeFaster : Ability, IAbility
 
         Using();
 
-        if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD)//만약 죽은상태라면
         {
             StopCoroutine(Clock()); // 시계를 정지시킨다.
         }
@@ -143,7 +140,7 @@ public class Ability_TimeFaster : Ability, IAbility
 
     void Using()
     {
-        if (!IsTimeFast) return;
+        if (!isAbilityEnable) return;
 
         clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
         clockUISecondHand.localRotation = Quaternion.Euler(0, 0, -360 * (1 - (currentTime / abilityDefaultTime)));
@@ -158,7 +155,7 @@ public class Ability_TimeFaster : Ability, IAbility
 
         int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
 
-        if (PlayerController.Instance.playerState != PlayerState.DEAD)
+        if (GameManager.Instance.player.playerState != PlayerState.DEAD)
         {
             if (seconds % 2 == 1)
             {
@@ -176,9 +173,9 @@ public class Ability_TimeFaster : Ability, IAbility
         //능력 중단
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         Time.timeScale = 1f;
-        IsTimeFast = false;
+        isAbilityEnable = false;
         effect.SetActive(false);
-        PlayerController.Instance._speed = 1;
+        GameManager.Instance.player._speed = 1;
 
         currentTime = abilityDefaultTime;
 
@@ -215,13 +212,13 @@ public class Ability_TimeFaster : Ability, IAbility
         {
             currentTime--;
             yield return new WaitForSeconds(1);
-            if (PlayerController.Instance.playerState == PlayerState.DEAD)//만약 죽은상태라면
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
             }
         }
 
-        if (PlayerController.Instance.playerState != PlayerState.DEAD)
+        if (GameManager.Instance.player.playerState != PlayerState.DEAD)
         {
             ResetPlayer();
         }

@@ -13,18 +13,11 @@ public class ChickenObject : InteractionObject
 
     public override bool OnInteraction()
     {
-        if(pC.abilityNumber == 1)
-        {
-            if (pC.abilitys[1].GetComponent<Ability_FutureCreate>().IsSleep()) return false;
+        if (pC.abilitys[pC.abilityNumber].isAbilityEnable) return false;
 
-        }else if (pC.abilityNumber == 2)
-        {
-            if (pC.abilitys[2].GetComponent<Ability_TimeFaster>().IsTimeFast) return false;
-        }
-
-        tempChickenId = PlayerController.Instance.abilityNumber;
+        tempChickenId = GameManager.Instance.player.abilityNumber;
         GetComponent<SpriteRenderer>().sprite = playerSleepSpr[tempChickenId];
-        PlayerController.Instance.PlayerAbilitySet(chickenId);
+        GameManager.Instance.player.PlayerAbilitySet(chickenId);
         chickenId = tempChickenId;
 
         for (int i = 0; i < playerAbilityLore.Length; i++)

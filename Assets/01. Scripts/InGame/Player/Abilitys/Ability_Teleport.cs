@@ -104,16 +104,16 @@ public class Ability_Teleport : Ability, IAbility
         abilityEffectAnim.SetTrigger("BlueT");
 
         Time.timeScale = 1f / timeSlow;
-        GameManager.Instance.TimerScale = 1f / (minusTimeForS * timeSlow);
-        PlayerController.Instance._speed = 0f;
+        GameManager.Instance.timerScale = 1f / (minusTimeForS * timeSlow);
+        GameManager.Instance.player._speed = 0f;
         GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
 
         abilityParticle.Play();
 
-        GameManager.Instance.tween.Kill();
-        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
+        tween.Kill();
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.75f, 2f).SetUpdate(true);
 
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
@@ -140,7 +140,7 @@ public class Ability_Teleport : Ability, IAbility
 
             int seconds = Mathf.FloorToInt(abilityDefaultTime - currentTime);
 
-            if (PlayerController.Instance.playerState != PlayerState.DEAD)
+            if (GameManager.Instance.player.playerState != PlayerState.DEAD)
             {
                 if (seconds % 2 == 1)
                 {
@@ -160,7 +160,7 @@ public class Ability_Teleport : Ability, IAbility
         Using();
         teleportRange.transform.position = teleportRangePos;
 
-        if (PlayerController.Instance.playerState == PlayerState.DEAD && isUsing)//만약 죽은상태라면
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD && isUsing)//만약 죽은상태라면
         {
             ResetPlayer();
             StopCoroutine(Clock()); // 시계를 정지시킨다.
@@ -246,14 +246,13 @@ public class Ability_Teleport : Ability, IAbility
         //능력 중단
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         Time.timeScale = 1f;
-        GameManager.Instance.TimerScale = 1f;
-        PlayerController.Instance._speed = 1;
+        GameManager.Instance.timerScale = 1f;
+        GameManager.Instance.player._speed = 1;
 
         currentTime = abilityDefaultTime;
 
-
-        GameManager.Instance.tween.Kill();
-        GameManager.Instance.tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
+        tween.Kill();
+        tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => clockUI.SetActive(false));
 
         GlitchEffect.Instance.colorIntensity = 0;
         GlitchEffect.Instance.flipIntensity = 0;
@@ -286,7 +285,7 @@ public class Ability_Teleport : Ability, IAbility
             if (currentTime == 0)
                 currentTime = abilityDefaultTime;
             yield return new WaitForSecondsRealtime(1);
-            if (PlayerController.Instance.playerState == PlayerState.DEAD || !isUsing)//만약 죽은상태라면
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD || !isUsing)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
             }

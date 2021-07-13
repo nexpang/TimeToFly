@@ -16,10 +16,17 @@ public enum PlayerState
     DEAD
 }
 
+public enum Chickens
+{
+    WHITE,
+    BROWN,
+    BLUE,
+    PINK,
+    SKYBLUE
+}
+
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance;
-
     private Vector3 lastPos = Vector3.zero;
 
     [HideInInspector] public float currentMoveS; // 현재 속도를 감지함.
@@ -32,9 +39,9 @@ public class PlayerController : MonoBehaviour
         set { speed = value; }
     }
 
-    public bool isGround;
-    public bool isStun;
-    public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
+    [HideInInspector] public bool isGround;
+    [HideInInspector] public bool isStun;
+    [HideInInspector] public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
 
     public PlayerState playerState = PlayerState.NORMAL;
 
@@ -42,13 +49,10 @@ public class PlayerController : MonoBehaviour
     private Animator an;
     private SpriteRenderer sr;
 
-    public Ability_FutureCreate ability1;
-    public Ability_TimeFaster ability2;
-
-    public GameObject[] abilitys;
+    public Ability[] abilitys;
     public int abilityNumber = 0;
 
-    [SerializeField] private Transform playerAnim = null;
+    [SerializeField] private Transform playerAnimObj = null;
     private Transform playerAbility = null;
 
     [Header("오디오 클립")]
@@ -70,12 +74,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
         PlayerAbilitySet();
         rb = GetComponent<Rigidbody2D>();
-        an = playerAnim.GetComponent<Animator>();
-        sr = playerAnim.GetComponent<SpriteRenderer>();
+        an = playerAnimObj.GetComponent<Animator>();
+        sr = playerAnimObj.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         playerState = PlayerState.NORMAL;
     }
@@ -157,28 +159,26 @@ public class PlayerController : MonoBehaviour
     {
         //abilityNumber  0이면 기상이, 1이면 시한이, 2이면 동진이, 3이면 지향이, 4면 소전이
 
-        playerAnim.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
+        playerAnimObj.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
         playerAbility = abilitys[abilityNumber].transform;
 
-        abilitys[0].SetActive(abilityNumber == 0);
-        abilitys[1].SetActive(abilityNumber == 1);
-        abilitys[2].SetActive(abilityNumber == 2);
-        abilitys[3].SetActive(abilityNumber == 3);
-        abilitys[4].SetActive(abilityNumber == 4);
+        for(int i = 0; i<5;i++)
+        {
+            abilitys[i].gameObject.SetActive(abilityNumber == i);
+        }
     }
 
     //number로 능력을 설정함 (튜토리얼 전용)
     public void PlayerAbilitySet(int number)
     {
         abilityNumber = number;
-        playerAnim.GetComponent<PlayerSprites>().targetSheet = number;
+        playerAnimObj.GetComponent<PlayerSprites>().targetSheet = number;
         playerAbility = abilitys[number].transform;
 
-        abilitys[0].SetActive(number == 0);
-        abilitys[1].SetActive(number == 1);
-        abilitys[2].SetActive(number == 2);
-        abilitys[3].SetActive(number == 3);
-        abilitys[4].SetActive(number == 4);
+        for (int i = 0; i < 5; i++)
+        {
+            abilitys[i].gameObject.SetActive(abilityNumber == i);
+        }
     }
 
     void AbilityKey()
@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerDead, 0.8f, false);
 
             an.SetTrigger("dead");
-            RealDeath();
+            DeathScreen();
         }
     }
 
@@ -244,23 +244,24 @@ public class PlayerController : MonoBehaviour
 
             rb.simulated = false;
             an.SetTrigger("falldead");
-            RealDeath();
+            DeathScreen();
         }
     }
 
-    private void RealDeath()
+    private void DeathScreen()
     {
-        if (ability1.enabled)
+        if (abilitys[(int)Chickens.BROWN].enabled)
         {
-            if (ability1.IsSleep()) return;
+            if (abilitys[(int)Chickens.BROWN].isAbilityEnable) return;
         }
+
         deathScreen.gameObject.SetActive(true);
         deathScreen.color = new Color(0, 0, 0, 0);
         deathScreen.DOFade(0.75f, 1);
         bgAudioSource.DOPitch(0, 2);
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
-        playerAnim.GetComponent<SpriteRenderer>().sortingOrder = 17;
+        playerAnimObj.GetComponent<SpriteRenderer>().sortingOrder = 17;
     }
 
    

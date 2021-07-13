@@ -78,7 +78,7 @@ public class Ability_TimeBomb : Ability, IAbility
             GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
             timeBoom.transform.localPosition = new Vector3(0f, 1.1f, 0f);
             timeBoom.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            PlayerController.Instance._speed = 0f;
+            GameManager.Instance.player._speed = 0f;
             Using();
 
             abilityEffectAnim.SetTrigger("BlueT");
@@ -93,7 +93,7 @@ public class Ability_TimeBomb : Ability, IAbility
             circleCol.enabled = true;
 
             hasTimeBoom = false;
-            PlayerController.Instance._speed = 1f;
+            GameManager.Instance.player._speed = 1f;
 
             abilityCurrentCoolDown = abilityCooldown;
             abilityCurrentCoolDownTime = Time.time;
@@ -148,7 +148,7 @@ public class Ability_TimeBomb : Ability, IAbility
         rigid.AddForce(Vector2.right * (boomFForce * throwForce) * throwDir, ForceMode2D.Impulse);
 
         hasTimeBoom = false;
-        PlayerController.Instance._speed = 1f;
+        GameManager.Instance.player._speed = 1f;
 
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time;

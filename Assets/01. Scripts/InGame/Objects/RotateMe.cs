@@ -14,13 +14,13 @@ public class RotateMe : MonoBehaviour
 
     void Update()
     {
-        if (PlayerController.Instance.ability1.gameObject.activeSelf)
+        if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
         {
-            rotateCurrent = PlayerController.Instance.ability1.IsSleep() ? rotate * -30 : rotate;
+            rotateCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? rotate * -30 : rotate;
         }
-        else if(PlayerController.Instance.ability2.gameObject.activeSelf)
+        else if (GameManager.Instance.player.abilitys[(int)Chickens.BLUE].gameObject.activeSelf)
         {
-            rotateCurrent = PlayerController.Instance.ability2.IsTimeFast ? rotate * 100 : rotate;
+            rotateCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? rotate * 100 : rotate;
         }
 
         transform.Rotate(rotateCurrent * Time.deltaTime);    

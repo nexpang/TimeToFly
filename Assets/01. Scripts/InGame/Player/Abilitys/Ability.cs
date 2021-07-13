@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Ability : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Ability : MonoBehaviour
     [SerializeField] protected AudioSource audioSource = null;
     [SerializeField] protected AudioClip Audio_deniedAbility = null;
     [HideInInspector] public bool isReady;// 쿨타임이 끝나고 준비가 되었나? (튜토리얼 용)
+    [HideInInspector] protected Tween tween; // 시계 없어지는거 방지용 트윈
+    [HideInInspector] public bool isAbilityEnable;
 
     protected void Start()
     {

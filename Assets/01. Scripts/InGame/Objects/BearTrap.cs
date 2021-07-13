@@ -28,7 +28,7 @@ public class BearTrap : ResetAbleTrap
             GetComponent<SpriteRenderer>().sprite = triggeredSprite;
             PlaySFX.PlaySound(Audio_bearTrap, 0.8f, true);
             GetComponent<SpriteRenderer>().sortingOrder = 18;
-            PlayerController.Instance.GameOver();
+            GameManager.Instance.player.GameOver();
             playerRb.position = transform.position;
             playerRb.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
