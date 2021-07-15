@@ -73,13 +73,18 @@ public class PlayerController : MonoBehaviour
 
 
     private void Awake()
-    {
-        PlayerAbilitySet();
+    {       
         rb = GetComponent<Rigidbody2D>();
         an = playerAnimObj.GetComponent<Animator>();
         sr = playerAnimObj.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         playerState = PlayerState.NORMAL;
+    }
+
+    private void Start()
+    {
+        abilityNumber = SecurityPlayerPrefs.GetInt("debug.startChicken", 0);
+        PlayerAbilitySet();
     }
 
     private void Update()

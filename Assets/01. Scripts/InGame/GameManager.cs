@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [Header("스테이지")]
     public ChapterInfo[] chapters = null;
 
-    [HideInInspector] public string tempLifekey = "inGame.tempLife";
+    [HideInInspector] public readonly string tempLifekey = "inGame.tempLife";
 
     public int tempLife = 0;
     public int timer;
