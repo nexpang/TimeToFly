@@ -5421,6 +5421,8 @@ MonoBehaviour:
   minusTimeForS: 10
   radius: 1
   teleportPower: 6
+  minMoveBtnPos: {fileID: 1483824390}
+  maxMoveBtnPos: {fileID: 1025663899}
   bgAudioSource: {fileID: 1607728714}
   playerAudioSource: {fileID: 1558494636}
   audioClockSoundSource: {fileID: 1646307701}

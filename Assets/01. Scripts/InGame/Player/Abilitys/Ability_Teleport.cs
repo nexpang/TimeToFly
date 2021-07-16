@@ -58,6 +58,11 @@ public class Ability_Teleport : Ability, IAbility
     [SerializeField, Range(1f, 10f)]
     private float teleportPower = 10f;
     private Vector2 teleportPos;
+    private int touchIdx;
+    [SerializeField]
+    private Transform minMoveBtnPos;
+    [SerializeField]
+    private Transform maxMoveBtnPos;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -122,6 +127,8 @@ public class Ability_Teleport : Ability, IAbility
     }
     new void Update()
     {
+        //Debug.Log(minMoveBtnPos.position);
+        //Debug.Log(maxMoveBtnPos.position);
         base.Update();
 
         if (isUsing)
@@ -190,6 +197,7 @@ public class Ability_Teleport : Ability, IAbility
             }
             else
             {
+                touchIdx = Input.touchCount - 1;
                 SetTeleportPos();
             }
         }
@@ -198,8 +206,30 @@ public class Ability_Teleport : Ability, IAbility
 
     private void SetTeleportPos()
     {
-        Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
         touchPos.z = 0f;
+        //Debug.Log(Input.touchCount);
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
+        //Debug.Log(touchPos);
+        //if (Input.touchCount>1) {
+        //    Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+        //    bool check = true;
+        //    do
+        //    {
+        //        if (minMoveBtnPos.position.x - 2.2f < touchPosition.x && touchPosition.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPosition.y && touchPosition.y < maxMoveBtnPos.position.y)
+        //        {
+        //            Debug.Log("능력 사용중 이동 금지");
+        //            return;
+        //        }
+        //    }
+        //    while (check);
+        //    if (minMoveBtnPos.position.x - 2.2f < touchPosition.x && touchPosition.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPosition.y && touchPosition.y < maxMoveBtnPos.position.y)
+        //    {
+        //        Debug.Log("능력 사용중 이동 금지");
+        //        return;
+        //    }
+        //}
         Vector3 firstJPos = joystickBack.transform.position;
         firstJPos.z = 0f;
         Vector3 vec = (touchPos - firstJPos).normalized;
