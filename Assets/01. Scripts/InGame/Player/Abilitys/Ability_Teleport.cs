@@ -207,8 +207,15 @@ public class Ability_Teleport : Ability, IAbility
     private void SetTeleportPos()
     {
         //Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        #if UNITY_EDITOR // 유니터 에디터일때
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        #else // 진짜 빌드일때
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
+        #endif
         touchPos.z = 0f;
+
         //Debug.Log(Input.touchCount);
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
         //Debug.Log(touchPos);

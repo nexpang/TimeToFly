@@ -29,7 +29,6 @@ RectTransform:
   m_Children:
   - {fileID: 5685862465512680614}
   - {fileID: 5685862465462170946}
-  - {fileID: 5685862465575200230}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68,7 +67,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5685862465575200230}
   m_Father: {fileID: 2175921335117215951}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -256,7 +256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5685862465575200230}
   - component: {fileID: 5685862465575200229}
-  - component: {fileID: 6350434432805961255}
   m_Layer: 0
   m_Name: backgoround_garden_windmill_0
   m_TagString: Untagged
@@ -272,12 +271,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5685862465575200231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 849, y: -155, z: 0}
-  m_LocalScale: {x: 500, y: 500, z: 1}
+  m_LocalPosition: {x: 109, y: -155.00002, z: 0}
+  m_LocalScale: {x: 500.00003, y: 500.00003, z: 1}
   m_Children:
   - {fileID: 5685862466259407930}
-  m_Father: {fileID: 2175921335117215951}
-  m_RootOrder: 2
+  m_Father: {fileID: 5685862465462170946}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5685862465575200229
 SpriteRenderer:
@@ -330,23 +329,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6350434432805961255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5685862465575200231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad2a741151d6834dba58bf6cc68ef24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  speed: 35
-  autoMoveDefault: 0.1
-  clampOffect: {x: -485, y: 497}
-  isNeedClamp: 1
 --- !u!1 &5685862466259407931
 GameObject:
   m_ObjectHideFlags: 0

@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        abilityNumber = SecurityPlayerPrefs.GetInt("debug.startChicken", 0);
         PlayerAbilitySet();
     }
 
