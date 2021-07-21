@@ -35,13 +35,27 @@ public class UI : MonoBehaviour
         startTxt.DOColor(new Color(0f, 0f, 0f, 10f), 0.8f).SetLoops(-1, LoopType.Yoyo);
         startTxt.GetComponent<Outline>().DOColor(new Color(1f, 1f, 1f, 10f), 0.8f).SetLoops(-1, LoopType.Yoyo);
 
-        chickenTranform.DOScaleY(0.8f, 1.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-        chickenTranform.DOScaleX(0.7f, 1.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        /*        chickenTranform.DOScaleY(0.8f, 1.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+                chickenTranform.DOScaleX(0.7f, 1.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);*/
 
-        cloud.DOMoveY(0.3f,2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetRelative();
+        chickenTranform.DOMoveY(0.8f, 1.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetRelative();
+        cloud.DOMoveY(0.1f,2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetRelative();
 
-        logo.DOScale(1.1f,2).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        LogoRotate(true);
     }
+
+    void LogoRotate(bool right)
+    {
+        if (right)
+        {
+            logo.DORotate(new Vector3(0, 0, 10), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
+        }
+        else
+        {
+            logo.DORotate(new Vector3(0, 0, -10), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -55,9 +69,9 @@ public class UI : MonoBehaviour
         exit.SetActive(false);
     }
 
-    public void NextScene() 
+    public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene("IntroAnime");
     }
 
     public void ExitBtn()
