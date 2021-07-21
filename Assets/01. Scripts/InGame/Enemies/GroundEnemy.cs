@@ -14,12 +14,17 @@ public class GroundEnemy : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Rigidbody2D rigidbody;
 
     public EnemyState state = EnemyState.Idle;
     public float enemySpeed;
+    public float jumpSpeed;
 
-    public GameObject startPos;
-    public GameObject endPos;
+    public GameObject startPosObj;
+    public GameObject endPosObj;
+
+    private Vector2 startPosVec;
+    private Vector2 endPosVec;
 
     public float targetX;
 
@@ -27,17 +32,22 @@ public class GroundEnemy : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
         StartCoroutine(CheckState());
+        startPosVec = startPosObj.transform.position;
+        endPosVec = endPosObj.transform.position;
     }
 
     private void Update()
     {
+        startPosObj.transform.position = startPosVec;
+        endPosObj.transform.position = endPosVec;
         if (!isDie)
         {
             if (state == EnemyState.Walk)
@@ -60,7 +70,7 @@ public class GroundEnemy : MonoBehaviour
             if (state == EnemyState.Idle)
             {
                 state = EnemyState.Walk;
-                targetX = Random.Range(startPos.transform.position.x, endPos.transform.position.x);
+                targetX = Random.Range(startPosObj.transform.position.x, endPosObj.transform.position.x);
             }
 
             float delay = Random.Range(1, 3);
@@ -96,14 +106,14 @@ public class GroundEnemy : MonoBehaviour
 
     void Jump()
     {
-        Debug.Log("มกวม");
+        rigidbody.AddForce(Vector2.up * jumpSpeed);
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(startPos.transform.position, 0.5f);
+        Gizmos.DrawSphere(startPosObj.transform.position, 0.5f);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(endPos.transform.position, 0.5f);
+        Gizmos.DrawSphere(endPosObj.transform.position, 0.5f);
     }
 }

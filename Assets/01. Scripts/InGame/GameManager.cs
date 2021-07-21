@@ -11,7 +11,8 @@ public enum Chapter
     MOUNTAIN,
     CAVE,
     SKY,
-    TUTORIAL
+    TUTORIAL,
+    TEST
 }
 
 public class GameManager : MonoBehaviour
