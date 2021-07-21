@@ -59,10 +59,6 @@ public class Ability_Teleport : Ability, IAbility
     private float teleportPower = 10f;
     private Vector2 teleportPos;
     private int touchIdx;
-    [SerializeField]
-    private Transform minMoveBtnPos;
-    [SerializeField]
-    private Transform maxMoveBtnPos;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -78,7 +74,9 @@ public class Ability_Teleport : Ability, IAbility
     {
         base.Start();
         joystickRect = joystick.GetComponent<RectTransform>();
-        teleportPosObjTrans = teleportPosObj.GetComponent<Transform>();
+        teleportPosObjTrans = teleportPosObj.transform;
+
+        teleportRange = GameManager.Instance.stage.teleportAbleRange;
         teleportRangePos = teleportRange.transform.position;
     }
 
@@ -92,6 +90,11 @@ public class Ability_Teleport : Ability, IAbility
             abilityCooldownCircle.DOColor(new Color(0, 0, 0, 0.75f), 0.5f);
             return;
         }// 쿨타임이 아직 안됐다.
+
+        //터치 인덱스
+        #if !UNITY_EDITOR
+        touchIdx = Input.touchCount - 1;
+        #endif
 
         //능력 사용
         isUsing = true;
@@ -110,7 +113,7 @@ public class Ability_Teleport : Ability, IAbility
 
         Time.timeScale = 1f / timeSlow;
         GameManager.Instance.timerScale = 1f / (minusTimeForS * timeSlow);
-        GameManager.Instance.player._speed = 0f;
+        //GameManager.Instance.player._speed = 0f;
         GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
@@ -197,7 +200,6 @@ public class Ability_Teleport : Ability, IAbility
             }
             else
             {
-                touchIdx = Input.touchCount - 1;
                 SetTeleportPos();
             }
         }
@@ -213,30 +215,13 @@ public class Ability_Teleport : Ability, IAbility
 
         #else // 진짜 빌드일때
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
+
         #endif
         touchPos.z = 0f;
 
         //Debug.Log(Input.touchCount);
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
         //Debug.Log(touchPos);
-        //if (Input.touchCount>1) {
-        //    Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-        //    bool check = true;
-        //    do
-        //    {
-        //        if (minMoveBtnPos.position.x - 2.2f < touchPosition.x && touchPosition.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPosition.y && touchPosition.y < maxMoveBtnPos.position.y)
-        //        {
-        //            Debug.Log("능력 사용중 이동 금지");
-        //            return;
-        //        }
-        //    }
-        //    while (check);
-        //    if (minMoveBtnPos.position.x - 2.2f < touchPosition.x && touchPosition.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPosition.y && touchPosition.y < maxMoveBtnPos.position.y)
-        //    {
-        //        Debug.Log("능력 사용중 이동 금지");
-        //        return;
-        //    }
-        //}
         Vector3 firstJPos = joystickBack.transform.position;
         firstJPos.z = 0f;
         Vector3 vec = (touchPos - firstJPos).normalized;
@@ -284,7 +269,7 @@ public class Ability_Teleport : Ability, IAbility
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         Time.timeScale = 1f;
         GameManager.Instance.timerScale = 1f;
-        GameManager.Instance.player._speed = 1;
+        //GameManager.Instance.player._speed = 1;
 
         currentTime = abilityDefaultTime;
 
