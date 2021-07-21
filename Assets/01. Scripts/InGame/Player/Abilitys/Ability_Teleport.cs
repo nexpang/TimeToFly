@@ -115,7 +115,7 @@ public class Ability_Teleport : Ability, IAbility
 
         Time.timeScale = 1f / timeSlow;
         GameManager.Instance.timerScale = 1f / (minusTimeForS * timeSlow);
-        GameManager.Instance.player._speed = 0f;
+        //GameManager.Instance.player._speed = 0f;
         GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
@@ -284,7 +284,7 @@ public class Ability_Teleport : Ability, IAbility
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         Time.timeScale = 1f;
         GameManager.Instance.timerScale = 1f;
-        GameManager.Instance.player._speed = 1;
+        //GameManager.Instance.player._speed = 1;
 
         currentTime = abilityDefaultTime;
 
