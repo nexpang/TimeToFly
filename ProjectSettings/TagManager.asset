@@ -9,6 +9,7 @@ TagManager:
   - FALLINGABLE
   - Ground
   - TrapTrigger
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Player
   - Postprocessing
-  - 
-  - 
+  - Enemy
+  - Object
   - 
   - 
   - 
