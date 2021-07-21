@@ -7,6 +7,6 @@ public class LoadTitle : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("InGame");
     }
 }
