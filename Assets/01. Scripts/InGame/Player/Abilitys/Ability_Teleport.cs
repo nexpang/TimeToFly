@@ -59,10 +59,6 @@ public class Ability_Teleport : Ability, IAbility
     private float teleportPower = 10f;
     private Vector2 teleportPos;
     private int touchIdx;
-    [SerializeField]
-    private Transform minMoveBtnPos;
-    [SerializeField]
-    private Transform maxMoveBtnPos;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -218,25 +214,12 @@ public class Ability_Teleport : Ability, IAbility
         #else // 진짜 빌드일때
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
 
-        //if (Input.touchCount>1) {
-        //    //Vector2 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-        //    if (minMoveBtnPos.position.x - 2.2f < touchPos.x && touchPos.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPos.y && touchPos.y < maxMoveBtnPos.position.y)
-        //    {
-        //        Debug.Log("능력 사용중 이동 금지");
-        //        return;
-        //    }
-        //}
         #endif
         touchPos.z = 0f;
 
         //Debug.Log(Input.touchCount);
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
         //Debug.Log(touchPos);
-        if (minMoveBtnPos.position.x - 2.2f < touchPos.x && touchPos.x < maxMoveBtnPos.position.x && minMoveBtnPos.position.y - 2.2f < touchPos.y && touchPos.y < maxMoveBtnPos.position.y)
-        {
-            Debug.Log("능력 사용중 이동 금지");
-            return;
-        }
         Vector3 firstJPos = joystickBack.transform.position;
         firstJPos.z = 0f;
         Vector3 vec = (touchPos - firstJPos).normalized;
