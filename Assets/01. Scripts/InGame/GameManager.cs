@@ -4,23 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public enum Chapter
-{
-    FARM,
-    FOREST,
-    MOUNTAIN,
-    CAVE,
-    SKY,
-    TUTORIAL,
-    TEST
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public int currentStage = 0;
-    public Chapter currentChapter; // 이거 두개를 스크립트에서 바꿔야하고
 
     [SerializeField] bool isNeedTimer = true;
     [SerializeField] int life = 5;
@@ -43,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     [Header("스테이지")]
     public ChapterInfo[] chapters = null;
+    [HideInInspector] public StageInfo stage;
 
     [HideInInspector] public readonly string tempLifekey = "inGame.tempLife";
 
@@ -65,7 +54,34 @@ public class GameManager : MonoBehaviour
         tempLife = SecurityPlayerPrefs.GetInt(tempLifekey, life);
         life = tempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
-        timer = chapters[(int)currentChapter].stageInfos[currentStage].stageTimer;
+
+        for (int i = 0; i < chapters.Length; i++)
+        {
+            if (chapters[i] != null)
+            {
+                for (int j = 0; j < chapters[i].stageInfos.Count; j++)
+                {
+                    if (chapters[i].stageInfos[j].stage != null)
+                    {
+                        if (currentStage == chapters[i].stageInfos[j].stageId)
+                        {
+                            chapters[i].stageInfos[j].stage.SetActive(true);
+                            chapters[i].stageInfos[j].virtualCamera.Follow = player.transform;
+                            timer = chapters[i].stageInfos[j].stageTimer;
+                            stage = chapters[i].stageInfos[j];
+                        }
+                        else
+                        {
+                            chapters[i].stageInfos[j].stage.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("빈 스테이지 감지");
+                    }
+                }
+            }
+        }
 
         // 위에 애들 Awake말고 다른 스크립에서 바꾸기로 하든지 말든지 이제 귀찮다 이제
 

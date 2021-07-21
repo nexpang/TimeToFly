@@ -56,11 +56,11 @@ public class TitleIntro : MonoBehaviour
     {
         if (right)
         {
-            logo.DORotate(new Vector3(0, 0, 10), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
+            logo.DORotate(new Vector3(0, 0, 6), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
         }
         else
         {
-            logo.DORotate(new Vector3(0, 0, -10), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
+            logo.DORotate(new Vector3(0, 0, -6), 2f).SetEase(Ease.InOutSine).OnComplete(() => LogoRotate(!right));
         }
     }
 
