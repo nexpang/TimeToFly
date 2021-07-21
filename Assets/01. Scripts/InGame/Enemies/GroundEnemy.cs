@@ -29,6 +29,7 @@ public class GroundEnemy : MonoBehaviour
     public float targetX;
 
     private bool isDie = false;
+    private bool isGround = false;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class GroundEnemy : MonoBehaviour
     {
         startPosObj.transform.position = startPosVec;
         endPosObj.transform.position = endPosVec;
+        isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f, 1 << LayerMask.NameToLayer("Ground"));
+
         if (!isDie)
         {
             if (state == EnemyState.Walk)
@@ -70,6 +73,7 @@ public class GroundEnemy : MonoBehaviour
             if (state == EnemyState.Idle)
             {
                 state = EnemyState.Walk;
+                animator.Play("Enemy_Walk");
                 targetX = Random.Range(startPosObj.transform.position.x, endPosObj.transform.position.x);
             }
 
@@ -88,6 +92,7 @@ public class GroundEnemy : MonoBehaviour
         if (dist <= 0.25f)
         {
             state = EnemyState.Idle;
+            animator.Play("Enemy_Idle");
         }
 
         // 앞에 장애물 감지 후 점프 (구멍은 안댐)
@@ -97,7 +102,7 @@ public class GroundEnemy : MonoBehaviour
             Debug.DrawRay(transform.position, dir * 2, Color.red, 0.3f);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 2f, 1 << LayerMask.NameToLayer("Ground"));
 
-            if (hit)
+            if (hit && isGround)
             {
                 Jump();
             }
@@ -115,5 +120,23 @@ public class GroundEnemy : MonoBehaviour
         Gizmos.DrawSphere(startPosObj.transform.position, 0.5f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(endPosObj.transform.position, 0.5f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Player"))
+        {
+            if(GameManager.Instance.player.isGround)
+            {
+                GameManager.Instance.player.GameOver();
+            }
+            else
+            {
+                GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+                rigidbody.simulated = false;
+                isDie = true;
+                animator.Play("Enemy_Death");
+            }
+        }
     }
 }

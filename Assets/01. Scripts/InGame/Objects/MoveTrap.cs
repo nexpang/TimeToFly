@@ -40,6 +40,7 @@ public class MoveTrap : ResetAbleTrap
 
             if (isRigidBody)
             {
+                childRb.gravityScale = speed;
                 childRb.simulated = true;
             }
             else

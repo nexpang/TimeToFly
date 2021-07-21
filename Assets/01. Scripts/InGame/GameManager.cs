@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
                         {
                             chapters[i].stageInfos[j].stage.SetActive(true);
                             chapters[i].stageInfos[j].virtualCamera.Follow = player.transform;
+                            StartCoroutine(CameraReset(chapters[i].stageInfos[j].virtualCamera));
                             timer = chapters[i].stageInfos[j].stageTimer;
                             stage = chapters[i].stageInfos[j];
                         }
@@ -146,5 +148,18 @@ public class GameManager : MonoBehaviour
         aS.loop = Looping;
         aS.volume = volume;
         aS.PlayOneShot(clip);
+    }
+
+    IEnumerator CameraReset(CinemachineVirtualCamera virtualCamera)
+    {
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
+        yield return null;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
+        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 1;
     }
 }
