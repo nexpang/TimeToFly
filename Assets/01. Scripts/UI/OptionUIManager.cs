@@ -36,10 +36,55 @@ public class OptionUIManager : MonoBehaviour
     [SerializeField] private Image[] soundBtnImage;
     [SerializeField] private Sprite[] BGM;
     [SerializeField] private Sprite[] SFX;
+
+    [Header("버튼 관련")]
+    [SerializeField] private Button pauseBtn;
+    [SerializeField] private Button resumeBtn;
+    [SerializeField] private Button settingBtn;
+    [SerializeField] private Button soundBtn;
+    [SerializeField] private Button bgmBtn;
+    [SerializeField] private Button sfxBtn;
+    [SerializeField] private Button creditBtn;
+
     [NonSerialized] public bool BGMSound = true;
     [NonSerialized] public bool SFXSound = true;
     void Start()
     {
+        pauseBtn.onClick.AddListener(() =>
+        {
+            OnBtn(OptionBtnIdx.PAUSE);
+        });
+
+        resumeBtn.onClick.AddListener(() =>
+        {
+            OnBtn(OptionBtnIdx.EXIT);
+        });
+
+        settingBtn.onClick.AddListener(() =>
+        {
+            OnBtn(OptionBtnIdx.SETTING);
+        });
+
+        soundBtn.onClick.AddListener(() =>
+        {
+            OnBtn(OptionBtnIdx.SOUND);
+        });
+
+        bgmBtn.onClick.AddListener(() =>
+        {
+            OnSoundBtn(SoundSetting.BGM);
+        });
+
+        sfxBtn.onClick.AddListener(() =>
+        {
+            OnSoundBtn(SoundSetting.SFX);
+        });
+
+        creditBtn.onClick.AddListener(() =>
+        {
+            OnBtn(OptionBtnIdx.CREDIT);
+        });
+
         optionSequence = DOTween.Sequence().SetAutoKill(false);
     }
 

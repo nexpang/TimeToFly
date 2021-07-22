@@ -14,5 +14,6 @@ public class StageInfo
     public GameObject stage;
     public GameObject background;
     public CinemachineVirtualCamera virtualCamera;
+    public Vector3 cameraStartPos;
     public BoxCollider2D teleportAbleRange;
 }

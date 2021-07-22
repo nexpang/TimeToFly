@@ -353,7 +353,85 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 4421235753075968023}
+    m_ColliderPaths:
+    - - X: 468437504
+        Y: -20000000
+      - X: -121562496
+        Y: -20000000
+      - X: -121562496
+        Y: 50000000
+      - X: -130000000
+        Y: 50000000
+      - X: -130000000
+        Y: -60000000
+      - X: 468437504
+        Y: -60000000
+    - - X: 180000000
+        Y: 10000000
+      - X: 150312496
+        Y: 10000000
+      - X: 150000000
+        Y: 9687500
+      - X: 150000000
+        Y: 312500
+      - X: 150312496
+        Y: 0
+      - X: 180000000
+        Y: 0
+    - - X: 530000000
+        Y: 10000000
+      - X: 500312512
+        Y: 10000000
+      - X: 500000000
+        Y: 9687500
+      - X: 500000000
+        Y: 312500
+      - X: 500312512
+        Y: 0
+      - X: 530000000
+        Y: 0
+    - - X: 1218437504
+        Y: -20000000
+      - X: 1031562496
+        Y: -20000000
+      - X: 1031562496
+        Y: -60000000
+      - X: 1218437504
+        Y: -60000000
+    - - X: 978437504
+        Y: -20000000
+      - X: 671562496
+        Y: -20000000
+      - X: 671562496
+        Y: -60000000
+      - X: 978437504
+        Y: -60000000
+    - - X: 618437504
+        Y: -20000000
+      - X: 561562496
+        Y: -20000000
+      - X: 561562496
+        Y: -60000000
+      - X: 618437504
+        Y: -60000000
+    - - X: 1368437504
+        Y: -20000000
+      - X: 1271562496
+        Y: -20000000
+      - X: 1271562496
+        Y: -60000000
+      - X: 1368437504
+        Y: -60000000
+    - - X: 1508437504
+        Y: -20000000
+      - X: 1411562496
+        Y: -20000000
+      - X: 1411562496
+        Y: -60000000
+      - X: 1508437504
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
     - - {x: 46.843723, y: -6}
@@ -6872,7 +6950,9 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8950450814416397698}
+    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
@@ -6961,7 +7041,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950450814659831124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.35, y: -0.120000005, z: -10}
+  m_LocalPosition: {x: -12.1, y: 8.08, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8950450815880938307}
@@ -7110,19 +7190,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 8950450814978218380}
     m_ColliderPaths:
     - - X: 1506135515
-        Y: -88107160
+        Y: -37062912
       - X: 1506135515
         Y: 64048252
       - X: -113741760
         Y: 64047959
       - X: -113741467
-        Y: -88107160
+        Y: -37062912
   m_CompositePaths:
     m_Paths:
-    - - {x: 150.61353, y: -8.810716}
+    - - {x: 150.61353, y: -3.7062912}
       - {x: 150.61353, y: 6.404825}
       - {x: -11.374176, y: 6.4047666}
-      - {x: -11.374118, y: -8.810716}
+      - {x: -11.374118, y: -3.7062912}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!61 &8950450814978218380
@@ -7138,7 +7218,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 69.619705, y: -1.2029452}
+  m_Offset: {x: 69.619705, y: 1.3492671}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7149,7 +7229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 161.98776, y: 15.215541}
+  m_Size: {x: 161.98776, y: 10.111116}
   m_EdgeRadius: 0
 --- !u!1 &8950450815246424012
 GameObject:
@@ -7404,7 +7484,9 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 8950450814382608178}
+    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
@@ -7424,7 +7506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8950450815786073620
 Transform:
   m_ObjectHideFlags: 0
@@ -7714,6 +7796,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -7837,6 +7923,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -8272,6 +8362,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -8333,6 +8427,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -8458,6 +8556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -8581,6 +8683,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -8706,6 +8812,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -8767,6 +8877,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -8892,6 +9006,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9016,6 +9134,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9077,6 +9199,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -9140,6 +9266,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9201,6 +9331,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -9326,6 +9460,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9387,6 +9525,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -9450,6 +9592,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9511,6 +9657,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -9698,6 +9848,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -9821,6 +9975,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -10131,6 +10289,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -10566,6 +10728,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -10689,6 +10855,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -11062,6 +11232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -11123,6 +11297,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -11248,6 +11426,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -11310,6 +11492,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -11371,6 +11557,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -11620,6 +11810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -11806,6 +12000,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -11929,6 +12127,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -12178,6 +12380,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -12240,6 +12446,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
       value: Garden_MoveDeadTrap
@@ -12301,6 +12511,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name
@@ -12673,6 +12887,10 @@ PrefabInstance:
     - target: {fileID: 2836846481542654488, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2836846481542654490, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2836846481542654494, guid: f413629b748ed2a46b6faa0de120c2c9, type: 3}
       propertyPath: m_Name

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2836846481271254519}
   - component: {fileID: 2836846481271254512}
   - component: {fileID: 8895354098756224358}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NongGiGu
   m_TagString: DEADABLE
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}

@@ -56,7 +56,10 @@ public class Ability_TimeFaster : Ability, IAbility
 
     private void OnDisable()
     {
-        sandClockWhite.gameObject.SetActive(false);
+        if (sandClockWhite != null)
+        {
+            sandClockWhite.gameObject.SetActive(false);
+        }
     }
 
     new void Start()

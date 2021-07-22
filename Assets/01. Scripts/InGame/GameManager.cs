@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
     public int timer;
     public float timerScale;
 
+    [Header("블록 아이템 컨테이너")]
+    public Transform prefabContainer;
+
+
     private void Awake()
     {
         Instance = this; // 싱글톤
@@ -48,7 +52,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 0;
-
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
 
         // 목숨 받아오고
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviour
                         {
                             chapters[i].stageInfos[j].stage.SetActive(true);
                             chapters[i].stageInfos[j].virtualCamera.Follow = player.transform;
-                            StartCoroutine(CameraReset(chapters[i].stageInfos[j].virtualCamera));
+                            Camera.main.transform.position = chapters[i].stageInfos[j].cameraStartPos;
                             timer = chapters[i].stageInfos[j].stageTimer;
                             stage = chapters[i].stageInfos[j];
                         }
@@ -148,18 +151,5 @@ public class GameManager : MonoBehaviour
         aS.loop = Looping;
         aS.volume = volume;
         aS.PlayOneShot(clip);
-    }
-
-    IEnumerator CameraReset(CinemachineVirtualCamera virtualCamera)
-    {
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
-        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
-        yield return null;
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
-        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 1;
     }
 }
