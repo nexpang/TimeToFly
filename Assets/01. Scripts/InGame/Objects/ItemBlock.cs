@@ -62,7 +62,16 @@ public class ItemBlock : ResetAbleTrap
             {
                 GameObject itemObj = Instantiate(item, GameManager.Instance.prefabContainer);
                 itemObj.transform.position = transform.position;
-                SFXManager.PlaySound(SFXManager.Instance.Audio_BlockItem, 1, true);
+
+                if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
+                {
+                    if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
+                    {
+                        ObjectManager.Instance.createdObjectWhileFutureList.Add(itemObj);
+                    }
+                }
+
+                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1, true);
 
                 IItemAble createItem = itemObj.GetComponent<IItemAble>();
                 if(createItem != null)
@@ -72,7 +81,7 @@ public class ItemBlock : ResetAbleTrap
             }
 
             ParticleManager.CreateParticle(particleType, transform.position, 1.5f);
-            SFXManager.PlaySound(SFXManager.Instance.Audio_BrickBreak, 1, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.Audio_BrickBreak, 1, true);
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
@@ -90,7 +99,16 @@ public class ItemBlock : ResetAbleTrap
             {
                 GameObject itemObj = Instantiate(item, GameManager.Instance.prefabContainer);
                 itemObj.transform.position = transform.position;
-                SFXManager.PlaySound(SFXManager.Instance.Audio_BlockItem, 1, true);
+
+                if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
+                {
+                    if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
+                    {
+                        ObjectManager.Instance.createdObjectWhileFutureList.Add(itemObj);
+                    }
+                }
+
+                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1, true);
 
                 IItemAble createItem = itemObj.GetComponent<IItemAble>();
                 if (createItem != null)
@@ -100,8 +118,9 @@ public class ItemBlock : ResetAbleTrap
             }
 
             // 스프라이트 바꿔주기
+            GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_questionBlockTriggered;
 
-            SFXManager.PlaySound(SFXManager.Instance.Audio_BlockHit, 1, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockHit, 1, true);
         }
     }
 
@@ -118,7 +137,13 @@ public class ItemBlock : ResetAbleTrap
         }
         else if (blockType == ItemBlockType.BLOCK)
         {
-            // 스프라이트 원래대로
+            GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_questionBlockDefault;
+        }
+
+        for(int i = 0; i< ObjectManager.Instance.createdObjectWhileFutureList.Count;i++)
+        {
+            Destroy(ObjectManager.Instance.createdObjectWhileFutureList[i]);
+            ObjectManager.Instance.createdObjectWhileFutureList.RemoveAt(i);
         }
     }
 }

@@ -26,7 +26,7 @@ public class RedHeosuTrap : ResetAbleTrap
 
             isTrigger = true;
             animator.Play("RedHeosu_Trigger");
-            SFXManager.PlaySound(SFXManager.Instance.Audio_HeosuFall, 1f, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.Audio_HeosuFall, 1f, true);
             GameManager.Instance.player.GameOver();
             playerRb.position = transform.position;
             playerRb.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

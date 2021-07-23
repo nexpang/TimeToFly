@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class ObjectManager : MonoBehaviour
 {
-    public static SFXManager Instance;
+    public static ObjectManager Instance;
 
     private static AudioSource audioSource = null;
+
+    public List<GameObject> createdObjectWhileFutureList = new List<GameObject>();
+
+    [Header("Sprites")]
+    public Sprite Spr_bearTrapDefault = null;
+    public Sprite Spr_bearTrapTriggered = null;
+    public Sprite Spr_questionBlockDefault = null;
+    public Sprite Spr_questionBlockTriggered = null;
 
     [Header("SFX")]
     public AudioClip Audio_bearTrap;

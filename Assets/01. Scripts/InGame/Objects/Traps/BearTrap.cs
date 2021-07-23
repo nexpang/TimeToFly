@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BearTrap : ResetAbleTrap
 {
-    [SerializeField] Sprite defaultSprite = null;
-    [SerializeField] Sprite triggeredSprite = null;
     Transform playerRb;
 
     bool isTrigger = false;
@@ -23,8 +21,8 @@ public class BearTrap : ResetAbleTrap
 
             isTrigger = true;
 
-            GetComponent<SpriteRenderer>().sprite = triggeredSprite;
-            SFXManager.PlaySound(SFXManager.Instance.Audio_bearTrap, 0.8f, true);
+            GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_bearTrapTriggered;
+            ObjectManager.PlaySound(ObjectManager.Instance.Audio_bearTrap, 0.8f, true);
             GetComponent<SpriteRenderer>().sortingOrder = 18;
             GameManager.Instance.player.GameOver();
             playerRb.position = transform.position;
@@ -36,6 +34,6 @@ public class BearTrap : ResetAbleTrap
     {
         isTrigger = false;
         GetComponent<SpriteRenderer>().sortingOrder = 4;
-        GetComponent<SpriteRenderer>().sprite = defaultSprite;
+        GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_bearTrapDefault;
     }
 }
