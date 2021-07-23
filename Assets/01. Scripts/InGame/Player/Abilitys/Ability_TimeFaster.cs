@@ -47,7 +47,7 @@ public class Ability_TimeFaster : Ability, IAbility
     [SerializeField] AudioClip Audio_tok = null;
     [SerializeField] AudioClip Audio_glassBroken = null;
 
-    private void OnEnable() // 필요할때만 켜지게
+    private new void OnEnable() // 필요할때만 켜지게
     {
         base.OnEnable();
         sandClockWhite.gameObject.SetActive(true);

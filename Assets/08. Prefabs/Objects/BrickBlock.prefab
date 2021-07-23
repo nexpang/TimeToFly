@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockType: 0
+  particleType: 0
   item: {fileID: 0}
 --- !u!1 &6265240329811048539
 GameObject:
@@ -202,5 +203,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.035320908}
+  m_Size: {x: 0.8, y: 0.05}
   m_EdgeRadius: 0

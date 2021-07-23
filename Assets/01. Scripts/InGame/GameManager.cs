@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     [Header("스테이지")]
     public ChapterInfo[] chapters = null;
+    public List<int> remainChickenIndex = new List<int>() { 0, 1, 2, 3, 4 };
+
     [HideInInspector] public StageInfo stage;
 
     [HideInInspector] public readonly string tempLifekey = "inGame.tempLife";

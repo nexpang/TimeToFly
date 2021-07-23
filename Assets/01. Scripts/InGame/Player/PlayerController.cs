@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 enum Movetype
 {
@@ -68,9 +69,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem featherEffect = null;
     [SerializeField] Texture[] featherTextures = null;
 
+    [Header("쿨타임 이미지")]
+    [SerializeField] GameObject CircleCoolTime;
+    [SerializeField] Image CircleValue;
+    [HideInInspector] public bool isTeleportAble = true;
+
     //TO DO : 튜토리얼
     // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
-
 
     private void Awake()
     {       
@@ -195,6 +200,41 @@ public class PlayerController : MonoBehaviour
 
             ability.OnAbility();
         }
+    }
+
+    public void PlayerActCoolTimeSet(float timeSec, UnityAction action)
+    {
+        StartCoroutine(ActCooltime(timeSec, action));
+    }
+
+    public void PlayerActCoolTimeStop()
+    {
+        coolTime = -200f;
+        CircleCoolTime.SetActive(false);
+        CircleValue.fillAmount = 1;
+    }
+
+    private float coolTime = 0f;
+    IEnumerator ActCooltime(float timeSec, UnityAction action)
+    {
+        coolTime = 0f;
+        CircleCoolTime.SetActive(true);
+        while (coolTime < timeSec)
+        {
+            if(coolTime < -100f)
+            {
+                coolTime = 0f;
+                yield break;
+            }
+
+            coolTime += Time.deltaTime;
+            CircleValue.fillAmount = 1 - (coolTime / timeSec);
+            yield return null;
+        }
+        CircleCoolTime.SetActive(false);
+        CircleValue.fillAmount = 1;
+        coolTime = 0f;
+        action.Invoke();
     }
 
     private void OnDrawGizmos()

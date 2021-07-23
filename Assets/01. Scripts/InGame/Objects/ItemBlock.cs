@@ -34,7 +34,8 @@ public class ItemBlock : ResetAbleTrap
         {
             if (isTrigger) return;
 
-            if (pc.GetComponent<Rigidbody2D>().velocity.y > 0)
+            Debug.Log(pc.GetComponent<Rigidbody2D>().velocity.y);
+            if (pc.GetComponent<Rigidbody2D>().velocity.y >= 0)
             {
                 isTrigger = true;
 
