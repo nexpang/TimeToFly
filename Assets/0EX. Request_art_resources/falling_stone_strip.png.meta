@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 7f6c7cd018351ad449a59c4a9f981873
+guid: 3fe2abbe6ab31de4d86ccfc975394155
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1590547154649547652
-    second: falling_rocks_0
+      213: -5875665796851232071
+    second: falling_stone_strip_0
   - first:
-      213: 6642695782818265283
-    second: falling_rocks_1
+      213: 7242804835804347296
+    second: falling_stone_strip_1
+  - first:
+      213: 6507312748174325723
+    second: falling_stone_strip_2
+  - first:
+      213: -4865573392493954571
+    second: falling_stone_strip_3
+  - first:
+      213: -2012810823263068663
+    second: falling_stone_strip_4
+  - first:
+      213: -4306549061834084764
+    second: falling_stone_strip_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -74,7 +86,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +110,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: falling_rocks_0
+      name: falling_stone_strip_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +135,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4830567c532c21610800000000000000
-      internalID: 1590547154649547652
+      spriteID: 9b215cf9611757ea0800000000000000
+      internalID: -5875665796851232071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: falling_rocks_1
+      name: falling_stone_strip_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,8 +156,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c83ed5be989f2c50800000000000000
-      internalID: 6642695782818265283
+      spriteID: 0ab7997cf9c938460800000000000000
+      internalID: 7242804835804347296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: falling_stone_strip_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd73d4d977e9e4a50800000000000000
+      internalID: 6507312748174325723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: falling_stone_strip_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f93ec747c20a7cb0800000000000000
+      internalID: -4865573392493954571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: falling_stone_strip_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ed757783f0114e0800000000000000
+      internalID: -2012810823263068663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: falling_stone_strip_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e669102701c34c0800000000000000
+      internalID: -4306549061834084764
       vertices: []
       indices: 
       edges: []
