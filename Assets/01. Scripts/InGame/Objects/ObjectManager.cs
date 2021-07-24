@@ -6,7 +6,7 @@ public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager Instance;
 
-    private static AudioSource audioSource = null;
+    private AudioSource audioSource = null;
 
     public List<GameObject> createdObjectWhileFutureList = new List<GameObject>();
 
@@ -30,22 +30,18 @@ public class ObjectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
         audioSource = GetComponent<AudioSource>();
     }
 
     public static void PlaySound(AudioClip audio, float volume, bool immediate)
     {
-        audioSource.volume = volume;
+        Instance.audioSource.volume = volume;
 
-        if(immediate)audioSource.PlayOneShot(audio);
+        if(immediate) Instance.audioSource.PlayOneShot(audio);
         else
         {
-            audioSource.clip = audio;
-            if(!audioSource.isPlaying) audioSource.Play();
+            Instance.audioSource.clip = audio;
+            if(!Instance.audioSource.isPlaying) Instance.audioSource.Play();
         }
     }
 }
