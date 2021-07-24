@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,11 @@ public class GameManager : MonoBehaviour
     [Header("블록 아이템 컨테이너")]
     public Transform prefabContainer;
 
+    [Header("오디오 소스들")]
+    private List<AudioSource> AllSources = new List<AudioSource>();
+    public List<AudioSource> BGMSources = new List<AudioSource>();
+    public List<AudioSource> SFXSources = new List<AudioSource>();
+
 
     private void Awake()
     {
@@ -60,6 +66,20 @@ public class GameManager : MonoBehaviour
         tempLife = SecurityPlayerPrefs.GetInt(tempLifekey, life);
         life = tempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+
+        // 소리를 다 가져온다.
+        AllSources = FindObjectsOfType<AudioSource>().ToList();
+        for(int i = 0; i< AllSources.Count;i++)
+        {
+            if(AllSources[i].outputAudioMixerGroup.name == "BGM")
+            {
+                BGMSources.Add(AllSources[i]);
+            }
+            else if (AllSources[i].outputAudioMixerGroup.name == "SFX")
+            {
+                SFXSources.Add(AllSources[i]);
+            }
+        }
 
         for (int i = 0; i < chapters.Length; i++)
         {
@@ -79,8 +99,6 @@ public class GameManager : MonoBehaviour
 
                             Camera.main.transform.position = curStageInfo.cameraStartPos;
                             curStageInfo.virtualCamera.transform.position = curStageInfo.virtualCameraStartPos;
-                            StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
-
                             timer = curStageInfo.stageTimer;
                         }
                         else
@@ -110,7 +128,7 @@ public class GameManager : MonoBehaviour
                 bgAudioSource.clip = curChapterInfo.chapterBGM;
                 bgAudioSource.volume = defaultBGMvolume;
                 bgAudioSource.Play();
-
+                StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
             }).SetUpdate(true).SetDelay(2);
         }
         else
@@ -118,18 +136,19 @@ public class GameManager : MonoBehaviour
             bgAudioSource.clip = curChapterInfo.chapterBGM;
             bgAudioSource.volume = defaultBGMvolume;
             bgAudioSource.Play();
+            StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
             Time.timeScale = 1;
         }
     }
 
     IEnumerator CameraSetting(CinemachineVirtualCamera virtualCamera)
     {
+        virtualCamera.Follow = player.transform;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
         virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
-        virtualCamera.Follow = player.transform;
-        yield return null;
+        yield return new WaitForSeconds(0.1f);
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
@@ -162,6 +181,8 @@ public class GameManager : MonoBehaviour
 
     public void SetAudio(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
     {
+        if (aS.volume == 0) return;
+
         aS.clip = clip;
         aS.loop = Looping;
         aS.volume = volume;
@@ -170,6 +191,8 @@ public class GameManager : MonoBehaviour
 
     public void SetAudioImmediate(AudioSource aS, AudioClip clip, float volume, bool Looping = false)
     {
+        if (aS.volume == 0) return;
+
         aS.loop = Looping;
         aS.volume = volume;
         aS.PlayOneShot(clip);

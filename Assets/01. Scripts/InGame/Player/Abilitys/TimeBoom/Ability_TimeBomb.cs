@@ -53,7 +53,6 @@ public class Ability_TimeBomb : Ability, IAbility
     {
         if (isAnimationPlaying)
         {
-            //Debug.Log("애니메이션 실행중");
             return;
         }
         if (hasTimeBoom)
@@ -131,7 +130,6 @@ public class Ability_TimeBomb : Ability, IAbility
 
     void Charging()
     {
-        //Debug.Log("차징중");
         if (throwForce + (addForce * Time.deltaTime) > 3f || throwForce + (addForce * Time.deltaTime) < 1f)
             addForce *= -1f;
         throwForce += (addForce * Time.deltaTime);

@@ -52,11 +52,21 @@ public class OptionUIManager : MonoBehaviour
     {
         pauseBtn.onClick.AddListener(() =>
         {
+            Time.timeScale = 0;
+            foreach( AudioSource item in GameManager.Instance.SFXSources)
+            {
+                item.volume = 0;
+            }
             OnBtn(OptionBtnIdx.PAUSE);
         });
 
         resumeBtn.onClick.AddListener(() =>
         {
+            Time.timeScale = 1;
+            foreach (AudioSource item in GameManager.Instance.SFXSources)
+            {
+                item.volume = 1;
+            }
             OnBtn(OptionBtnIdx.EXIT);
         });
 
@@ -93,7 +103,7 @@ public class OptionUIManager : MonoBehaviour
         cvsGroup.gameObject.SetActive(isOpen);
         cvsGroup.interactable = isOpen;
         cvsGroup.blocksRaycasts = isOpen;
-        optionSequence.Append(DOTween.To(() => cvsGroup.alpha, x => cvsGroup.alpha = x, isOpen ? 1 : 0, time));
+        optionSequence.Append(DOTween.To(() => cvsGroup.alpha, x => cvsGroup.alpha = x, isOpen ? 1 : 0, time).SetUpdate(true));
     }
 
     
@@ -156,6 +166,10 @@ public class OptionUIManager : MonoBehaviour
 
     public void GameExit()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }

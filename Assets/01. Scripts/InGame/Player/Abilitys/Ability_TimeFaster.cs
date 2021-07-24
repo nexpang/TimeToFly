@@ -109,8 +109,9 @@ public class Ability_TimeFaster : Ability, IAbility
         isAbilityEnable = true;
         GameManager.Instance.player._speed = speedUp;
         effect.SetActive(true);
-        Time.timeScale = 1f / speedUp;
-        player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
+        GameManager.Instance.timerScale = 1f / 1.3f;
+        //Time.timeScale = 1f / speedUp;
+        //player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
 
         int randomRotate = Random.Range(0, 2);
 
@@ -121,9 +122,7 @@ public class Ability_TimeFaster : Ability, IAbility
             sandClockWhite.material.color = new Color(1, 1, 1, 0);
             clockUISandClock.GetComponent<Image>().sprite = brokenClock;
             clockUISandClock.DOAnchorPos(new Vector2(Random.Range(-180,180), -1477), 2).SetEase(Ease.InOutCubic);
-            //clockUIClock.DOAnchorPos(new Vector2(Random.Range(-180, 180), -1477), 2).SetEase(Ease.InOutCubic);
             clockUISandClock.DORotate(new Vector3(0, 0, (randomRotate == 0 ) ? 180 : -180), 3);
-            //clockUIClock.DORotate(new Vector3(0, 0, (randomRotate == 0) ? 180 : -180), 3);
         });
         DOTween.To(() => rotateSpeed, value => rotateSpeed = value, 350, 5);
         DOTween.To(() => stringEffectSpeed, value => stringEffectSpeed = value, 3, 5).SetEase(Ease.InOutCubic);
@@ -174,8 +173,9 @@ public class Ability_TimeFaster : Ability, IAbility
     public void ResetPlayer()
     {
         //능력 중단
-        player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
-        Time.timeScale = 1f;
+        //player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
+        //Time.timeScale = 1f;
+        GameManager.Instance.timerScale = 1f;
         isAbilityEnable = false;
         effect.SetActive(false);
         GameManager.Instance.player._speed = 1;
@@ -185,9 +185,7 @@ public class Ability_TimeFaster : Ability, IAbility
         DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0f, 2f).OnComplete(() => {
             clockUI.SetActive(false);
             clockUISandClock.anchoredPosition = Vector2.zero;
-            //clockUIClock.anchoredPosition = Vector2.zero;
             clockUISandClock.eulerAngles = Vector3.zero;
-            //clockUIClock.eulerAngles = Vector3.zero;
 
             clockUISandClock.GetComponent<Image>().sprite = defaultClock;
 

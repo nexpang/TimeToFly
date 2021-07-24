@@ -30,7 +30,7 @@ public class GameUI : MonoBehaviour
 
     void TimerUpdate()
     {
-        text.color = (GameManager.Instance.timer <= 99 || GameManager.Instance.player.abilitys[4].GetComponent<Ability_Teleport>().IsUsing) ? Color.red : Color.black;
+        text.color = (GameManager.Instance.timer <= 99 || GameManager.Instance.player.abilitys[GameManager.Instance.player.abilityNumber].GetComponent<Ability>().isAbilityEnable) ? Color.red : Color.black;
         text.text = string.Format("TIME\n{0:D3}", GameManager.Instance.timer);
     }
 }
