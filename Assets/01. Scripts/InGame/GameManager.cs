@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool IsInfinityLife { get { return isInfinityLife; } set { isInfinityLife = value; } }
     [SerializeField] CanvasGroup gameStartScreen = null;
     [SerializeField] Image gameStartScreenChicken = null;
+    [SerializeField] Text stageName = null;
     [SerializeField] Text lifeCount = null;
 
     [Header("플레이어")]
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
 
                             curStageInfo.stage.SetActive(true);
                             curStageInfo.background.SetActive(true);
+
+                            stageName.text = $"STAGE - {curStageInfo.stageName}";
 
                             Camera.main.transform.position = curStageInfo.cameraStartPos;
                             curStageInfo.virtualCamera.transform.position = curStageInfo.virtualCameraStartPos;
