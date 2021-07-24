@@ -6,4 +6,6 @@ using UnityEngine;
 public class ChapterInfo : MonoBehaviour
 {
     public List<StageInfo> stageInfos = new List<StageInfo>();
+
+    public AudioClip chapterBGM;
 }

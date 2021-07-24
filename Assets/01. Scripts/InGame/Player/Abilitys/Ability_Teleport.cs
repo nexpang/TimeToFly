@@ -76,7 +76,7 @@ public class Ability_Teleport : Ability, IAbility
         joystickRect = joystick.GetComponent<RectTransform>();
         teleportPosObjTrans = teleportPosObj.transform;
 
-        teleportRange = GameManager.Instance.stage.teleportAbleRange;
+        teleportRange = GameManager.Instance.curStageInfo.teleportAbleRange;
         teleportRangePos = teleportRange.transform.position;
     }
 

@@ -32,23 +32,33 @@ public class ItemBlock : ResetAbleTrap
     {
         if (collision.CompareTag("Player"))
         {
-            if (isTrigger) return;
+            GameManager.Instance.player.collisionBlock = this;
+        }
+    }
 
-            Debug.Log(pc.GetComponent<Rigidbody2D>().velocity.y);
-            if (pc.GetComponent<Rigidbody2D>().velocity.y >= 0)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if(GameManager.Instance.player.collisionBlock == this)
+                GameManager.Instance.player.collisionBlock = null;
+        }
+    }
+
+    public void JumpDetect()
+    {
+        if (isTrigger) return;
+
+        isTrigger = true;
+
+        BreakEvent();
+        // TO DO :소리가 있다면 실행
+
+        if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
+        {
+            if (!GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
             {
-                isTrigger = true;
-
-                BreakEvent();
-                // TO DO :소리가 있다면 실행
-
-                if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
-                {
-                    if (!GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable)
-                    {
-                        isRealTrigger = true;
-                    }
-                }
+                isRealTrigger = true;
             }
         }
     }

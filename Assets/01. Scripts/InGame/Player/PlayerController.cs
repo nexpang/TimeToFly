@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject CircleCoolTime;
     [SerializeField] Image CircleValue;
     [HideInInspector] public bool isTeleportAble = true;
+    public ItemBlock collisionBlock;
 
     //TO DO : 튜토리얼
     // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
@@ -98,6 +99,14 @@ public class PlayerController : MonoBehaviour
 
         AnimParametersSet();
         AbilityKey();
+
+        if(rb.velocity.y > 0)
+        {
+            if(collisionBlock != null)
+            {
+                collisionBlock.JumpDetect();
+            }
+        }
     }
 
     void FixedUpdate()

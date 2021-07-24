@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     [Header("πË∞Ê¿Ωæ«")]
     [SerializeField] AudioSource bgAudioSource = null;
-    public AudioClip defaultBGM = null;
     public float defaultBGMvolume = 1;
 
     SpriteRenderer playerSpr = null;
@@ -34,7 +33,8 @@ public class GameManager : MonoBehaviour
     public ChapterInfo[] chapters = null;
     public List<int> remainChickenIndex = new List<int>() { 0, 1, 2, 3, 4 };
 
-    [HideInInspector] public StageInfo stage;
+    [HideInInspector] public ChapterInfo curChapterInfo;
+    [HideInInspector] public StageInfo curStageInfo;
 
     [HideInInspector] public readonly string tempLifekey = "inGame.tempLife";
 
@@ -71,11 +71,17 @@ public class GameManager : MonoBehaviour
                     {
                         if (currentStage == chapters[i].stageInfos[j].stageId)
                         {
-                            chapters[i].stageInfos[j].stage.SetActive(true);
-                            chapters[i].stageInfos[j].virtualCamera.Follow = player.transform;
-                            Camera.main.transform.position = chapters[i].stageInfos[j].cameraStartPos;
-                            timer = chapters[i].stageInfos[j].stageTimer;
-                            stage = chapters[i].stageInfos[j];
+                            curStageInfo = chapters[i].stageInfos[j];
+                            curChapterInfo = chapters[i];
+
+                            curStageInfo.stage.SetActive(true);
+                            curStageInfo.background.SetActive(true);
+
+                            Camera.main.transform.position = curStageInfo.cameraStartPos;
+                            curStageInfo.virtualCamera.transform.position = curStageInfo.virtualCameraStartPos;
+                            StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
+
+                            timer = curStageInfo.stageTimer;
                         }
                         else
                         {
@@ -101,7 +107,7 @@ public class GameManager : MonoBehaviour
                 gameStartScreen.gameObject.SetActive(false);
                 Time.timeScale = 1;
 
-                bgAudioSource.clip = defaultBGM;
+                bgAudioSource.clip = curChapterInfo.chapterBGM;
                 bgAudioSource.volume = defaultBGMvolume;
                 bgAudioSource.Play();
 
@@ -109,11 +115,25 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            bgAudioSource.clip = defaultBGM;
+            bgAudioSource.clip = curChapterInfo.chapterBGM;
             bgAudioSource.volume = defaultBGMvolume;
             bgAudioSource.Play();
             Time.timeScale = 1;
         }
+    }
+
+    IEnumerator CameraSetting(CinemachineVirtualCamera virtualCamera)
+    {
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
+        virtualCamera.Follow = player.transform;
+        yield return null;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
+        virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 1;
     }
 
     private float targetTime = 1;
