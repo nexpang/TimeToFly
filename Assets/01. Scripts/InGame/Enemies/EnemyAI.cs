@@ -11,7 +11,8 @@ public class EnemyAI : MonoBehaviour
     public float pathUpdateSeconds = 0.5f;
 
     [Header("Physics")]
-    public float speed = 200f;
+    public float enemySpeed;
+    public float jumpSpeed;
     public float nextWayPointDist = 3f;
     public float jumpNodeHeightRequirement = 0.8f;
     public float jumpModfier = 0.3f;
@@ -34,13 +35,13 @@ public class EnemyAI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
-        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
     private void Start()
     {
         target = GameManager.Instance.player.transform;
+
+        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
     private void FixedUpdate()
@@ -74,13 +75,13 @@ public class EnemyAI : MonoBehaviour
         isGrounded = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f, 0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaupoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+        Vector2 force = direction * enemySpeed * Time.deltaTime;
 
         if(jumpEnabled && isGrounded)
         {
             if(direction.y > jumpNodeHeightRequirement)
             {
-                rb.AddForce(Vector2.up * speed * jumpModfier);
+                rb.velocity = Vector2.up * jumpSpeed;
             }
         }
 

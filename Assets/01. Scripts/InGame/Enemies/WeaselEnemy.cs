@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Pathfinding;
 
 public class WeaselEnemy : ResetAbleTrap, IItemAble
 {
@@ -25,19 +26,33 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     private bool isGround = false;
     private bool isFutureDead = false;
 
-    [SerializeField]
-    private LayerMask whatIsPlayer;
+    [Header("패스파인딩")]
+    public Transform target;
+    public float activateDist = 50f;
+    public float pathUpdateSeconds = 0.5f;
 
-    [SerializeField]
-    private float chaseRange, AttackRange;
-    private bool isPlayerInChaseRange = false;
-    private bool isPlayerInAttackRange = false;
+    [Header("Physics")]
+    public float nextWayPointDist = 3f;
+    public float jumpNodeHeightRequirement = 0.8f;
+    public float jumpModfier = 0.3f;
+    public float jumpCheckOffset = 0.1f;
+
+    [Header("행동")]
+    public bool followEnabled = true;
+    public bool jumpEnabled = true;
+    public bool directionLookEnabled = true;
+
+    public Path path;
+    private int currentWaupoint = 0;
+    bool isGrounded = false;
+    Seeker seeker;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        seeker = GetComponent<Seeker>();
     }
 
     void Start()
@@ -47,6 +62,10 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         StartCoroutine(PlaySFX());
         startPosVec = startPosObj.transform.position;
         endPosVec = endPosObj.transform.position;
+
+        target = GameManager.Instance.player.transform;
+
+        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
     private void Update()
@@ -57,23 +76,17 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
     private void FixedUpdate()
     {
-        isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f, 1 << LayerMask.NameToLayer("Ground"));
+        //isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f, 1 << LayerMask.NameToLayer("Ground"));
         isGround = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f,0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
-
-        isPlayerInChaseRange = Physics2D.CircleCast(transform.position, chaseRange, Vector2.up, 0, whatIsPlayer);
-        isPlayerInAttackRange = Physics2D.CircleCast(transform.position, AttackRange, Vector2.up, 0, whatIsPlayer);
 
         if (!isDie)
         {
-            if(isPlayerInChaseRange && isPlayerInAttackRange)
+
+            if (TargetInDistance() && followEnabled)
             {
-                Attack();
-            }
-            else if (isPlayerInChaseRange)
-            {
-                Debug.Log("플레이어 추적 시작");
                 state = EnemyState.Chase;
-                chase();
+                animator.Play("Enemy_Walk");
+                PathFollow();
             }
             else if(state == EnemyState.Chase)
             {
@@ -187,13 +200,6 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         rb.velocity = Vector2.up * jumpSpeed;
     }
 
-    void chase()
-    {
-        animator.Play("Enemy_Walk");
-        targetX = GameManager.Instance.player.transform.position.x;
-        Move();
-    }
-
     void Attack()
     {
         float horizontalDist = Mathf.Abs(GameManager.Instance.player.transform.position.y - transform.position.y);
@@ -203,7 +209,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         }
         else
         {
-            chase();
+
         }
     }
 
@@ -234,9 +240,9 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     void OnDrawGizmosSelected() // 시야, 공격 사거리
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
+        //Gizmos.DrawWireSphere(transform.position, AttackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseRange);
+        Gizmos.DrawWireSphere(transform.position, activateDist);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -307,5 +313,74 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         endPosVec = end;
         startPosObj.transform.position = start;
         endPosObj.transform.position = end;
+    }
+
+
+    // 패스파인딩
+    private void UpdatePath()
+    {
+        if (followEnabled && TargetInDistance() && seeker.IsDone())
+        {
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+        }
+    }
+
+    private void PathFollow()
+    {
+        if (path == null)
+        {
+            return;
+        }
+
+        if (currentWaupoint >= path.vectorPath.Count)
+        {
+            return;
+        }
+
+        isGrounded = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f, 0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaupoint] - rb.position).normalized;
+        //Vector2 force = direction * enemySpeed * Time.deltaTime;
+        float moveX = 0f;
+
+        if (Mathf.Abs(direction.x) > 0.1f)
+            moveX = direction.x < 0 ? -1f : 1f;
+
+        if (jumpEnabled && isGrounded)
+        {
+            if (direction.y > jumpNodeHeightRequirement)
+            {
+                rb.velocity = Vector2.up * jumpSpeed;
+            }
+        }
+        
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x+moveX, transform.position.y, transform.position.z), enemySpeed * Time.deltaTime);
+        //rb.AddForce(force);
+
+        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaupoint]);
+        if (dist < nextWayPointDist)
+        {
+            currentWaupoint++;
+        }
+
+        if (directionLookEnabled)
+        {
+            if (moveX != 0f)
+                spriteRenderer.flipX = (moveX < 0);
+        }
+    }
+
+    private bool TargetInDistance()
+    {
+        return Vector2.Distance(transform.position, target.transform.position) < activateDist;
+    }
+
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaupoint = 0;
+        }
     }
 }
