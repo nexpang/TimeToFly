@@ -34,8 +34,7 @@ public class Ability_Teleport : Ability, IAbility
     [SerializeField] GameObject joystick = null;
     [SerializeField] GameObject joystickBack = null;
     private RectTransform joystickRect = null;
-    private bool isUsing = false;
-    public bool IsUsing { get { return isUsing; } }
+
     [SerializeField] GameObject player = null;
     [SerializeField] Transform playerPos = null;
     [SerializeField] GameObject teleportPosObj = null; // -------둘이 포지션이 같다.
@@ -92,12 +91,12 @@ public class Ability_Teleport : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         //터치 인덱스
-        #if !UNITY_EDITOR
+#if !UNITY_EDITOR
         touchIdx = Input.touchCount - 1;
-        #endif
+#endif
 
         //능력 사용
-        isUsing = true;
+        isAbilityEnable = true;
         joystickBack.SetActive(true);
         teleportPosObj.SetActive(true);
         teleportPosFinalPoint.SetActive(true);
@@ -134,7 +133,7 @@ public class Ability_Teleport : Ability, IAbility
         //Debug.Log(maxMoveBtnPos.position);
         base.Update();
 
-        if (isUsing)
+        if (isAbilityEnable)
         {
             clockUIClock.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
             clockUISandClock.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
@@ -170,7 +169,7 @@ public class Ability_Teleport : Ability, IAbility
         Using();
         teleportRange.transform.position = teleportRangePos;
 
-        if (GameManager.Instance.player.playerState == PlayerState.DEAD && isUsing)//만약 죽은상태라면
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD && isAbilityEnable)//만약 죽은상태라면
         {
             ResetPlayer();
             StopCoroutine(Clock()); // 시계를 정지시킨다.
@@ -180,7 +179,7 @@ public class Ability_Teleport : Ability, IAbility
     void Using()
     {
 
-        if (isUsing)
+        if (isAbilityEnable)
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
@@ -281,7 +280,7 @@ public class Ability_Teleport : Ability, IAbility
         GlitchEffect.Instance.intensity = 0;
 
 
-        isUsing = false;
+        isAbilityEnable = false;
 
         joystickRect.localPosition = Vector2.zero;
         abilityBtn.sprite = abilityBtnSpr;
@@ -301,13 +300,13 @@ public class Ability_Teleport : Ability, IAbility
     {
         yield return new WaitForSecondsRealtime(1);
 
-        while (currentTime > 0 && isUsing)
+        while (currentTime > 0 && isAbilityEnable)
         {
             currentTime--;
             if (currentTime == 0)
                 currentTime = abilityDefaultTime;
             yield return new WaitForSecondsRealtime(1);
-            if (GameManager.Instance.player.playerState == PlayerState.DEAD || !isUsing)//만약 죽은상태라면
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD || !isAbilityEnable)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
             }

@@ -102,6 +102,10 @@ public class Ability_FutureCreate : Ability, IAbility
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
 
+        // 타이머 빠르게
+        GameManager.Instance.timerScale = 1f / 1.5f;
+        GameManager.Instance.timer -= 10;
+
         // 시계 초가 시작된다.
         StartCoroutine(Clock());
 
