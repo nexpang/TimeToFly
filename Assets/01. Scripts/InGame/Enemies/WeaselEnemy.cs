@@ -26,9 +26,11 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     private bool isGround = false;
     private bool isFutureDead = false;
 
+    public float attackDist = 50f;
+
     [Header("패스파인딩")]
     public Transform target;
-    public float activateDist = 50f;
+    public float chaseDist = 50f;
     public float pathUpdateSeconds = 0.5f;
 
     [Header("Physics")]
@@ -81,8 +83,11 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
         if (!isDie)
         {
-
-            if (TargetInDistance() && followEnabled)
+            if(TargetInAttackDistance())
+            {
+                Attack();
+            }
+            else if (TargetInChaseDistance() && followEnabled)
             {
                 state = EnemyState.Chase;
                 animator.Play("Enemy_Walk");
@@ -202,15 +207,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
     void Attack()
     {
-        float horizontalDist = Mathf.Abs(GameManager.Instance.player.transform.position.y - transform.position.y);
-        if(horizontalDist < 1f)
-        {
-            Debug.Log("공격!!!!!!!");
-        }
-        else
-        {
-
-        }
+        Debug.Log("공격!!!!!!!");
     }
 
     public override void Reset()
@@ -240,9 +237,9 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     void OnDrawGizmosSelected() // 시야, 공격 사거리
     {
         Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, AttackRange);
+        Gizmos.DrawWireSphere(transform.position, attackDist);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, activateDist);
+        Gizmos.DrawWireSphere(transform.position, chaseDist);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -319,7 +316,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     // 패스파인딩
     private void UpdatePath()
     {
-        if (followEnabled && TargetInDistance() && seeker.IsDone())
+        if (followEnabled && TargetInChaseDistance() && seeker.IsDone())
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
@@ -370,11 +367,14 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         }
     }
 
-    private bool TargetInDistance()
+    private bool TargetInChaseDistance()
     {
-        return Vector2.Distance(transform.position, target.transform.position) < activateDist;
+        return Vector2.Distance(transform.position, target.transform.position) < chaseDist;
     }
-
+    private bool TargetInAttackDistance()
+    {
+        return Vector2.Distance(transform.position, target.transform.position) < attackDist;
+    }
     private void OnPathComplete(Path p)
     {
         if (!p.error)

@@ -101327,13 +101327,9 @@ MonoBehaviour:
   startPosObj: {fileID: 123991001}
   endPosObj: {fileID: 1821821763}
   targetX: 0
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  chaseRange: 7
-  AttackRange: 3
+  attackDist: 5
   target: {fileID: 0}
-  activateDist: 20
+  chaseDist: 15
   pathUpdateSeconds: 0.5
   nextWayPointDist: 3
   jumpNodeHeightRequirement: 0.5
