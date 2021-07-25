@@ -24,9 +24,14 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
     private bool isDie = false;
     private bool isGround = false;
+    private bool isAttacking = false;
     private bool isFutureDead = false;
 
+    private bool canAnything = true;
+    public float attackDelay = 1f;
     public float attackDist = 50f;
+    public float attackHorizonJumpPower = 5f;
+    public float attackVerticalJumpPower = 5f;
 
     [Header("패스파인딩")]
     public Transform target;
@@ -46,7 +51,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
     public Path path;
     private int currentWaupoint = 0;
-    bool isGrounded = false;
+    //bool isGrounded = false;
     Seeker seeker;
 
     private void Awake()
@@ -80,15 +85,32 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     {
         //isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(0, -0.4f), 0.3f, 1 << LayerMask.NameToLayer("Ground"));
         isGround = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f,0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
+        
 
         if (!isDie)
         {
-            if(TargetInAttackDistance())
+            if (!canAnything && !isGround)
             {
-                Attack();
+                isAttacking = true;
+            }
+            if (isAttacking)
+            {
+                if (isGround)
+                {
+                    rb.velocity = Vector2.zero;
+                    isAttacking = false;
+                    animator.Play("Enemy_AttackDelay");
+                    Invoke("AttackDelay", attackDelay);
+                }
+            }
+
+            if (TargetInAttackDistance())
+            {
+                AttackReady();
             }
             else if (TargetInChaseDistance() && followEnabled)
             {
+                if (isAttacking || !canAnything) return;
                 state = EnemyState.Chase;
                 animator.Play("Enemy_Walk");
                 PathFollow();
@@ -97,7 +119,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             {
                 state = EnemyState.Idle;
             }
-            if (state == EnemyState.Walk)
+            if (state == EnemyState.Walk && canAnything)
             {
                 Move();
             }
@@ -205,9 +227,36 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         rb.velocity = Vector2.up * jumpSpeed;
     }
 
+    void AttackReady()
+    {
+        if (state == EnemyState.Die) return;
+        spriteRenderer.flipX = (target.position.x - transform.position.x) < 0;
+        //Debug.Log("isGround"+isGround);
+        //Debug.Log("isAttacking" + isAttacking);
+        if (isGround && canAnything)
+        {
+            Debug.Log("공격!!!!!!!");
+            canAnything = false;
+            animator.Play("Enemy_Attack");
+            Invoke("Attack", 1f);
+        }
+    }
+
     void Attack()
     {
-        Debug.Log("공격!!!!!!!");
+        if (state == EnemyState.Die) return;
+        //isAttacking = true;
+        //rb.velocity = Vector2.up * jumpSpeed;
+        rb.AddForce(Vector2.up * attackHorizonJumpPower * 100);
+        Vector2 direct = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+        rb.AddForce(direct * attackHorizonJumpPower * 100);
+    }
+
+    void AttackDelay()
+    {
+        if (state == EnemyState.Die) return;
+        canAnything = true;
+        animator.Play("Enemy_Idle");
     }
 
     public override void Reset()
@@ -334,7 +383,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             return;
         }
 
-        isGrounded = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f, 0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
+        //isGrounded = Physics2D.OverlapBox((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(2f, 0.5f), 0, 1 << LayerMask.NameToLayer("Ground"));
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaupoint] - rb.position).normalized;
         //Vector2 force = direction * enemySpeed * Time.deltaTime;
@@ -343,7 +392,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         if (Mathf.Abs(direction.x) > 0.1f)
             moveX = direction.x < 0 ? -1f : 1f;
 
-        if (jumpEnabled && isGrounded)
+        if (jumpEnabled && isGround)
         {
             if (direction.y > jumpNodeHeightRequirement)
             {
