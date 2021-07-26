@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/04. Scenes/InGame.unity
     guid: eeb924527a3e99643808452ebfecb18b
-  - enabled: 0
+  - enabled: 1
     path: Assets/04. Scenes/Tutorial.unity
     guid: 6ea2256886637e243b8a0d4d7568abdd
-  - enabled: 0
+  - enabled: 1
     path: Assets/04. Scenes/Title.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/04. Scenes/IntroAnime.unity
     guid: d66370f103de4564481a55d7fd3eb4f3
-  - enabled: 0
+  - enabled: 1
     path: Assets/04. Scenes/Loading.unity
     guid: 866436c94b0a9414995e37de58b9a74d
   m_configObjects: {}
