@@ -8,21 +8,27 @@ public class PortalObj : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.Instance.player.isTeleportAble)
+        if (collision.CompareTag("Player"))
         {
-            GameManager.Instance.player.PlayerActCoolTimeSet(2, () =>
+            if (GameManager.Instance.player.isTeleportAble)
             {
-                GetComponent<BoxCollider2D>().enabled = false;
-                GameManager.Instance.player.transform.position = targetPotal.transform.position;
-                GameManager.Instance.player.isTeleportAble = false;
-                GetComponent<BoxCollider2D>().enabled = true;
-            });
+                GameManager.Instance.player.PlayerActCoolTimeSet(2, () =>
+                {
+                    GetComponent<BoxCollider2D>().enabled = false;
+                    GameManager.Instance.player.transform.position = targetPotal.transform.position;
+                    GameManager.Instance.player.isTeleportAble = false;
+                    GetComponent<BoxCollider2D>().enabled = true;
+                });
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameManager.Instance.player.isTeleportAble = true;
-        GameManager.Instance.player.PlayerActCoolTimeStop();
+        if (collision.CompareTag("Player"))
+        {
+            GameManager.Instance.player.isTeleportAble = true;
+            GameManager.Instance.player.PlayerActCoolTimeStop();
+        }
     }
 }
