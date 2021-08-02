@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7529360482571252013}
   - component: {fileID: 7529360482571252002}
   - component: {fileID: 7529360482571252012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BatEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
