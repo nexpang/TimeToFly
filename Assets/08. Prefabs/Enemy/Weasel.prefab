@@ -240,7 +240,7 @@ MonoBehaviour:
   target: {fileID: 0}
   chaseDist: 15
   pathUpdateSeconds: 0.5
-  nextWayPointDist: 3
+  nextWayPointDist: 1
   jumpNodeHeightRequirement: 0.5
   jumpModfier: 0.3
   jumpCheckOffset: 0.1
