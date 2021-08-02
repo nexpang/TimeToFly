@@ -250,6 +250,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         rb.AddForce(Vector2.up * attackHorizonJumpPower * 100);
         Vector2 direct = spriteRenderer.flipX ? Vector2.left : Vector2.right;
         rb.AddForce(direct * attackHorizonJumpPower * 100);
+        Invoke("AttackCancel", 0.2f);
     }
 
     void AttackDelay()
@@ -257,6 +258,17 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         if (state == EnemyState.Die) return;
         canAnything = true;
         animator.Play("Enemy_Idle");
+    }
+
+    void AttackCancel()
+    {
+        if(!isAttacking && !canAnything&& isGround)
+        {
+            rb.velocity = Vector2.zero;
+            isAttacking = false;
+            animator.Play("Enemy_AttackDelay");
+            Invoke("AttackDelay", attackDelay);
+        }
     }
 
     public override void Reset()
@@ -387,10 +399,6 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaupoint] - rb.position).normalized;
         //Vector2 force = direction * enemySpeed * Time.deltaTime;
-        float moveX = 0f;
-
-        if (Mathf.Abs(direction.x) > 0.1f)
-            moveX = direction.x < 0 ? -1f : 1f;
 
         if (jumpEnabled && isGround)
         {
@@ -400,7 +408,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             }
         }
         
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x+moveX, transform.position.y, transform.position.z), enemySpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x+direction.x, transform.position.y, transform.position.z), enemySpeed * Time.deltaTime);
         //rb.AddForce(force);
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaupoint]);
@@ -411,8 +419,8 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
 
         if (directionLookEnabled)
         {
-            if (moveX != 0f)
-                spriteRenderer.flipX = (moveX < 0);
+            if (direction.x != 0f)
+                spriteRenderer.flipX = (direction.x < 0);
         }
     }
 
