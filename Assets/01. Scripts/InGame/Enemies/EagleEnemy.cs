@@ -11,7 +11,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
     public EnemyState state = EnemyState.Idle;
     public float enemySpeed;
-    public float jumpSpeed;
 
     bool alreadySpawn = false;
 
@@ -21,6 +20,11 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
     private bool isDie = false;
     private bool isFutureDead = false;
+    private bool havingRock = false;
+
+    public GameObject rockObj = null;
+
+    public float reloadRockDelay = 1f;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
         StartCoroutine(CheckState());
         StartCoroutine(PlaySFX());
+        StartCoroutine(ReroadRockDelay());
     }
 
     private void FixedUpdate()
@@ -61,12 +66,29 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
             if (state == EnemyState.Idle)
             {
                 state = EnemyState.Walk;
-                animator.Play("Enemy_Walk");
-                targetX = Random.Range(target.position.x-7, target.position.x + 7);
+                if (havingRock)
+                    animator.Play("Enemy_Move_R");
+                else
+                    animator.Play("Enemy_Move");
+                targetX = Random.Range(target.position.x- (havingRock ? 3 : 7), target.position.x + (havingRock ? 3 : 7));
             }
 
-            float delay = Random.Range(1, 3);
+            float delay = Random.Range(2, 3);
             yield return new WaitForSeconds(delay);
+        }
+    }
+
+    IEnumerator ReroadRockDelay()
+    {
+        while(!isDie)
+        {
+            if (state == EnemyState.Die) yield break;
+
+            float delay = Random.Range(7, 10);
+            yield return new WaitForSeconds(delay);
+
+            if (!havingRock)
+                StartCoroutine(AttackReload());
         }
     }
 
@@ -90,20 +112,45 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
             yield return new WaitForSeconds(delay);
         }
     }
+    void Attack()
+    {
+        havingRock = false;
+        rockObj.transform.parent = null;
+        rockObj.GetComponent<Rigidbody2D>().simulated = true;
+    }
+
+    IEnumerator AttackReload()
+    {
+        state = EnemyState.Chase;
+        GetComponent<BoxCollider2D>().enabled = false;
+        animator.Play("Enemy_Down");
+        transform.DOMove(transform.position + Vector3.down * 7, reloadRockDelay / 2f);
+        yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
+        havingRock = true;
+        rockObj.SetActive(true);
+        animator.Play("Enemy_Idle_R");
+        transform.DOMove(transform.position + Vector3.up * 7, reloadRockDelay / 2f);
+        yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
+        GetComponent<BoxCollider2D>().enabled = true;
+        state = EnemyState.Idle;
+    }
 
     void Move()
     {
         if(transform.position.x<target.position.x-7 || transform.position.x > target.position.x + 7)
-            targetX = Random.Range(target.position.x - 7, target.position.x + 7);
+            targetX = Random.Range(target.position.x - (havingRock? 3 : 7), target.position.x + (havingRock ? 3 : 7));
         spriteRenderer.flipX = (targetX < transform.position.x);
 
         float dist = Mathf.Abs(targetX - transform.position.x);
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), dist*enemySpeed * Time.deltaTime);
 
-        if (dist <= 0.1f)
+        if (dist <= 1f)
         {
             state = EnemyState.Idle;
+
+            if (havingRock)
+                Attack();
             animator.Play("Enemy_Idle");
             return;
         }
@@ -115,20 +162,25 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         rb.simulated = true;
         isDie = false;
         state = EnemyState.Idle;
-        animator.Play("Enemy_Idle");
+        if (havingRock)
+            animator.Play("Enemy_Idle_R");
+        else
+            animator.Play("Enemy_Idle");
         StartCoroutine(CheckState());
         StartCoroutine(PlaySFX());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player") && GameManager.Instance.player.playerState == PlayerState.NORMAL)
+
+        if (collision.CompareTag("Player") && GameManager.Instance.player.playerState == PlayerState.NORMAL)
         {
             if (GameManager.Instance.player.transform.position.y > transform.position.y + 0.2f)
             {
                 GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
 
                 //if (isGround) rb.simulated = false;
+                rb.simulated = false;
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
@@ -146,14 +198,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
             else
             {
                 GameManager.Instance.player.GameOver();
-            }
-        }
-
-        if (collision.collider.CompareTag("Ground"))
-        {
-            if (isDie)
-            {
-                rb.simulated = false;
             }
         }
     }
