@@ -24,6 +24,7 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
     public float checkAttackDist = 5f;
     private Vector2 attackDirection = Vector2.zero;
     private bool canAttack = true;
+    private bool isAttacking = false;
 
     public float attackDist = 5f;
     public float attackSpeedForSeconds = 1f;
@@ -103,6 +104,8 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
     }
     IEnumerator Attack()
     {
+        if (state == EnemyState.Die) yield break; // 코루틴 종료
+        isAttacking = true;
         animator.Play("Enemy_Attack");
         float angel = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         spriteRenderer.flipX = false;
@@ -111,6 +114,7 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
 
         yield return new WaitForSeconds(attackSpeedForSeconds+0.1f);
 
+        isAttacking = false;
         animator.Play("Enemy_Idle");
         transform.rotation = Quaternion.Euler(Vector3.zero);
         spriteRenderer.flipX = attackDirection.x < 0;
@@ -165,7 +169,7 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
 
         if (collision.CompareTag("Player") && GameManager.Instance.player.playerState == PlayerState.NORMAL)
         {
-            if (GameManager.Instance.player.transform.position.y > transform.position.y + 0.2f)
+            if (GameManager.Instance.player.transform.position.y > transform.position.y + 0.2f && !isAttacking)
             {
                 GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
 
