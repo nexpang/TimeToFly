@@ -42,6 +42,8 @@ public class Ability_TimeBomb : Ability, IAbility
 
     bool isCharging = false;
 
+    public TimerMinusEffect timerMinusEffect;
+
     new void Start()
     {
         base.Start();
@@ -72,6 +74,7 @@ public class Ability_TimeBomb : Ability, IAbility
                 return;
             } // ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
 
+            StartCoroutine(timerMinusEffect.OnEffect(useTime));
             GameManager.Instance.timer -= useTime;
 
             GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);

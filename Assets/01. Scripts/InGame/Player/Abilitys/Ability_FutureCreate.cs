@@ -65,6 +65,9 @@ public class Ability_FutureCreate : Ability, IAbility
     // 함정 리셋
     ResetAbleTrap[] traps = null;
 
+
+    public TimerMinusEffect timerMinusEffect;
+
     new void Start()
     {
         base.Start();
@@ -104,6 +107,7 @@ public class Ability_FutureCreate : Ability, IAbility
 
         // 타이머 빠르게
         GameManager.Instance.timerScale = 1f / 1.5f;
+        StartCoroutine(timerMinusEffect.OnEffect(10));
         GameManager.Instance.timer -= 10;
 
         // 시계 초가 시작된다.
