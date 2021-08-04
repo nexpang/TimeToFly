@@ -21,6 +21,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     [SerializeField] private Sprite defaultSpr = null;
     [SerializeField] private Sprite pressedSpr = null;
 
+    public RectTransform abilityImgRectTrm;
+
     private void Start()
     {
         controllerBtn = GetComponent<Image>();
@@ -72,6 +74,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 PlayerInput.Instance.JoyStickJump();
                 break;
             case ControllerType.ABILITY:
+                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down*15);
                 PlayerInput.Instance.JoyStickAbility();
                 break;
             case ControllerType.INTERACTION:
@@ -98,6 +101,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 PlayerInput.Instance.joystickKeyHorizontal = 0;
                 break;
             case ControllerType.ABILITY:
+                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up*15);
                 PlayerInput.Instance.JoyStickAbilityOn();
                 break;
         }
