@@ -107,6 +107,8 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
         if (state == EnemyState.Die) yield break; // 코루틴 종료
         isAttacking = true;
         animator.Play("Enemy_Attack");
+        ObjectManager.PlaySound(ObjectManager.Instance.Audio_StarSpirit_Rusing, 1f, true);
+
         float angel = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         spriteRenderer.flipX = false;
         transform.rotation = Quaternion.AngleAxis(angel, Vector3.forward);

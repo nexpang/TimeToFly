@@ -21,6 +21,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     private bool isDie = false;
     private bool isFutureDead = false;
     private bool havingRock = false;
+    private bool firstRock = true;
 
     public GameObject rockObj = null;
 
@@ -84,9 +85,10 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         {
             if (state == EnemyState.Die) yield break;
 
-            float delay = Random.Range(7, 10);
+            float delay = firstRock ? 5f : Random.Range(10f, 12f);
+            if (firstRock)
+                firstRock = false;
             yield return new WaitForSeconds(delay);
-
             if (!havingRock)
                 StartCoroutine(AttackReload());
         }
@@ -114,16 +116,24 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     }
     void Attack()
     {
-        havingRock = false;
+        if (state == EnemyState.Die) return; // 코루틴 종료
         rockObj.transform.parent = null;
         rockObj.GetComponent<Rigidbody2D>().simulated = true;
     }
 
+    public void RockisReset()
+    {
+        havingRock = false;
+    }
+
     IEnumerator AttackReload()
     {
+        if (state == EnemyState.Die) yield break; // 코루틴 종료
+
         state = EnemyState.Chase;
         GetComponent<BoxCollider2D>().enabled = false;
         animator.Play("Enemy_Down");
+        ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Crying, 1f, true);
         transform.DOMove(transform.position + Vector3.down * 7, reloadRockDelay / 2f);
         yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
         havingRock = true;
@@ -131,6 +141,9 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         animator.Play("Enemy_Idle_R");
         transform.DOMove(transform.position + Vector3.up * 7, reloadRockDelay / 2f);
         yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
+
+        if (state == EnemyState.Die) yield break; // 코루틴 종료
+
         GetComponent<BoxCollider2D>().enabled = true;
         state = EnemyState.Idle;
     }
@@ -143,9 +156,9 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
         float dist = Mathf.Abs(targetX - transform.position.x);
 
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), dist*enemySpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), (dist > 2f ? dist : 2f) * enemySpeed * Time.deltaTime);
 
-        if (dist <= 1f)
+        if (dist <= 0.1f)
         {
             state = EnemyState.Idle;
 
@@ -185,7 +198,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
                 ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Die, 1f, true);
+                //ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Die, 1f, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
