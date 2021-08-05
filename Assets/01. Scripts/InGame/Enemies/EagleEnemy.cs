@@ -116,6 +116,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     }
     void Attack()
     {
+        if (state == EnemyState.Die) return; // 코루틴 종료
         rockObj.transform.parent = null;
         rockObj.GetComponent<Rigidbody2D>().simulated = true;
     }
@@ -127,9 +128,12 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
     IEnumerator AttackReload()
     {
+        if (state == EnemyState.Die) yield break; // 코루틴 종료
+
         state = EnemyState.Chase;
         GetComponent<BoxCollider2D>().enabled = false;
         animator.Play("Enemy_Down");
+        ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Crying, 1f, true);
         transform.DOMove(transform.position + Vector3.down * 7, reloadRockDelay / 2f);
         yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
         havingRock = true;
@@ -137,6 +141,9 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         animator.Play("Enemy_Idle_R");
         transform.DOMove(transform.position + Vector3.up * 7, reloadRockDelay / 2f);
         yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
+
+        if (state == EnemyState.Die) yield break; // 코루틴 종료
+
         GetComponent<BoxCollider2D>().enabled = true;
         state = EnemyState.Idle;
     }
@@ -191,7 +198,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
                 ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Die, 1f, true);
+                //ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Die, 1f, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
