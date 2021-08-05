@@ -21,6 +21,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     private bool isDie = false;
     private bool isFutureDead = false;
     private bool havingRock = false;
+    private bool firstRock = true;
 
     public GameObject rockObj = null;
 
@@ -84,9 +85,10 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         {
             if (state == EnemyState.Die) yield break;
 
-            float delay = Random.Range(7, 10);
+            float delay = firstRock ? 5f : Random.Range(10f, 12f);
+            if (firstRock)
+                firstRock = false;
             yield return new WaitForSeconds(delay);
-
             if (!havingRock)
                 StartCoroutine(AttackReload());
         }
@@ -114,9 +116,13 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     }
     void Attack()
     {
-        havingRock = false;
         rockObj.transform.parent = null;
         rockObj.GetComponent<Rigidbody2D>().simulated = true;
+    }
+
+    public void RockisReset()
+    {
+        havingRock = false;
     }
 
     IEnumerator AttackReload()
@@ -143,9 +149,9 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
 
         float dist = Mathf.Abs(targetX - transform.position.x);
 
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), dist*enemySpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), (dist > 2f ? dist : 2f) * enemySpeed * Time.deltaTime);
 
-        if (dist <= 1f)
+        if (dist <= 0.1f)
         {
             state = EnemyState.Idle;
 

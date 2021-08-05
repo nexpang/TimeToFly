@@ -71715,6 +71715,63 @@ Transform:
   m_Father: {fileID: 757075846}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &807835901
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 276229588069455943, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_Name
+      value: EagleEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276229588069455993, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07b0d0b43d3787a438e88a9e94a03690, type: 3}
 --- !u!1 &830731245
 GameObject:
   m_ObjectHideFlags: 0
@@ -125672,6 +125729,8 @@ MonoBehaviour:
   Audio_Cat_Meow: {fileID: 8300000, guid: 99c621522b330cb469d519923d1849af, type: 3}
   Audio_Cat_Die: {fileID: 8300000, guid: 90f573a762228644aae7ddacb615185e, type: 3}
   Audio_Cat_Purring: {fileID: 8300000, guid: ee2908359ac200c458a7feb27dc15094, type: 3}
+  Audio_Rock_Breaking: {fileID: 8300000, guid: dc5149895ebe49d4c98609b786afa9d5, type: 3}
+  Audio_StarSpirit_Rusing: {fileID: 8300000, guid: 9680c8c384406c44a88781c93e669a31, type: 3}
   Audio_BrickBreak: {fileID: 8300000, guid: db13301e181ffa348b1325052a045cfc, type: 3}
   Audio_BlockItem: {fileID: 8300000, guid: 8a98769d4087a0143ac960f8ab561ba1, type: 3}
   Audio_BlockHit: {fileID: 8300000, guid: c90cd98b2ee435740a7e9c0e7d0bd63d, type: 3}

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  enemySpeed: 1
+  enemySpeed: 2
   target: {fileID: 0}
   targetX: 0
   rockObj: {fileID: 7328818441677440827}
@@ -306,3 +306,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTrm: {fileID: 276229588069455993}
+  eagleEnemy: {fileID: 276229588069455994}

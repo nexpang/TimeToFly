@@ -8,6 +8,8 @@ public class EaglesRock : MonoBehaviour
     public Transform parentTrm;
     private Rigidbody2D rigid;
 
+    public EagleEnemy eagleEnemy;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -17,11 +19,26 @@ public class EaglesRock : MonoBehaviour
     {
         if(collision.collider.CompareTag("Ground"))
         {
-            rigid.simulated = false;
-            transform.SetParent(parentTrm);
-            transform.localPosition = chatchingPos;
-            gameObject.SetActive(false);
+            ObjectManager.PlaySound(ObjectManager.Instance.Audio_Rock_Breaking, 1f, true);
+            OnReset();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("FALLINGABLE"))
+        {
+            OnReset();
+        }
+    }
+
+    private void OnReset()
+    {
+        rigid.simulated = false;
+        transform.SetParent(parentTrm);
+        transform.localPosition = chatchingPos;
+        gameObject.SetActive(false);
+        eagleEnemy.RockisReset();
     }
 
     void Start()
