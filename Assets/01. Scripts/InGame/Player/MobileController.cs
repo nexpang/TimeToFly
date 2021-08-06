@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public enum ControllerType
 {
@@ -18,6 +19,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     [SerializeField] ControllerType controllerType;
     private Image controllerBtn = null;
     private bool isPressed = false;
+    private float defaultAhlpa = 0f;
     [SerializeField] private Sprite defaultSpr = null;
     [SerializeField] private Sprite pressedSpr = null;
 
@@ -26,6 +28,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     private void Start()
     {
         controllerBtn = GetComponent<Image>();
+        controllerBtn.color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
+
+        defaultAhlpa = controllerBtn.color.a;
     }
 
     private void Update()
@@ -46,7 +51,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
         if(isPressed)
         {
-            if (controllerType != ControllerType.ABILITY) controllerBtn.sprite = pressedSpr;
+            controllerBtn.sprite = pressedSpr;
+            controllerBtn.DOKill();
+            controllerBtn.color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 1f);
 
             switch (controllerType)
             {
@@ -60,7 +67,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
         }
         else
         {
-            if(controllerType != ControllerType.ABILITY) controllerBtn.sprite = defaultSpr;
+            controllerBtn.sprite = defaultSpr;
+            controllerBtn.DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
         }
     }
 
