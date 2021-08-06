@@ -28,6 +28,10 @@ public class BackgroundMove : MonoBehaviour
     [Header("메인이 clamp가 필요한가요?")]
     [SerializeField]
     bool isNeedClamp = true;
+    [SerializeField]
+    private bool isFront = false;
+    [SerializeField]
+    private float fixYPos = 0f; 
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +73,10 @@ public class BackgroundMove : MonoBehaviour
         else
         {
             Clamp();
+        }
+        if(isFront)
+        {
+            transform.position = new Vector3(transform.position.x, fixYPos, transform.position.z);
         }
     }
 
