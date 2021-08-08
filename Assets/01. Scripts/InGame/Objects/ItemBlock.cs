@@ -11,7 +11,7 @@ public enum ItemBlockType
 public class ItemBlock : ResetAbleTrap
 {
     public ItemBlockType blockType = ItemBlockType.BRICK;
-    public ParticleType particleType = ParticleType.BOX;
+    public BlockParticleType particleType = BlockParticleType.BOX;
     public GameObject item;
 
     bool isTrigger = false;
@@ -91,7 +91,7 @@ public class ItemBlock : ResetAbleTrap
                 }
             }
 
-            ParticleManager.CreateParticle(particleType, transform.position, 1.5f);
+            ParticleManager.CreateBlockParticle(particleType, transform.position, 1.5f);
             ObjectManager.PlaySound(ObjectManager.Instance.Audio_BrickBreak, 1, true);
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)

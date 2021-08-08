@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ParticleType
+public enum BlockParticleType
 {
     BOX,
     BRICK,
@@ -13,9 +13,15 @@ public class ParticleManager : MonoBehaviour
 {
     public static ParticleManager Instance;
 
+    [Header("블럭 파티클")]
     public Texture2D boxFrag;
     public Texture2D BrickFrag;
     public Texture2D darkBrickFrag;
+    [Space(10)]
+
+    [Header("일반 파티클(풀매니저)")]
+    public GameObject effect_StoneFragment;
+
 
     public GameObject blockParticle;
 
@@ -24,29 +30,28 @@ public class ParticleManager : MonoBehaviour
         Instance = this;
     }
 
-    [ContextMenu("파티클")]
-    private void Test()
+    private void Start()
     {
-        CreateParticle(ParticleType.BRICK, transform.position,1);
+        PoolManager.CreatePool<Effect_StoneFrag>(effect_StoneFragment, this.transform);
     }
 
-    public static void CreateParticle(ParticleType type, Vector2 pos, float destroyTime)
+    public static void CreateBlockParticle(BlockParticleType type, Vector2 pos, float destroyTime)
     {
         GameObject particle = Instantiate(Instance.blockParticle, Instance.gameObject.transform);
 
-        if (type == ParticleType.BOX)
+        if (type == BlockParticleType.BOX)
         {
             particle.GetComponent<ParticleSystemRenderer>().material.mainTexture = Instance.boxFrag;
             ParticleSystem.TextureSheetAnimationModule module = particle.GetComponent<ParticleSystem>().textureSheetAnimation;
             module.numTilesY = 4;
         }
-        else if (type == ParticleType.BRICK)
+        else if (type == BlockParticleType.BRICK)
         {
             particle.GetComponent<ParticleSystemRenderer>().material.mainTexture = Instance.BrickFrag;
             ParticleSystem.TextureSheetAnimationModule module = particle.GetComponent<ParticleSystem>().textureSheetAnimation;
             module.numTilesY = 3;
         }
-        else if (type == ParticleType.DARKBRICK)
+        else if (type == BlockParticleType.DARKBRICK)
         {
             particle.GetComponent<ParticleSystemRenderer>().material.mainTexture = Instance.darkBrickFrag;
             ParticleSystem.TextureSheetAnimationModule module = particle.GetComponent<ParticleSystem>().textureSheetAnimation;
@@ -55,5 +60,11 @@ public class ParticleManager : MonoBehaviour
 
         particle.transform.position = pos;
         Destroy(particle, destroyTime);
+    }
+
+    public static void CreateParticle<T>(Vector2 pos) where T : MonoBehaviour
+    {
+        T obj = PoolManager.GetItem<T>();
+        obj.transform.position = pos;
     }
 }

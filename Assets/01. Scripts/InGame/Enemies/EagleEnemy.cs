@@ -39,7 +39,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         target = GameManager.Instance.player.transform;
 
         StartCoroutine(CheckState());
-        StartCoroutine(PlaySFX());
         StartCoroutine(ReroadRockDelay());
     }
 
@@ -94,26 +93,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         }
     }
 
-    IEnumerator PlaySFX()
-    {
-        while (!isDie)
-        {
-            if (state == EnemyState.Die) yield break; // 코루틴 종료
-
-            if (Vector2.Distance(transform.position, GameManager.Instance.player.transform.position) <= 10)
-            {
-                int soundIdx = Random.Range(0, 2);
-
-                if (soundIdx == 0)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Meow, 1f, true);
-                else if (soundIdx == 1)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Purring, 1f, true);
-            }
-
-            float delay = Random.Range(5, 15);
-            yield return new WaitForSeconds(delay);
-        }
-    }
     void Attack()
     {
         if (state == EnemyState.Die) return; // 코루틴 종료
@@ -180,7 +159,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         else
             animator.Play("Enemy_Idle");
         StartCoroutine(CheckState());
-        StartCoroutine(PlaySFX());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

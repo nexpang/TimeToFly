@@ -20,6 +20,7 @@ public class EaglesRock : MonoBehaviour
         if(collision.collider.CompareTag("Ground"))
         {
             ObjectManager.PlaySound(ObjectManager.Instance.Audio_Rock_Breaking, 1f, true);
+            ParticleManager.CreateParticle<Effect_StoneFrag>(transform.position);
             OnReset();
         }
     }

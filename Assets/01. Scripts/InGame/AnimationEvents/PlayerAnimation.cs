@@ -61,7 +61,7 @@ public class PlayerAnimation : MonoBehaviour
             SecurityPlayerPrefs.SetInt(GameManager.Instance.tempLifekey, GameManager.Instance.tempLife);
             // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
 
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            GameManager.Instance.SceneReset();
         }
     }
 }

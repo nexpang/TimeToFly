@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -199,5 +200,11 @@ public class GameManager : MonoBehaviour
         aS.loop = Looping;
         aS.volume = volume;
         aS.PlayOneShot(clip);
+    }
+
+    public void SceneReset()
+    {
+        PoolManager.ResetPool();
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }
