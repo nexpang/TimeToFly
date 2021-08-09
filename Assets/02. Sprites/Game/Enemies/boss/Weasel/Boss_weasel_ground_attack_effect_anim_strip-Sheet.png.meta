@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 6120585524479705575
     second: Boss_weasel_ground_attack_effect_anim_strip-Sheet_4
+  - first:
+      213: -6934127827804416452
+    second: Boss_weasel_ground_attack_effect_anim_strip-Sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,7 +129,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +150,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +171,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,7 +192,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,7 +213,7 @@ TextureImporter:
         width: 256
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,6 +221,27 @@ TextureImporter:
       bones: []
       spriteID: 7e1c2043b10b0f450800000000000000
       internalID: 6120585524479705575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_weasel_ground_attack_effect_anim_strip-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36119caa7705cf90800000000000000
+      internalID: -6934127827804416452
       vertices: []
       indices: 
       edges: []
