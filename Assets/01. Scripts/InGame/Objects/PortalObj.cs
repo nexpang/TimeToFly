@@ -16,6 +16,10 @@ public class PortalObj : MonoBehaviour
                 {
                     GetComponent<BoxCollider2D>().enabled = false;
                     GameManager.Instance.player.transform.position = targetPotal.transform.position;
+
+                    ParticleManager.CreateParticle<Effect_PortalDirt>(transform.position);
+                    ParticleManager.CreateParticle<Effect_PortalDirt>(targetPotal.transform.position);
+                    ParticleManager.CreateParticle<Effect_PortalMoving>(targetPotal.transform.position);
                     GameManager.Instance.player.isTeleportAble = false;
                     GetComponent<BoxCollider2D>().enabled = true;
                 });

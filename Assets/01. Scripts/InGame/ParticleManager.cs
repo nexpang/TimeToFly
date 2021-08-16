@@ -21,6 +21,8 @@ public class ParticleManager : MonoBehaviour
 
     [Header("일반 파티클(풀매니저)")]
     public GameObject effect_StoneFragment;
+    public GameObject effect_PortalMoving;
+    public GameObject effect_PortalDirt;
 
 
     public GameObject blockParticle;
@@ -33,6 +35,8 @@ public class ParticleManager : MonoBehaviour
     private void Start()
     {
         PoolManager.CreatePool<Effect_StoneFrag>(effect_StoneFragment, this.transform);
+        PoolManager.CreatePool<Effect_PortalMoving>(effect_PortalMoving, this.transform);
+        PoolManager.CreatePool<Effect_PortalDirt>(effect_PortalDirt, this.transform);
     }
 
     public static void CreateBlockParticle(BlockParticleType type, Vector2 pos, float destroyTime)

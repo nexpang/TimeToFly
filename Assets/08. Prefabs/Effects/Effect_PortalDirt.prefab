@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6392477768832888479}
   - component: {fileID: 6392477768832888464}
   - component: {fileID: 6392477768832888465}
-  - component: {fileID: 6050170666630187556}
+  - component: {fileID: 5694640309911039897}
   m_Layer: 0
-  m_Name: Effect_StoneFragment
+  m_Name: Effect_PortalDirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,8 +1590,8 @@ ParticleSystem:
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
     tilesX: 1
-    tilesY: 3
-    animationType: 0
+    tilesY: 4
+    animationType: 1
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
@@ -4875,7 +4875,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d2c111fdbee3a746b213eb019b81281, type: 2}
+  - {fileID: 2100000, guid: e93bf2e175fb8da4e8d548b47978a89a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4921,7 +4921,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6050170666630187556
+--- !u!114 &5694640309911039897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6392477768832888466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8483068ee9f6e45a01303b96d6f6b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 85e708bfd0cc99f40ade9e677294b5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 2

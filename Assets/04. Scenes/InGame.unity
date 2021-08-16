@@ -33224,6 +33224,8 @@ MonoBehaviour:
   BrickFrag: {fileID: 2800000, guid: 726e51450b3cde545a3f903c13b661de, type: 3}
   darkBrickFrag: {fileID: 2800000, guid: baf1f3a3fc54c2047be6d6a631c0000c, type: 3}
   effect_StoneFragment: {fileID: 6392477768832888466, guid: 4a0237bb9d6900b4d9b027ea1881631b, type: 3}
+  effect_PortalMoving: {fileID: 2382246351807572677, guid: e2b631edd5aa42441bb1abff6b0fdd1e, type: 3}
+  effect_PortalDirt: {fileID: 6392477768832888466, guid: e696cf068bbc48d438742a04446940bd, type: 3}
   blockParticle: {fileID: 3120184535840975162, guid: bbb9a4ded643ef4408e5f205200dcad3, type: 3}
 --- !u!4 &431018884
 Transform:
