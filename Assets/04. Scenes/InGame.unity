@@ -136574,10 +136574,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest BG
       objectReference: {fileID: 0}
-    - target: {fileID: 1168870012234480791, guid: 27aacf9872905e046ad4351726d9b17b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4562406396137546681, guid: 27aacf9872905e046ad4351726d9b17b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -136662,8 +136658,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8037444656674994133, guid: 27aacf9872905e046ad4351726d9b17b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27aacf9872905e046ad4351726d9b17b, type: 3}
 --- !u!1 &3673387985229851920
 GameObject:
