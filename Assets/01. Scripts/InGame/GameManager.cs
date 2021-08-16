@@ -57,11 +57,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this; // ΩÃ±€≈Ê
+        Time.timeScale = 0;
     }
 
     private void Start()
     {
-        Time.timeScale = 0;
+        targetTime = Time.time + 1 * timerScale;
+
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
 
         // ∏Òº˚ πﬁæ∆ø¿∞Ì
@@ -166,7 +168,7 @@ public class GameManager : MonoBehaviour
         if(gameStartScreenChicken.sprite != playerSpr.sprite)
             gameStartScreenChicken.sprite = playerSpr.sprite;
 
-        if (isNeedTimer && Time.timeScale != 0)
+        if (isNeedTimer)
         {
             currentTime = Time.time;
             if (currentTime > targetTime)

@@ -23,6 +23,7 @@ public class ParticleManager : MonoBehaviour
     public GameObject effect_StoneFragment;
     public GameObject effect_PortalMoving;
     public GameObject effect_PortalDirt;
+    public GameObject effect_EagleFeather;
 
 
     public GameObject blockParticle;
@@ -37,6 +38,7 @@ public class ParticleManager : MonoBehaviour
         PoolManager.CreatePool<Effect_StoneFrag>(effect_StoneFragment, this.transform);
         PoolManager.CreatePool<Effect_PortalMoving>(effect_PortalMoving, this.transform);
         PoolManager.CreatePool<Effect_PortalDirt>(effect_PortalDirt, this.transform);
+        PoolManager.CreatePool<Effect_EagleFeather>(effect_EagleFeather, this.transform);
     }
 
     public static void CreateBlockParticle(BlockParticleType type, Vector2 pos, float destroyTime)

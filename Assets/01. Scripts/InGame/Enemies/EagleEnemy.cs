@@ -175,6 +175,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
+                ParticleManager.CreateParticle<Effect_EagleFeather>(transform.position);
                 ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
                 //ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Die, 1f, true);
 

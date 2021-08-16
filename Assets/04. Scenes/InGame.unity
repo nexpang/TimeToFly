@@ -27589,7 +27589,7 @@ Transform:
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7880572484022436515, guid: 4b416c2d8fa0d984596a3125bc599bb1, type: 3}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355769270}
@@ -27623,9 +27623,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingLayerID: -1547945997
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -27674,7 +27674,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.2
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -28659,21 +28659,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          value: 0
+          inSlope: -1.7514162
+          outSlope: -1.7514162
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.21706164
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -33226,6 +33226,7 @@ MonoBehaviour:
   effect_StoneFragment: {fileID: 6392477768832888466, guid: 4a0237bb9d6900b4d9b027ea1881631b, type: 3}
   effect_PortalMoving: {fileID: 2382246351807572677, guid: e2b631edd5aa42441bb1abff6b0fdd1e, type: 3}
   effect_PortalDirt: {fileID: 6392477768832888466, guid: e696cf068bbc48d438742a04446940bd, type: 3}
+  effect_EagleFeather: {fileID: 7880572484022436525, guid: 4b416c2d8fa0d984596a3125bc599bb1, type: 3}
   blockParticle: {fileID: 3120184535840975162, guid: bbb9a4ded643ef4408e5f205200dcad3, type: 3}
 --- !u!4 &431018884
 Transform:
@@ -120602,7 +120603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1637321547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -123566,7 +123567,7 @@ MonoBehaviour:
   isNeedTimer: 1
   life: 5
   isInfinityLife: 0
-  isDebug: 0
+  isDebug: 1
   gameStartScreen: {fileID: 1225578011}
   gameStartScreenChicken: {fileID: 1466925881}
   stageName: {fileID: 1905168154}
