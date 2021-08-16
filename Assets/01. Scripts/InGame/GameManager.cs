@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         if(gameStartScreenChicken.sprite != playerSpr.sprite)
             gameStartScreenChicken.sprite = playerSpr.sprite;
 
-        if (isNeedTimer)
+        if (isNeedTimer && Time.timeScale != 0)
         {
             currentTime = Time.time;
             if (currentTime > targetTime)

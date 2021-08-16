@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.35
+  speed: 0.28
   autoMoveDefault: 0
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 1
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.3
+  speed: 0.25
   autoMoveDefault: 0
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 1
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.15
+  speed: 0.125
   autoMoveDefault: 0
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 1
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.2
+  speed: 0.15
   autoMoveDefault: 0
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 1
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 0.25
+  speed: 0.2
   autoMoveDefault: 0
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 1
