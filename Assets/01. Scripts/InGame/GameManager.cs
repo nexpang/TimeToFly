@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     [Header("Ä«¸Þ¶ó")]
     public CinemachineImpulseSource cinemachineCamera;
 
+    [Header("UI")]
+    public CanvasGroup bossBar;
+    public RectTransform bossBarChicken;
+    public RectTransform bossBarFill;
 
     private void Awake()
     {

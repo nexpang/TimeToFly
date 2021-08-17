@@ -91,4 +91,10 @@ public class BackgroundMove : MonoBehaviour
 
         transform.localPosition = new Vector3(offset.x, transform.localPosition.y);
     }
+
+    public void SpeedChange(float value)
+    {
+        autoMoveDefault = value;
+        autoMoveCurrent = value;
+    }
 }
