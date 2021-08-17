@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour
     }
 
     [HideInInspector] public bool isGround;
-    [HideInInspector] public bool isStun;
+    [HideInInspector] public bool isAnimationStun;
     [HideInInspector] public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
+
+    private bool isStun;
 
     public PlayerState playerState = PlayerState.NORMAL;
 
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviour
     void PlayerMove(Movetype type)
     {
         if (isStun) return;
+        if (isAnimationStun) return;
 
         if(type == Movetype.JUMP)
         {
@@ -244,6 +247,19 @@ public class PlayerController : MonoBehaviour
         CircleValue.fillAmount = 1;
         coolTime = 0f;
         action.Invoke();
+    }
+
+    public void SetStun(float time)
+    {
+        StartCoroutine(ISetStun(time));
+    }
+
+    IEnumerator ISetStun(float time)
+    {
+        isStun = true;
+        an.SetBool("walk", false);
+        yield return new WaitForSeconds(time);
+        isStun = false;
     }
 
     private void OnDrawGizmos()

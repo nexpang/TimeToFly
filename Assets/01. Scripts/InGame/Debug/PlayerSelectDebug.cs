@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DebugScript : MonoBehaviour
+public class PlayerSelectDebug : MonoBehaviour
 {
     public Button[] chickenUIBtns;
 

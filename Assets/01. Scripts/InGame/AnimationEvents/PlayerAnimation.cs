@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool("land", false);
         animator.SetBool("falling", false);
 
-        playerController.isStun = false;
+        playerController.isAnimationStun = false;
         GameManager.Instance.player.isPressJump = false;
     }
 
@@ -38,12 +38,12 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool("land", false);
         animator.SetBool("falling", false);
 
-        playerController.isStun = true;
+        playerController.isAnimationStun = true;
     }
 
     void PlayerStunEventEnd() // 해당 함수는 Player_AfterJumpWait에 들어있음.
     {
-        playerController.isStun = false;
+        playerController.isAnimationStun = false;
     }
 
     public void PlayerDeadAnimEnd() // 해당 함수는 Player_Death, Player_FallenDeath에 들어있음.
@@ -52,7 +52,7 @@ public class PlayerAnimation : MonoBehaviour
         if (ability.enabled && ability.isAbilityEnable) // 만약 능력 1이고 자고있는 상태면
         {
             ability.ResetPlayer(); // 리셋시킨다.
-            playerController.isStun = false;
+            playerController.isAnimationStun = false;
             animator.Play("Player_Idle");
         }
         else // 아니라면
