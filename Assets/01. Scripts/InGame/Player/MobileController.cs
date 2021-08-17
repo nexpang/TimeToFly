@@ -65,11 +65,6 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     break;
             }
         }
-        else
-        {
-            controllerBtn.sprite = defaultSpr;
-            controllerBtn.DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
-        }
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
@@ -100,6 +95,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
+
+        controllerBtn.sprite = defaultSpr;
+        controllerBtn.DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
 
         switch (controllerType)
         {
@@ -139,6 +137,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         isPressed = false;
+
+        controllerBtn.sprite = defaultSpr;
+        controllerBtn.DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
 
         switch (controllerType)
         {

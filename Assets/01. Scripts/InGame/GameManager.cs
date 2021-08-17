@@ -53,15 +53,20 @@ public class GameManager : MonoBehaviour
     public List<AudioSource> BGMSources = new List<AudioSource>();
     public List<AudioSource> SFXSources = new List<AudioSource>();
 
+    [Header("Ä«¸Þ¶ó")]
+    public CinemachineImpulseSource cinemachineCamera;
+
 
     private void Awake()
     {
         Instance = this; // ½Ì±ÛÅæ
+        Time.timeScale = 0;
     }
 
     private void Start()
     {
-        Time.timeScale = 0;
+        targetTime = Time.time + 1 * timerScale;
+
         playerSpr = FindObjectOfType<PlayerAnimation>().GetComponent<SpriteRenderer>();
 
         // ¸ñ¼û ¹Þ¾Æ¿À°í
@@ -166,7 +171,7 @@ public class GameManager : MonoBehaviour
         if(gameStartScreenChicken.sprite != playerSpr.sprite)
             gameStartScreenChicken.sprite = playerSpr.sprite;
 
-        if (isNeedTimer && Time.timeScale != 0)
+        if (isNeedTimer)
         {
             currentTime = Time.time;
             if (currentTime > targetTime)
@@ -200,6 +205,14 @@ public class GameManager : MonoBehaviour
         aS.loop = Looping;
         aS.volume = volume;
         aS.PlayOneShot(clip);
+    }
+
+    public void Impulse(float attack, float sustainTime, float decay, float force = 1)
+    {
+        cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_AttackTime = attack;
+        cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = sustainTime;
+        cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = decay;
+        cinemachineCamera.GenerateImpulse(force);
     }
 
     public void SceneReset()

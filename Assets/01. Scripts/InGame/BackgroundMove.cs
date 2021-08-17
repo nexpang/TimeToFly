@@ -46,7 +46,7 @@ public class BackgroundMove : MonoBehaviour
     {
         if(GameManager.Instance != null && PlayerInput.Instance != null)
         {
-            if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isStun) return;
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isAnimationStun) return;
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
