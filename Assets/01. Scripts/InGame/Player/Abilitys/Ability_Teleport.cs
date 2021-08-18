@@ -167,7 +167,15 @@ public class Ability_Teleport : Ability, IAbility
         }
 
         Using();
-        teleportRange.transform.position = teleportRangePos;
+
+        if (GameManager.Instance.isBossStage)
+        {
+            teleportRange.transform.position = Camera.main.transform.position;
+        }
+        else
+        {
+            teleportRange.transform.position = teleportRangePos;
+        }
 
         if (GameManager.Instance.player.playerState == PlayerState.DEAD && isAbilityEnable)//만약 죽은상태라면
         {

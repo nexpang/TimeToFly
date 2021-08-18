@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text stageName = null;
     [SerializeField] Text lifeCount = null;
+    public bool isBossStage = false;
+    public bool isBossStart = false;
 
     [Header("플레이어")]
     public PlayerController player;

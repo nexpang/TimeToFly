@@ -19,6 +19,11 @@ public class BossAppear : MonoBehaviour
 
     private bool isTrigger = false;
 
+    private void Start()
+    {
+        GameManager.Instance.isBossStage = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -52,5 +57,6 @@ public class BossAppear : MonoBehaviour
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
+        GameManager.Instance.isBossStart = true;
     }
 }
