@@ -115054,6 +115054,108 @@ MonoBehaviour:
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
   showGraphs: 1
+--- !u!1 &1478106995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478106996}
+  - component: {fileID: 1478106998}
+  - component: {fileID: 1478106997}
+  - component: {fileID: 1478106999}
+  m_Layer: 5
+  m_Name: JokJeBi_SmashEffect
+  m_TagString: Boss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1478106996
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478106995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637321547}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 523, y: -81}
+  m_SizeDelta: {x: 768, y: 576}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1478106997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478106995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 6548297030633846764, guid: 3f810695bdad7af47915b88857e1e8dd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1478106998
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478106995}
+  m_CullTransparentMesh: 1
+--- !u!61 &1478106999
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478106995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -236.51202}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 400, y: 238.02345}
+  m_EdgeRadius: 0
 --- !u!1001 &1482935451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120545,8 +120647,7 @@ MonoBehaviour:
   - {fileID: 1176652841}
   - {fileID: 856824132}
   - {fileID: 110000876}
-  abilityNumber: 3
-  playerAnimObj: {fileID: 1957919228}
+  abilityNumber: 2
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
   Audio_playerDead: {fileID: 8300000, guid: 35cec1845de230b489682bbf9747a43f, type: 3}
@@ -121556,7 +121657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1637321547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -121572,6 +121673,7 @@ RectTransform:
   - {fileID: 2082340899}
   - {fileID: 1746163566}
   - {fileID: 1966185828}
+  - {fileID: 1478106996}
   m_Father: {fileID: 2026476254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121612,15 +121714,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isX: 1
-  startAndEnd: {x: 0, y: 160}
+  startAndEnd: {x: 0, y: 150}
+  backgroundMoves:
+  - backgroundMove: {fileID: 1197955781}
+    speed: 0.3
+  - backgroundMove: {fileID: 1747745602}
+    speed: 0.35
+  - backgroundMove: {fileID: 1063894712}
+    speed: 0.4
+  - backgroundMove: {fileID: 455029145}
+    speed: 0.45
+  - backgroundMove: {fileID: 2075991867}
+    speed: 0.5
   bossBarRectStartAndEnd: {x: 0, y: 0}
   cameraSpeed: 3
-  backgroundMoves:
-  - {fileID: 1197955781}
-  - {fileID: 1747745602}
-  - {fileID: 1063894712}
-  - {fileID: 455029145}
-  - {fileID: 2075991867}
+  weaselPrefab: {fileID: 5466490166424255769, guid: 764856123bffe89419e36397a0cd11f8, type: 3}
+  weaselSpawnCount: 3
 --- !u!61 &1637321550
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124589,6 +124698,7 @@ MonoBehaviour:
   isBossStage: 0
   isBossStart: 0
   player: {fileID: 1558494634}
+  playerAnimObj: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   defaultBGMvolume: 1
   chapters:
@@ -127229,13 +127339,14 @@ GameObject:
   - component: {fileID: 1966185828}
   - component: {fileID: 1966185830}
   - component: {fileID: 1966185829}
+  - component: {fileID: 1966185831}
   m_Layer: 5
   m_Name: JokJeBi_EnergySmashEffect
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1966185828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -127252,7 +127363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 838, y: -185.84}
+  m_AnchoredPosition: {x: 869, y: -185.84}
   m_SizeDelta: {x: 1500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966185829
@@ -127293,6 +127404,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966185827}
   m_CullTransparentMesh: 1
+--- !u!61 &1966185831
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966185827}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -37.993748}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 920, y: 226.4104}
+  m_EdgeRadius: 0
 --- !u!1 &1975324453
 GameObject:
   m_ObjectHideFlags: 0

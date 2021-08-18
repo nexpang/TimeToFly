@@ -48,13 +48,15 @@ public class BackgroundMove : MonoBehaviour
         {
             if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isAnimationStun) return;
 
+            if (autoMoveDefault == 0) return;
+
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
-                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? -30 : autoMoveDefault;
+                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? autoMoveDefault * -5 : autoMoveDefault;
             }
             else if (GameManager.Instance.player.abilitys[(int)Chickens.BLUE].gameObject.activeSelf)
             {
-                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? 100 : autoMoveDefault;
+                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? autoMoveDefault * 2 : autoMoveDefault;
             }
 
         }

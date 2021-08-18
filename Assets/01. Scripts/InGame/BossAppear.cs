@@ -41,9 +41,22 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.player.SetStun(8);
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
+
+        DOTween.To(() => GameManager.Instance.curStageInfo.virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+            value => GameManager.Instance.curStageInfo.virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = value,
+            2.5f, 0.5f);
+
         yield return new WaitForSeconds(3);
+        GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
         GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f,2);
-        yield return new WaitForSeconds(1.5f);
+        currentBoss.Event_CameraForce();
+
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
 
         currentBoss.gameObject.SetActive(true);
 
@@ -52,7 +65,9 @@ public class BossAppear : MonoBehaviour
             currentBoss.GetComponent<Animator>().Play("JokJeBi_Appear");
         }
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+        yield return new WaitForSeconds(1.5f);
         currentBoss.BossStart();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
