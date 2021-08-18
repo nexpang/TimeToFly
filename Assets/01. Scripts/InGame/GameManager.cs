@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         aS.PlayOneShot(clip);
     }
 
-    public void Impulse(float attack, float sustainTime, float decay, float force = 1)
+    public void CameraImpulse(float attack, float sustainTime, float decay, float force = 1)
     {
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_AttackTime = attack;
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = sustainTime;

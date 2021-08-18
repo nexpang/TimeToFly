@@ -9,6 +9,8 @@ public abstract class Boss : MonoBehaviour
 
     public abstract void BossStart();
 
+    protected bool cameraStop = true;
+
     public Vector2 bossBarRectStartAndEnd;
     private void Start()
     {
@@ -28,4 +30,23 @@ public abstract class Boss : MonoBehaviour
             - GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x / 2)
             , GameManager.Instance.bossBarChicken.anchoredPosition.y);
     }
+
+    #region ANIMATION_EVENTS
+
+    private void Event_CameraForce()
+    {
+        GameManager.Instance.CameraImpulse(0, 0.5f, 0, 1);
+    }
+
+    private void Event_CameraStop()
+    {
+        cameraStop = true;
+    }
+
+    private void Event_CameraResume()
+    {
+        cameraStop = false;
+    }
+
+    #endregion
 }

@@ -8,7 +8,6 @@ public class JokJeBiBoss : Boss
     Animator animator = null;
     public float cameraSpeed = 5f;
     public BackgroundMove[] backgroundMoves; // 먼 것부터 집어넣어라.
-    private bool cameraStop = true;
 
     private void Awake()
     {
@@ -38,11 +37,11 @@ public class JokJeBiBoss : Boss
     {
         if (cameraStop) return;
 
-        GameManager.Instance.curStageInfo.virtualCamera.transform.Translate(Vector2.right * cameraSpeed * Time.deltaTime);
-
-        if(GameManager.Instance.curStageInfo.virtualCamera.transform.position.x > startAndEnd.y)
+        if (GameManager.Instance.curStageInfo.virtualCamera.transform.position.x > startAndEnd.y)
         {
-            cameraStop = true;
+            return;
         }
+
+        GameManager.Instance.curStageInfo.virtualCamera.transform.Translate(Vector2.right * cameraSpeed * Time.deltaTime);
     }
 }

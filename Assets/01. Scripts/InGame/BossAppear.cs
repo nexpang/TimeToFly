@@ -42,7 +42,7 @@ public class BossAppear : MonoBehaviour
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
         yield return new WaitForSeconds(3);
-        GameManager.Instance.Impulse(0.25f, 1f, 0.25f,2);
+        GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f,2);
         yield return new WaitForSeconds(1.5f);
 
         currentBoss.gameObject.SetActive(true);

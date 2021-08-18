@@ -120545,7 +120545,7 @@ MonoBehaviour:
   - {fileID: 1176652841}
   - {fileID: 856824132}
   - {fileID: 110000876}
-  abilityNumber: 4
+  abilityNumber: 3
   playerAnimObj: {fileID: 1957919228}
   bgAudioSource: {fileID: 1607728714}
   Audio_playerJump: {fileID: 8300000, guid: 77a9ba132837a0f408ae211968405214, type: 3}
@@ -121552,11 +121552,11 @@ GameObject:
   - component: {fileID: 1637321550}
   m_Layer: 5
   m_Name: JokJeBi
-  m_TagString: DEADABLE
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1637321547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -121571,6 +121571,7 @@ RectTransform:
   - {fileID: 1627273595}
   - {fileID: 2082340899}
   - {fileID: 1746163566}
+  - {fileID: 1966185828}
   m_Father: {fileID: 2026476254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121613,7 +121614,7 @@ MonoBehaviour:
   isX: 1
   startAndEnd: {x: 0, y: 160}
   bossBarRectStartAndEnd: {x: 0, y: 0}
-  cameraSpeed: 5
+  cameraSpeed: 3
   backgroundMoves:
   - {fileID: 1197955781}
   - {fileID: 1747745602}
@@ -121633,7 +121634,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 395.3549, y: -7.229248}
+  m_Offset: {x: 269.3058, y: -7.229248}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -121644,7 +121645,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 980.58856, y: 1545.4773}
+  m_Size: {x: 728.49036, y: 1545.4773}
   m_EdgeRadius: 0
 --- !u!1 &1643881796
 GameObject:
@@ -127217,6 +127218,81 @@ MonoBehaviour:
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
   targetSheet: 0
+--- !u!1 &1966185827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966185828}
+  - component: {fileID: 1966185830}
+  - component: {fileID: 1966185829}
+  m_Layer: 5
+  m_Name: JokJeBi_EnergySmashEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1966185828
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966185827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637321547}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 838, y: -185.84}
+  m_SizeDelta: {x: 1500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1966185829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966185827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2962775447274704774, guid: 273d9b66a78f0c44e8308aa980548929, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1966185830
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966185827}
+  m_CullTransparentMesh: 1
 --- !u!1 &1975324453
 GameObject:
   m_ObjectHideFlags: 0
@@ -128044,9 +128120,10 @@ GameObject:
   - component: {fileID: 2082340899}
   - component: {fileID: 2082340901}
   - component: {fileID: 2082340900}
+  - component: {fileID: 2082340902}
   m_Layer: 5
   m_Name: JokJeBi_Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128108,6 +128185,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082340898}
   m_CullTransparentMesh: 1
+--- !u!61 &2082340902
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082340898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 492.6222, y: -12.709595}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1175.1228, y: 723.4177}
+  m_EdgeRadius: 0
 --- !u!1 &2082534642
 GameObject:
   m_ObjectHideFlags: 0
