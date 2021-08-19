@@ -10,7 +10,8 @@ public class BearTrap : ResetAbleTrap
 
     private void Start()
     {
-        playerRb = GameManager.Instance.player.transform;
+        if(GameManager.Instance != null)
+            playerRb = GameManager.Instance.player.transform;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
