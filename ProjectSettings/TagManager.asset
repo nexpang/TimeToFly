@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - TrapTrigger
   - Object
+  - Boss
   layers:
   - Default
   - TransparentFX

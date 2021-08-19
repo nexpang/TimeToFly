@@ -26,6 +26,8 @@ public class RotateMe : MonoBehaviour
             }
         }
 
+        
+
         transform.Rotate(rotateCurrent * Time.deltaTime);    
     }
 }

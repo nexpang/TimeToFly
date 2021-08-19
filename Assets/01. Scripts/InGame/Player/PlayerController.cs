@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     public Ability[] abilitys;
     public int abilityNumber = 0;
 
-    [SerializeField] private Transform playerAnimObj = null;
+    private Transform playerAnimObj = null;
     private Transform playerAbility = null;
 
     [Header("오디오 클립")]
@@ -83,14 +83,15 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {       
         rb = GetComponent<Rigidbody2D>();
-        an = playerAnimObj.GetComponent<Animator>();
-        sr = playerAnimObj.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         playerState = PlayerState.NORMAL;
     }
 
     private void Start()
     {
+        playerAnimObj = GameManager.Instance.playerAnimObj;
+        an = playerAnimObj.GetComponent<Animator>();
+        sr = playerAnimObj.GetComponent<SpriteRenderer>();
         PlayerAbilitySet();
     }
 
@@ -270,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("DEADABLE"))
+        if(collision.CompareTag("DEADABLE") || collision.CompareTag("Boss"))
         {
             GameOver();
         }
@@ -282,7 +283,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("DEADABLE"))
+        if(collision.collider.CompareTag("DEADABLE") || collision.collider.CompareTag("Boss"))
         {
             GameOver();
         }

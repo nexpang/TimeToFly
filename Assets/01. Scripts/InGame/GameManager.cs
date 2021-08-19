@@ -22,11 +22,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text stageName = null;
     [SerializeField] Text lifeCount = null;
-    public bool isBossStage = false;
-    public bool isBossStart = false;
+    [HideInInspector] public bool isBossStage = false;
+    [HideInInspector] public bool isBossStart = false;
 
     [Header("플레이어")]
     public PlayerController player;
+    public Transform playerAnimObj = null;
 
     [Header("배경음악")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
     public CinemachineImpulseSource cinemachineCamera;
 
     [Header("UI")]
+    public Color timerDefaultColor;
     public CanvasGroup bossBar;
     public RectTransform bossBarChicken;
     public RectTransform bossBarFill;
@@ -213,7 +215,7 @@ public class GameManager : MonoBehaviour
         aS.PlayOneShot(clip);
     }
 
-    public void Impulse(float attack, float sustainTime, float decay, float force = 1)
+    public void CameraImpulse(float attack, float sustainTime, float decay, float force = 1)
     {
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_AttackTime = attack;
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = sustainTime;
