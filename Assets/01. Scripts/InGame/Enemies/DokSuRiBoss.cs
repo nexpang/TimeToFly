@@ -51,20 +51,25 @@ public class DokSuRiBoss : Boss
             PatternReady();
             yield return new WaitForSeconds(1f);
 
-            Pattern1();
-            //switch (currentPattern)
-            //{
-            //    case 1:
-            //        Pattern1();
-            //        break;
-            //    case 2:
-            //        Pattern2();
-            //        break;
-            //    case 3:
-            //        Pattern3();
-            //        currentPattern = 0;
-            //        break;
-            //}
+            switch (currentPattern)
+            {
+                case 1:
+                    currentPattern++;
+                    Pattern1();
+
+
+                    yield return new WaitForSeconds(2f);
+                    break;
+                case 2:
+                    Pattern2();
+                    break;
+                case 3:
+                    Pattern3();
+                    currentPattern = 0;
+
+                    yield return new WaitForSeconds(2f);
+                    break;
+            }
         }
     }
 
@@ -117,6 +122,6 @@ public class DokSuRiBoss : Boss
 
     private void Pattern3() // 쪼기 - 독수리가 위로 올랐다가 플레이어 위치를 쪼면서 지나간다
     {
-
+        animator.Play("DokSuRi_Pattern3");
     }
 }
