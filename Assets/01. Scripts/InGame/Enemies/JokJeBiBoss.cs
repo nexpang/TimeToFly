@@ -21,11 +21,6 @@ public class JokJeBiBoss : Boss
 
     public override void BossStart()
     {
-/*        backgroundMoves[0].SpeedChange(0.3f);
-        backgroundMoves[1].SpeedChange(0.35f);
-        backgroundMoves[2].SpeedChange(0.4f);
-        backgroundMoves[3].SpeedChange(0.45f);
-        backgroundMoves[4].SpeedChange(0.5f);*/
         cameraStop = false;
 
         animator.Play("JokJeBi_Walk");
