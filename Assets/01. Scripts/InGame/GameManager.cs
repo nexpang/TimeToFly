@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public CinemachineImpulseSource cinemachineCamera;
 
     [Header("UI")]
+    public Color timerDefaultColor;
     public CanvasGroup bossBar;
     public RectTransform bossBarChicken;
     public RectTransform bossBarFill;
