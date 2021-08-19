@@ -64,6 +64,11 @@ public class BossAppear : MonoBehaviour
         {
             currentBoss.GetComponent<Animator>().Play("JokJeBi_Appear");
         }
+        else if(type == BossType.DOKSURI)
+        {
+            currentBoss.GetComponent<Animator>().Play("DokSuRi_Appear");
+            yield return new WaitForSeconds(1f);
+        }
 
         yield return new WaitForSeconds(2f);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
