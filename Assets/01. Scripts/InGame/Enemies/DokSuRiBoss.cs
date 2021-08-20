@@ -112,7 +112,7 @@ public class DokSuRiBoss : Boss
     public void Pattern1Rock()
     {
         float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x);
-        float power = dist/3f;
+        float power = dist/4f;
         print(dist);
 
         rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(650f, -100f);
