@@ -47,6 +47,13 @@ public class JokJeBiBoss : Boss
 
             currentPattern++;
 
+            if (nextPatternCancel)
+            {
+                print("ÆÐÅÏ Äµ½½µÊ");
+                nextPatternCancel = false;
+                continue;
+            }
+
             switch(currentPattern)
             {
                 case 1:

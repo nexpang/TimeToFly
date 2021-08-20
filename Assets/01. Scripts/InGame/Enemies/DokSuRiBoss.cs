@@ -48,6 +48,13 @@ public class DokSuRiBoss : Boss
 
             currentPattern++;
 
+            if (nextPatternCancel)
+            {
+                print("ÆÐÅÏ Äµ½½µÊ");
+                nextPatternCancel = false;
+                continue;
+            }
+
             PatternReady();
             yield return new WaitForSeconds(1f);
 
