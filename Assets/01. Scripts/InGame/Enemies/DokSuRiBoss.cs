@@ -111,15 +111,15 @@ public class DokSuRiBoss : Boss
 
     public void Pattern1Rock()
     {
-        float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x);
-        float power = dist/4f;
-        print(dist);
+        float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x)-9f;
+        float power = dist;
+        print(power);
 
         rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(650f, -100f);
         rock.SetActive(true);
 
         rock.GetComponent<Rigidbody2D>().AddForce(Vector2.up*8f, ForceMode2D.Impulse);
-        rock.GetComponent<Rigidbody2D>().AddForce(Vector2.right*power, ForceMode2D.Impulse);
+        rock.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (power > 1.2f ? power : 1.2f), ForceMode2D.Impulse);
     }
 
     private void Pattern2()  // 땅 부수기 - 독수리가 플레이어 앞의 땅을 부순다.
