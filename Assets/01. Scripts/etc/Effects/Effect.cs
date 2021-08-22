@@ -8,17 +8,17 @@ public class Effect : MonoBehaviour
 
     protected WaitForSeconds lifeWait = null;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         lifeWait = new WaitForSeconds(lifeTime);
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         StartCoroutine(LifeTime());
     }
 
-    protected IEnumerator LifeTime()
+    protected virtual IEnumerator LifeTime()
     {
         yield return lifeWait;
 

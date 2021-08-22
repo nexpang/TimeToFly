@@ -44,23 +44,7 @@ public class BackgroundMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance != null && PlayerInput.Instance != null)
-        {
-            if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isAnimationStun) return;
-
-            if (autoMoveDefault == 0) return;
-
-            if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
-            {
-                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? autoMoveDefault * -5 : autoMoveDefault;
-            }
-            else if (GameManager.Instance.player.abilitys[(int)Chickens.BLUE].gameObject.activeSelf)
-            {
-                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? autoMoveDefault * 2 : autoMoveDefault;
-            }
-
-        }
-
+        AbilityMove();
 
         if (type == BackgroundType.MAIN)
         {
@@ -79,6 +63,26 @@ public class BackgroundMove : MonoBehaviour
         if(isFront)
         {
             transform.position = new Vector3(transform.position.x, fixYPos, transform.position.z);
+        }
+    }
+
+    void AbilityMove()
+    {
+        if (GameManager.Instance != null && PlayerInput.Instance != null)
+        {
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD || GameManager.Instance.player.isAnimationStun) return;
+
+            if (autoMoveDefault == 0) return;
+
+            if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
+            {
+                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BROWN].isAbilityEnable ? autoMoveDefault * -5 : autoMoveDefault;
+            }
+            else if (GameManager.Instance.player.abilitys[(int)Chickens.BLUE].gameObject.activeSelf)
+            {
+                autoMoveCurrent = GameManager.Instance.player.abilitys[(int)Chickens.BLUE].isAbilityEnable ? autoMoveDefault * 2 : autoMoveDefault;
+            }
+
         }
     }
 

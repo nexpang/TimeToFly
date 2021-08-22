@@ -57,12 +57,15 @@ public class JokJeBiBoss : Boss
             switch(currentPattern)
             {
                 case 1:
+                    ParticleManager.CreateWarningBox(new Vector2(-552, 30), new Vector2(800, 720), 2, Color.yellow, Color.red, 0.5f);
+                    yield return new WaitForSeconds(1.5f);
                     Pattern1();
                     break;
                 case 2:
                     Pattern2();
                     break;
                 case 3:
+                    yield return new WaitForSeconds(2f);
                     Pattern3();
                     currentPattern = 0;
                     yield return new WaitForSeconds(1f);
@@ -100,6 +103,7 @@ public class JokJeBiBoss : Boss
 
     private void Pattern2() // 충격파 - 족제비가 땅을 쳐서 맵 반절의 충격파를 생성한다
     {
+        ParticleManager.CreateWarningBox(new Vector2(0, -227), new Vector2(920, 226), 3, Color.yellow, Color.red, 0.2f);
         animator.Play("JokJeBi_Pattern2");
     }
 
