@@ -35,7 +35,6 @@ public class Ability_TimeFaster : Ability, IAbility
 
     public float speedUp = 2f;
     [SerializeField] GameObject effect = null;
-    [SerializeField] GameObject player = null;
 
     [Header("È¿°úÀ½")]
     [SerializeField] AudioSource bgAudioSource = null;

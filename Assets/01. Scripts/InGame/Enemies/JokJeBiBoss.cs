@@ -57,7 +57,7 @@ public class JokJeBiBoss : Boss
             switch(currentPattern)
             {
                 case 1:
-                    ParticleManager.CreateWarningBox(new Vector2(-552, 30), new Vector2(800, 720), 2, Color.yellow, Color.red, 0.5f);
+                    ParticleManager.CreateWarningBox(new Vector2(-500, 30), new Vector2(800, 720), 2, Color.yellow, Color.red, 0.5f);
                     yield return new WaitForSeconds(1.5f);
                     Pattern1();
                     break;
@@ -74,7 +74,7 @@ public class JokJeBiBoss : Boss
                     {
                         GameObject weasel = Instantiate(weaselPrefab, null);
 
-                        float randomX = Random.Range(Camera.main.transform.position.x - 5, Camera.main.transform.position.x);
+                        float randomX = Random.Range(Camera.main.transform.position.x + 10, Camera.main.transform.position.x + 3);
 
                         weasel.transform.position = new Vector2(randomX, 7);
                         yield return new WaitForSeconds(0.3f);
