@@ -28,6 +28,7 @@ public class JokJeBiBoss : Boss
         foreach (BackgroundSpeed background in backgroundMoves)
         {
             background.backgroundMove.SpeedChange(background.speed);
+            background.backgroundMove.PlayerFollow(false);
         }
     }
 
@@ -72,12 +73,14 @@ public class JokJeBiBoss : Boss
 
                     for (int i = 0; i < weaselSpawnCount; i++)
                     {
-                        GameObject weasel = Instantiate(weaselPrefab, null);
+                        WeaselEnemy weasel = Instantiate(weaselPrefab, null).GetComponent<WeaselEnemy>();
+                        weasel.EnemySpeedChange(6);
+                        weasel.EnemyJumpSpeedChange(10);
 
-                        float randomX = Random.Range(Camera.main.transform.position.x + 10, Camera.main.transform.position.x + 3);
+                        float randomX = Random.Range(Camera.main.transform.position.x - 7, Camera.main.transform.position.x - 5);
 
-                        weasel.transform.position = new Vector2(randomX, 7);
-                        yield return new WaitForSeconds(0.3f);
+                        weasel.transform.position = new Vector2(randomX, 9);
+                        yield return new WaitForSeconds(0.6f);
                     }
                     break;
             }

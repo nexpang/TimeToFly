@@ -111,14 +111,14 @@ public class DokSuRiBoss : Boss
 
     public void Pattern1Rock()
     {
-        float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x)-9f;
-        float power = dist;
-        print(power);
+        float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x);
+        float power = dist*0.8f;
+        print(dist);
 
-        rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(650f, -100f);
+        rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350f, -100f);
         rock.SetActive(true);
 
-        rock.GetComponent<Rigidbody2D>().AddForce(Vector2.up*8f, ForceMode2D.Impulse);
+        rock.GetComponent<Rigidbody2D>().AddForce(Vector2.up*10f, ForceMode2D.Impulse);
         rock.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (power > 1.2f ? power : 1.2f), ForceMode2D.Impulse);
     }
 
