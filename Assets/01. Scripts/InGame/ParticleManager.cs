@@ -25,7 +25,11 @@ public class ParticleManager : MonoBehaviour
     public GameObject effect_PortalDirt;
     public GameObject effect_EagleFeather;
 
+    [Header("Æ¯¼ö ÀÌÆåÆ®")]
+    public GameObject PatternWarningBox;
+    public Transform WarningBox_Box;
 
+    [Space(10)]
     public GameObject blockParticle;
 
     private void Awake()
@@ -39,6 +43,7 @@ public class ParticleManager : MonoBehaviour
         PoolManager.CreatePool<Effect_PortalMoving>(effect_PortalMoving, this.transform);
         PoolManager.CreatePool<Effect_PortalDirt>(effect_PortalDirt, this.transform);
         PoolManager.CreatePool<Effect_EagleFeather>(effect_EagleFeather, this.transform);
+        PoolManager.CreatePool<Effect_WarningBox>(PatternWarningBox, WarningBox_Box);
     }
 
     public static void CreateBlockParticle(BlockParticleType type, Vector2 pos, float destroyTime)
@@ -72,5 +77,17 @@ public class ParticleManager : MonoBehaviour
     {
         T obj = PoolManager.GetItem<T>();
         obj.transform.position = pos;
+    }
+
+    public static void CreateWarningBox(Vector2 position, Vector2 size, float waitTime, float signSize = 150)
+    {
+        Effect_WarningBox obj = PoolManager.GetItem<Effect_WarningBox>();
+        obj.Create(position, size, waitTime, signSize);
+    }
+
+    public static void CreateWarningBox(Vector2 position, Vector2 size, float waitTime, Color startColor, Color endColor, float colorInterval, float signSize = 150)
+    {
+        Effect_WarningBox obj = PoolManager.GetItem<Effect_WarningBox>();
+        obj.Create(position, size, waitTime, startColor, endColor, colorInterval, signSize);
     }
 }

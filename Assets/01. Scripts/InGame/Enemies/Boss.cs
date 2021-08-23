@@ -20,6 +20,8 @@ public abstract class Boss : MonoBehaviour
     protected bool cameraStop = true;
     [HideInInspector] public Vector2 bossBarRectStartAndEnd;
 
+    protected bool nextPatternCancel = false;
+
     private void Start()
     {
         bossBarRectStartAndEnd = new Vector2(GameManager.Instance.bossBar.transform.position.x,
@@ -37,6 +39,11 @@ public abstract class Boss : MonoBehaviour
             (bossBarRectStartAndEnd.x + ((bossBarRectStartAndEnd.y - bossBarRectStartAndEnd.x) * barScale)
             - GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x / 2)
             , GameManager.Instance.bossBarChicken.anchoredPosition.y);
+    }
+
+    public void BossHitBoom()
+    {
+        nextPatternCancel = true;
     }
 
     #region ANIMATION_EVENTS
