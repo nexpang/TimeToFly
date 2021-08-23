@@ -12,8 +12,6 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     public EnemyState state = EnemyState.Idle;
     public float enemySpeed;
 
-    bool alreadySpawn = false;
-
     public Transform target;
 
     public float targetX;

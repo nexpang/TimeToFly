@@ -50,6 +50,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
         GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f,2);
         currentBoss.Event_CameraForce();
+        currentBoss.transform.position = new Vector2(currentBoss.transform.position.x, currentBoss.spawnPoint.position.y);
 
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
@@ -63,6 +64,7 @@ public class BossAppear : MonoBehaviour
         if(type == BossType.JOKJEBI)
         {
             currentBoss.GetComponent<Animator>().Play("JokJeBi_Appear");
+            yield return new WaitForSeconds(2f);
         }
         else if(type == BossType.DOKSURI)
         {
