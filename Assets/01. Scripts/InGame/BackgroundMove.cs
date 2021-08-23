@@ -64,7 +64,11 @@ public class BackgroundMove : MonoBehaviour
 
             offset.x += speed * autoMoveCurrent * Time.deltaTime;
             if(isNeedClamp) offset.x = Mathf.Clamp(offset.x, 0, 10);
-            BGImg.material.SetTextureOffset("_MainTex", offset);
+
+            if (BGImg.material != null)
+            {
+                BGImg.material.SetTextureOffset("_MainTex", offset);
+            }
         }
         else
         {
