@@ -18,6 +18,8 @@ public class BackgroundMove : MonoBehaviour
     [SerializeField]
     private float speed = 0.1f;
     [SerializeField]
+    bool isPlayerFollow = true;
+    [SerializeField]
     private float autoMoveDefault = 0.5f;
     private float autoMoveCurrent = 0.5f;
 
@@ -49,9 +51,17 @@ public class BackgroundMove : MonoBehaviour
         if (type == BackgroundType.MAIN)
         {
             if (GameManager.Instance != null && PlayerInput.Instance != null)
-                offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+            {
+                if (isPlayerFollow)
+                {
+                    offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+                }
+            }
             else
+            {
                 offset.x += speed * Time.deltaTime;
+            }
+
             offset.x += speed * autoMoveCurrent * Time.deltaTime;
             if(isNeedClamp) offset.x = Mathf.Clamp(offset.x, 0, 10);
             BGImg.material.SetTextureOffset("_MainTex", offset);
@@ -102,5 +112,10 @@ public class BackgroundMove : MonoBehaviour
     {
         autoMoveDefault = value;
         autoMoveCurrent = value;
+    }
+
+    public void PlayerFollow(bool value)
+    {
+        isPlayerFollow = value;
     }
 }

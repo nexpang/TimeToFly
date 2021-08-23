@@ -440,4 +440,14 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             currentWaupoint = 0;
         }
     }
+
+    public void EnemySpeedChange(float value)
+    {
+        enemySpeed = value;
+    }
+
+    public void EnemyJumpSpeedChange(float value)
+    {
+        jumpSpeed = value;
+    }
 }
