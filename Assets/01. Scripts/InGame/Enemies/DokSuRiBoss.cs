@@ -115,7 +115,7 @@ public class DokSuRiBoss : Boss
         float power = dist*0.8f;
         print(dist);
 
-        rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350f, 0f);
+        rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350f, -100f);
         rock.SetActive(true);
 
         rock.GetComponent<Rigidbody2D>().AddForce(Vector2.up*10f, ForceMode2D.Impulse);
