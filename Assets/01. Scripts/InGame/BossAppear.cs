@@ -31,14 +31,21 @@ public class BossAppear : MonoBehaviour
             if (!isTrigger)
             {
                 isTrigger = true;
-                StartCoroutine(BossStart(bossType));
+                StartCoroutine(BossStart());
             }
         }
     }
 
-    IEnumerator BossStart(BossType type)
+    IEnumerator BossStart()
     {
-        GameManager.Instance.player.SetStun(8);
+        if (bossType == BossType.JOKJEBI)
+        {
+            GameManager.Instance.player.SetStun(10);
+        }
+        else if (bossType == BossType.DOKSURI)
+        {
+            GameManager.Instance.player.SetStun(8);
+        }
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
 
@@ -61,12 +68,12 @@ public class BossAppear : MonoBehaviour
 
         currentBoss.gameObject.SetActive(true);
 
-        if(type == BossType.JOKJEBI)
+        if(bossType == BossType.JOKJEBI)
         {
             currentBoss.GetComponent<Animator>().Play("JokJeBi_Appear");
             yield return new WaitForSeconds(2f);
         }
-        else if(type == BossType.DOKSURI)
+        else if(bossType == BossType.DOKSURI)
         {
             currentBoss.GetComponent<Animator>().Play("DokSuRi_Appear");
             yield return new WaitForSeconds(1f);
