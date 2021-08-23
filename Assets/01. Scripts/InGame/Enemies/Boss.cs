@@ -7,6 +7,7 @@ public abstract class Boss : MonoBehaviour
 {
     public bool isX = true;
     [SerializeField] protected Vector2 startAndEnd;
+    public Transform spawnPoint;
 
     [System.Serializable]
     public struct BackgroundSpeed
