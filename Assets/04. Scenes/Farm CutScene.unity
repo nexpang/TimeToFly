@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9694309
 Transform:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
     - {fileID: 2393308677314426644, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
-  targetSheet: 4
+  targetSheet: 3
 --- !u!212 &9694313
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -986,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &912730390
 Transform:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
     - {fileID: 2393308677314426644, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
-  targetSheet: 4
+  targetSheet: 2
 --- !u!212 &912730394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2152,7 +2152,7 @@ MonoBehaviour:
     - {fileID: 2393308677314426644, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
-  targetSheet: 4
+  targetSheet: 1
 --- !u!212 &1153222393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2798,7 +2798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1810394145
 Transform:
   m_ObjectHideFlags: 0
@@ -6125,6 +6125,24 @@ PlayableDirector:
     value: {fileID: 9694308}
   - key: {fileID: 0}
     value: {fileID: 1810394144}
+  - key: {fileID: 7276252799192470678, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 912730389}
+  - key: {fileID: 6766572049855026042, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 912730392}
+  - key: {fileID: -1355646091979978327, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 912730392}
+  - key: {fileID: -5380989587738502586, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 9694308}
+  - key: {fileID: -5905409978675684442, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 9694311}
+  - key: {fileID: 844764237868632579, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 9694311}
+  - key: {fileID: 2853732447633477898, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 1810394144}
+  - key: {fileID: 7158450442757974928, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 1810394147}
+  - key: {fileID: 4454467831863864864, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+    value: {fileID: 1810394147}
   m_ExposedReferences:
     m_References:
     - 3221f6f98764c744ab9da5a1713895ce: {fileID: 1532241193}
@@ -6384,7 +6402,7 @@ MonoBehaviour:
     - {fileID: 2393308677314426644, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: 3488517226772556278, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
     - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
-  targetSheet: 4
+  targetSheet: 0
 --- !u!95 &2059679816
 Animator:
   serializedVersion: 3
