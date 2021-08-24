@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using Cinemachine;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup bossBar;
     public RectTransform bossBarChicken;
     public RectTransform bossBarFill;
+    public Image fadeScreen;
 
     private void Awake()
     {
@@ -227,5 +229,31 @@ public class GameManager : MonoBehaviour
     {
         PoolManager.ResetPool();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    bool isFinished = false;
+    public void FadeInOut(float inSec, float outSec, float waitTime = 0f, UnityAction whileFunc = null)
+    {
+        StartCoroutine(Fade(inSec, outSec, waitTime, whileFunc));
+    }
+
+    IEnumerator Fade(float inSec, float outSec, float waitTime = 0f, UnityAction whileFunc = null)
+    {
+        fadeScreen.gameObject.SetActive(true);
+        fadeScreen.color = new Color(0, 0, 0, 0);
+        fadeScreen.DOFade(1, inSec).OnComplete(() => isFinished = true);
+
+        yield return new WaitUntil(() => isFinished);
+
+        if (whileFunc != null)
+        {
+            whileFunc();
+        }
+
+        yield return new WaitForSeconds(waitTime);
+
+        isFinished = false;
+
+        fadeScreen.DOFade(0, outSec).OnComplete(() => fadeScreen.gameObject.SetActive(false));
     }
 }
