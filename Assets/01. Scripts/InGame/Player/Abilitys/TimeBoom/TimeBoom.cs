@@ -38,7 +38,7 @@ public class TimeBoom : MonoBehaviour
         coolStart = false;
         isAlreadyExplosion = false;
     }
-
+    
     private void Update()
     {
         if (isAlreadyExplosion)

@@ -22,7 +22,7 @@ public class BossEagleRock : MonoBehaviour
         if(collision.collider.CompareTag("Ground"))
         {
             isground = true;
-
+            ParticleManager.CreateParticle<Effect_StoneFrag>(transform.position);
             print("³ª ´êÀ½");
         }
     }
