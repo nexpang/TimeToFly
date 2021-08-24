@@ -246,7 +246,7 @@ public class Ability_Teleport : Ability, IAbility
         joystick.transform.position = firstJPos + vec * fSqr;
         teleportPos = playerPos.position;
 
-        RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.5f, Vector2.up);
+        RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.2f, Vector2.zero);
 
         if (rh2ds != null)
         {
@@ -261,10 +261,10 @@ public class Ability_Teleport : Ability, IAbility
 
         teleportPos = playerPos.position + vec * (fSqr * teleportPower);
 
-        //Vector2 teleportRangeOffset = new Vector2(teleportRange.offset.x + teleportRange.transform.position.x,teleportRange.offset.y + teleportRange.transform.position.y);
+        Vector2 teleportRangeOffset = new Vector2(teleportRange.offset.x + teleportRange.transform.position.x,teleportRange.offset.y + teleportRange.transform.position.y);
 
-        //teleportPos.x = Mathf.Clamp(teleportPos.x, teleportRangeOffset.x - teleportRange.size.x / 2, teleportRangeOffset.x + teleportRange.size.x / 2);
-        //teleportPos.y = Mathf.Clamp(teleportPos.y, teleportRangeOffset.y - teleportRange.size.y / 2, teleportRangeOffset.y + teleportRange.size.y / 2);
+        teleportPos.x = Mathf.Clamp(teleportPos.x, teleportRangeOffset.x - teleportRange.size.x / 2, teleportRangeOffset.x + teleportRange.size.x / 2);
+        teleportPos.y = Mathf.Clamp(teleportPos.y, teleportRangeOffset.y - teleportRange.size.y / 2, teleportRangeOffset.y + teleportRange.size.y / 2);
 
         teleportPosObjTrans.position = teleportPos;
         teleportPosFinalPoint.transform.position = teleportPosObjTrans.position;

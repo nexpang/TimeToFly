@@ -54,8 +54,7 @@ public class BossAppear : MonoBehaviour
              });
             yield break;
         }
-
-
+        
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
 
