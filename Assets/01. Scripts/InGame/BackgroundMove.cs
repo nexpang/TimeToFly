@@ -20,6 +20,8 @@ public class BackgroundMove : MonoBehaviour
     [SerializeField]
     bool isPlayerFollow = true;
     [SerializeField]
+    bool isX = true;
+    [SerializeField]
     private float autoMoveDefault = 0.5f;
     private float autoMoveCurrent = 0.5f;
 
@@ -54,16 +56,49 @@ public class BackgroundMove : MonoBehaviour
             {
                 if (isPlayerFollow)
                 {
-                    offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+                    if (isX)
+                    {
+                        offset.x += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+                    }
+                    else
+                    {
+                        offset.y += speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+                    }
                 }
             }
             else
             {
-                offset.x += speed * Time.deltaTime;
+                if (isX)
+                {
+                    offset.x += speed * Time.deltaTime;
+                }
+                else
+                {
+                    offset.y += speed * Time.deltaTime;
+                }
             }
 
-            offset.x += speed * autoMoveCurrent * Time.deltaTime;
-            if(isNeedClamp) offset.x = Mathf.Clamp(offset.x, 0, 10);
+
+            if (isX)
+            {
+                offset.x += speed * autoMoveCurrent * Time.deltaTime;
+            }
+            else
+            {
+                offset.y += speed * autoMoveCurrent * Time.deltaTime;
+            }
+
+            if (isNeedClamp)
+            {
+                if (isX)
+                {
+                    offset.x = Mathf.Clamp(offset.x, 0, 10);
+                }
+                else
+                {
+                    offset.y = Mathf.Clamp(offset.x, 0, 10);
+                }
+            }
 
             if (BGImg.material != null)
             {
@@ -103,13 +138,39 @@ public class BackgroundMove : MonoBehaviour
     void Clamp()
     {
         if (GameManager.Instance != null && PlayerInput.Instance != null)
-            offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+        {
+            if (isX)
+            {
+                offset.x -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+            }
+            else
+            {
+                offset.y -= speed * Time.deltaTime * PlayerInput.Instance.KeyHorizontal * GameManager.Instance.player.currentMoveS * 7;
+            }
+        }
         else
-            offset.x -= speed * Time.deltaTime;
+        {
+            if (isX)
+            {
+                offset.x -= speed * Time.deltaTime;
+            }
+            else
+            {
+                offset.y -= speed * Time.deltaTime;
+            }
+        }
 
-        offset.x = Mathf.Clamp(offset.x, clampOffect.x, clampOffect.y);
 
-        transform.localPosition = new Vector3(offset.x, transform.localPosition.y);
+        if (isX)
+        {
+            offset.x = Mathf.Clamp(offset.x, clampOffect.x, clampOffect.y);
+            transform.localPosition = new Vector3(offset.x, transform.localPosition.y);
+        }
+        else
+        {
+            offset.y = Mathf.Clamp(offset.y, clampOffect.x, clampOffect.y);
+            transform.localPosition = new Vector3(transform.localPosition.x, offset.y);
+        }
     }
 
     public void SpeedChange(float value)

@@ -44,13 +44,22 @@ public class BossAppear : MonoBehaviour
         }
         else if (bossType == BossType.DOKSURI)
         {
-            GameManager.Instance.player.SetStun(8);
+            GameManager.Instance.player.SetStun(10);
         }
         else if (bossType == BossType.BAT)
         {
+            GameManager.Instance.player.SetStun(6);
             GameManager.Instance.FadeInOut(2.5f, 2f, 1, () =>
              {
                  Debug.Log("¤¾¤·");
+                 GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
+                 GameManager.Instance.curStageInfo.virtualCamera.transform.position = currentBoss.GetComponent<BatBoss>().cameraTeleportPoint.position;
+                 GameManager.Instance.player.transform.position = currentBoss.GetComponent<BatBoss>().playerTeleportPoint.position;
+                 currentBoss.GetComponent<BatBoss>().WallLeft.offset = Vector2.zero;
+                 currentBoss.GetComponent<BatBoss>().WallRight.offset = Vector2.zero;
+
+                 currentBoss.GetComponent<BatBoss>().beforeBG.SetActive(false);
+                 currentBoss.GetComponent<BatBoss>().afterBG.SetActive(true);
              });
             yield break;
         }

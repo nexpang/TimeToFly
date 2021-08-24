@@ -45,7 +45,6 @@ public class Ability_Teleport : Ability, IAbility
     Vector2 teleportRangePos;
 
     private Transform teleportPosObjTrans = null;
-    [SerializeField] Sprite joystickSpr = null;
 
     [SerializeField] float timeSlow = 4f;
     [SerializeField] float minusTimeForS = 10f;
@@ -106,7 +105,6 @@ public class Ability_Teleport : Ability, IAbility
 
         joystick.transform.SetParent(joystickBack.transform);
         joystickRect.transform.localPosition = Vector2.zero;
-        abilityBtn.sprite = joystickSpr;
 
         GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
         playerAudioSource.DOPitch(0.3f, 1);
