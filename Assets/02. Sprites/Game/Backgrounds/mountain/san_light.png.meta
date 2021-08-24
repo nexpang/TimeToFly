@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/02. Sprites/Game/Backgrounds/mountain/san_light.png.meta
 guid: e76eb2161be9d7449b6749cd6d871bb5
+=======
+guid: 7880988de44e9c244adf9038b20bc6eb
+>>>>>>> origin/develop:Assets/02. Sprites/Game/Backgrounds/san_light.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

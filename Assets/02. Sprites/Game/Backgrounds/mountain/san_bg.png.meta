@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/02. Sprites/Game/Backgrounds/mountain/san_bg.png.meta
 guid: 07d3ad560d6e4c342926b6acc1ca70c1
+=======
+guid: 745d4de66f40f2b41b87cd0039186147
+>>>>>>> origin/develop:Assets/02. Sprites/Game/Backgrounds/mountain/san_bg_colorChange.png.meta
+=======
+guid: 755a8cdecaef41949aaf9dcec7dfc854
+>>>>>>> origin/develop
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

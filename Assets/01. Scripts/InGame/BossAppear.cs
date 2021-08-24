@@ -46,6 +46,15 @@ public class BossAppear : MonoBehaviour
         {
             GameManager.Instance.player.SetStun(8);
         }
+        else if (bossType == BossType.BAT)
+        {
+            GameManager.Instance.FadeInOut(2.5f, 2f, 1, () =>
+             {
+                 Debug.Log("¤¾¤·");
+             });
+            yield break;
+        }
+        
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
 
