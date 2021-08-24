@@ -90,6 +90,8 @@ public class Ability_Teleport : Ability, IAbility
             return;
         }// 쿨타임이 아직 안됐다.
 
+        teleportPos = playerPos.position;
+
         //터치 인덱스
 #if !UNITY_EDITOR
         touchIdx = Input.touchCount - 1;
@@ -244,7 +246,6 @@ public class Ability_Teleport : Ability, IAbility
         }
 
         joystick.transform.position = firstJPos + vec * fSqr;
-        teleportPos = playerPos.position;
 
         RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.2f, Vector2.zero);
 
