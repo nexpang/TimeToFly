@@ -92,7 +92,7 @@ MonoBehaviour:
   speed: 1
   isPlayerFollow: 0
   isX: 0
-  autoMoveDefault: 0.75
+  autoMoveDefault: 1
   clampOffect: {x: -485, y: 497}
   isNeedClamp: 0
   isFront: 0
@@ -113,7 +113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &788800773645876200
 RectTransform:
   m_ObjectHideFlags: 0
