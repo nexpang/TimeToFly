@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FeatherParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 6033637442170968188, guid: d8d2fa7cfa7348342bcf6824832d71c4, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6033637442170968189, guid: d8d2fa7cfa7348342bcf6824832d71c4, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -6963,7 +6967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978551456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3566666, y: 0.5133333, z: 0}
+  m_LocalPosition: {x: 10.936666, y: -1.1333333, z: 3.7895614e-14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
