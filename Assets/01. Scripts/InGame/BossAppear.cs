@@ -112,7 +112,7 @@ public class BossAppear : MonoBehaviour
 
     IEnumerator BatBossStart()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5);
 
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
@@ -130,7 +130,15 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
 
         currentBoss.gameObject.SetActive(true);
-        currentBoss.GetComponent<Animator>().Play("Bat_Appear");
-        yield return new WaitForSeconds(1f);
+        currentBoss.transform.DOMoveY(13, 2).SetRelative();
+        yield return new WaitForSeconds(4f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+        yield return new WaitForSeconds(1.5f);
+
+        currentBoss.BossStart();
+        DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
+        mobileControllerGroup.interactable = true;
+        DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
+        GameManager.Instance.isBossStart = true;
     }
 }
