@@ -51,7 +51,6 @@ public class BossAppear : MonoBehaviour
             GameManager.Instance.player.SetStun(6);
             GameManager.Instance.FadeInOut(2.5f, 2f, 1, () =>
              {
-                 Debug.Log("¤¾¤·");
                  GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
                  GameManager.Instance.curStageInfo.virtualCamera.transform.position = currentBoss.GetComponent<BatBoss>().cameraTeleportPoint.position;
                  GameManager.Instance.player.transform.position = currentBoss.GetComponent<BatBoss>().playerTeleportPoint.position;
@@ -60,6 +59,7 @@ public class BossAppear : MonoBehaviour
 
                  currentBoss.GetComponent<BatBoss>().beforeBG.SetActive(false);
                  currentBoss.GetComponent<BatBoss>().afterBG.SetActive(true);
+                 StartCoroutine(BatBossStart());
              });
             yield break;
         }
@@ -89,23 +89,48 @@ public class BossAppear : MonoBehaviour
         if(bossType == BossType.JOKJEBI)
         {
             currentBoss.GetComponent<Animator>().Play("JokJeBi_Appear");
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
+            GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+            yield return new WaitForSeconds(1.5f);
         }
         else if(bossType == BossType.DOKSURI)
         {
             currentBoss.GetComponent<Animator>().Play("DokSuRi_Appear");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
+            GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+            yield return new WaitForSeconds(1.5f);
+            currentBoss.GetComponent<Animator>().Play("DokSuRi_Idle");
+            yield return new WaitForSeconds(2f);
         }
 
-        yield return new WaitForSeconds(2f);
-        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
-        yield return new WaitForSeconds(1.5f);
-        currentBoss.GetComponent<Animator>().Play("DokSuRi_Idle");
-        yield return new WaitForSeconds(2f);
         currentBoss.BossStart();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
         GameManager.Instance.isBossStart = true;
+    }
+
+    IEnumerator BatBossStart()
+    {
+        yield return new WaitForSeconds(1);
+
+        DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
+        mobileControllerGroup.interactable = false;
+
+        yield return new WaitForSeconds(3);
+        GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f, 2);
+        currentBoss.Event_CameraForce();
+        currentBoss.transform.position = new Vector2(currentBoss.spawnPoint.position.x, currentBoss.spawnPoint.position.y);
+
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
+
+        currentBoss.gameObject.SetActive(true);
+        currentBoss.GetComponent<Animator>().Play("Bat_Appear");
+        yield return new WaitForSeconds(1f);
     }
 }
