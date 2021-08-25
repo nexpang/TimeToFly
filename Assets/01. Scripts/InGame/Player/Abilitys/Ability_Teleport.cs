@@ -45,7 +45,6 @@ public class Ability_Teleport : Ability, IAbility
     Vector2 teleportRangePos;
 
     private Transform teleportPosObjTrans = null;
-    [SerializeField] Sprite joystickSpr = null;
 
     [SerializeField] float timeSlow = 4f;
     [SerializeField] float minusTimeForS = 10f;
@@ -90,6 +89,8 @@ public class Ability_Teleport : Ability, IAbility
             return;
         }// ÄðÅ¸ÀÓÀÌ ¾ÆÁ÷ ¾ÈµÆ´Ù.
 
+        teleportPos = playerPos.position;
+
         //ÅÍÄ¡ ÀÎµ¦½º
 #if !UNITY_EDITOR
         touchIdx = Input.touchCount - 1;
@@ -104,7 +105,6 @@ public class Ability_Teleport : Ability, IAbility
 
         joystick.transform.SetParent(joystickBack.transform);
         joystickRect.transform.localPosition = Vector2.zero;
-        abilityBtn.sprite = joystickSpr;
 
         GameManager.Instance.SetAudio(audioSource, Audio_futureEnter, 1, false);
         playerAudioSource.DOPitch(0.3f, 1);
@@ -244,7 +244,6 @@ public class Ability_Teleport : Ability, IAbility
         }
 
         joystick.transform.position = firstJPos + vec * fSqr;
-        teleportPos = playerPos.position;
 
         RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.2f, Vector2.zero);
 
