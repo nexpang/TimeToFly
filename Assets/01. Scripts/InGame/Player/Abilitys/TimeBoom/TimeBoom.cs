@@ -118,7 +118,10 @@ public class TimeBoom : MonoBehaviour
                 else
                 {
                     boss = hit.collider.transform.parent.GetComponent<Boss>();
-                    boss.BossHitBoom();
+                    if (boss)
+                    {
+                        boss.BossHitBoom();
+                    }
                 }
             }
             Debug.Log(hit.collider.tag);

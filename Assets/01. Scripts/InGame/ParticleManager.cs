@@ -24,6 +24,7 @@ public class ParticleManager : MonoBehaviour
     public GameObject effect_PortalMoving;
     public GameObject effect_PortalDirt;
     public GameObject effect_EagleFeather;
+    public GameObject effect_Tooth;
 
     [Header("Æ¯¼ö ÀÌÆåÆ®")]
     public GameObject PatternWarningBox;
@@ -44,6 +45,7 @@ public class ParticleManager : MonoBehaviour
         PoolManager.CreatePool<Effect_PortalDirt>(effect_PortalDirt, this.transform);
         PoolManager.CreatePool<Effect_EagleFeather>(effect_EagleFeather, this.transform);
         PoolManager.CreatePool<Effect_WarningBox>(PatternWarningBox, WarningBox_Box);
+        PoolManager.CreatePool<Effect_Tooth>(effect_Tooth, this.transform);
     }
 
     public static void CreateBlockParticle(BlockParticleType type, Vector2 pos, float destroyTime)

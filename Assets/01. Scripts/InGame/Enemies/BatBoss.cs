@@ -17,6 +17,7 @@ public class BatBoss : Boss
 
     public float defaultTimer = 120;
     float currentTimer = 0;
+    bool patternReady = true;
 
     private void Awake()
     {
@@ -58,6 +59,9 @@ public class BatBoss : Boss
     {
         while (true)
         {
+            yield return new WaitUntil(() => patternReady);
+            patternReady = false;
+
             yield return new WaitForSeconds(5f);
 
             if (!GameManager.Instance.isBossStart) yield break;
@@ -71,39 +75,83 @@ public class BatBoss : Boss
                 continue;
             }
 
-            yield return new WaitForSeconds(1f);
 
             switch (currentPattern)
             {
                 case 1:
-                    Pattern1();
+                    transform.DOMoveY(-2, 0.5f).SetRelative();
+                    ParticleManager.CreateWarningBox(new Vector2(-476, -5), new Vector2(952, 790), 2f, Color.yellow, Color.red, 0.2f, 200);
                     yield return new WaitForSeconds(2f);
+                    Pattern1();
+                    animator.SetInteger("SwingCount", 10);
+                    yield return new WaitForSeconds(2f); 
                     break;
                 case 2:
                     Pattern2();
-                    yield return new WaitForSeconds(2f);
                     break;
                 case 3:
                     Pattern3();
                     currentPattern = 0;
-                    yield return new WaitForSeconds(2f);
                     break;
             }
         }
     }
 
-    private void Pattern1() // 땅 끌어올리기 - 독수리가 플레이어 뒤에서 부리로 땅을 파 돌을 던진다
+    private void Pattern1() // 날개 치기 - 큰 날개로 한 부분을 타격합니다
     {
-
+        animator.Play("Bat_Pattern1");
     }
 
-    private void Pattern2()  // 땅 부수기 - 독수리가 플레이어 앞의 땅을 부순다.
-    {
+    private void Pattern2() // 종유석 떨구기 - 하늘 위로 사라지면서 카메라 쉐이킹을 줍니다. 그 후 종유석을 다량 떨어트린 후, 다시 내려옵니다. 
 
+    {
+        ParticleManager.CreateParticle<Effect_Tooth>(GameManager.Instance.player.transform.position);
+        patternReady = true;
     }
 
     private void Pattern3() // 쪼기 - 독수리가 위로 올랐다가 플레이어 위치를 쪼면서 지나간다
     {
-
+        ParticleManager.CreateParticle<Effect_Tooth>(GameManager.Instance.player.transform.position);
+        patternReady = true;
     }
+
+    #region ANIMATION_EVETNS
+
+    private void RemoveSwingCount() // 패턴 1 이벤트
+    {
+        int count = animator.GetInteger("SwingCount");
+        animator.SetInteger("SwingCount", count - 1);
+    }
+
+    private void Warning_Default_Event() // 패턴 1 이벤트
+    {
+        int count = animator.GetInteger("SwingCount");
+
+        if (count > 0)
+        {
+            ParticleManager.CreateWarningBox(new Vector2(-476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
+        }
+        else
+        {
+            transform.DOMoveY(2, 0.5f).SetRelative();
+            patternReady = true;
+        }
+    }
+
+    private void Warning_Reverse_Event() // 패턴 1 이벤트
+    {
+        int count = animator.GetInteger("SwingCount");
+
+        if (count > 0)
+        {
+            ParticleManager.CreateWarningBox(new Vector2(476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
+        }
+        else
+        {
+            transform.DOMoveY(2, 0.5f).SetRelative();
+            patternReady = true;
+        }
+    }
+
+    #endregion
 }
