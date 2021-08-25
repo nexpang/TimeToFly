@@ -91,6 +91,7 @@ MonoBehaviour:
   type: 0
   speed: 0.02
   isPlayerFollow: 1
+  isX: 1
   autoMoveDefault: -0.6
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 0
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 745d4de66f40f2b41b87cd0039186147, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bc2f1ef6cdc0ff4ca2d1178d7eb94c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 935b5aec783053b409b09ff0b2e61e6a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b260044f0abe5b45a94263a2de5b6e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -399,6 +400,7 @@ MonoBehaviour:
   type: 0
   speed: 0.03
   isPlayerFollow: 1
+  isX: 1
   autoMoveDefault: -0.7
   clampOffect: {x: 0, y: 0}
   isNeedClamp: 0
@@ -470,7 +472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf5ef5e3d1a6bd048ae592ac407f02e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad9ec8a6ea985e844a53e1a7a919bddd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -495,6 +497,7 @@ MonoBehaviour:
   type: 1
   speed: 30
   isPlayerFollow: 1
+  isX: 1
   autoMoveDefault: 0.1
   clampOffect: {x: -485, y: 497}
   isNeedClamp: 1

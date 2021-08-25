@@ -46,10 +46,4 @@ public class EaglesRock : MonoBehaviour
     {
         chatchingPos = Vector3.down;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

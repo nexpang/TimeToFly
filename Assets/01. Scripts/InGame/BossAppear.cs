@@ -100,6 +100,8 @@ public class BossAppear : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
         yield return new WaitForSeconds(1.5f);
+        currentBoss.GetComponent<Animator>().Play("DokSuRi_Idle");
+        yield return new WaitForSeconds(2f);
         currentBoss.BossStart();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
