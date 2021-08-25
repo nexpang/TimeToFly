@@ -15,6 +15,9 @@ public class BatBoss : Boss
     public GameObject beforeBG;
     public GameObject afterBG;
 
+    public float defaultTimer = 120;
+    float currentTimer = 0;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -24,14 +27,31 @@ public class BatBoss : Boss
     {
         cameraStop = false;
 
-        animator.Play("DokSuRi_Idle");
         StartCoroutine(BossPattern());
     }
 
     public override void Update()
     {
-        base.Update();
-        Move();
+        if(GameManager.Instance.isBossStart)
+        {
+            if (currentTimer < defaultTimer)
+            {
+                currentTimer += Time.deltaTime;
+            }
+            else
+            {
+                // CLEAR
+            }
+        }
+
+        float barScale = currentTimer / defaultTimer;
+
+        GameManager.Instance.bossBarFill.transform.localScale = new Vector2(barScale, 1);
+
+        GameManager.Instance.bossBarChicken.anchoredPosition = new Vector2(
+            (bossBarRectStartAndEnd.x + ((bossBarRectStartAndEnd.y - bossBarRectStartAndEnd.x) * barScale)
+            - GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x / 2)
+            , GameManager.Instance.bossBarChicken.anchoredPosition.y);
     }
 
     IEnumerator BossPattern()
@@ -51,7 +71,6 @@ public class BatBoss : Boss
                 continue;
             }
 
-            PatternReady();
             yield return new WaitForSeconds(1f);
 
             switch (currentPattern)
@@ -71,21 +90,6 @@ public class BatBoss : Boss
                     break;
             }
         }
-    }
-
-    private void Move()
-    {
-        if (cameraStop) return;
-
-        if (GameManager.Instance.curStageInfo.virtualCamera.transform.position.x > startAndEnd.y)
-        {
-            return;
-        }
-    }
-
-    private void PatternReady()
-    {
-        animator.Play("DokSuRi_PatternReady");
     }
 
     private void Pattern1() // 땅 끌어올리기 - 독수리가 플레이어 뒤에서 부리로 땅을 파 돌을 던진다

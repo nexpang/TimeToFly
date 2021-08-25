@@ -19,16 +19,9 @@ public abstract class Boss : MonoBehaviour
 
     public abstract void BossStart();
     protected bool cameraStop = true;
-    [HideInInspector] public Vector2 bossBarRectStartAndEnd;
+    [System.NonSerialized] public Vector2 bossBarRectStartAndEnd = new Vector2(0, 1000);
 
     protected bool nextPatternCancel = false;
-
-    private void Start()
-    {
-        bossBarRectStartAndEnd = new Vector2(GameManager.Instance.bossBar.transform.position.x,
-            GameManager.Instance.bossBar.transform.position.x
-            + GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x);
-    }
 
     public virtual void Update()
     {
