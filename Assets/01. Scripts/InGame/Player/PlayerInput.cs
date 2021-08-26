@@ -82,6 +82,12 @@ public class PlayerInput : MonoBehaviour
         {
             KeyHorizontalRaw = joystickKeyHorizontalRaw;
         }
+
+        if(GameManager.Instance.player.reverseKey)
+        {
+            KeyHorizontalRaw *= -1;
+            KeyHorizontal *= -1;
+        }
     }
 
     public void JoyStickJump()

@@ -7,6 +7,7 @@ using DG.Tweening;
 public class BatBoss : Boss
 {
     Animator animator = null;
+    public Animator soundEffectAnimator = null;
     private int currentPattern;
     public Transform playerTeleportPoint;
     public Transform cameraTeleportPoint;
@@ -92,7 +93,10 @@ public class BatBoss : Boss
                     StartCoroutine(Pattern2());
                     break;
                 case 3:
-                    Pattern3();
+                    StartCoroutine(Pattern3());
+                    break;
+                case 4:
+                    StartCoroutine(Pattern4());
                     currentPattern = 0;
                     break;
             }
@@ -107,7 +111,7 @@ public class BatBoss : Boss
     private IEnumerator Pattern2() // 종유석 떨구기 - 하늘 위로 사라지면서 카메라 쉐이킹을 줍니다. 그 후 종유석을 다량 떨어트린 후, 다시 내려옵니다. 
     {
         transform.DOMoveY(6, 1.5f).SetRelative();
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
         Event_CameraBigForce();
 
         for (int i = 0; i < 3; i++)
@@ -131,10 +135,62 @@ public class BatBoss : Boss
         patternReady = true;
     }
 
-    private void Pattern3() // 쪼기 - 독수리가 위로 올랐다가 플레이어 위치를 쪼면서 지나간다
+    private IEnumerator Pattern3() // 물기 - 박쥐가 플레이어 X로 계속 움직이며 
     {
-        ParticleManager.CreateParticle<Effect_Tooth>(GameManager.Instance.player.transform.position);
+        StartCoroutine(Pattern3_PlayerMove());
+        yield return new WaitForSeconds(3f);
+
+        for (int i = 0; i < 5; i++)
+        {
+            Vector2 targetPos = GameManager.Instance.player.transform.position;
+            ParticleManager.CreateWarningPosBox(new Vector2(targetPos.x, targetPos.y), new Vector2(100, 100), 0.3f, Color.yellow, Color.red, 0.08f, 75);
+            yield return new WaitForSeconds(0.3f);
+            ParticleManager.CreateParticle<Effect_Tooth>(targetPos);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            Vector2 targetPos = GameManager.Instance.player.transform.position;
+            ParticleManager.CreateWarningPosBox(new Vector2(targetPos.x, targetPos.y), new Vector2(100, 100), 0.1f, Color.yellow, Color.red, 0.08f, 75);
+            yield return new WaitForSeconds(0.1f);
+            ParticleManager.CreateParticle<Effect_Tooth>(targetPos);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        transform.DOMove(new Vector2(spawnPoint.position.x, spawnPoint.position.y + 13), 1);
+
         patternReady = true;
+    }
+
+    private IEnumerator Pattern3_PlayerMove()
+    {
+        while (true)
+        {
+            yield return null;
+
+            Vector2 targetVec = new Vector2(GameManager.Instance.player.transform.position.x, transform.position.y);
+            transform.position = Vector2.Lerp(transform.position, targetVec, 10 * Time.deltaTime);
+            if (patternReady)
+            {
+                break;
+            }
+        }
+    }
+
+    private IEnumerator Pattern4() // 음파 - 무조건 맞고 맞으면 방향키 변환
+    {
+        soundEffectAnimator.Play("BatSoundEffect_Trigger");
+        GameManager.Instance.player.reverseKey = true;
+        GlitchEffect.Instance.colorIntensity = 0.100f;
+        GlitchEffect.Instance.flipIntensity = 0.194f;
+        GlitchEffect.Instance.intensity = 0.194f;
+        patternReady = true;
+        yield return new WaitForSeconds(25);
+        GameManager.Instance.player.reverseKey = false;
+        GlitchEffect.Instance.colorIntensity = 0f;
+        GlitchEffect.Instance.flipIntensity = 0f;
+        GlitchEffect.Instance.intensity = 0f;
     }
 
     #region ANIMATION_EVENTS

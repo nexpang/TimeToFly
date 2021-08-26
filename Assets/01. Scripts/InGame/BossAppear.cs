@@ -48,7 +48,7 @@ public class BossAppear : MonoBehaviour
         }
         else if (bossType == BossType.BAT)
         {
-            GameManager.Instance.player.SetStun(6);
+            GameManager.Instance.player.SetStun(10);
             GameManager.Instance.FadeInOut(2.5f, 2f, 1, () =>
              {
                  GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
