@@ -81,15 +81,15 @@ public class ParticleManager : MonoBehaviour
         obj.transform.position = pos;
     }
 
-    public static void CreateWarningBox(Vector2 position, Vector2 size, float waitTime, float signSize = 150)
+    public static void CreateWarningAnchorBox(Vector2 position, Vector2 size, float waitTime, Color startColor, Color endColor, float colorInterval, float signSize = 150)
     {
         Effect_WarningBox obj = PoolManager.GetItem<Effect_WarningBox>();
-        obj.Create(position, size, waitTime, signSize);
+        obj.CreateAnchor(position, size, waitTime, startColor, endColor, colorInterval, signSize);
     }
 
-    public static void CreateWarningBox(Vector2 position, Vector2 size, float waitTime, Color startColor, Color endColor, float colorInterval, float signSize = 150)
+    public static void CreateWarningPosBox(Vector2 position, Vector2 size, float waitTime, Color startColor, Color endColor, float colorInterval, float signSize = 150)
     {
         Effect_WarningBox obj = PoolManager.GetItem<Effect_WarningBox>();
-        obj.Create(position, size, waitTime, startColor, endColor, colorInterval, signSize);
+        obj.CreatePosition(position, size, waitTime, startColor, endColor, colorInterval, signSize);
     }
 }

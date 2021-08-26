@@ -19,6 +19,8 @@ public class BatBoss : Boss
     float currentTimer = 0;
     bool patternReady = true;
 
+    public GameObject stalactiteTrapPrefab;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -80,14 +82,14 @@ public class BatBoss : Boss
             {
                 case 1:
                     transform.DOMoveY(-2, 0.5f).SetRelative();
-                    ParticleManager.CreateWarningBox(new Vector2(-476, -5), new Vector2(952, 790), 2f, Color.yellow, Color.red, 0.2f, 200);
+                    ParticleManager.CreateWarningAnchorBox(new Vector2(-476, -5), new Vector2(952, 790), 2f, Color.yellow, Color.red, 0.2f, 200);
                     yield return new WaitForSeconds(2f);
                     Pattern1();
-                    animator.SetInteger("SwingCount", 10);
+                    animator.SetInteger("SwingCount", 4);
                     yield return new WaitForSeconds(2f); 
                     break;
                 case 2:
-                    Pattern2();
+                    StartCoroutine(Pattern2());
                     break;
                 case 3:
                     Pattern3();
@@ -102,10 +104,30 @@ public class BatBoss : Boss
         animator.Play("Bat_Pattern1");
     }
 
-    private void Pattern2() // 종유석 떨구기 - 하늘 위로 사라지면서 카메라 쉐이킹을 줍니다. 그 후 종유석을 다량 떨어트린 후, 다시 내려옵니다. 
-
+    private IEnumerator Pattern2() // 종유석 떨구기 - 하늘 위로 사라지면서 카메라 쉐이킹을 줍니다. 그 후 종유석을 다량 떨어트린 후, 다시 내려옵니다. 
     {
-        ParticleManager.CreateParticle<Effect_Tooth>(GameManager.Instance.player.transform.position);
+        transform.DOMoveY(6, 1.5f).SetRelative();
+        yield return new WaitForSeconds(4);
+        Event_CameraBigForce();
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                StalactiteTrap trap = Instantiate(stalactiteTrapPrefab, null).GetComponent<StalactiteTrap>();
+                float randomSpeed = Random.Range(1, 3);
+                float randomX = Random.Range(Camera.main.transform.position.x - 7, Camera.main.transform.position.x + 7);
+
+                trap.transform.position = new Vector2(randomX, Camera.main.transform.position.y + 5);
+                ParticleManager.CreateWarningPosBox(new Vector2(randomX, 4), new Vector2(100, 900), 0.5f, Color.yellow, Color.red, 0.2f, 100);
+                trap.Init(randomSpeed, true);
+                yield return new WaitForSeconds(0.1f);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+        yield return new WaitForSeconds(2);
+        transform.DOMoveY(-6, 1.5f).SetRelative();
+
         patternReady = true;
     }
 
@@ -115,7 +137,7 @@ public class BatBoss : Boss
         patternReady = true;
     }
 
-    #region ANIMATION_EVETNS
+    #region ANIMATION_EVENTS
 
     private void RemoveSwingCount() // 패턴 1 이벤트
     {
@@ -129,7 +151,7 @@ public class BatBoss : Boss
 
         if (count > 0)
         {
-            ParticleManager.CreateWarningBox(new Vector2(-476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
+            ParticleManager.CreateWarningAnchorBox(new Vector2(-476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
         }
         else
         {
@@ -144,7 +166,7 @@ public class BatBoss : Boss
 
         if (count > 0)
         {
-            ParticleManager.CreateWarningBox(new Vector2(476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
+            ParticleManager.CreateWarningAnchorBox(new Vector2(476, -5), new Vector2(952, 790), 0.5f, Color.yellow, Color.red, 0.2f, 200);
         }
         else
         {
