@@ -20,7 +20,14 @@ public class BatBoss : Boss
     float currentTimer = 0;
     bool patternReady = true;
 
+    [Header("패턴 1")]
+    public GameObject batBody;
+
+    [Header("패턴 3")]
     public GameObject stalactiteTrapPrefab;
+
+    [Header("패턴 5")]
+    public GameObject[] bats;
 
     private void Awake()
     {
@@ -97,6 +104,9 @@ public class BatBoss : Boss
                     break;
                 case 4:
                     StartCoroutine(Pattern4());
+                    break;
+                case 5:
+                    StartCoroutine(Pattern5());
                     currentPattern = 0;
                     break;
             }
@@ -135,7 +145,7 @@ public class BatBoss : Boss
         patternReady = true;
     }
 
-    private IEnumerator Pattern3() // 물기 - 박쥐가 플레이어 X로 계속 움직이며 
+    private IEnumerator Pattern3() // 물기 - 박쥐가 플레이어 X로 계속 움직이며 꺠문다
     {
         StartCoroutine(Pattern3_PlayerMove());
         yield return new WaitForSeconds(3f);
@@ -193,7 +203,59 @@ public class BatBoss : Boss
         GlitchEffect.Instance.intensity = 0f;
     }
 
+    private IEnumerator Pattern5() // 박치기 - 2개 분신 생성, 그리고 박치기
+    {
+        transform.DOMoveY(6, 1.5f).SetRelative();
+        yield return new WaitForSeconds(2);
+        animator.Play("Bat_Pattern5");
+        // 박쥐 분신 키고
+
+
+        for (int i = 0; i < 3; i++)
+        {
+            List<float> appearPoints = new List<float>() { Camera.main.transform.position.x - 8, Camera.main.transform.position.x, Camera.main.transform.position.x + 8 };
+            for (int j = 0; j < 3; j++)
+            {
+                int randomIndex = Random.Range(0, appearPoints.Count);
+                for(int k = 0; k<3;k++)
+                {
+                    if (j == k)
+                    {
+                        bats[k].transform.position = new Vector2(appearPoints[randomIndex], transform.position.y);
+                    }
+                }
+                appearPoints.RemoveAt(randomIndex);
+            }
+            ParticleManager.CreateWarningAnchorBox(new Vector2(-680, -3.8f), new Vector2(560, 1080), 1f, Color.yellow, Color.red, 0.2f, 200);
+            ParticleManager.CreateWarningAnchorBox(new Vector2(2, -3.8f), new Vector2(705, 1080), 1f, Color.yellow, Color.red, 0.2f, 200);
+            ParticleManager.CreateWarningAnchorBox(new Vector2(675, -3.8f), new Vector2(560, 1080), 1f, Color.yellow, Color.red, 0.2f, 200);
+            yield return new WaitForSeconds(2);
+            transform.DOMoveY(-6, 1f).SetRelative();
+            yield return new WaitForSeconds(2f);
+            transform.DOMoveY(-20, 1.5f).SetRelative().OnComplete(() =>
+            {
+                transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y + 19);
+            });
+            yield return new WaitForSeconds(2.5f);
+        }
+
+        animator.Play("Bat_Idle");
+        bats[0].GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        transform.DOMove(new Vector2(spawnPoint.position.x, spawnPoint.position.y + 13), 1);
+        patternReady = true;
+    }
+
     #region ANIMATION_EVENTS
+
+    private void LeftMove() // 패턴 1 이벤트
+    {
+        batBody.transform.DOLocalMoveX(-260.95f, 0.35f).SetLoops(2,LoopType.Yoyo);
+    }
+
+    private void RightMove() // 패턴 1 이벤트
+    {
+        batBody.transform.DOLocalMoveX(260.95f, 0.35f).SetLoops(2, LoopType.Yoyo);
+    }
 
     private void RemoveSwingCount() // 패턴 1 이벤트
     {
