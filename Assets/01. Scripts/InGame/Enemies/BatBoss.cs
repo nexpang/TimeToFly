@@ -94,7 +94,6 @@ public class BatBoss : Boss
                     yield return new WaitForSeconds(2f);
                     Pattern1();
                     animator.SetInteger("SwingCount", 4);
-                    yield return new WaitForSeconds(2f); 
                     break;
                 case 2:
                     StartCoroutine(Pattern2());
