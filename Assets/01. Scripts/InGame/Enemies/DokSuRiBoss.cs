@@ -52,9 +52,9 @@ public class DokSuRiBoss : Boss
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             if (isPattern2) continue;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(4.9f);
 
             if (!GameManager.Instance.isBossStart) yield break;
 
@@ -171,6 +171,7 @@ public class DokSuRiBoss : Boss
 
     public void BreakGround()
     {
+        ParticleManager.CreateParticle<Effect_StoneFrag>(new Vector2(pattern2Poss[pattern2Idx].position.x+3f, 0f));
         pattern2Poss[pattern2Idx].gameObject.SetActive(false);
         pattern2Idx++;
     }
