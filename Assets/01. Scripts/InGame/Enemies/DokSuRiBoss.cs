@@ -41,9 +41,12 @@ public class DokSuRiBoss : Boss
     public override void Update()
     {
         base.Update();
-        if(!isPattern2Playing && CheckPattern2())
+        if(pattern2Idx<3)
         {
-            StartCoroutine(Pattern2());
+            if (!isPattern2Playing && CheckPattern2())
+            {
+                StartCoroutine(Pattern2());
+            }
         }
         Move();
     }
