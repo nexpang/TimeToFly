@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isGround;
     [HideInInspector] public bool isAnimationStun;
     [HideInInspector] public bool isPressJump; // 오로지 나는 사운드를 위해 만들어진 변수..
+    public bool reverseKey = false; // 이걸 true로 하면 이동키가 반대로 바뀐다.
 
     private bool isStun;
 

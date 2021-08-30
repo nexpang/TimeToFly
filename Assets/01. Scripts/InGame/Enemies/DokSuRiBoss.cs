@@ -14,6 +14,12 @@ public class DokSuRiBoss : Boss
 
     private int currentPattern;
 
+    public Transform[] pattern2Poss;
+    private int pattern2Idx = 0;
+
+    private bool isPattern2 = false;
+    private bool isPattern2Playing = false;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -35,6 +41,13 @@ public class DokSuRiBoss : Boss
     public override void Update()
     {
         base.Update();
+        if(pattern2Idx<3)
+        {
+            if (!isPattern2Playing && CheckPattern2())
+            {
+                StartCoroutine(Pattern2());
+            }
+        }
         Move();
     }
 
@@ -42,7 +55,9 @@ public class DokSuRiBoss : Boss
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(0.1f);
+            if (isPattern2) continue;
+            yield return new WaitForSeconds(4.9f);
 
             if (!GameManager.Instance.isBossStart) yield break;
 
@@ -55,26 +70,27 @@ public class DokSuRiBoss : Boss
                 continue;
             }
 
+            if (isPattern2)
+            {
+                currentPattern--;
+                continue;
+            }
+
             PatternReady();
             yield return new WaitForSeconds(1f);
 
             switch (currentPattern)
             {
                 case 1:
-                    currentPattern++;
                     Pattern1();
-
 
                     yield return new WaitForSeconds(2f);
                     break;
                 case 2:
-                    Pattern2();
-                    break;
-                case 3:
                     Pattern3();
                     currentPattern = 0;
 
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(3f);
                     break;
             }
         }
@@ -113,7 +129,6 @@ public class DokSuRiBoss : Boss
     {
         float dist = Mathf.Abs(transform.position.x - GameManager.Instance.player.transform.position.x);
         float power = dist*0.8f;
-        print(dist);
 
         rock.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350f, -100f);
         rock.SetActive(true);
@@ -122,9 +137,46 @@ public class DokSuRiBoss : Boss
         rock.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (power > 1.2f ? power : 1.2f), ForceMode2D.Impulse);
     }
 
-    private void Pattern2()  // 땅 부수기 - 독수리가 플레이어 앞의 땅을 부순다.
+    private bool CheckPattern2()
     {
+        if (isPattern2Playing) return false;
+        float dist = Mathf.Abs(pattern2Poss[pattern2Idx].position.x - Camera.main.transform.position.x);
+        print("거리 : " + dist);
+        if(dist <= 0.1f)
+        {
+            print("2 패턴 시작");
+            return true;
+        }
+        else if(dist <= 10f)
+        {
+            print("다른 패턴 캔슬");
+            isPattern2 = true;
+        }
+        return false;
+    }
 
+    private IEnumerator Pattern2()  // 땅 부수기 - 독수리가 플레이어 앞의 땅을 부순다.
+    {
+        isPattern2Playing = true;
+
+        Event_CameraStop();
+        PatternReady();
+
+        yield return new WaitForSeconds(1f);
+
+        animator.Play("DokSuRi_Pattern2");
+
+        yield return new WaitForSeconds(3f);
+
+        isPattern2 = false;
+        isPattern2Playing = false;
+    }
+
+    public void BreakGround()
+    {
+        ParticleManager.CreateParticle<Effect_StoneFrag>(new Vector2(pattern2Poss[pattern2Idx].position.x+3f, 0f));
+        pattern2Poss[pattern2Idx].gameObject.SetActive(false);
+        pattern2Idx++;
     }
 
     private void Pattern3() // 쪼기 - 독수리가 위로 올랐다가 플레이어 위치를 쪼면서 지나간다

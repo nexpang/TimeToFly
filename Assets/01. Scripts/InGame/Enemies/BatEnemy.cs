@@ -178,7 +178,6 @@ public class BatEnemy : ResetAbleTrap, IItemAble
 
     void OnDrawGizmos()
     {
-
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube((Vector2)transform.position + new Vector2(0, -0.4f), new Vector2(1f, 0.5f));
     }

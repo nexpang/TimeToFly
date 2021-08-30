@@ -27,6 +27,15 @@ public class BossEagleRock : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("FALLINGABLE"))
+        {
+            isground = true;
+            print("³ª ´êÀ½");
+        }
+    }
+
     IEnumerator DistroyThis()
     {
         while(!isground)
