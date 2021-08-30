@@ -22,6 +22,10 @@ public class BossAppear : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.isBossStage = true;
+        if(GameManager.Instance.player.abilityNumber == 1)
+        {
+            GameManager.Instance.player.PlayerBarrierSet();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

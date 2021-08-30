@@ -185,9 +185,19 @@ public class PlayerController : MonoBehaviour
         playerAnimObj.GetComponent<PlayerSprites>().targetSheet = abilityNumber;
         playerAbility = abilitys[abilityNumber].transform;
 
-        for(int i = 0; i<5;i++)
+        for (int i = 0; i< abilitys.Length; i++)
         {
             abilitys[i].gameObject.SetActive(abilityNumber == i);
+        }
+    }
+
+    public void PlayerBarrierSet()
+    {
+        playerAbility = abilitys[5].transform;
+
+        for (int i = 0; i < abilitys.Length; i++)
+        {
+            abilitys[i].gameObject.SetActive(5 == i);
         }
     }
 
@@ -198,7 +208,7 @@ public class PlayerController : MonoBehaviour
         playerAnimObj.GetComponent<PlayerSprites>().targetSheet = number;
         playerAbility = abilitys[number].transform;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < abilitys.Length; i++)
         {
             abilitys[i].gameObject.SetActive(abilityNumber == i);
         }
