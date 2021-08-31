@@ -317,7 +317,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else if(ability.isInvincible)
                 {
-                    print("tlqkf");
                     GetComponent<Collider2D>().enabled = false;
                     GetComponent<Collider2D>().enabled = true;
                     return;

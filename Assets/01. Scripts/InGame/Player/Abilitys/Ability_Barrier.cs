@@ -47,6 +47,8 @@ public class Ability_Barrier : Ability, IAbility
 
     public float invincibleTime = 1.5f;
     [HideInInspector] public bool isInvincible = false;
+    [HideInInspector] private float effectCool = 1f;
+    private IEnumerator effect;
 
     new void Start()
     {
@@ -54,6 +56,7 @@ public class Ability_Barrier : Ability, IAbility
         playerRb = FindObjectOfType<PlayerController>();
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;
+        effect = ShowEffect();
     }
 
     public void OnAbility()
@@ -203,10 +206,27 @@ public class Ability_Barrier : Ability, IAbility
         StartCoroutine(Invincible());
     }
 
+    IEnumerator ShowEffect()
+    {
+        if (!isInvincible) StopCoroutine(effect);
+        yield return new WaitForSeconds(effectCool);
+        playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        playerAn.GetComponent<SpriteRenderer>().color = Color.white;
+        effectCool -= 0.08f;
+        if (effectCool < 0.1f)
+            effectCool = 0.01f;
+        print("ÀÌÆåÆ®Áß");
+        effect = ShowEffect();
+        StartCoroutine(effect);
+    }
     IEnumerator Invincible()
     {
         isInvincible = true;
+        effectCool = 0.3f;
+        StartCoroutine(effect);
         yield return new WaitForSeconds(invincibleTime);
+        print("²¨Áü");
         isInvincible = false;
     }
 
