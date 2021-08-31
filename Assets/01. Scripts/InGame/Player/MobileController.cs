@@ -29,7 +29,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     {
         controllerBtn = GetComponent<Image>();
         controllerBtn.color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
-        abilityImgRectTrm.gameObject.GetComponent<Image>().color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
+        
+        if(controllerType == ControllerType.ABILITY)
+            abilityImgRectTrm.gameObject.GetComponent<Image>().color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
 
         defaultAhlpa = controllerBtn.color.a;
     }
