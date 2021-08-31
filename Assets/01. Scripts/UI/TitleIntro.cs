@@ -66,8 +66,6 @@ public class TitleIntro : MonoBehaviour
             ThemeChange(isNight);
         });
 
-        screenButton.onClick.AddListener(ScreenStart);
-
         ThemeChange(isNight);
 
         bgmSource.clip = isNight ? nightBGM : dayBGM;
@@ -84,6 +82,13 @@ public class TitleIntro : MonoBehaviour
         chickenTranform.DOScaleY(0.95f, 2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 
         LogoRotate(true);
+
+        Invoke("EnableScreen", 3);
+    }
+
+    void EnableScreen()
+    {
+        screenButton.onClick.AddListener(ScreenStart);
     }
 
     void LogoRotate(bool right)
@@ -105,7 +110,6 @@ public class TitleIntro : MonoBehaviour
             isStarting = true;
 
             sfxSource.PlayOneShot(gameStartSFX, 1);
-            DontDestroyOnLoad(bgmSource.gameObject);
             //DOTween.To(() => bgmSource.volume, value => bgmSource.volume = value, 0, 1);
             blackPanelLeft.DOScaleX(1, 1.5f);
             blackPanelRight.DOScaleX(1, 1.5f);

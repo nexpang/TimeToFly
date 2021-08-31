@@ -16,7 +16,7 @@ public class IntroCutScene : MonoBehaviour
         blockPanelAll.DOFade(0, 1.5f);
         Invoke("EndScene", 68);
 
-        if (SecurityPlayerPrefs.GetBool("newbie", true))
+        if (!SecurityPlayerPrefs.GetBool("newbie", true))
         {
             skipBtn.gameObject.SetActive(true);
             skipBtn.onClick.AddListener(Skip);

@@ -196,6 +196,11 @@ public class GameManager : MonoBehaviour
     {
         timer--;
         targetTime = currentTime + 1 * timerScale;
+
+        if(timer<=0)
+        {
+            player.TimeOver();
+        }
     }
 
     public void SetAudio(AudioSource aS, AudioClip clip, float volume, bool Looping = false)

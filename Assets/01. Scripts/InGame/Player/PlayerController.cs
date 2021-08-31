@@ -345,9 +345,30 @@ public class PlayerController : MonoBehaviour
             DeathScreen();
         }
     }
-
-    private void DeathScreen()
+    public void TimeOver()
     {
+        if (playerState != PlayerState.DEAD)
+        {
+            playerState = PlayerState.DEAD;
+
+            GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerDead, 0.8f, false);
+
+            an.SetTrigger("dead");
+            DeathScreen(true);
+        }
+    }
+
+    private void DeathScreen(bool timeOver = false)
+    {
+        if (timeOver)
+        {
+            deathScreen.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            deathScreen.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         if (abilitys[(int)Chickens.BROWN].enabled)
         {
             if (abilitys[(int)Chickens.BROWN].isAbilityEnable) return;

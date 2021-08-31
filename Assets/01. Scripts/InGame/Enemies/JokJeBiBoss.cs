@@ -76,6 +76,7 @@ public class JokJeBiBoss : Boss
                         WeaselEnemy weasel = Instantiate(weaselPrefab, null).GetComponent<WeaselEnemy>();
                         weasel.EnemySpeedChange(6);
                         weasel.EnemyJumpSpeedChange(10);
+                        weasel.jumpNodeHeightRequirement = 0.8f;
 
                         float randomX = Random.Range(Camera.main.transform.position.x - 7, Camera.main.transform.position.x - 5);
 
