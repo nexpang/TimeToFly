@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
     public RectTransform bossBarFill;
     public Image fadeScreen;
 
+    [Header("µ•Ω∫ Ω∫≈©∏∞")]
+    [SerializeField] CanvasGroup lifeOverScreen = null;
+
     private void Awake()
     {
         Instance = this; // ΩÃ±€≈Ê
@@ -228,6 +231,17 @@ public class GameManager : MonoBehaviour
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = sustainTime;
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = decay;
         cinemachineCamera.GenerateImpulse(force);
+    }
+
+    public void LifeOver()
+    {
+        PoolManager.ResetPool();
+        player.deathScreen.gameObject.SetActive(false);
+        lifeOverScreen.alpha = 1f;
+        Image llifeOverScreen = lifeOverScreen.GetComponent<Image>();
+        llifeOverScreen.DOColor(new Color(0f,0f,0f, 1f),0.5f);
+        lifeOverScreen.interactable = true;
+        lifeOverScreen.blocksRaycasts = true;
     }
 
     public void SceneReset()

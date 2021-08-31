@@ -73,8 +73,14 @@ public class PlayerAnimation : MonoBehaviour
                 if (!GameManager.Instance.IsInfinityLife) GameManager.Instance.tempLife--;
                 SecurityPlayerPrefs.SetInt(GameManager.Instance.tempLifekey, GameManager.Instance.tempLife);
                 // TO DO : 만약 목숨이 -1이라면, 게임오버 시킨다.
-
-                GameManager.Instance.SceneReset();
+                if(GameManager.Instance.tempLife < 0)
+                {
+                    GameManager.Instance.LifeOver();
+                }
+                else
+                {
+                    GameManager.Instance.SceneReset();
+                }
             }
         }
     }

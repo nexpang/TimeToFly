@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip getAudioWing() => Audio_playerWing; // 잠시 get좀 하겠습니다. PlayerAnimation.cs
 
     [Header("데스 스크린")]
-    [SerializeField] Image deathScreen = null;
+    [SerializeField] public Image deathScreen = null;
     [SerializeField] ParticleSystem featherEffect = null;
     [SerializeField] Texture[] featherTextures = null;
 
