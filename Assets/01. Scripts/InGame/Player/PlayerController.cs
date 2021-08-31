@@ -305,6 +305,24 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState != PlayerState.DEAD)
         {
+            Ability_Barrier ability = (Ability_Barrier)abilitys[5];
+            if(ability.enabled)
+            {
+                if (ability.isAbilityEnable)
+                {
+                    ability.ResetPlayer();
+                    GetComponent<Collider2D>().enabled = false;
+                    GetComponent<Collider2D>().enabled = true;
+                    return;
+                }
+                else if(ability.isInvincible)
+                {
+                    print("tlqkf");
+                    GetComponent<Collider2D>().enabled = false;
+                    GetComponent<Collider2D>().enabled = true;
+                    return;
+                }
+            }
             playerState = PlayerState.DEAD;
 
             GameManager.Instance.SetAudioImmediate(audioSource, Audio_playerDead, 0.8f, false);
