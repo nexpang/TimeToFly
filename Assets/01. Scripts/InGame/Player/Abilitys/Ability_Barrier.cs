@@ -47,8 +47,9 @@ public class Ability_Barrier : Ability, IAbility
 
     public float invincibleTime = 1.5f;
     [HideInInspector] public bool isInvincible = false;
+    public GameObject effect;
+
     [HideInInspector] private float effectCool = 1f;
-    private IEnumerator effect;
 
     new void Start()
     {
@@ -56,7 +57,6 @@ public class Ability_Barrier : Ability, IAbility
         playerRb = FindObjectOfType<PlayerController>();
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;
-        effect = ShowEffect();
     }
 
     public void OnAbility()
@@ -189,7 +189,9 @@ public class Ability_Barrier : Ability, IAbility
         });
 
         // 파란색 닭에서 다시 기본 닭으로!
-        playerAn.GetComponent<SpriteRenderer>().color = Color.white;
+        //playerAn.GetComponent<SpriteRenderer>().color = Color.white;
+        playerAn.GetComponent<SpriteRenderer>().DOKill();
+        playerAn.GetComponent<SpriteRenderer>().DOColor(Color.white, 1.5f);
 
         // 카메라 글리치 효과 초기화
         GlitchEffect.Instance.colorIntensity = 0;
@@ -206,28 +208,15 @@ public class Ability_Barrier : Ability, IAbility
         StartCoroutine(Invincible());
     }
 
-    IEnumerator ShowEffect()
-    {
-        if (!isInvincible) StopCoroutine(effect);
-        yield return new WaitForSeconds(effectCool);
-        playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
-        yield return new WaitForSeconds(0.1f);
-        playerAn.GetComponent<SpriteRenderer>().color = Color.white;
-        effectCool -= 0.08f;
-        if (effectCool < 0.1f)
-            effectCool = 0.01f;
-        print("이펙트중");
-        effect = ShowEffect();
-        StartCoroutine(effect);
-    }
     IEnumerator Invincible()
     {
         isInvincible = true;
+        effect.SetActive(true);
         effectCool = 0.3f;
-        StartCoroutine(effect);
         yield return new WaitForSeconds(invincibleTime);
         print("꺼짐");
         isInvincible = false;
+        effect.SetActive(false);
     }
 
     IEnumerator Clock()
