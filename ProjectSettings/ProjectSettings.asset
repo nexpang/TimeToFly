@@ -146,15 +146,15 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.OutpostofParrot.TimeToFly
+    Android: com.outpostofparrat.ttf
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
+  overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -261,7 +261,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: cdbf3899b2620db4587c2b584422f16d, type: 3}
+      m_Icon: {fileID: 2800000, guid: 238799652d116fb4f9421b9569122c7e, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
