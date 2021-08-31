@@ -29,6 +29,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     {
         controllerBtn = GetComponent<Image>();
         controllerBtn.color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
+        abilityImgRectTrm.gameObject.GetComponent<Image>().color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
 
         defaultAhlpa = controllerBtn.color.a;
     }
@@ -62,6 +63,10 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     break;
                 case ControllerType.RIGHT:
                     PlayerInput.Instance.joystickKeyHorizontal = Mathf.Lerp(PlayerInput.Instance.joystickKeyHorizontal, 1, Time.deltaTime * 5);
+                    break;
+                case ControllerType.ABILITY:
+                    abilityImgRectTrm.gameObject.GetComponent<Image>().DOKill();
+                    abilityImgRectTrm.gameObject.GetComponent<Image>().color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 1f);
                     break;
             }
         }
@@ -108,6 +113,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 break;
             case ControllerType.ABILITY:
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up*15);
+                abilityImgRectTrm.gameObject.GetComponent<Image>().DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
                 PlayerInput.Instance.JoyStickAbilityOn();
                 break;
         }
