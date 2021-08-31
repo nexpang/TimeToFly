@@ -45,6 +45,9 @@ public class Ability_Barrier : Ability, IAbility
 
     public TimerMinusEffect timerMinusEffect;
 
+    public float invincibleTime = 1.5f;
+    [HideInInspector] public bool isInvincible = false;
+
     new void Start()
     {
         base.Start();
@@ -68,7 +71,7 @@ public class Ability_Barrier : Ability, IAbility
         abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
 
         clockUI.SetActive(true); // 시계 UI를 켜준다.
-        tween.Kill(); // 트윈 초기화
+        tween.Kill(); // 트윈 초기화 
         // 시계 알파값 닷트윈으로 올려주고
         tween = DOTween.To(() => clockUI.GetComponent<CanvasGroup>().alpha, value => clockUI.GetComponent<CanvasGroup>().alpha = value, 0.6f, 2f);
         playerAn.GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1); // 플레이어를 파란색으로
@@ -196,6 +199,15 @@ public class Ability_Barrier : Ability, IAbility
         // 소리 바꾸고
         GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
         GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.curChapterInfo.chapterBGM, GameManager.Instance.defaultBGMvolume, true);
+
+        StartCoroutine(Invincible());
+    }
+
+    IEnumerator Invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 
     IEnumerator Clock()
