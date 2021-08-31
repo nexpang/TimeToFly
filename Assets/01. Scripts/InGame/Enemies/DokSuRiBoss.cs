@@ -141,7 +141,7 @@ public class DokSuRiBoss : Boss
     {
         if (isPattern2Playing) return false;
         float dist = Mathf.Abs(pattern2Poss[pattern2Idx].position.x - Camera.main.transform.position.x);
-        print("거리 : " + dist);
+        //print("거리 : " + dist);
         if(dist <= 0.1f)
         {
             print("2 패턴 시작");
