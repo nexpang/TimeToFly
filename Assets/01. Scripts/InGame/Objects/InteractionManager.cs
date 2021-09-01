@@ -43,5 +43,6 @@ public class InteractionManager : MonoBehaviour
 
         abilityBtn.SetActive(true);
         interactionBtn.SetActive(false);
+        interactionBtn.GetComponent<Image>().color = Color.white;
     }
 }

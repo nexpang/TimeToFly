@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: 7768f7cb7cd6eae45a43bd149f63a935
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3121426236493369686
+    second: benedic_future_sandSigye_effect_strip_0
+  - first:
+      213: 3299698539576813208
+    second: benedic_future_sandSigye_effect_strip_1
+  - first:
+      213: -2252428373160867377
+    second: benedic_future_sandSigye_effect_strip_2
+  - first:
+      213: 2070291127885284627
+    second: benedic_future_sandSigye_effect_strip_3
+  - first:
+      213: -2797559163067545576
+    second: benedic_future_sandSigye_effect_strip_4
+  - first:
+      213: 7223605984032186664
+    second: benedic_future_sandSigye_effect_strip_5
+  - first:
+      213: 4951420483829196126
+    second: benedic_future_sandSigye_effect_strip_6
+  - first:
+      213: 3121361802728117122
+    second: benedic_future_sandSigye_effect_strip_7
+  - first:
+      213: 8945173109597800243
+    second: benedic_future_sandSigye_effect_strip_8
+  - first:
+      213: -6469671861726335785
+    second: benedic_future_sandSigye_effect_strip_9
+  - first:
+      213: 2212198761119835053
+    second: benedic_future_sandSigye_effect_strip_10
+  - first:
+      213: 149433398779753613
+    second: benedic_future_sandSigye_effect_strip_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +68,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -65,7 +101,31 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,7 +137,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65195c2cf98815b20800000000000000
+      internalID: 3121426236493369686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 896e955d652eacd20800000000000000
+      internalID: 3299698539576813208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_2
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc94cb71454cdb0e0800000000000000
+      internalID: -2252428373160867377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_3
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315ce3bdfc62bbc10800000000000000
+      internalID: 2070291127885284627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_4
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818483763c21d29d0800000000000000
+      internalID: -2797559163067545576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_5
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821ef93ce576f3460800000000000000
+      internalID: 7223605984032186664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_6
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e556b3042baf6b440800000000000000
+      internalID: 4951420483829196126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_7
+      rect:
+        serializedVersion: 2
+        x: 2660
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 283151b950e415b20800000000000000
+      internalID: 3121361802728117122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_8
+      rect:
+        serializedVersion: 2
+        x: 3040
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33704f3bc83a32c70800000000000000
+      internalID: 8945173109597800243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_9
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc267438bb1736a0800000000000000
+      internalID: -6469671861726335785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_10
+      rect:
+        serializedVersion: 2
+        x: 3800
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da36b117d0f43be10800000000000000
+      internalID: 2212198761119835053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_sandSigye_effect_strip_11
+      rect:
+        serializedVersion: 2
+        x: 4180
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84b8db62e4e21200800000000000000
+      internalID: 149433398779753613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

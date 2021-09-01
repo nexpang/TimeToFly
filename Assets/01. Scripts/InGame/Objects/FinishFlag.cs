@@ -6,6 +6,12 @@ public class FinishFlag : MonoBehaviour
 {
     public GameObject[] chickens;
     public Sprite[] chickensIdle;
+    private BoxCollider2D boxCollider;
+
+    private void Awake()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
 
     void Start()
     {
@@ -31,7 +37,14 @@ public class FinishFlag : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            // TO DO : 클리어
+            Ability_FutureCreate ability = (Ability_FutureCreate)GameManager.Instance.player.abilitys[(int)Chickens.BROWN];
+            if (ability.enabled && ability.isAbilityEnable) // 만약 능력 1이고 자고있는 상태면
+            {
+                return;
+            }
+
+            boxCollider.enabled = false;
+            GameManager.Instance.player.GameClear();
         }
     }
 }

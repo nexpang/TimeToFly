@@ -21,12 +21,7 @@ public class BossAppear : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.isBossStage = true;
-        GameManager.Instance.cameraLimitWall.SetActive(true);
-        if (GameManager.Instance.player.abilityNumber == 1)
-        {
-            GameManager.Instance.player.PlayerBarrierSet();
-        }
+        StartCoroutine(LateStart());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +33,17 @@ public class BossAppear : MonoBehaviour
                 isTrigger = true;
                 StartCoroutine(BossStart());
             }
+        }
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return null;
+        GameManager.Instance.isBossStage = true;
+        GameManager.Instance.cameraLimitWall.SetActive(true);
+        if (GameManager.Instance.player.abilityNumber == 1)
+        {
+            GameManager.Instance.player.PlayerBarrierSet();
         }
     }
 

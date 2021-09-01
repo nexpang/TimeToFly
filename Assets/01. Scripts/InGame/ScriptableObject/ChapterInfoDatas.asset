@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107843672b1676c4ba517578d6dca7e6, type: 3}
+  m_Name: ChapterInfoDatas
+  m_EditorClassIdentifier: 
+  infos:
+  - mapName: "\uD29C\uD1A0\uB9AC\uC5BC - \uD5DB\uAC04"
+    mapSprite: {fileID: 0}
+  - mapName: "\uB18D\uC7A5 1"
+    mapSprite: {fileID: 21300000, guid: 0b6b8d16f0245e1438ce5e2e96f6d9c5, type: 3}
+  - mapName: "\uB18D\uC7A5 2"
+    mapSprite: {fileID: 21300000, guid: 0b6b8d16f0245e1438ce5e2e96f6d9c5, type: 3}
+  - mapName: "\uB18D\uC7A5 3"
+    mapSprite: {fileID: 21300000, guid: 0b6b8d16f0245e1438ce5e2e96f6d9c5, type: 3}
+  - mapName: "\uC232 1"
+    mapSprite: {fileID: 21300000, guid: 9468b33497ba1ca49b2d2bab0c56a306, type: 3}
+  - mapName: "\uC232 2"
+    mapSprite: {fileID: 21300000, guid: 9468b33497ba1ca49b2d2bab0c56a306, type: 3}
+  - mapName: "\uC232 3 (BOSS)"
+    mapSprite: {fileID: 21300000, guid: 9468b33497ba1ca49b2d2bab0c56a306, type: 3}
+  - mapName: "\uC0B0 1"
+    mapSprite: {fileID: 21300000, guid: 290410ae3ae8b264bb469c454e7044f0, type: 3}
+  - mapName: "\uC0B0 2"
+    mapSprite: {fileID: 21300000, guid: 290410ae3ae8b264bb469c454e7044f0, type: 3}
+  - mapName: "\uC0B0 3 (BOSS)"
+    mapSprite: {fileID: 21300000, guid: 290410ae3ae8b264bb469c454e7044f0, type: 3}
+  - mapName: "\uB3D9\uAD74 1"
+    mapSprite: {fileID: 21300000, guid: 01ad9beabb0580940a22e724648b8c42, type: 3}
+  - mapName: "\uB3D9\uAD74 2"
+    mapSprite: {fileID: 21300000, guid: 01ad9beabb0580940a22e724648b8c42, type: 3}
+  - mapName: "\uB3D9\uAD74 3 (BOSS)"
+    mapSprite: {fileID: 21300000, guid: 01ad9beabb0580940a22e724648b8c42, type: 3}
+  - mapName: "\uD558\uB298 1"
+    mapSprite: {fileID: 21300000, guid: 96b5a31fe9c58954487f3d2a2f6c4f3a, type: 3}
+  - mapName: "\uD558\uB298 2"
+    mapSprite: {fileID: 21300000, guid: 96b5a31fe9c58954487f3d2a2f6c4f3a, type: 3}
+  - mapName: "\uD558\uB298 3"
+    mapSprite: {fileID: 21300000, guid: 96b5a31fe9c58954487f3d2a2f6c4f3a, type: 3}
