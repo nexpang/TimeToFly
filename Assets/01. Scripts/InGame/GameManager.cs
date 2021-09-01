@@ -256,6 +256,10 @@ public class GameManager : MonoBehaviour
         SecurityPlayerPrefs.SetInt(tempLifekey, tempLife);
 
     }
+    public void GoToTitle()
+    {
+
+    }
 
     bool isFinished = false;
     public void FadeInOut(float inSec, float outSec, float waitTime = 0f, UnityAction whileFunc = null)
