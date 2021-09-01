@@ -401,13 +401,13 @@ public class PlayerController : MonoBehaviour
         an.SetTrigger("Clear");
 
         GameManager.Instance.gameClearUI.gameObject.SetActive(true);
-        GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce);
+        GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce).SetDelay(1);
         StartCoroutine(ClearCoroutine());
     }
 
     IEnumerator ClearCoroutine()
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(4);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
             SceneController.targetMap++;

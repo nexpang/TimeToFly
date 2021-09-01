@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public StageInfo curStageInfo;
 
     [HideInInspector] public readonly string tempLifekey = "inGame.tempLife";
+    [HideInInspector] public readonly string remainChickenKey = "inGame.remainChicken";
 
     public int tempLife = 0;
     public int timer;
@@ -300,5 +301,41 @@ public class GameManager : MonoBehaviour
         isFinished = false;
 
         fadeScreen.DOFade(0, outSec).OnComplete(() => fadeScreen.gameObject.SetActive(false)).SetUpdate(true);
+    }
+
+    public void LoadRemainChicken()
+    {
+        string chicken = SecurityPlayerPrefs.GetString(remainChickenKey, "0 1 2 3 4");
+
+        string[] chickens = chicken.Split(' ');
+        remainChickenIndex.Clear();
+
+        for (int i = 0; i < chickens.Length; i++)
+        {
+            remainChickenIndex.Add(int.Parse(chickens[i]));
+        }
+    }
+     
+    public void SaveRemainChicken()
+    {
+        string chicken = "";
+
+        for(int i = 0; i < remainChickenIndex.Count;i++)
+        {
+            chicken += remainChickenIndex[i].ToString();
+
+            if(i != remainChickenIndex.Count - 1)
+            {
+                chicken += " ";
+            }
+        }
+
+        SecurityPlayerPrefs.SetString(remainChickenKey, chicken);
+    }
+
+    public void RemoveRemainChicken(int index)
+    {
+        remainChickenIndex.Remove(index);
+        SaveRemainChicken();
     }
 }

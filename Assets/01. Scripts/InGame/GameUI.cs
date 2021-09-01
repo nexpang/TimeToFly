@@ -20,10 +20,14 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
-        switch(type)
+        switch (type)
         {
             case UIType.TIMERTEXT:
-                TimerUpdate();
+
+                if (GameManager.Instance.timer > -1)
+                {
+                    TimerUpdate();
+                }
                 break;
         }
     }
