@@ -7,17 +7,26 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField]
     Image progressBar;
-
     Vector2 loadingBarDefaultSize;
+
+    [Header("맵 이미지 / 텍스트")]
+    public Text mapName;
+    public Image mapImg;
+
+    public ChapterInfoDatas mapData;
 
     static string nextScene;
 
     public static bool isLoaded = false;
+    public static int targetMap = 0;
 
     private void Awake()
     {
         loadingBarDefaultSize = progressBar.GetComponent<RectTransform>().sizeDelta;
         progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, loadingBarDefaultSize.y);
+
+        mapName.text = mapData.infos[targetMap].mapName;
+        mapImg.sprite = mapData.infos[targetMap].mapSprite;
     }
 
     void Start()

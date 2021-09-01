@@ -1,7 +1,43 @@
 fileFormatVersion: 2
-guid: e06848b6c40460f4fbb6152effd04500
+guid: 67d034f2d9be3234ab28a24f25a4f557
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1352184183897623607
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_0
+  - first:
+      213: 8173909428282490453
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_1
+  - first:
+      213: -5308424904727122998
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_2
+  - first:
+      213: 1594451187863470307
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_3
+  - first:
+      213: 6820629629750861327
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_4
+  - first:
+      213: -7928988875662818694
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_5
+  - first:
+      213: -6910590879910605799
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_6
+  - first:
+      213: 45811787088884332
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_7
+  - first:
+      213: 604754905831818366
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_8
+  - first:
+      213: 8323307854849610927
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_9
+  - first:
+      213: -3975580198080804380
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_10
+  - first:
+      213: 1501619675137439803
+    second: benedic_future_effect_benedicEnd_sandWatch_strip_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +68,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -65,7 +101,31 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,7 +137,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c8e10e95ce3c210800000000000000
+      internalID: 1352184183897623607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e7efa515f8f6170800000000000000
+      internalID: 8173909428282490453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_2
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb27e4acafa456b0800000000000000
+      internalID: -5308424904727122998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_3
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e04d4858e0a02610800000000000000
+      internalID: 1594451187863470307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_4
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0eddc1d28eb7ae50800000000000000
+      internalID: 6820629629750861327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_5
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72081e80a296f190800000000000000
+      internalID: -7928988875662818694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_6
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ccfd66536a810a0800000000000000
+      internalID: -6910590879910605799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_7
+      rect:
+        serializedVersion: 2
+        x: 2660
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6275ffd391c2a000800000000000000
+      internalID: 45811787088884332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_8
+      rect:
+        serializedVersion: 2
+        x: 3040
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74c74af165846800800000000000000
+      internalID: 604754905831818366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_9
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa4978c2564528370800000000000000
+      internalID: 8323307854849610927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_10
+      rect:
+        serializedVersion: 2
+        x: 3800
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e901559fd6e3d8c0800000000000000
+      internalID: -3975580198080804380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: benedic_future_effect_benedicEnd_sandWatch_strip_11
+      rect:
+        serializedVersion: 2
+        x: 4180
+        y: 0
+        width: 380
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b38fd4c7323d6d410800000000000000
+      internalID: 1501619675137439803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

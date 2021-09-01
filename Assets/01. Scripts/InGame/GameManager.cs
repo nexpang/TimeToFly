@@ -75,6 +75,17 @@ public class GameManager : MonoBehaviour
     {
         Instance = this; // ΩÃ±€≈Ê
         Time.timeScale = 0;
+
+        if (currentStage == -1)
+        {
+            currentStage = SceneController.targetMap;
+        }
+
+        if (currentStage == 0)
+        {
+            isNeedTimer = false;
+            isInfinityLife = true;
+        }
     }
 
     private void Start()

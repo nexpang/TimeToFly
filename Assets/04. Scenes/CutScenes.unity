@@ -1306,8 +1306,6 @@ Transform:
   - {fileID: 777633297}
   - {fileID: 1757949544}
   - {fileID: 27373892}
-  - {fileID: 1526539581}
-  - {fileID: 1562050331}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2514,7 +2512,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616622716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -1.5, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5859,6 +5857,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &693442951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 693442952}
+  m_Layer: 0
+  m_Name: Snow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &693442952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693442951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1526539581}
+  - {fileID: 1562050331}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &700622343
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,6 +9741,7 @@ GameObject:
   - component: {fileID: 1526539581}
   - component: {fileID: 1526539580}
   - component: {fileID: 1526539579}
+  - component: {fileID: 1526539582}
   m_Layer: 0
   m_Name: SnowWind_Hard
   m_TagString: Untagged
@@ -14498,12 +14529,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526539578}
   m_LocalRotation: {x: 0.97019, y: -0.24234559, z: -0, w: 0}
-  m_LocalPosition: {x: 8.9, y: 6.3, z: -0.49}
+  m_LocalPosition: {x: 8.9, y: 6.3, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 274110540}
-  m_RootOrder: 11
+  m_Father: {fileID: 693442952}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 28.050003}
+--- !u!95 &1526539582
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526539578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1532241192
 GameObject:
   m_ObjectHideFlags: 0
@@ -14753,6 +14803,7 @@ GameObject:
   - component: {fileID: 1562050331}
   - component: {fileID: 1562050330}
   - component: {fileID: 1562050329}
+  - component: {fileID: 1562050332}
   m_Layer: 0
   m_Name: SnowWind_slow
   m_TagString: Untagged
@@ -19540,12 +19591,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562050328}
   m_LocalRotation: {x: 0.97019, y: -0.24234559, z: -0, w: 0}
-  m_LocalPosition: {x: -1.6000004, y: 12.05, z: -0.49}
+  m_LocalPosition: {x: -1.6000004, y: 12.05, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 274110540}
-  m_RootOrder: 12
+  m_Father: {fileID: 693442952}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 28.050003}
+--- !u!95 &1562050332
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562050328}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1562719738
 GameObject:
   m_ObjectHideFlags: 0
@@ -20333,7 +20403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694233794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -1.5, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -21143,7 +21213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1792731828
 Transform:
   m_ObjectHideFlags: 0
@@ -21151,7 +21221,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792731827}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -25369,10 +25439,37 @@ PlayableDirector:
     value: {fileID: 95254954}
   - key: {fileID: -4159272056996980295, guid: e55a060b21fa9ac468e65cb27210026b, type: 2}
     value: {fileID: 1263003566}
-  - key: {fileID: -8298860336732422342, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 708326296}
+  - key: {fileID: 0}
+    value: {fileID: 144021903}
+  - key: {fileID: 0}
+    value: {fileID: 372948069}
+  - key: {fileID: 8779286964552539067, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 708326296}
+  - key: {fileID: -7357609551847367364, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 144021903}
+  - key: {fileID: -2416858276780705424, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 372948069}
+  - key: {fileID: -5700444743890834015, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 1792731830}
+  - key: {fileID: -6860505774794254104, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 1792731830}
+  - key: {fileID: -4289133540629055807, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 1694233797}
+  - key: {fileID: 7470770433006377021, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 1694233797}
+  - key: {fileID: 0}
+    value: {fileID: 616622719}
+  - key: {fileID: 0}
+    value: {fileID: 616622719}
+  - key: {fileID: 2395671493915122264, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 616622719}
+  - key: {fileID: -890935718599703653, guid: ed8116f12ed1fa7488b258c92cc7a436, type: 2}
+    value: {fileID: 616622719}
   m_ExposedReferences:
     m_References:
+    - 26028b1cc9b05b64da6a2f3cb80045e2: {fileID: 1127113395}
     - 4a7ceaa23ac44bc4dbb8b5a3deff23fb: {fileID: 679459216}
     - 3221f6f98764c744ab9da5a1713895ce: {fileID: 1532241193}
     - 05243a22c273dfa4c95197cc075d2c86: {fileID: 1221816214}
@@ -25407,7 +25504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b6b73e1939924580cffa7bad24eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutScenes: 0
+  cutScenes: 2
   Timelines:
   - {fileID: 11400000, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
   - {fileID: 11400000, guid: e55a060b21fa9ac468e65cb27210026b, type: 2}

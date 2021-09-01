@@ -83,6 +83,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {       
+        if(SceneController.targetMap == 0)
+        {
+            abilityNumber = 0;
+        }
+
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         playerState = PlayerState.NORMAL;
@@ -383,5 +388,10 @@ public class PlayerController : MonoBehaviour
         playerAnimObj.GetComponent<SpriteRenderer>().sortingOrder = 17;
     }
 
-   
+    public void GameClear()
+    {
+        Time.timeScale = 0;
+        an.updateMode = AnimatorUpdateMode.UnscaledTime;
+        an.SetTrigger("Clear");
+    }
 }
