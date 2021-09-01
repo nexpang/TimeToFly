@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public RectTransform bossBarChicken;
     public RectTransform bossBarFill;
     public Image fadeScreen;
+    public GameObject cameraLimitWall;
 
     [Header("데스 스크린")]
     [SerializeField] CanvasGroup lifeOverScreen = null;

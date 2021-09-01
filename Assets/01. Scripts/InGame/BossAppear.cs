@@ -22,7 +22,8 @@ public class BossAppear : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.isBossStage = true;
-        if(GameManager.Instance.player.abilityNumber == 1)
+        GameManager.Instance.cameraLimitWall.SetActive(true);
+        if (GameManager.Instance.player.abilityNumber == 1)
         {
             GameManager.Instance.player.PlayerBarrierSet();
         }
