@@ -28,7 +28,7 @@ public class CutScene : MonoBehaviour
         {
             if(CutSceneObjs[i].gameObject == null)
             {
-                Debug.LogWarning(CutSceneObjs[i].gameObject + "오브젝트가 null 입니다");
+                Debug.LogWarning(CutSceneObjs + "의" + i + "번째 오브젝트가 null 입니다");
                 continue;
             }
             CutSceneObjs[i].gameObject.SetActive(false);
