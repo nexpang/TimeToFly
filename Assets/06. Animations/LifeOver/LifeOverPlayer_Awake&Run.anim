@@ -250,7 +250,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 3.5
-    functionName: 
+    functionName: ChapterAgain
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

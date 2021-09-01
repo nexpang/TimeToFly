@@ -250,6 +250,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
+    public void ChapterAgain()
+    {
+        if (!IsInfinityLife) tempLife=3;
+        SecurityPlayerPrefs.SetInt(tempLifekey, tempLife);
+
+    }
+
     bool isFinished = false;
     public void FadeInOut(float inSec, float outSec, float waitTime = 0f, UnityAction whileFunc = null)
     {
