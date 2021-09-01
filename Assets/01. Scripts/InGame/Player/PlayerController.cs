@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.Events;
 
@@ -308,6 +309,8 @@ public class PlayerController : MonoBehaviour
     [ContextMenu("게임오버")]
     public void GameOver()
     {
+        if (GameManager.Instance.isCleared) return;
+
         if (playerState != PlayerState.DEAD)
         {
             Ability_Barrier ability = (Ability_Barrier)abilitys[5];
@@ -339,6 +342,8 @@ public class PlayerController : MonoBehaviour
     [ContextMenu("떨어져서 게임오버")]
     public void FallGameOver()
     {
+        if (GameManager.Instance.isCleared) return;
+
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
@@ -350,8 +355,11 @@ public class PlayerController : MonoBehaviour
             DeathScreen();
         }
     }
+
     public void TimeOver()
     {
+        if (GameManager.Instance.isCleared) return;
+
         if (playerState != PlayerState.DEAD)
         {
             playerState = PlayerState.DEAD;
@@ -367,11 +375,8 @@ public class PlayerController : MonoBehaviour
     {
         if (timeOver)
         {
-            deathScreen.transform.GetChild(0).gameObject.SetActive(true);
-        }
-        else
-        {
-            deathScreen.transform.GetChild(0).gameObject.SetActive(false);
+            GameManager.Instance.timeOverUI.gameObject.SetActive(true);
+            GameManager.Instance.timeOverUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce);
         }
 
         if (abilitys[(int)Chickens.BROWN].enabled)
@@ -391,7 +396,23 @@ public class PlayerController : MonoBehaviour
     public void GameClear()
     {
         Time.timeScale = 0;
+        GameManager.Instance.isCleared = true;
         an.updateMode = AnimatorUpdateMode.UnscaledTime;
         an.SetTrigger("Clear");
+
+        GameManager.Instance.gameClearUI.gameObject.SetActive(true);
+        GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce);
+        StartCoroutine(ClearCoroutine());
+    }
+
+    IEnumerator ClearCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        GameManager.Instance.FadeInOut(2, 0, 2, () =>
+        {
+            SceneController.targetMap++;
+            PoolManager.ResetPool();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 }

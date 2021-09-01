@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FinishFlag : MonoBehaviour
 {
+    public bool isNeedChicken = true;
+
     public GameObject[] chickens;
     public Sprite[] chickensIdle;
     private BoxCollider2D boxCollider;
@@ -15,6 +17,8 @@ public class FinishFlag : MonoBehaviour
 
     void Start()
     {
+        if (!isNeedChicken) return;
+
         List<int> chickenList = GameManager.Instance.remainChickenIndex;
         chickenList.Remove(GameManager.Instance.player.abilityNumber);
 

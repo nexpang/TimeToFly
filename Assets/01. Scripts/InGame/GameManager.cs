@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text lifeCount = null;
     [HideInInspector] public bool isBossStage = false;
     [HideInInspector] public bool isBossStart = false;
+    [HideInInspector] public bool isCleared = false;
 
     [Header("플레이어")]
     public PlayerController player;
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour
     public RectTransform bossBarFill;
     public Image fadeScreen;
     public GameObject cameraLimitWall;
+    public RectTransform timeOverUI;
+    public RectTransform gameClearUI;
 
     [Header("데스 스크린")]
     [SerializeField] CanvasGroup lifeOverScreen = null;
@@ -283,7 +286,7 @@ public class GameManager : MonoBehaviour
     {
         fadeScreen.gameObject.SetActive(true);
         fadeScreen.color = new Color(0, 0, 0, 0);
-        fadeScreen.DOFade(1, inSec).OnComplete(() => isFinished = true);
+        fadeScreen.DOFade(1, inSec).OnComplete(() => isFinished = true).SetUpdate(true);
 
         yield return new WaitUntil(() => isFinished);
 
@@ -292,10 +295,10 @@ public class GameManager : MonoBehaviour
             whileFunc();
         }
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
 
         isFinished = false;
 
-        fadeScreen.DOFade(0, outSec).OnComplete(() => fadeScreen.gameObject.SetActive(false));
+        fadeScreen.DOFade(0, outSec).OnComplete(() => fadeScreen.gameObject.SetActive(false)).SetUpdate(true);
     }
 }
