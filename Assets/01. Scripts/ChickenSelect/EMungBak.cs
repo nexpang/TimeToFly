@@ -13,8 +13,17 @@ public class EMungBak : MonoBehaviour
     private int curChapter;
 
     [SerializeField] Transform[] chickens;
+    [Header("스프라이트 넣을거 너무 많음")]
+    [SerializeField] Sprite[] chickens_0BtnSprites;
+    [SerializeField] Sprite[] chickens_38BtnSprites;
+    [SerializeField] Sprite[] chickens_15BtnSprites;
+    [SerializeField] Sprite[] chickens_30BtnSprites;
+    [SerializeField] Sprite[] chickens_35BtnSprites;
+    [SerializeField] Sprite[] chickens_29BtnSprites;
+    [SerializeField] Sprite[] chickens_26BtnSprites;
     [SerializeField] Sprite[] chickenSprites;
     [SerializeField] Sprite[] abilityIconSprites;
+    [Header("능력 설명 판넬관련")]
     [SerializeField] Transform abilityPanel;
     [SerializeField] Image playerSprite;
     [SerializeField] Image abilityIcon;
@@ -49,7 +58,30 @@ public class EMungBak : MonoBehaviour
         }
         curChapter = SceneController.targetMap/3;
 
+        SetSprite(curChapter);
         Stage[curChapter].SetActive(true);
+    }
+
+    public void SetSprite(int curStage)
+    {
+        switch(curStage)
+        {
+            case 0:
+                chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
+                chickens[curStage].GetChild(1).GetComponent<Image>().sprite = chickens_38BtnSprites[livingChicken[1]];
+                chickens[curStage].GetChild(2).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[2]];
+                chickens[curStage].GetChild(3).GetComponent<Image>().sprite = chickens_30BtnSprites[livingChicken[3]];
+                chickens[curStage].GetChild(4).GetComponent<Image>().sprite = chickens_15BtnSprites[livingChicken[4]];
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     public void StartPanel(int abilityNum=-1)

@@ -10828,6 +10828,48 @@ MonoBehaviour:
   - {fileID: 424340705}
   - {fileID: 943903609}
   - {fileID: 784586506}
+  chickens_0BtnSprites:
+  - {fileID: 4334783836991956000, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: 4298630949540599605, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: -5707201990640777305, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -3283838829243059928, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: 5120993146704117575, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_38BtnSprites:
+  - {fileID: 8113700493152974639, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: -6876142636289494857, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: 9199422501972070817, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -158376053640778812, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: 222778068408375145, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_15BtnSprites:
+  - {fileID: -480808811739928509, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: -392726602087023669, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: 7496932040267039673, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -2356949049405555673, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: -8001441583828226120, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_30BtnSprites:
+  - {fileID: 4425439098077930050, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: -779845977382104834, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: -354029858608536896, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -979997832423745260, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: 111181349872070599, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_35BtnSprites:
+  - {fileID: -2458299864582215990, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: 1428440892678100859, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: -1330863264840159202, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -7260061904514084399, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: -7943773214645465150, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_29BtnSprites:
+  - {fileID: -1549151736782420611, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: -2231383392481165680, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: -839149110110700848, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: -8297347519231963163, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: -9093775532950774310, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
+  chickens_26BtnSprites:
+  - {fileID: -2611168455720188827, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
+  - {fileID: 4590064507183964596, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
+  - {fileID: 5110085597396624899, guid: 45c9f97b9e152d944a8d78243bdc69fe, type: 3}
+  - {fileID: 7553600313367830968, guid: bc88d4ef08abce34d8663df5e14728f6, type: 3}
+  - {fileID: -9105569228010194860, guid: 537b3e588df6e9f488a8bbd4bfd0d4c6, type: 3}
   chickenSprites:
   - {fileID: 4334783836991956000, guid: c752ad90e7290ec42a0f46b60421a57b, type: 3}
   - {fileID: 4298630949540599605, guid: 1aaed5875e6b6f14e807c05f661a9983, type: 3}
