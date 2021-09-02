@@ -45,7 +45,7 @@ public class MoveTrap : ResetAbleTrap
                 isTrigger = true;
             }
 
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_Falling, 1f, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {

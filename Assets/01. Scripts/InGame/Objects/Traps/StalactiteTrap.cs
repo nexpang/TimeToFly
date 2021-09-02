@@ -31,7 +31,7 @@ public class StalactiteTrap : ResetAbleTrap
             childRb.simulated = true;
             isTrigger = true;
 
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_Falling, 1f, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
             Destroy(gameObject, 5);
         }
     }
@@ -45,7 +45,7 @@ public class StalactiteTrap : ResetAbleTrap
             childRb.gravityScale = gravitySpeed;
             childRb.simulated = true;
 
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_Falling, 1f, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {

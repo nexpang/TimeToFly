@@ -174,9 +174,9 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
                 int soundIdx = Random.Range(0, 2);
 
                 if (soundIdx == 0)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Meow, 1f, true);
+                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Meow, 1f, true);
                 else if (soundIdx == 1)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Purring, 1f, true);
+                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Purring, 1f, true);
             }
 
             float delay = Random.Range(5, 15);
@@ -315,8 +315,8 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Die, 1f, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1f, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Die, 1f, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
