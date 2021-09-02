@@ -10,7 +10,7 @@ public class EMungBak : MonoBehaviour
 
     public GameObject[] Stage = null;
 
-    private char[] chicken;
+    private string[] chicken;
     public int[] livingChicken;
     private int curChapter;
 
@@ -52,12 +52,12 @@ public class EMungBak : MonoBehaviour
     void Start()
     {
         defaultAbilityPanelPosX = abilityPanel.position.x;
-        chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Replace(" ", "").ToCharArray();
+        chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
         //print(chicken.Length);
         livingChicken = new int[chicken.Length];
         for (int i = 0; i < chicken.Length; i++)
         {
-            livingChicken[i] = chicken[i] - '0';
+            livingChicken[i] = int.Parse(chicken[i]);
         }
         curChapter = SceneController.targetMap/3;
 
