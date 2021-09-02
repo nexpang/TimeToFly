@@ -110,7 +110,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
         state = EnemyState.Chase;
         GetComponent<BoxCollider2D>().enabled = false;
         animator.Play("Enemy_Down");
-        ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Crying, 1f, true);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Eagle_Crying, 1f, true);
         transform.DOMove(transform.position + Vector3.down * 7, reloadRockDelay / 2f);
         yield return new WaitForSeconds(reloadRockDelay / 2f+0.1f);
         havingRock = true;
@@ -174,7 +174,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
                 ParticleManager.CreateParticle<Effect_EagleFeather>(transform.position);
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1f, true);
                 //ObjectManager.PlaySound(ObjectManager.Instance.Audio_Eagle_Die, 1f, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)

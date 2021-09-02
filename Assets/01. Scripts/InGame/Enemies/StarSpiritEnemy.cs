@@ -91,9 +91,9 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
                 int soundIdx = Random.Range(0, 2);
 
                 if (soundIdx == 0)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Meow, 1f, true);
+                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Meow, 1f, true);
                 else if (soundIdx == 1)
-                    ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Purring, 1f, true);
+                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Purring, 1f, true);
             }
 
             float delay = Random.Range(5, 15);
@@ -105,7 +105,7 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
         if (state == EnemyState.Die) yield break; // 코루틴 종료
         isAttacking = true;
         animator.Play("Enemy_Attack");
-        ObjectManager.PlaySound(ObjectManager.Instance.Audio_StarSpirit_Rusing, 1f, true);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_StarSpirit_Rusing, 1f, true);
 
         float angel = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         spriteRenderer.flipX = false;
@@ -178,8 +178,8 @@ public class StarSpiritEnemy : ResetAbleTrap, IItemAble
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1f, true);
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_Cat_Die, 1f, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1f, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Die, 1f, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {

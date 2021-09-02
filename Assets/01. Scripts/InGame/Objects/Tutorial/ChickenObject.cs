@@ -9,7 +9,6 @@ public class ChickenObject : InteractionObject
 
     [SerializeField] PlayerController pC;
     [SerializeField] Sprite[] playerSleepSpr;
-    [SerializeField] GameObject[] playerAbilityLore;
 
     public override bool OnInteraction()
     {
@@ -19,11 +18,6 @@ public class ChickenObject : InteractionObject
         GetComponent<SpriteRenderer>().sprite = playerSleepSpr[tempChickenId];
         GameManager.Instance.player.PlayerAbilitySet(chickenId);
         chickenId = tempChickenId;
-
-        for (int i = 0; i < playerAbilityLore.Length; i++)
-        {
-            playerAbilityLore[i].SetActive(pC.abilityNumber == i);
-        }
 
         return true;
     }

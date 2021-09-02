@@ -23,7 +23,7 @@ public class BearTrap : ResetAbleTrap
             isTrigger = true;
 
             GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_bearTrapTriggered;
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_bearTrap, 0.8f, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_bearTrap, 0.8f, true);
             GetComponent<SpriteRenderer>().sortingOrder = 18;
             GameManager.Instance.player.GameOver();
             playerRb.position = transform.position;
