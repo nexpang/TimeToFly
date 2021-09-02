@@ -12,23 +12,25 @@ public class SceneController : MonoBehaviour
     [Header("맵 이미지 / 텍스트")]
     public Text mapName;
     public Image mapImg;
+    public Image mapIconimg;
 
     public ChapterInfoDatas mapData;
 
     static string nextScene;
 
     public static bool isLoaded = false;
-    public static int targetMap = 0;
     public static int targetDieChicken = 0;
-    public static int currentChickenIndex = 0;
 
     private void Awake()
     {
         loadingBarDefaultSize = progressBar.GetComponent<RectTransform>().sizeDelta;
         progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, loadingBarDefaultSize.y);
 
-        mapName.text = mapData.infos[targetMap].mapName;
-        mapImg.sprite = mapData.infos[targetMap].mapSprite;
+        int saveMapId = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
+
+        mapName.text = mapData.infos[saveMapId].mapName;
+        mapImg.sprite = mapData.infos[saveMapId].mapSprite;
+        mapIconimg.sprite = mapData.infos[saveMapId].mapIcon;
     }
 
     void Start()

@@ -42,8 +42,7 @@ public abstract class Boss : MonoBehaviour
 
             GameManager.Instance.FadeInOut(1, 0, 2, () =>
             {
-                SceneController.targetMap++;
-                SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMap);
+                SecurityPlayerPrefs.SetInt("inGame.saveMapid", SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) + 1);
                 PoolManager.ResetPool();
                 SceneManager.LoadScene("CutScenes");
             });

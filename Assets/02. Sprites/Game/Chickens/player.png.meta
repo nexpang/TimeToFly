@@ -134,6 +134,9 @@ TextureImporter:
   - first:
       213: 3530494885523508410
     second: player_43
+  - first:
+      213: 1910719979137897025
+    second: player_44
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1154,6 +1157,27 @@ TextureImporter:
       bones: []
       spriteID: abc46fc9466def030800000000000000
       internalID: 3530494885523508410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_44
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14291c592bd348a10800000000000000
+      internalID: 1910719979137897025
       vertices: []
       indices: 
       edges: []

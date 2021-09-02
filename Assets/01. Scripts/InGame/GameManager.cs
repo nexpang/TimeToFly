@@ -82,8 +82,7 @@ public class GameManager : MonoBehaviour
 
         if (currentStage == -1)
         {
-            SceneController.targetMap = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
-            currentStage = SceneController.targetMap;
+            currentStage = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
         }
 
         if (currentStage == 0)
@@ -254,6 +253,7 @@ public class GameManager : MonoBehaviour
     {
         PoolManager.ResetPool();
         player.deathScreen.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
         lifeOverScreen.alpha = 1f;
         Image llifeOverScreen = lifeOverScreen.GetComponent<Image>();
         llifeOverScreen.DOColor(new Color(0f, 0f, 0f, 1f), 0.5f).OnComplete(() =>
@@ -278,7 +278,6 @@ public class GameManager : MonoBehaviour
     public void GoToTitle()
     {
         StageReset();
-        SecurityPlayerPrefs.SetInt("inGame.saveMapId", curChapterInfo.stageInfos[0].stageId);
 
         PoolManager.ResetPool();
         SceneManager.LoadScene("Title");
@@ -288,7 +287,7 @@ public class GameManager : MonoBehaviour
     {
         if (!IsInfinityLife) tempLife = 9;
         SecurityPlayerPrefs.SetInt(tempLifekey, tempLife);
-        SceneController.targetMap = curChapterInfo.stageInfos[0].stageId;
+        SecurityPlayerPrefs.SetInt("inGame.saveMapid", curChapterInfo.stageInfos[0].stageId);
     }
 
     bool isFinished = false;
@@ -361,6 +360,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"inGame.tempLife : {SecurityPlayerPrefs.GetInt("inGame.tempLife", 9)} \n" +
             $"inGame.remainChicken : {SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4")} \n" +
             $"inGame.saveMapid : {SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0)} \n" +
-            $"newbie : {SecurityPlayerPrefs.GetBool("newbie", true)}");
+            $"newbie : {SecurityPlayerPrefs.GetBool("newbie", true)} \n" +
+            $"inGame.saveCurrentChickenIndex : {SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", 0)}");
     }
 }

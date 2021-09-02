@@ -84,7 +84,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {       
-        if(SceneController.targetMap == 0)
+        abilityNumber = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", 0);
+        if(SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
         {
             abilityNumber = 0;
         }
@@ -386,10 +387,11 @@ public class PlayerController : MonoBehaviour
 
         deathScreen.gameObject.SetActive(true);
         deathScreen.color = new Color(0, 0, 0, 0);
-        deathScreen.DOFade(0.75f, 1);
+        deathScreen.DOFade(1f, 1);
         bgAudioSource.DOPitch(0, 2);
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
+        playerAnimObj.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
         playerAnimObj.GetComponent<SpriteRenderer>().sortingOrder = 17;
     }
 
@@ -410,8 +412,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(4);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
-            SceneController.targetMap++;
-            SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMap);
+            SecurityPlayerPrefs.SetInt("inGame.saveMapid", SecurityPlayerPrefs.GetInt("inGame.saveMapid",0) + 1);
             PoolManager.ResetPool();
 
             if (GameManager.Instance.curStageInfo.stageId == 0)

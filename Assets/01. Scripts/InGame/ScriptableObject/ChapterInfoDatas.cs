@@ -11,4 +11,5 @@ public class GlobalDataInfo
 {
     public string mapName;
     public Sprite mapSprite;
+    public Sprite mapIcon;
 }

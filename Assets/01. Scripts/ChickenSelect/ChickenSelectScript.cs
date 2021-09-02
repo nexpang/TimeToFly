@@ -60,6 +60,7 @@ public class ChickenSelectScript : MonoBehaviour
     private float movedAbilityPanelPosX;
     void Start()
     {
+        Time.timeScale = 1;
         defaultAbilityPanelPosX = abilityPanel.position.x;
         movedAbilityPanelPosX = defaultAbilityPanelPosX - 11f;
         chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
@@ -69,7 +70,7 @@ public class ChickenSelectScript : MonoBehaviour
         {
             livingChicken[i] = int.Parse(chicken[i]);
         }
-        curChapter = SceneController.targetMap/3;
+        curChapter = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) / 3;
 
         SetSprite(curChapter);
         Stage[curChapter].SetActive(true);
@@ -155,7 +156,7 @@ public class ChickenSelectScript : MonoBehaviour
     //시작버튼으로 실행
     public void GameStart()
     {
-        SceneController.currentChickenIndex = curAbility;
-        SceneController.LoadScene("Title");
+        SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", curAbility);
+        SceneController.LoadScene("InGame");
     }
 }

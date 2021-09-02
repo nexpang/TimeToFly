@@ -46,7 +46,7 @@ public class TitleIntro : MonoBehaviour
         blackPanelRight.localScale = new Vector3(0, 1, 1);
         isNight = SecurityPlayerPrefs.GetBool("newbie", true);
 
-        SecurityPlayerPrefs.SetInt("inGame.templife", 9);
+        SecurityPlayerPrefs.SetInt("inGame.tempLife", 9);
 
         if (SecurityPlayerPrefs.GetBool("newbie", true))
         {
@@ -153,6 +153,9 @@ public class TitleIntro : MonoBehaviour
     [ContextMenu("´ººñ ¿Â")]
     public void NewbieOn()
     {
+        SecurityPlayerPrefs.SetBool("newbie", true);
+        SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
+        SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetBool("newbie", true);
     }
 
