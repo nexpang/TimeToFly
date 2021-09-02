@@ -19,10 +19,10 @@ STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY�
 ***
 
 ### 소스코드 예시
-player ability ex) Ability_FutureCreate.cs
+player ability ex) Ability_FutureCreate.cs<br/>
 플레이어 능력 예) 미래예지 파일명.cs
 
-```
+```cs
     void RecordPlayer()
     {
         if (isAbilityEnable)
@@ -110,7 +110,7 @@ player ability ex) Ability_FutureCreate.cs
 
 PoolManager.cs
 
-```
+```cs
 public class PoolManager
 {    
     private static Dictionary<string, IPool> poolDic = new Dictionary<string, IPool>();
