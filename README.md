@@ -1,5 +1,6 @@
 # TimeToFly
 <img src = "http://ggm.gondr.net/image/users/37/portfolio/135_screenshot_06.png" width="150%" height="150%">
+
 Smartin App Challenge Development Part Projects
 STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY입니다
 
@@ -8,8 +9,11 @@ STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY�
 ### 게임 영상
 [능력 소개 영상](https://youtu.be/KK-rLM9FDqw)
 
+***
+
 ### 플레이 방식
 <img src = "https://media.discordapp.net/attachments/798813285037899786/882212733272096798/unknown.png" width="150%" height="150%">
+#### 일시정지, 이동, 점프, 능력 버튼 및 타이머
 
 ***
 
