@@ -4655,7 +4655,7 @@ GameObject:
   - component: {fileID: 519378230}
   - component: {fileID: 519378232}
   m_Layer: 5
-  m_Name: AbilityIcon (1)
+  m_Name: AbilityIconBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7371,7 +7371,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 114166813}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -7425,7 +7425,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1318579687}
         m_TargetAssemblyTypeName: ChickenSelectScript, Assembly-CSharp
         m_MethodName: GameStart
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7638,7 +7638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -142.7, y: -461}
+  m_AnchoredPosition: {x: -142.70001, y: -461}
   m_SizeDelta: {x: 636.3, y: 280}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &917014650
