@@ -169,9 +169,9 @@ TextureImporter:
       name: ui_ingame_moving_1
       rect:
         serializedVersion: 2
-        x: 434
+        x: 414
         y: 1539
-        width: 447
+        width: 500
         height: 506
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -190,10 +190,10 @@ TextureImporter:
       name: ui_ingame_moving_2
       rect:
         serializedVersion: 2
-        x: 1029
-        y: 1555
-        width: 410
-        height: 492
+        x: 967
+        y: 1547
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,10 +274,10 @@ TextureImporter:
       name: ui_ingame_moving_6
       rect:
         serializedVersion: 2
-        x: 957
-        y: 1193
-        width: 274
-        height: 356
+        x: 763
+        y: 1131
+        width: 386
+        height: 387
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,34 +292,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_ingame_moving_7
-      rect:
-        serializedVersion: 2
-        x: 1247
-        y: 1369
-        width: 146
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8ccd1ef333636770800000000000000
-      internalID: 8602828788165627021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ui_ingame_moving_8
       rect:
         serializedVersion: 2
-        x: 1283
-        y: 1189
-        width: 458
-        height: 394
+        x: 1397
+        y: 1132
+        width: 512
+        height: 503
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

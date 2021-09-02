@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ChickenSelectScript : MonoBehaviour
 {
     private bool isPanelShow = false;
+    private int curAbility = 0;
 
     public GameObject[] Stage = null;
 
@@ -30,8 +31,14 @@ public class ChickenSelectScript : MonoBehaviour
     [SerializeField] Transform abilityPanel;
     [SerializeField] Image playerSprite;
     [SerializeField] Image abilityIcon;
+    [SerializeField] Image[] blackBGs;
+    [SerializeField] Text selectTxt;
+    [SerializeField] Text playerName;
     [SerializeField] Text playerAbilityName;
     [SerializeField] Text playerAbilityExplain;
+
+    private string[] chickenName = new string[5] { "백숙이", "토닭이", "퍼렁이", "딸기", "태일이" };
+
     private string[,] abilityExplain = new string[2,5] {
         {
             "윙크~!"   ,
@@ -42,10 +49,10 @@ public class ChickenSelectScript : MonoBehaviour
         },
         {
             "백숙이는 윙크를 하여 귀여운 표정을 지을 수 있습니다!!",
-            "토닭이는 미래에 일어날 일들을 미리 체험합니다.15초 동안 미래에서 일어날 일들을 미리 겪고 현재로 돌아와서 함정을 간파합니다.",
+            "토닭이는 미래에 일어날 일들을 미리 체험합니다. 15초 동안 미래에서 일어날 일들을 미리 겪고 현재로 돌아와서 함정을 간파합니다.",
             "퍼렁이는 자신의 시간을 가속시켜서 점프 속도와 이동 속도를 크게 증가시킵니다. ",
             "딸기는 시간 폭탄을 던질 수 있습니다.\n 주변 물체의 시간을 망가트리는 이 폭탄은 함정을 제거하는데에 효과적입니다.",
-            "태일이는 순간이동을 합니다.\n 사용 즉시, 시간이 느려지며 이동할 지점을 조이스틱으로 선택합니다."
+            "태일이는 순간이동을 합니다.\n 발동시 시간이 느려지며 버튼을 드래그하여 이동할 지점을 조이스틱으로 선택합니다."
         }
     };
     private float defaultAbilityPanelPosX;
@@ -97,6 +104,9 @@ public class ChickenSelectScript : MonoBehaviour
                 chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
                 break;
         }
+
+        blackBGs[curStage].gameObject.SetActive(true);
+        selectTxt.gameObject.SetActive(true);
     }
 
     public void StartPanel(int abilityNum)
@@ -104,38 +114,28 @@ public class ChickenSelectScript : MonoBehaviour
         if (abilityNum != -1)
         {
             if (isPanelShow) return;
+            curAbility = livingChicken[abilityNum];
             playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
             abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
+            playerName.text = chickenName[livingChicken[abilityNum]];
             playerAbilityName.text = abilityExplain[0, livingChicken[abilityNum]];
             playerAbilityExplain.text = abilityExplain[1, livingChicken[abilityNum]];
             abilityPanel.DOKill();
-            abilityPanel.DOMoveX(movedAbilityPanelPosX, 1f);
+            abilityPanel.DOMoveX(movedAbilityPanelPosX, 1f).SetEase(Ease.OutBounce);
             isPanelShow = true;
         }
         else
         {
             if (!isPanelShow) return;
             abilityPanel.DOKill();
-            abilityPanel.DOMoveX(defaultAbilityPanelPosX, 1f);
+            abilityPanel.DOMoveX(defaultAbilityPanelPosX, 1f).SetEase(Ease.OutBounce);
             isPanelShow = false;
         }
     }
 
     //시작버튼으로 실행
-    public void GameStart(int abilityNum = -1)
+    public void GameStart()
     {
-        if(abilityNum!=-1)
-        {
-            print("아니 어빌리티 숫자 설정하라고");
-        }
-        else
-        {
-            //어빌리티설정하고 시작
-        }
-    }
-
-    void Update()
-    {
-
+        //
     }
 }
