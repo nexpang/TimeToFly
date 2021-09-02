@@ -166,6 +166,8 @@ public class OptionUIManager : MonoBehaviour
 
     public void GameExit()
     {
+        GameManager.Instance.StageReset();
+
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else

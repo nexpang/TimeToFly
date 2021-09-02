@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
         if (currentStage == -1)
         {
+            SceneController.targetMap = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
             currentStage = SceneController.targetMap;
         }
 
@@ -268,13 +269,24 @@ public class GameManager : MonoBehaviour
 
     public void ChapterAgain()
     {
-        if (!IsInfinityLife) tempLife=3;
-        SecurityPlayerPrefs.SetInt(tempLifekey, tempLife);
-
+        StageReset();
+        SceneReset();
     }
+
     public void GoToTitle()
     {
+        StageReset();
+        SecurityPlayerPrefs.SetInt("inGame.saveMapId", curChapterInfo.stageInfos[0].stageId);
 
+        PoolManager.ResetPool();
+        SceneManager.LoadScene("Title");
+    }
+
+    public void StageReset()
+    {
+        if (!IsInfinityLife) tempLife = 9;
+        SecurityPlayerPrefs.SetInt(tempLifekey, tempLife);
+        SceneController.targetMap = curChapterInfo.stageInfos[0].stageId;
     }
 
     bool isFinished = false;

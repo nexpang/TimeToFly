@@ -410,7 +410,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(4);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
+            if(GameManager.Instance.curStageInfo.stageId == 3)
+            {
+                // ¿©±ä ³óÀå ÄÆ¾À
+            }
+
             SceneController.targetMap++;
+            SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMap);
             PoolManager.ResetPool();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
