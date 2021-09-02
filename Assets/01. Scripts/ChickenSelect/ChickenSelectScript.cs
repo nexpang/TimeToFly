@@ -31,8 +31,9 @@ public class ChickenSelectScript : MonoBehaviour
     [SerializeField] Transform abilityPanel;
     [SerializeField] Image playerSprite;
     [SerializeField] Image abilityIcon;
-    [SerializeField] Image[] blackBGs;
-    [SerializeField] Text selectTxt;
+    [SerializeField] Image blackBG;
+    [SerializeField] Image selectTxt;
+    [SerializeField] Image blockTouchPanel;
     [SerializeField] Text playerName;
     [SerializeField] Text playerAbilityName;
     [SerializeField] Text playerAbilityExplain;
@@ -72,6 +73,7 @@ public class ChickenSelectScript : MonoBehaviour
 
         SetSprite(curChapter);
         Stage[curChapter].SetActive(true);
+        StartCoroutine(SelectReady());
     }
 
     public void SetSprite(int curStage)
@@ -105,7 +107,7 @@ public class ChickenSelectScript : MonoBehaviour
                 break;
         }
 
-        blackBGs[curStage].gameObject.SetActive(true);
+        blackBG.gameObject.SetActive(true);
         selectTxt.gameObject.SetActive(true);
     }
 
@@ -133,9 +135,27 @@ public class ChickenSelectScript : MonoBehaviour
         }
     }
 
+    IEnumerator SelectReady()
+    {
+        blackBG.gameObject.SetActive(true);
+        blackBG.color = new Color(0, 0, 0, 0);
+        selectTxt.gameObject.SetActive(true);
+        selectTxt.color = new Color(1, 1, 1, 0);
+
+        yield return new WaitForSeconds(3);
+
+        blackBG.DOFade(190 / 255f, 0.5f);
+        selectTxt.DOFade(1, 0.5f).SetDelay(1).OnComplete(() =>
+        {
+            selectTxt.transform.DOMoveY(-0.3f, 2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetRelative();
+            blockTouchPanel.raycastTarget = false;
+        });
+    }
+
     //시작버튼으로 실행
     public void GameStart()
     {
-        //
+        SceneController.currentChickenIndex = curAbility;
+        SceneController.LoadScene("Title");
     }
 }

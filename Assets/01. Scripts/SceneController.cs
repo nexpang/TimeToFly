@@ -19,6 +19,8 @@ public class SceneController : MonoBehaviour
 
     public static bool isLoaded = false;
     public static int targetMap = 0;
+    public static int targetDieChicken = 0;
+    public static int currentChickenIndex = 0;
 
     private void Awake()
     {
