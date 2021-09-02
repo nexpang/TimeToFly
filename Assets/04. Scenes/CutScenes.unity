@@ -1393,6 +1393,7 @@ Transform:
   - {fileID: 1757949544}
   - {fileID: 27373892}
   - {fileID: 391276071}
+  - {fileID: 693442952}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5967,14 +5968,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693442951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1526539581}
   - {fileID: 1562050331}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 274110540}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &700622343
 GameObject:
@@ -25661,7 +25662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b6b73e1939924580cffa7bad24eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutScenes: 2
+  cutScenes: 1
   Timelines:
   - {fileID: 11400000, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
   - {fileID: 11400000, guid: e55a060b21fa9ac468e65cb27210026b, type: 2}

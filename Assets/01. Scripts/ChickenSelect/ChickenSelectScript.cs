@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class EMungBak : MonoBehaviour
+public class ChickenSelectScript : MonoBehaviour
 {
     private bool isPanelShow = false;
 
