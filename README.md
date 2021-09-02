@@ -2,15 +2,21 @@
 <img src = "http://ggm.gondr.net/image/users/37/portfolio/135_screenshot_06.png" width="150%" height="150%">
 Smartin App Challenge Development Part Projects
 STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY입니다
+
 ***
+
 ### 게임 영상
 [능력 소개 영상](https://youtu.be/KK-rLM9FDqw)
+
 ### 플레이 방식
 <img src = "https://media.discordapp.net/attachments/798813285037899786/882212733272096798/unknown.png" width="150%" height="150%">
+
 ***
+
 ### 소스코드 예시
 player ability ex) Ability_FutureCreate.cs
 플레이어 능력 예) 미래예지 파일명.cs
+
 ```
     void RecordPlayer()
     {
@@ -96,7 +102,9 @@ player ability ex) Ability_FutureCreate.cs
         GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.curChapterInfo.chapterBGM, GameManager.Instance.defaultBGMvolume, true);
     }
 ```
+
 PoolManager.cs
+
 ```
 public class PoolManager
 {    
