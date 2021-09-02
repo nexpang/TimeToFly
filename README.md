@@ -1,7 +1,7 @@
 # TimeToFly
 <img src = "http://ggm.gondr.net/image/users/37/portfolio/135_screenshot_06.png" width="150%" height="150%">
 
-Smartin App Challenge Development Part Projects
+Smartin App Challenge Development Part Projects<br/>
 STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY입니다
 
 ***
