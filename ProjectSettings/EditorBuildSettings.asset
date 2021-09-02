@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/04. Scenes/InGame.unity
     guid: eeb924527a3e99643808452ebfecb18b
-  - enabled: 1
-    path: Assets/04. Scenes/Tutorial of copy.unity
-    guid: 6ea2256886637e243b8a0d4d7568abdd
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
