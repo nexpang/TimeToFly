@@ -145,7 +145,7 @@ public class ChickenSelectScript : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         blackBG.DOFade(190 / 255f, 0.5f);
-        selectTxt.DOFade(1, 0.5f).SetDelay(1).OnComplete(() =>
+        selectTxt.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
         {
             selectTxt.transform.DOMoveY(-0.3f, 2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetRelative();
             blockTouchPanel.raycastTarget = false;
