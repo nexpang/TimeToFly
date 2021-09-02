@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public Transform playerAnimObj = null;
 
     [Header("πË∞Ê¿Ωæ«")]
-    [SerializeField] AudioSource bgAudioSource = null;
+    public AudioSource bgAudioSource = null;
     public float defaultBGMvolume = 1;
 
     SpriteRenderer playerSpr = null;

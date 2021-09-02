@@ -115,4 +115,9 @@ public class JokJeBiBoss : Boss
     {
         animator.Play("JokJeBi_Pattern3");
     }
+
+    private void JokJeBI_ShoutingSound() // 족제비 샤우팅 사운드
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossJokJeBiShout, 1f, true);
+    }
 }

@@ -49,6 +49,9 @@ public class BossAppear : MonoBehaviour
 
     IEnumerator BossStart()
     {
+        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 2);
+        
+
         if (bossType == BossType.JOKJEBI)
         {
             GameManager.Instance.player.SetStun(10);
@@ -107,6 +110,7 @@ public class BossAppear : MonoBehaviour
         else if(bossType == BossType.DOKSURI)
         {
             currentBoss.GetComponent<Animator>().Play("DokSuRi_Appear");
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossEagleShout, 1f, true);
             yield return new WaitForSeconds(3f);
             GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
             yield return new WaitForSeconds(1.5f);
@@ -115,6 +119,9 @@ public class BossAppear : MonoBehaviour
         }
 
         currentBoss.BossStart();
+        GameManager.Instance.bgAudioSource.clip = ObjectManager.Instance.soundData.BGM_Boss;
+        GameManager.Instance.bgAudioSource.volume = 1;
+        GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
@@ -147,6 +154,9 @@ public class BossAppear : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         currentBoss.BossStart();
+        GameManager.Instance.bgAudioSource.clip = ObjectManager.Instance.soundData.BGM_Boss;
+        GameManager.Instance.bgAudioSource.volume = 1;
+        GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);

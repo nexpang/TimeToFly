@@ -19,4 +19,8 @@ public class SoundDatas : ScriptableObject
     public AudioClip Audio_BrickBreak;
     public AudioClip Audio_BlockItem;
     public AudioClip Audio_BlockHit;
+    public AudioClip Audio_BossBat;
+    public AudioClip Audio_BossEagleShout;
+    public AudioClip Audio_BossEagleAmbient;
+    public AudioClip Audio_BossJokJeBiShout;
 }

@@ -78,5 +78,10 @@ public abstract class Boss : MonoBehaviour
         }
     }
 
+    protected void BossAppearSound() // 보스 등장 사운드
+    {
+        //ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_, 1f, true);
+    }
+
     #endregion
 }

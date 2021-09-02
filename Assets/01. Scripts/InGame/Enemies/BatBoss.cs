@@ -292,5 +292,10 @@ public class BatBoss : Boss
         }
     }
 
+    private void Bat_ShoutingSound() // ¹ÚÁã »þ¿ìÆÃ »ç¿îµå
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBat, 1f, true);
+    }
+
     #endregion
 }

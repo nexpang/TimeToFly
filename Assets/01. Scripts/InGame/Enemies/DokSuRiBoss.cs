@@ -183,4 +183,15 @@ public class DokSuRiBoss : Boss
     {
         animator.Play("DokSuRi_Pattern3");
     }
+
+
+    private void Eagle_AmbeintSound() // 독수리 날개 사운드
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossEagleAmbient, 1f, true);
+    }
+
+    private void Eagle_ShoutSound() // 독수리 샤우팅 사운드
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossEagleShout, 1f, true);
+    }
 }
