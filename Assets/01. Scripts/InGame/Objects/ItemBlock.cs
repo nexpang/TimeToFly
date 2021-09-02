@@ -82,7 +82,7 @@ public class ItemBlock : ResetAbleTrap
                     }
                 }
 
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1, true);
 
                 IItemAble createItem = itemObj.GetComponent<IItemAble>();
                 if(createItem != null)
@@ -92,7 +92,7 @@ public class ItemBlock : ResetAbleTrap
             }
 
             ParticleManager.CreateBlockParticle(particleType, transform.position, 1.5f);
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_BrickBreak, 1, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BrickBreak, 1, true);
 
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
@@ -119,7 +119,7 @@ public class ItemBlock : ResetAbleTrap
                     }
                 }
 
-                ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockItem, 1, true);
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1, true);
 
                 IItemAble createItem = itemObj.GetComponent<IItemAble>();
                 if (createItem != null)
@@ -131,7 +131,7 @@ public class ItemBlock : ResetAbleTrap
             // 스프라이트 바꿔주기
             GetComponent<SpriteRenderer>().sprite = ObjectManager.Instance.Spr_questionBlockTriggered;
 
-            ObjectManager.PlaySound(ObjectManager.Instance.Audio_BlockHit, 1, true);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockHit, 1, true);
         }
     }
 
