@@ -37,7 +37,7 @@ public class FinishFlag : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
@@ -46,6 +46,8 @@ public class FinishFlag : MonoBehaviour
             {
                 return;
             }
+
+            if (!GameManager.Instance.player.isGround) return;
 
             boxCollider.enabled = false;
             GameManager.Instance.player.GameClear();
