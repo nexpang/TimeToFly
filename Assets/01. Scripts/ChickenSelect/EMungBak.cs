@@ -49,9 +49,11 @@ public class EMungBak : MonoBehaviour
         }
     };
     private float defaultAbilityPanelPosX;
+    private float movedAbilityPanelPosX;
     void Start()
     {
         defaultAbilityPanelPosX = abilityPanel.position.x;
+        movedAbilityPanelPosX = defaultAbilityPanelPosX - 11f;
         chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
         //print(chicken.Length);
         livingChicken = new int[chicken.Length];
@@ -99,7 +101,6 @@ public class EMungBak : MonoBehaviour
 
     public void StartPanel(int abilityNum)
     {
-        abilityPanel.DOKill();
         if (abilityNum != -1)
         {
             if (isPanelShow) return;
@@ -107,11 +108,13 @@ public class EMungBak : MonoBehaviour
             abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
             playerAbilityName.text = abilityExplain[0, livingChicken[abilityNum]];
             playerAbilityExplain.text = abilityExplain[1, livingChicken[abilityNum]];
-            abilityPanel.DOMoveX(abilityPanel.position.x-11f,1f);
+            abilityPanel.DOKill();
+            abilityPanel.DOMoveX(movedAbilityPanelPosX, 1f);
             isPanelShow = true;
         }
         else
         {
+            abilityPanel.DOKill();
             abilityPanel.DOMoveX(defaultAbilityPanelPosX, 1f);
             isPanelShow = false;
         }
