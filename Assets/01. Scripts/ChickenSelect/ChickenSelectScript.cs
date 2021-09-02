@@ -114,6 +114,7 @@ public class ChickenSelectScript : MonoBehaviour
         }
         else
         {
+            if (!isPanelShow) return;
             abilityPanel.DOKill();
             abilityPanel.DOMoveX(defaultAbilityPanelPosX, 1f);
             isPanelShow = false;
