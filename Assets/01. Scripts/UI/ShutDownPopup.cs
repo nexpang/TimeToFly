@@ -25,24 +25,24 @@ public class ShutDownPopup : MonoBehaviour
     void Start()
     {
         mySequence = DOTween.Sequence();
-        if (SceneManager.GetActiveScene().name == "InGame")
-        {
-            popup.alpha = 0;
-            popup.blocksRaycasts = false;
-            popup.interactable = false;
-        }
-        else
-        {
-            popup.alpha = 0;
-            popup.blocksRaycasts = false;
-            popup.interactable = false;
-        }
+        //if (SceneManager.GetActiveScene().name == "InGame")
+        //{
+        //    popup.alpha = 0;
+        //    popup.blocksRaycasts = false;
+        //    popup.interactable = false;
+        //}
+        //else
+        //{
+        //    popup.alpha = 0;
+        //    popup.blocksRaycasts = false;
+        //    popup.interactable = false;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "InGame")
+        if(SceneManager.GetActiveScene().name != "InGame"&&SceneManager.GetActiveScene().name != "Loading")
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
