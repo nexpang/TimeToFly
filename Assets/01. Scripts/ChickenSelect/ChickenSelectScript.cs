@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ChickenSelectScript : MonoBehaviour
 {
     private bool isPanelShow = false;
+    private int curAbility = 0;
 
     public GameObject[] Stage = null;
 
@@ -104,6 +105,7 @@ public class ChickenSelectScript : MonoBehaviour
         if (abilityNum != -1)
         {
             if (isPanelShow) return;
+            curAbility = livingChicken[abilityNum];
             playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
             abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
             playerAbilityName.text = abilityExplain[0, livingChicken[abilityNum]];
@@ -122,16 +124,10 @@ public class ChickenSelectScript : MonoBehaviour
     }
 
     //시작버튼으로 실행
-    public void GameStart(int abilityNum = -1)
+    public void GameStart()
     {
-        if(abilityNum!=-1)
-        {
-            print("아니 어빌리티 숫자 설정하라고");
-        }
-        else
-        {
-            //어빌리티설정하고 시작
-        }
+        //어빌리티설정하고 시작
+        // curAbility <이게 현재 선택된 능력번호
     }
 
     void Update()
