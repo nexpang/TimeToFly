@@ -256,9 +256,11 @@ public class GameManager : MonoBehaviour
         player.deathScreen.gameObject.SetActive(false);
         lifeOverScreen.alpha = 1f;
         Image llifeOverScreen = lifeOverScreen.GetComponent<Image>();
-        llifeOverScreen.DOColor(new Color(0f,0f,0f, 1f),0.5f);
-        lifeOverScreen.interactable = true;
-        lifeOverScreen.blocksRaycasts = true;
+        llifeOverScreen.DOColor(new Color(0f, 0f, 0f, 1f), 0.5f).OnComplete(() =>
+           {
+               lifeOverScreen.interactable = true;
+               lifeOverScreen.blocksRaycasts = true;
+           });
     }
 
     public void SceneReset()
@@ -348,6 +350,17 @@ public class GameManager : MonoBehaviour
     public void RemoveRemainChicken(int index)
     {
         remainChickenIndex.Remove(index);
+        SceneController.targetDieChicken = index;
         SaveRemainChicken();
+    }
+
+
+    [ContextMenu("디버그 / 플레이어 프랩스 표시")]
+    public void ShowPlayerPrefs()
+    {
+        Debug.Log($"inGame.tempLife : {SecurityPlayerPrefs.GetInt("inGame.tempLife", 9)} \n" +
+            $"inGame.remainChicken : {SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4")} \n" +
+            $"inGame.saveMapid : {SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0)} \n" +
+            $"newbie : {SecurityPlayerPrefs.GetBool("newbie", true)}");
     }
 }

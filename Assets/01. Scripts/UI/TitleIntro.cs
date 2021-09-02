@@ -46,6 +46,8 @@ public class TitleIntro : MonoBehaviour
         blackPanelRight.localScale = new Vector3(0, 1, 1);
         isNight = SecurityPlayerPrefs.GetBool("newbie", true);
 
+        SecurityPlayerPrefs.SetInt("inGame.templife", 9);
+
         if (SecurityPlayerPrefs.GetBool("newbie", true))
         {
             themeChangeButton.gameObject.SetActive(false);

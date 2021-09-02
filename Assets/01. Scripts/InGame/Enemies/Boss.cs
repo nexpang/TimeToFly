@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public abstract class Boss : MonoBehaviour
@@ -33,6 +34,20 @@ public abstract class Boss : MonoBehaviour
             (bossBarRectStartAndEnd.x + ((bossBarRectStartAndEnd.y - bossBarRectStartAndEnd.x) * barScale)
             - GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x / 2)
             , GameManager.Instance.bossBarChicken.anchoredPosition.y);
+
+        if(barScale >= 1)
+        {
+            GameManager.Instance.RemoveRemainChicken(GameManager.Instance.player.abilityNumber);
+            Time.timeScale = 0;
+
+            GameManager.Instance.FadeInOut(1, 0, 2, () =>
+            {
+                SceneController.targetMap++;
+                SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMap);
+                PoolManager.ResetPool();
+                SceneManager.LoadScene("CutScenes");
+            });
+        }
     }
 
     public void BossHitBoom()

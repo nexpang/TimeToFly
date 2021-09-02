@@ -410,14 +410,26 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(4);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
-            if(GameManager.Instance.curStageInfo.stageId == 3)
-            {
-                // ¿©±ä ³óÀå ÄÆ¾À
-            }
-
             SceneController.targetMap++;
             SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMap);
             PoolManager.ResetPool();
+
+            if (GameManager.Instance.curStageInfo.stageId == 0)
+            {
+                // Æ©Åä¸®¾ó ÈÄ Ä³¸¯ÅÍ ¼±ÅÃ
+
+                SceneManager.LoadScene("ChickenSelectScene");
+
+                return;
+            }
+            else if (GameManager.Instance.curStageInfo.stageId == 3)
+            {
+                // ¿©±ä ³óÀå ÄÆ¾À
+
+                SceneManager.LoadScene("CutScenes");
+                return;
+            }
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
     }
