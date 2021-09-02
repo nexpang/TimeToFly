@@ -8,7 +8,7 @@ public class ShutDownPopup : MonoBehaviour
 {
     [SerializeField] CanvasGroup popup;
     private bool popupIsOpen = false;
-    Sequence mySequence = DOTween.Sequence();
+    Sequence mySequence;
     private void Awake()
     {
         ShutDownPopup[] obj = FindObjectsOfType<ShutDownPopup>();
@@ -24,9 +24,7 @@ public class ShutDownPopup : MonoBehaviour
 
     void Start()
     {
-        popup.alpha = 0;
-        popup.blocksRaycasts = false;
-        popup.interactable = false;
+        mySequence = DOTween.Sequence();
         if (SceneManager.GetActiveScene().name == "InGame")
         {
             popup.alpha = 0;
@@ -51,6 +49,10 @@ public class ShutDownPopup : MonoBehaviour
                 PopupOpen();
             }
         }
+    }
+    public void GameShutDown()
+    {
+        Application.Quit();
     }
 
     public void PopupOpen()
