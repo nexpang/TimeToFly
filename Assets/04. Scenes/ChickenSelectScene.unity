@@ -2155,7 +2155,7 @@ GameObject:
   - component: {fileID: 255101568}
   - component: {fileID: 255101567}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10123,7 +10123,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC124\uBA85\nadasdasdasdasdasdasdasdasdasdasads"
+  m_Text: "\uC124\uBA85\n\uBA85\uBC15\uC774\uB294 \uC0B4\uC544\uC788\uB2E4!!!!"
 --- !u!222 &1246972522
 CanvasRenderer:
   m_ObjectHideFlags: 0
