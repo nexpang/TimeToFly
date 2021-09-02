@@ -6129,7 +6129,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.66875
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -25633,6 +25633,7 @@ PlayableDirector:
     - 80ab6f7fb9adc1b4397c3671c70ed2cb: {fileID: 0}
     - 9700df9f99629194ea1f49790405d9f9: {fileID: 1599519726}
     - c02f67620ff0fd240aeb9b51418058b2: {fileID: 1930240554}
+    - d463ab69e38b0a34d9e7b7e5264564e7: {fileID: 1127113395}
     - cabf383525ec0b9479b9b3542849cfa0: {fileID: 679459216}
     - dd1d1650e95d6a9498f6784552068043: {fileID: 1242432304}
     - f5c2af643c593ac43aeb247c2c2435b9: {fileID: 1547656319}
