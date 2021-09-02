@@ -89,6 +89,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 break;
             case ControllerType.INTERACTION:
                 PlayerInput.Instance.JoyStickInteration();
+                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down * 15);
                 break;
             case ControllerType.LEFT:
                 PlayerInput.Instance.JoyStickHorizontalRaw(-1);
@@ -117,6 +118,9 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up*15);
                 abilityImgRectTrm.gameObject.GetComponent<Image>().DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
                 PlayerInput.Instance.JoyStickAbilityOn();
+                break;
+            case ControllerType.INTERACTION:
+                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up * 15);
                 break;
         }
     }
