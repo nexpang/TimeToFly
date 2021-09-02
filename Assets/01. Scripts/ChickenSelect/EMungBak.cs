@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class EMungBak : MonoBehaviour
 {
+    private bool isPanelShow = false;
+
     public GameObject[] Stage = null;
 
     private char[] chicken;
@@ -20,6 +22,7 @@ public class EMungBak : MonoBehaviour
     [SerializeField] Sprite[] chickens_30BtnSprites;
     [SerializeField] Sprite[] chickens_35BtnSprites;
     [SerializeField] Sprite[] chickens_29BtnSprites;
+    [SerializeField] Sprite[] chickens_1BtnSprites;
     [SerializeField] Sprite[] chickens_26BtnSprites;
     [SerializeField] Sprite[] chickenSprites;
     [SerializeField] Sprite[] abilityIconSprites;
@@ -74,30 +77,43 @@ public class EMungBak : MonoBehaviour
                 chickens[curStage].GetChild(4).GetComponent<Image>().sprite = chickens_15BtnSprites[livingChicken[4]];
                 break;
             case 1:
+                chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
+                chickens[curStage].GetChild(1).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[1]];
+                chickens[curStage].GetChild(2).GetComponent<Image>().sprite = chickens_35BtnSprites[livingChicken[2]];
+                chickens[curStage].GetChild(3).GetComponent<Image>().sprite = chickens_1BtnSprites[livingChicken[3]];
                 break;
             case 2:
+                chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
+                chickens[curStage].GetChild(1).GetComponent<Image>().sprite = chickens_29BtnSprites[livingChicken[1]];
+                chickens[curStage].GetChild(2).GetComponent<Image>().sprite = chickens_26BtnSprites[livingChicken[2]];
                 break;
             case 3:
+                chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
+                chickens[curStage].GetChild(1).GetComponent<Image>().sprite = chickens_15BtnSprites[livingChicken[1]];
                 break;
             case 4:
+                chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
                 break;
         }
     }
 
-    public void StartPanel(int abilityNum=-1)
+    public void StartPanel(int abilityNum)
     {
-        playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
-        abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
-        playerAbilityName.text = abilityExplain[0, livingChicken[abilityNum]];
-        playerAbilityExplain.text = abilityExplain[1, livingChicken[abilityNum]];
         abilityPanel.DOKill();
         if (abilityNum != -1)
         {
+            if (isPanelShow) return;
+            playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
+            abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
+            playerAbilityName.text = abilityExplain[0, livingChicken[abilityNum]];
+            playerAbilityExplain.text = abilityExplain[1, livingChicken[abilityNum]];
             abilityPanel.DOMoveX(abilityPanel.position.x-11f,1f);
+            isPanelShow = true;
         }
         else
         {
             abilityPanel.DOMoveX(defaultAbilityPanelPosX, 1f);
+            isPanelShow = false;
         }
     }
 
