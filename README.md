@@ -11,6 +11,17 @@ STAC2021에 결선진출한 거안사위 디럭스의 후속작인 TIME TO FLY�
 
 ***
 
+### 플레이 스크린샷
+![image](https://user-images.githubusercontent.com/64309516/131992146-2619f432-30b2-4efa-aeed-426666487d97.png)<br/>
+타이틀 화면<br/><br/>
+![image](https://user-images.githubusercontent.com/64309516/131992207-c887b911-921f-4ac5-9972-12f8f35be2a6.png)<br/>
+스토리 컷신 화면<br/><br/>
+![image](https://user-images.githubusercontent.com/64309516/131992288-b6eba565-cfca-4e1e-b04d-1b55ae89e8e8.png)<br/>
+로딩 화면<br/><br/>
+![image](https://user-images.githubusercontent.com/64309516/131992374-10779b2a-eb94-45a8-816e-4ca04c7528f0.png)<br/>
+인게임 화면<br/><br/>
+***
+
 ### 플레이 방식
 <img src = "https://media.discordapp.net/attachments/798813285037899786/882212733272096798/unknown.png" width="150%" height="150%">
 
