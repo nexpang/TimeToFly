@@ -28,7 +28,7 @@ public class IntroCutScene : MonoBehaviour
         CancelInvoke();
         blockPanelAll.DOFade(1, 1.5f).OnComplete(() =>
         {
-            SceneController.LoadScene("InGame");
+            LoadScene();
         });
         skipBtn.interactable = false;
     }
@@ -36,6 +36,19 @@ public class IntroCutScene : MonoBehaviour
     void EndScene()
     {
         SecurityPlayerPrefs.SetBool("newbie", false);
-        SceneController.LoadScene("InGame");
+        LoadScene();
     }
+
+    void LoadScene()
+    { 
+        if (SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1) == -1 && SceneController.targetMapId != 0)
+        {
+            SceneController.LoadScene("ChickenSelectScene");
+        }
+        else
+        {
+            SceneController.LoadScene("InGame");
+        }
+    }
+
 }

@@ -157,6 +157,12 @@ public class ChickenSelectScript : MonoBehaviour
     public void GameStart()
     {
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", curAbility);
+
+        if(SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
+        {
+            SceneController.targetMapId = 1;
+            SecurityPlayerPrefs.SetInt("inGame.saveMapid", 1);
+        }
         SceneController.LoadScene("InGame");
     }
 }

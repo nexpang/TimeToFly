@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {       
-        abilityNumber = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", 0);
+        abilityNumber = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
         if(SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
         {
             abilityNumber = 0;
@@ -412,13 +412,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(4);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
-            SecurityPlayerPrefs.SetInt("inGame.saveMapid", SecurityPlayerPrefs.GetInt("inGame.saveMapid",0) + 1);
+            SceneController.targetMapId++;
             PoolManager.ResetPool();
 
             if (GameManager.Instance.curStageInfo.stageId == 0)
             {
                 // 튜토리얼 후 캐릭터 선택
 
+                SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
                 SceneManager.LoadScene("ChickenSelectScene");
 
                 return;

@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
         if (currentStage == -1)
         {
-            currentStage = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
+            currentStage = SceneController.targetMapId;
         }
 
         if (currentStage == 0)
@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour
         tempLife = SecurityPlayerPrefs.GetInt(tempLifekey, life);
         life = tempLife;
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
+
+        LoadRemainChicken();
 
         // 소리를 다 가져온다.
         AllSources = FindObjectsOfType<AudioSource>().ToList();
@@ -361,6 +363,6 @@ public class GameManager : MonoBehaviour
             $"inGame.remainChicken : {SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4")} \n" +
             $"inGame.saveMapid : {SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0)} \n" +
             $"newbie : {SecurityPlayerPrefs.GetBool("newbie", true)} \n" +
-            $"inGame.saveCurrentChickenIndex : {SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", 0)}");
+            $"inGame.saveCurrentChickenIndex : {SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)}");
     }
 }

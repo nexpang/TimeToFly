@@ -46,6 +46,7 @@ public class TitleIntro : MonoBehaviour
         blackPanelRight.localScale = new Vector3(0, 1, 1);
         isNight = SecurityPlayerPrefs.GetBool("newbie", true);
 
+        SceneController.Init();
         SecurityPlayerPrefs.SetInt("inGame.tempLife", 9);
 
         if (SecurityPlayerPrefs.GetBool("newbie", true))

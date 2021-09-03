@@ -20,9 +20,12 @@ public class SceneController : MonoBehaviour
 
     public static bool isLoaded = false;
     public static int targetDieChicken = 0;
+    public static int targetMapId = 0;
 
     private void Awake()
     {
+        Init();
+
         loadingBarDefaultSize = progressBar.GetComponent<RectTransform>().sizeDelta;
         progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, loadingBarDefaultSize.y);
 
@@ -43,6 +46,11 @@ public class SceneController : MonoBehaviour
     {
         nextScene = sceneName;
         SceneManager.LoadScene("Loading");
+    }
+
+    public static void Init()
+    {
+        targetMapId = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
     }
 
 
