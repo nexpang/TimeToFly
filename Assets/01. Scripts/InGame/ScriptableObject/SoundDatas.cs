@@ -23,4 +23,5 @@ public class SoundDatas : ScriptableObject
     public AudioClip Audio_BossEagleShout;
     public AudioClip Audio_BossEagleAmbient;
     public AudioClip Audio_BossJokJeBiShout;
+    public AudioClip Audio_GameClear;
 }

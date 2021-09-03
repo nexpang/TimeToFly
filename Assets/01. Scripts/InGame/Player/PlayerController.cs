@@ -401,6 +401,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.isCleared = true;
         an.updateMode = AnimatorUpdateMode.UnscaledTime;
         an.SetTrigger("Clear");
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_GameClear, 1, true);
 
         GameManager.Instance.gameClearUI.gameObject.SetActive(true);
         GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce).SetDelay(1);
@@ -410,6 +411,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ClearCoroutine()
     {
         yield return new WaitForSecondsRealtime(4);
+        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 2);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
             SceneController.targetMapId++;
