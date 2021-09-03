@@ -253,6 +253,7 @@ public class Ability_Teleport : Ability, IAbility
             {
                 if (rh2ds[i].collider.CompareTag("Ground"))
                 {
+                    ShowTeleport();
                     return;
                 }
             }
@@ -265,18 +266,21 @@ public class Ability_Teleport : Ability, IAbility
         teleportPos.x = Mathf.Clamp(teleportPos.x, teleportRangeOffset.x - teleportRange.size.x / 2, teleportRangeOffset.x + teleportRange.size.x / 2);
         teleportPos.y = Mathf.Clamp(teleportPos.y, teleportRangeOffset.y - teleportRange.size.y / 2, teleportRangeOffset.y + teleportRange.size.y / 2);
 
-        teleportPosObjTrans.position = teleportPos;
-        teleportPosFinalPoint.transform.position = teleportPosObjTrans.position;
-
-        teleportWayPoints[0] = transform.position;
-        teleportWayPoints[1] = teleportPos;
-
-        teleportLine.SetPositions(teleportWayPoints);
+        ShowTeleport();
 
         bgAudioSource.volume = 0;
 
         float width = teleportLine.startWidth;
         teleportLine.material.mainTextureScale = new Vector2(1f / width, 1.0f);
+    }
+
+    private void ShowTeleport()
+    {
+        teleportPosObjTrans.position = teleportPos;
+        teleportPosFinalPoint.transform.position = teleportPosObjTrans.position;
+        teleportWayPoints[0] = transform.position;
+        teleportWayPoints[1] = teleportPos;
+        teleportLine.SetPositions(teleportWayPoints);
     }
 
     public void ResetPlayer()
