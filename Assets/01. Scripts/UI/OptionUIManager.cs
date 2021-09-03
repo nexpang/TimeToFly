@@ -96,6 +96,14 @@ public class OptionUIManager : MonoBehaviour
         });
 
         optionSequence = DOTween.Sequence().SetAutoKill(false);
+
+
+
+
+        BGMSound = SecurityPlayerPrefs.GetBool("inGame.BGM", true);
+        SFXSound = SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+
+        RefreshSoundBtn();
     }
 
     void OpenUI(CanvasGroup cvsGroup, bool isOpen,  float time)
@@ -140,27 +148,48 @@ public class OptionUIManager : MonoBehaviour
         switch (sound)
         {
             case SoundSetting.BGM:
-                if (BGMSound)
-                {
-                    soundBtnImage[0].sprite = BGM[1];
-                }
-                else
-                {
-                    soundBtnImage[0].sprite = BGM[0];
-                }
                 BGMSound = !BGMSound;
+                RefreshSoundBtn();
+                SecurityPlayerPrefs.SetBool("inGame.BGM", BGMSound);
+                
                 break;
             case SoundSetting.SFX:
-                if (SFXSound)
-                {
-                    soundBtnImage[1].sprite = SFX[1];
-                }
-                else
-                {
-                    soundBtnImage[1].sprite = SFX[0];
-                }
                 SFXSound = !SFXSound;
+                RefreshSoundBtn();
+                SecurityPlayerPrefs.SetBool("inGame.SFX", SFXSound);
+
                 break;
+        }
+    }
+
+    public void RefreshSoundBtn()
+    {
+        if (BGMSound)
+        {
+            soundBtnImage[0].sprite = BGM[0];
+        }
+        else
+        {
+            soundBtnImage[0].sprite = BGM[1];
+        }
+
+        if (SFXSound)
+        {
+            soundBtnImage[1].sprite = SFX[0];
+        }
+        else
+        {
+            soundBtnImage[1].sprite = SFX[1];
+        }
+
+        foreach (AudioSource item in GameManager.Instance.BGMSources)
+        {
+            item.mute = !BGMSound;
+        }
+
+        foreach (AudioSource item in GameManager.Instance.SFXSources)
+        {
+            item.mute = !SFXSound;
         }
     }
 

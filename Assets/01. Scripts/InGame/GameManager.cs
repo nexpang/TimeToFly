@@ -90,6 +90,20 @@ public class GameManager : MonoBehaviour
             isNeedTimer = false;
             isInfinityLife = true;
         }
+
+        // 소리를 다 가져온다.
+        AllSources = FindObjectsOfType<AudioSource>().ToList();
+        for (int i = 0; i < AllSources.Count; i++)
+        {
+            if (AllSources[i].outputAudioMixerGroup.name == "BGM")
+            {
+                BGMSources.Add(AllSources[i]);
+            }
+            else if (AllSources[i].outputAudioMixerGroup.name == "SFX")
+            {
+                SFXSources.Add(AllSources[i]);
+            }
+        }
     }
 
     private void Start()
@@ -104,20 +118,6 @@ public class GameManager : MonoBehaviour
         lifeCount.text = isInfinityLife ? "∞" : life.ToString();
 
         LoadRemainChicken();
-
-        // 소리를 다 가져온다.
-        AllSources = FindObjectsOfType<AudioSource>().ToList();
-        for(int i = 0; i< AllSources.Count;i++)
-        {
-            if(AllSources[i].outputAudioMixerGroup.name == "BGM")
-            {
-                BGMSources.Add(AllSources[i]);
-            }
-            else if (AllSources[i].outputAudioMixerGroup.name == "SFX")
-            {
-                SFXSources.Add(AllSources[i]);
-            }
-        }
 
         for (int i = 0; i < chapters.Length; i++)
         {
