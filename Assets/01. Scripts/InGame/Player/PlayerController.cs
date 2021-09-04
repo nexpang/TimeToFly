@@ -431,6 +431,7 @@ public class PlayerController : MonoBehaviour
                 // ¿©±ä ³óÀå ÄÆ¾À
 
                 SceneManager.LoadScene("CutScenes");
+                GameManager.Instance.RemoveRemainChicken(abilityNumber);
                 return;
             }
 

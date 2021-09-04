@@ -29,3 +29,4 @@ MonoBehaviour:
   Audio_BossEagleShout: {fileID: 8300000, guid: a38403f80a5715743bd811843f3743d1, type: 3}
   Audio_BossEagleAmbient: {fileID: 8300000, guid: 40826835e4dbccc4c9a7042ea58f57df, type: 3}
   Audio_BossJokJeBiShout: {fileID: 8300000, guid: a5cf06062ea05314b93b140cf4827051, type: 3}
+  Audio_GameClear: {fileID: 8300000, guid: a6f354c44d9842a48bc17064cd005310, type: 3}

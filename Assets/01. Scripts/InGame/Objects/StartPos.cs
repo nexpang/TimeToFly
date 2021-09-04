@@ -11,6 +11,12 @@ public class StartPos : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(StartPosMove());
+    }
+
+    IEnumerator StartPosMove()
+    {
+        yield return null;
         GameManager.Instance.player.transform.position = transform.position;
     }
 }
