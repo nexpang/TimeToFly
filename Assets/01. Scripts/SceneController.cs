@@ -25,7 +25,6 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         Init();
-
         loadingBarDefaultSize = progressBar.GetComponent<RectTransform>().sizeDelta;
         progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(0, loadingBarDefaultSize.y);
 

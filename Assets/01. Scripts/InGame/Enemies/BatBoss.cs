@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class BatBoss : Boss
@@ -45,13 +46,24 @@ public class BatBoss : Boss
     {
         if(GameManager.Instance.isBossStart)
         {
+            if (GameManager.Instance.player.playerState == PlayerState.DEAD) return;
+
             if (currentTimer < defaultTimer)
             {
                 currentTimer += Time.deltaTime;
             }
             else
             {
-                // CLEAR
+                Time.timeScale = 0;
+                DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.5f).SetUpdate(true);
+                GameManager.Instance.FadeInOut(1.5f, 0, 2, () =>
+                {
+                    GameManager.Instance.RemoveRemainChicken(GameManager.Instance.player.abilityNumber);
+                    SceneController.targetMapId++;
+                    SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMapId);
+                    PoolManager.ResetPool();
+                    SceneManager.LoadScene("CutScenes");
+                });
             }
         }
 
