@@ -28,6 +28,7 @@ public class ChickenSelectScript : MonoBehaviour
     [SerializeField] Sprite[] chickenSprites;
     [SerializeField] Sprite[] abilityIconSprites;
     [Header("능력 설명 판넬관련")]
+    [SerializeField] CanvasGroup selectImgs;
     [SerializeField] Transform abilityPanel;
     [SerializeField] Image playerSprite;
     [SerializeField] Image abilityIcon;
@@ -79,6 +80,20 @@ public class ChickenSelectScript : MonoBehaviour
 
     public void SetSprite(int curStage)
     {
+        for (int i = 0; i < livingChicken.Length; i++)
+        {
+            selectImgs.transform.GetChild(i).gameObject.SetActive(true);
+            selectImgs.transform.GetChild(i).position = chickens[curStage].GetChild(i).GetChild(0).position;
+        }
+        if(curStage == 0)
+        {
+            selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else
+        {
+            selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
         switch(curStage)
         {
             case 0:
@@ -151,6 +166,10 @@ public class ChickenSelectScript : MonoBehaviour
             selectTxt.transform.DOMoveY(-0.3f, 2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetRelative();
             blockTouchPanel.raycastTarget = false;
         });
+
+        yield return new WaitForSeconds(0.5f);
+
+        DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 1f, 1f);
     }
 
     //시작버튼으로 실행
