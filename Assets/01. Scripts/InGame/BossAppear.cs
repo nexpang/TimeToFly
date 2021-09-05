@@ -58,11 +58,11 @@ public class BossAppear : MonoBehaviour
         }
         else if (bossType == BossType.DOKSURI)
         {
-            GameManager.Instance.player.SetStun(10);
+            GameManager.Instance.player.SetStun(11);
         }
         else if (bossType == BossType.BAT)
         {
-            GameManager.Instance.player.SetStun(10);
+            GameManager.Instance.player.SetStun(5.5f);
             GameManager.Instance.FadeInOut(2.5f, 2f, 1, () =>
              {
                  GameManager.Instance.curStageInfo.virtualCamera.Follow = null;
@@ -90,6 +90,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f,2);
         currentBoss.Event_CameraForce();
         currentBoss.transform.position = new Vector2(currentBoss.transform.position.x, currentBoss.spawnPoint.position.y);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossAppear, 1f, true);
 
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
@@ -132,6 +133,7 @@ public class BossAppear : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
 
+        GameManager.Instance.player.SetStun(10f);
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
 

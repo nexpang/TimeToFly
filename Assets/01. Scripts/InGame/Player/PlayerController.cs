@@ -402,7 +402,6 @@ public class PlayerController : MonoBehaviour
         an.updateMode = AnimatorUpdateMode.UnscaledTime;
         an.SetTrigger("Clear");
         ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_GameClear, 1, true);
-
         GameManager.Instance.gameClearUI.gameObject.SetActive(true);
         GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce).SetDelay(1);
         StartCoroutine(ClearCoroutine());

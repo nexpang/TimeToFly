@@ -25,8 +25,10 @@ MonoBehaviour:
   Audio_BrickBreak: {fileID: 8300000, guid: db13301e181ffa348b1325052a045cfc, type: 3}
   Audio_BlockItem: {fileID: 8300000, guid: 8a98769d4087a0143ac960f8ab561ba1, type: 3}
   Audio_BlockHit: {fileID: 8300000, guid: c90cd98b2ee435740a7e9c0e7d0bd63d, type: 3}
+  Audio_BossAppear: {fileID: 8300000, guid: b8e8cb94cd615ae4a836953d7b3e24a1, type: 3}
   Audio_BossBat: {fileID: 8300000, guid: b1ba67de383b1af4e8562e7a800b2fd9, type: 3}
   Audio_BossEagleShout: {fileID: 8300000, guid: a38403f80a5715743bd811843f3743d1, type: 3}
   Audio_BossEagleAmbient: {fileID: 8300000, guid: 40826835e4dbccc4c9a7042ea58f57df, type: 3}
   Audio_BossJokJeBiShout: {fileID: 8300000, guid: a5cf06062ea05314b93b140cf4827051, type: 3}
+  Audio_BossJokJeBiSmallSmash: {fileID: 8300000, guid: a5cbf3c0cf2b12441aaadaa3a9549161, type: 3}
   Audio_GameClear: {fileID: 8300000, guid: a6f354c44d9842a48bc17064cd005310, type: 3}

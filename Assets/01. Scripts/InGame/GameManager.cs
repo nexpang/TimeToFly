@@ -301,19 +301,19 @@ public class GameManager : MonoBehaviour
     IEnumerator Fade(float inSec, float outSec, float waitTime = 0f, UnityAction whileFunc = null)
     {
         fadeScreen.gameObject.SetActive(true);
-        fadeScreen.color = new Color(0, 0, 0, 0);
-        fadeScreen.DOFade(1, inSec).OnComplete(() => isFinished = true).SetUpdate(true);
+        fadeScreen.DOFade(1, inSec).OnComplete(() => isFinished = true).SetUpdate(UpdateType.Normal, true);
 
         yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        yield return new WaitForSecondsRealtime(waitTime / 2);
 
         if (whileFunc != null)
         {
             whileFunc();
         }
 
-        yield return new WaitForSecondsRealtime(waitTime);
-
-        isFinished = false;
+        yield return new WaitForSecondsRealtime(waitTime / 2);
 
         fadeScreen.DOFade(0, outSec).OnComplete(() => fadeScreen.gameObject.SetActive(false)).SetUpdate(true);
     }

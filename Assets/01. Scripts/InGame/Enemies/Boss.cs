@@ -37,11 +37,11 @@ public abstract class Boss : MonoBehaviour
 
         if(barScale >= 1)
         {
-            GameManager.Instance.RemoveRemainChicken(GameManager.Instance.player.abilityNumber);
             Time.timeScale = 0;
-
-            GameManager.Instance.FadeInOut(1, 0, 2, () =>
+            DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.5f).SetUpdate(true);
+            GameManager.Instance.FadeInOut(1.5f, 0, 2, () =>
             {
+                GameManager.Instance.RemoveRemainChicken(GameManager.Instance.player.abilityNumber);
                 SceneController.targetMapId++;
                 SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMapId);
                 PoolManager.ResetPool();

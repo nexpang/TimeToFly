@@ -9,6 +9,7 @@ public class JokJeBiBoss : Boss
 
     public float cameraSpeed = 5f;
 
+    public GameObject energyGroundObj;
     public GameObject weaselPrefab;
     public int weaselSpawnCount = 3;
 
@@ -81,6 +82,7 @@ public class JokJeBiBoss : Boss
                         float randomX = Random.Range(Camera.main.transform.position.x - 7, Camera.main.transform.position.x - 5);
 
                         weasel.transform.position = new Vector2(randomX, 9);
+                        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1, true);
                         yield return new WaitForSeconds(0.6f);
                     }
                     break;
@@ -91,6 +93,7 @@ public class JokJeBiBoss : Boss
     private void Move()
     {
         if (cameraStop) return;
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD) return;
 
         if (GameManager.Instance.curStageInfo.virtualCamera.transform.position.x > startAndEnd.y)
         {
@@ -107,7 +110,8 @@ public class JokJeBiBoss : Boss
 
     private void Pattern2() // 충격파 - 족제비가 땅을 쳐서 맵 반절의 충격파를 생성한다
     {
-        ParticleManager.CreateWarningAnchorBox(new Vector2(0, -227), new Vector2(920, 226), 3, Color.yellow, Color.red, 0.2f);
+        energyGroundObj.transform.position = new Vector2(GameManager.Instance.player.transform.position.x, energyGroundObj.transform.position.y);
+        ParticleManager.CreateWarningPosBox(energyGroundObj.transform.position, new Vector2(920, 226), 1, Color.yellow, Color.red, 0.1f);
         animator.Play("JokJeBi_Pattern2");
     }
 
@@ -119,5 +123,10 @@ public class JokJeBiBoss : Boss
     private void JokJeBI_ShoutingSound() // 족제비 샤우팅 사운드
     {
         ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossJokJeBiShout, 1f, true);
+    }
+
+    private void JokJeBI_SmallSmashSound() // 족제비 작게 스매시 사운드
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossJokJeBiSmallSmash, 1f, true);
     }
 }

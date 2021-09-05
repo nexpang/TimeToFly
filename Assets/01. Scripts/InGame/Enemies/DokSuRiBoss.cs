@@ -82,15 +82,25 @@ public class DokSuRiBoss : Boss
             switch (currentPattern)
             {
                 case 1:
+                    ParticleManager.CreateWarningAnchorBox(new Vector2(-615,115), new Vector2(690, 850), 1, Color.yellow, Color.red, 0.1f);
+                    Event_CameraStop();
+                    yield return new WaitForSeconds(1f);
+                    Event_CameraResume();
                     Pattern1();
 
                     yield return new WaitForSeconds(2f);
                     break;
                 case 2:
+                    ParticleManager.CreateWarningAnchorBox(new Vector2(0, 270), new Vector2(1920, 540), 3, Color.yellow, Color.red, 0.1f);
+                    ParticleManager.CreateWarningAnchorBox(new Vector2(255, -154), new Vector2(893, 309), 3, Color.yellow, Color.red, 0.1f);
+                    Event_CameraStop();
+                    yield return new WaitForSeconds(4f);
                     Pattern3();
                     currentPattern = 0;
 
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(2f);
+                    ParticleManager.CreateWarningAnchorBox(new Vector2(-615, 115), new Vector2(690, 850), 1, Color.yellow, Color.red, 0.1f);
+                    yield return new WaitForSeconds(1f);
                     break;
             }
         }
@@ -99,6 +109,7 @@ public class DokSuRiBoss : Boss
     private void Move()
     {
         if (cameraStop) return;
+        if (GameManager.Instance.player.playerState == PlayerState.DEAD) return;
 
         if (GameManager.Instance.curStageInfo.virtualCamera.transform.position.x > startAndEnd.y)
         {
@@ -161,13 +172,14 @@ public class DokSuRiBoss : Boss
 
         Event_CameraStop();
         PatternReady();
-
+        ParticleManager.CreateWarningAnchorBox(new Vector2(615, 115), new Vector2(690, 850), 1, Color.yellow, Color.red, 0.1f);
         yield return new WaitForSeconds(1f);
 
         animator.Play("DokSuRi_Pattern2");
 
-        yield return new WaitForSeconds(3f);
-
+        yield return new WaitForSeconds(2f);
+        ParticleManager.CreateWarningAnchorBox(new Vector2(-615, 115), new Vector2(690, 850), 1, Color.yellow, Color.red, 0.1f);
+        yield return new WaitForSeconds(1f);
         isPattern2 = false;
         isPattern2Playing = false;
     }
