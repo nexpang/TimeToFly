@@ -121,7 +121,7 @@ public class BossAppear : MonoBehaviour
 
         currentBoss.BossStart();
         GameManager.Instance.bgAudioSource.clip = ObjectManager.Instance.soundData.BGM_Boss;
-        GameManager.Instance.bgAudioSource.volume = 1;
+        GameManager.Instance.bgAudioSource.volume = 0.6f;
         GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
@@ -141,6 +141,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f, 2);
         currentBoss.Event_CameraForce();
         currentBoss.transform.position = new Vector2(currentBoss.spawnPoint.position.x, currentBoss.spawnPoint.position.y);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossAppear, 1f, true);
 
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = true;
@@ -152,12 +153,13 @@ public class BossAppear : MonoBehaviour
         currentBoss.gameObject.SetActive(true);
         currentBoss.transform.DOMoveY(13, 2).SetRelative();
         yield return new WaitForSeconds(4f);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatScream, 1f, true);
         GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().flipX = false;
         yield return new WaitForSeconds(1.5f);
 
         currentBoss.BossStart();
         GameManager.Instance.bgAudioSource.clip = ObjectManager.Instance.soundData.BGM_Boss;
-        GameManager.Instance.bgAudioSource.volume = 1;
+        GameManager.Instance.bgAudioSource.volume = 0.6f;
         GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;

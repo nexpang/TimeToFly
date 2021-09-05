@@ -415,7 +415,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ClearCoroutine()
     {
         yield return new WaitForSecondsRealtime(4);
-        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 2);
+        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.9f).SetUpdate(true);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
             SceneController.targetMapId++;
