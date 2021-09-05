@@ -9,6 +9,8 @@ public class JokJeBiBoss : Boss
 
     public float cameraSpeed = 5f;
 
+    public GameObject warningGround;
+    public GameObject warningJumpTxt;
     public GameObject energyGroundObj;
     public GameObject weaselPrefab;
     public int weaselSpawnCount = 3;
@@ -60,7 +62,17 @@ public class JokJeBiBoss : Boss
             {
                 case 1:
                     ParticleManager.CreateWarningAnchorBox(new Vector2(-500, 30), new Vector2(800, 720), 2, Color.yellow, Color.red, 0.5f);
-                    yield return new WaitForSeconds(1.5f);
+                    int count = 0;
+                    while(count < 7)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                        warningGround.SetActive(true);
+                        warningJumpTxt.SetActive(true);
+                        yield return new WaitForSeconds(0.1f);
+                        warningGround.SetActive(false);
+                        warningJumpTxt.SetActive(false);
+                        count++;
+                    }
                     Pattern1();
                     break;
                 case 2:
@@ -118,6 +130,14 @@ public class JokJeBiBoss : Boss
     private void Pattern3() // 족제비 떨구기 - 바닥을 쳐서 나무 위에 족제비들을 떨어트린다
     {
         animator.Play("JokJeBi_Pattern3");
+    }
+
+    private void JokJeBI_HitGroundedPlayer() // 족제비 샤우팅 사운드
+    {
+        if(GameManager.Instance.player.isGround)
+        {
+            GameManager.Instance.player.GameOver();
+        }
     }
 
     private void JokJeBI_ShoutingSound() // 족제비 샤우팅 사운드

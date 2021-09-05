@@ -389,6 +389,11 @@ public class PlayerController : MonoBehaviour
         deathScreen.color = new Color(0, 0, 0, 0);
         deathScreen.DOFade(1f, 1);
         bgAudioSource.DOPitch(0, 2);
+        foreach (AudioSource item in GameManager.Instance.SFXSources)
+        {
+            item.DOComplete();
+            item.DOPitch(0, 2);
+        }
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
         playerAnimObj.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
