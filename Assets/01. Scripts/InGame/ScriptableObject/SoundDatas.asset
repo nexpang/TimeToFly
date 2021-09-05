@@ -21,6 +21,7 @@ MonoBehaviour:
   Audio_Cat_Purring: {fileID: 8300000, guid: ee2908359ac200c458a7feb27dc15094, type: 3}
   Audio_Weasel_Growl: {fileID: 8300000, guid: f8c9495f135bcd947a9133cfbb7fd6cf, type: 3}
   Audio_Eagle_Crying: {fileID: 8300000, guid: adeb8b06829d52047a49958eaffde675, type: 3}
+  Audio_Eagle_Die: {fileID: 8300000, guid: 438e0c6247fac2243b6feb8e88b78adc, type: 3}
   Audio_Rock_Breaking: {fileID: 8300000, guid: dc5149895ebe49d4c98609b786afa9d5, type: 3}
   Audio_StarSpirit_Rusing: {fileID: 8300000, guid: 9680c8c384406c44a88781c93e669a31, type: 3}
   Audio_BrickBreak: {fileID: 8300000, guid: db13301e181ffa348b1325052a045cfc, type: 3}
