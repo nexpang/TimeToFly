@@ -79,7 +79,7 @@ public class IntroCutScene : MonoBehaviour
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("너무나 날고 싶었던 닭들은 악마인 줄도 모르고 그 모험을 받아드렸답니다.", 3.5f);
+        ShowText("너무나 날고 싶었던 닭들은 악마인 줄도 모르고 그 모험을 받아들였답니다.", 3.5f);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
