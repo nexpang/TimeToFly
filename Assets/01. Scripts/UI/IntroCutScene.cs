@@ -7,6 +7,14 @@ using DG.Tweening;
 
 public class IntroCutScene : MonoBehaviour
 {
+    public enum CutSceneType
+    {
+        INTRO,
+        ENDING
+    }
+
+    public CutSceneType type;
+
     public Image blockPanelAll;
     public Button skipBtn;
 
@@ -17,6 +25,8 @@ public class IntroCutScene : MonoBehaviour
 
     [Header("컷씬그림")]
     public Image[] cutScenes;
+    public CanvasGroup godnessBless;
+    public Image logoImg;
 
     [Header("카메라 이동 포지션")]
     public Transform[] cameraPositions;
@@ -41,14 +51,21 @@ public class IntroCutScene : MonoBehaviour
 
     void Start()
     {
-        blockPanelAll.color = Color.black;
-        blockPanelAll.DOFade(0, 1.5f);
-        StartCoroutine(Tutorial());
-
-        if (!SecurityPlayerPrefs.GetBool("newbie", true))
+        if (type == CutSceneType.INTRO)
         {
-            skipBtn.gameObject.SetActive(true);
-            skipBtn.onClick.AddListener(Skip);
+            blockPanelAll.color = Color.black;
+            blockPanelAll.DOFade(0, 1.5f);
+            StartCoroutine(Tutorial());
+
+            if (!SecurityPlayerPrefs.GetBool("newbie", true))
+            {
+                skipBtn.gameObject.SetActive(true);
+                skipBtn.onClick.AddListener(Skip);
+            }
+        }
+        else
+        {
+
         }
     }
 
@@ -88,7 +105,21 @@ public class IntroCutScene : MonoBehaviour
         isFinished = false;
 
         HidePanel(true, 2f);
+        yield return new WaitForSeconds(3);
+        cutScenes[cutSceneIndex].gameObject.SetActive(true);
+        cutScenes[cutSceneIndex].DOFade(1, 1);
         yield return new WaitForSeconds(5);
+        cutScenes[cutSceneIndex].DOFade(0, 1);
+
+        yield return new WaitForSeconds(2.5f);
+        logoImg.gameObject.SetActive(true);
+        Camera.main.transform.DOMove(cameraPositions[cameraPositions.Length - 1].transform.position, 2).SetEase(Ease.Linear);
+        logoImg.DOFade(1, 1);
+        yield return new WaitForSeconds(4);
+        logoImg.DOFade(0, 1);
+        yield return new WaitForSeconds(2);
+        blockPanelAll.DOFade(1, 1.5f);
+        yield return new WaitForSeconds(4);
 
         EndScene();
     }
@@ -99,23 +130,31 @@ public class IntroCutScene : MonoBehaviour
         subtitleConfirm.DOKill();
         subtitleConfirm.alpha = 0;
 
-        cutScenes[cutSceneIndex].gameObject.SetActive(true);
-        cutScenes[cutSceneIndex].DOFade(1, 1);
-
         isText = true;
         isTextEnd = false;
 
         currentText = text;
-
         subtitleTxt.text = "";
-        textTween = subtitleTxt.DOText(text, dur)
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() =>
-                    {
-                        isTextEnd = true;
-                        subtitleConfirm.gameObject.SetActive(true);
-                        subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
-                    });
+
+        if (type == CutSceneType.INTRO)
+        {
+            cutScenes[cutSceneIndex].gameObject.SetActive(true);
+            cutScenes[cutSceneIndex].DOFade(1, 1);
+            godnessBless.DOFade(1, 1);
+
+            textTween = subtitleTxt.DOText(text, dur)
+                        .SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            isTextEnd = true;
+                            subtitleConfirm.gameObject.SetActive(true);
+                            subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+                        });
+        }
+        else
+        {
+
+        }
     }
 
     private void HidePanel(bool isHide, float dur = 1f)
@@ -147,16 +186,20 @@ public class IntroCutScene : MonoBehaviour
         {
             isText = false;
 
-            Camera.main.transform.DOComplete();
-            Camera.main.transform.DOMove(cameraPositions[cutSceneIndex + 1].transform.position, 2).SetEase(Ease.Linear);
+            if (type == CutSceneType.INTRO)
+            {
+                Camera.main.transform.DOComplete();
+                Camera.main.transform.DOMove(cameraPositions[cutSceneIndex + 1].transform.position, 2).SetEase(Ease.Linear);
 
-            cutScenes[cutSceneIndex].DOFade(0, 1).OnComplete(() =>
-             {
-                 isFinished = true;
+                cutScenes[cutSceneIndex].DOFade(0, 1).OnComplete(() =>
+                 {
+                     isFinished = true;
 
-                 cutScenes[cutSceneIndex].gameObject.SetActive(false);
-                 cutSceneIndex++;
-             });
+                     cutScenes[cutSceneIndex].gameObject.SetActive(false);
+                     cutSceneIndex++;
+                 });
+                godnessBless.DOFade(0, 1);
+            }
         }
     }
 

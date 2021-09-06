@@ -133,7 +133,7 @@ public class TitleIntro : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("IntroAnime");
+        SceneManager.LoadScene("TextCutScenes");
     }
 
     private void ThemeChange(bool isNight)
