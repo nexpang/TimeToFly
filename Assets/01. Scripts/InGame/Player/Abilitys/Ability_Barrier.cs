@@ -49,8 +49,6 @@ public class Ability_Barrier : Ability, IAbility
     [HideInInspector] public bool isInvincible = false;
     public GameObject effect;
 
-    [HideInInspector] private float effectCool = 1f;
-
     new void Start()
     {
         base.Start();
@@ -212,7 +210,6 @@ public class Ability_Barrier : Ability, IAbility
     {
         isInvincible = true;
         effect.SetActive(true);
-        effectCool = 0.3f;
         yield return new WaitForSeconds(invincibleTime);
         print("²¨Áü");
         isInvincible = false;

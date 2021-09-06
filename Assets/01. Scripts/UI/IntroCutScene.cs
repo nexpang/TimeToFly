@@ -15,21 +15,40 @@ public class IntroCutScene : MonoBehaviour
 
     public CutSceneType type;
 
-    public Image blockPanelAll;
-    public Button skipBtn;
+    [Header("Objects")]
+    public GameObject intro;
+    public GameObject ending;
 
-    [Header("대화창")]
-    public CanvasGroup msgBox;
-    public Text subtitleTxt;
-    public CanvasGroup subtitleConfirm;
+    [Header("Intro")]
+    public Image intro_blockPanelAll;
+    public Button intro_skipBtn;
 
-    [Header("컷씬그림")]
-    public Image[] cutScenes;
-    public CanvasGroup godnessBless;
-    public Image logoImg;
+    [Space(20)]
+    public CanvasGroup intro_msgBox;
+    public Text intro_subtitleTxt;
+    public CanvasGroup intro_subtitleConfirm;
 
-    [Header("카메라 이동 포지션")]
-    public Transform[] cameraPositions;
+    [Space(20)]
+    public Image[] intro_cutScenes;
+    public CanvasGroup intro_godnessBless;
+    public Image intro_logoImg;
+
+    [Space(20)]
+    public Transform[] intro_cameraPositions;
+
+    [Header("Ending")]
+    public Image ending_blockPanelAll;
+
+    [Space(20)]
+    public RectTransform endingMoveBG;
+    public CanvasGroup ending_msgBox;
+    public Text ending_subtitleTxt;
+    public CanvasGroup ending_subtitleConfirm;
+
+    [Space(20)]
+    public CanvasGroup[] ending_cutScenes;
+    public Image ending_halfBlack;
+    public Image ending_cutScene_bg;
 
     private string currentText;
 
@@ -37,15 +56,16 @@ public class IntroCutScene : MonoBehaviour
 
     private bool isTextEnd = false;
     private bool isFinished = false;
+    private bool isImageKeep = false;
     private int cutSceneIndex = 0;
 
     private Tweener textTween = null;
 
     private void Awake()
     {
-        for(int i = 0; i < cutScenes.Length;i++)
+        if(SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
-            cutScenes[i].color = new Color(1, 1, 1, 0);
+            type = CutSceneType.ENDING;
         }
     }
 
@@ -53,19 +73,33 @@ public class IntroCutScene : MonoBehaviour
     {
         if (type == CutSceneType.INTRO)
         {
-            blockPanelAll.color = Color.black;
-            blockPanelAll.DOFade(0, 1.5f);
+            intro.SetActive(true);
+            for (int i = 0; i < intro_cutScenes.Length; i++)
+            {
+                intro_cutScenes[i].color = new Color(1, 1, 1, 0);
+            }
+
+            intro_blockPanelAll.color = Color.black;
+            intro_blockPanelAll.DOFade(0, 1.5f);
             StartCoroutine(Tutorial());
 
             if (!SecurityPlayerPrefs.GetBool("newbie", true))
             {
-                skipBtn.gameObject.SetActive(true);
-                skipBtn.onClick.AddListener(Skip);
+                intro_skipBtn.gameObject.SetActive(true);
+                intro_skipBtn.onClick.AddListener(Skip);
             }
         }
         else
         {
+            ending.SetActive(true);
+            for (int i = 0; i < ending_cutScenes.Length; i++)
+            {
+                ending_cutScenes[i].alpha = 0;
+            }
 
+            ending_blockPanelAll.color = Color.black;
+            ending_blockPanelAll.DOFade(0, 1.5f);
+            StartCoroutine(Ending());
         }
     }
 
@@ -106,66 +140,140 @@ public class IntroCutScene : MonoBehaviour
 
         HidePanel(true, 2f);
         yield return new WaitForSeconds(3);
-        cutScenes[cutSceneIndex].gameObject.SetActive(true);
-        cutScenes[cutSceneIndex].DOFade(1, 1);
+        intro_cutScenes[cutSceneIndex].gameObject.SetActive(true);
+        intro_cutScenes[cutSceneIndex].DOFade(1, 1);
         yield return new WaitForSeconds(5);
-        cutScenes[cutSceneIndex].DOFade(0, 1);
+        intro_cutScenes[cutSceneIndex].DOFade(0, 1);
 
         yield return new WaitForSeconds(2.5f);
-        logoImg.gameObject.SetActive(true);
-        Camera.main.transform.DOMove(cameraPositions[cameraPositions.Length - 1].transform.position, 2).SetEase(Ease.Linear);
-        logoImg.DOFade(1, 1);
+        intro_logoImg.gameObject.SetActive(true);
+        Camera.main.transform.DOMove(intro_cameraPositions[intro_cameraPositions.Length - 1].transform.position, 2).SetEase(Ease.Linear);
+        intro_logoImg.DOFade(1, 1);
         yield return new WaitForSeconds(4);
-        logoImg.DOFade(0, 1);
+        intro_logoImg.DOFade(0, 1);
         yield return new WaitForSeconds(2);
-        blockPanelAll.DOFade(1, 1.5f);
+        intro_blockPanelAll.DOFade(1, 1.5f);
         yield return new WaitForSeconds(4);
 
         EndScene();
     }
 
-    private void ShowText(string text, float dur = 1f)
+    private IEnumerator Ending()
     {
-        subtitleConfirm.gameObject.SetActive(false);
-        subtitleConfirm.DOKill();
-        subtitleConfirm.alpha = 0;
+        yield return new WaitForSeconds(2);
+        endingMoveBG.DOAnchorPos(Vector2.zero, 3);
+        yield return new WaitForSeconds(4);
+        ending_halfBlack.DOFade(138 / 255f, 1);
+        yield return new WaitForSeconds(2);
 
+        HidePanel(false, 2f);
+        ending_cutScene_bg.gameObject.SetActive(true);
+        ending_cutScene_bg.DOFade(1, 2);
+        yield return new WaitForSeconds(2);
+
+        ShowText("<color=\"#ff0000\">자막1</color>", 2f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("<color=\"#ffff00\">자막2</color>", 2f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("자막2", 2f);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("자막3", 2f);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("자막4", 2f);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("자막5", 2f);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText("자막6", 2f);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        HidePanel(true, 2f);
+    }
+
+    private void ShowText(string text, float dur = 1f, bool keepImg = false)
+    {
         isText = true;
         isTextEnd = false;
+        isImageKeep = keepImg;
 
         currentText = text;
-        subtitleTxt.text = "";
 
         if (type == CutSceneType.INTRO)
         {
-            cutScenes[cutSceneIndex].gameObject.SetActive(true);
-            cutScenes[cutSceneIndex].DOFade(1, 1);
-            godnessBless.DOFade(1, 1);
+            intro_subtitleConfirm.gameObject.SetActive(false);
+            intro_subtitleConfirm.DOKill();
+            intro_subtitleConfirm.alpha = 0;
+            intro_subtitleTxt.text = "";
 
-            textTween = subtitleTxt.DOText(text, dur)
+            intro_cutScenes[cutSceneIndex].gameObject.SetActive(true);
+            intro_cutScenes[cutSceneIndex].DOFade(1, 1);
+            intro_godnessBless.DOFade(1, 1);
+
+            textTween = intro_subtitleTxt.DOText(text, dur)
                         .SetEase(Ease.Linear)
                         .OnComplete(() =>
                         {
                             isTextEnd = true;
-                            subtitleConfirm.gameObject.SetActive(true);
-                            subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+                            intro_subtitleConfirm.gameObject.SetActive(true);
+                            intro_subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
                         });
         }
         else
         {
+            ending_subtitleConfirm.gameObject.SetActive(false);
+            ending_subtitleConfirm.DOKill();
+            ending_subtitleConfirm.alpha = 0;
+            ending_subtitleTxt.text = "";
 
+            ending_cutScenes[cutSceneIndex].gameObject.SetActive(true);
+            ending_cutScenes[cutSceneIndex].DOFade(1, 1);
+
+            textTween = ending_subtitleTxt.DOText(text, dur)
+                        .SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            isTextEnd = true;
+                            ending_subtitleConfirm.gameObject.SetActive(true);
+                            ending_subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+                        });
         }
     }
 
     private void HidePanel(bool isHide, float dur = 1f)
     {
-        if (isHide)
+        if (type == CutSceneType.INTRO)
         {
-            msgBox.DOFade(0f, dur);
+            if (isHide)
+            {
+                intro_msgBox.DOFade(0f, dur);
+            }
+            else
+            {
+                intro_msgBox.DOFade(1f, dur);
+            }
         }
         else
         {
-            msgBox.DOFade(1f, dur);
+            if (isHide)
+            {
+                ending_msgBox.DOFade(0f, dur);
+            }
+            else
+            {
+                ending_msgBox.DOFade(1f, dur);
+            }
         }
     }
 
@@ -176,11 +284,20 @@ public class IntroCutScene : MonoBehaviour
         if (!isTextEnd && Input.GetMouseButtonDown(0))
         {
             isTextEnd = true;
-            subtitleConfirm.gameObject.SetActive(true);
-
             textTween.Kill();
-            subtitleTxt.text = currentText;
-            subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+
+            if (type == CutSceneType.INTRO)
+            {
+                intro_subtitleConfirm.gameObject.SetActive(true);
+                intro_subtitleTxt.text = currentText;
+                intro_subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+            }
+            else
+            {
+                ending_subtitleConfirm.gameObject.SetActive(true);
+                ending_subtitleTxt.text = currentText;
+                ending_subtitleConfirm.DOFade(1, 0.75f).SetLoops(-1, LoopType.Yoyo);
+            }
         }
         else if (isTextEnd && Input.GetMouseButtonDown(0))
         {
@@ -189,16 +306,38 @@ public class IntroCutScene : MonoBehaviour
             if (type == CutSceneType.INTRO)
             {
                 Camera.main.transform.DOComplete();
-                Camera.main.transform.DOMove(cameraPositions[cutSceneIndex + 1].transform.position, 2).SetEase(Ease.Linear);
+                Camera.main.transform.DOMove(intro_cameraPositions[cutSceneIndex + 1].transform.position, 2).SetEase(Ease.Linear);
 
-                cutScenes[cutSceneIndex].DOFade(0, 1).OnComplete(() =>
-                 {
-                     isFinished = true;
-
-                     cutScenes[cutSceneIndex].gameObject.SetActive(false);
-                     cutSceneIndex++;
-                 });
-                godnessBless.DOFade(0, 1);
+                if (!isImageKeep)
+                {
+                    intro_cutScenes[cutSceneIndex].DOFade(0, 1).OnComplete(() =>
+                    {
+                        isFinished = true;
+                        intro_cutScenes[cutSceneIndex].gameObject.SetActive(false);
+                        cutSceneIndex++;
+                    });
+                }
+                else
+                {
+                    isFinished = true;
+                }
+                intro_godnessBless.DOFade(0, 1);
+            }
+            else
+            {
+                if (!isImageKeep)
+                {
+                    ending_cutScenes[cutSceneIndex].DOFade(0, 1).OnComplete(() =>
+                    {
+                        isFinished = true;
+                        ending_cutScenes[cutSceneIndex].gameObject.SetActive(false);
+                        cutSceneIndex++;
+                    });
+                }
+                else
+                {
+                    isFinished = true;
+                }
             }
         }
     }
@@ -206,11 +345,11 @@ public class IntroCutScene : MonoBehaviour
     public void Skip()
     {
         CancelInvoke();
-        blockPanelAll.DOFade(1, 1.5f).OnComplete(() =>
+        intro_blockPanelAll.DOFade(1, 1.5f).OnComplete(() =>
         {
             LoadScene();
         });
-        skipBtn.interactable = false;
+        intro_skipBtn.interactable = false;
     }
 
     void EndScene()
