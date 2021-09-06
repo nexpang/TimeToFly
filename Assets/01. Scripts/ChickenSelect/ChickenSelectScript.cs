@@ -15,6 +15,8 @@ public class ChickenSelectScript : MonoBehaviour
     public int[] livingChicken;
     private int curChapter;
 
+    private AudioSource audioSource = null;
+
     [SerializeField] Transform[] chickens;
     [Header("스프라이트 넣을거 너무 많음")]
     [SerializeField] Sprite[] chickens_0BtnSprites;
@@ -62,6 +64,7 @@ public class ChickenSelectScript : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        audioSource = GetComponent<AudioSource>();
         defaultAbilityPanelPosX = abilityPanel.position.x;
         movedAbilityPanelPosX = defaultAbilityPanelPosX - 11f;
         chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
@@ -84,14 +87,15 @@ public class ChickenSelectScript : MonoBehaviour
         {
             selectImgs.transform.GetChild(i).gameObject.SetActive(true);
             selectImgs.transform.GetChild(i).position = chickens[curStage].GetChild(i).GetChild(0).position;
+            selectImgs.transform.GetChild(i).rotation = Quaternion.Euler(0f, 0f, 180f);
         }
         if(curStage == 0)
         {
-            selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 180f);
-        }
-        else
-        {
             selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if( curStage != 4)
+        {
+            selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 180f);
         }
 
         switch(curStage)
@@ -132,6 +136,7 @@ public class ChickenSelectScript : MonoBehaviour
         if (abilityNum != -1)
         {
             if (isPanelShow) return;
+            audioSource.Play();
             curAbility = livingChicken[abilityNum];
             playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
             abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
