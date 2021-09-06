@@ -10,8 +10,7 @@ public enum CutScenes
     Farm,
     Forest,
     Mountian,
-    Cave,
-    Sky
+    Cave
 }
 
 public class CutScene : MonoBehaviour
