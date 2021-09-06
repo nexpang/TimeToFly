@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 3432878592798633325
     second: warning_2
+  - first:
+      213: -1824632466962615316
+    second: warning_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -170,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: d6d2ec854e804af20800000000000000
       internalID: 3432878592798633325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warning_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce37c09407a9da6e0800000000000000
+      internalID: -1824632466962615316
       vertices: []
       indices: 
       edges: []
