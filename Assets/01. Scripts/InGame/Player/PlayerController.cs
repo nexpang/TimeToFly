@@ -389,6 +389,11 @@ public class PlayerController : MonoBehaviour
         deathScreen.color = new Color(0, 0, 0, 0);
         deathScreen.DOFade(1f, 1);
         bgAudioSource.DOPitch(0, 2);
+        foreach (AudioSource item in GameManager.Instance.SFXSources)
+        {
+            item.DOComplete();
+            item.DOPitch(0, 2);
+        }
         featherEffect.Play();
         featherEffect.GetComponent<ParticleSystemRenderer>().material.mainTexture = featherTextures[abilityNumber];
         playerAnimObj.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
@@ -410,7 +415,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ClearCoroutine()
     {
         yield return new WaitForSecondsRealtime(4);
-        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 2);
+        DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.9f).SetUpdate(true);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
             SceneController.targetMapId++;

@@ -71,6 +71,9 @@ public class TitleIntro : MonoBehaviour
 
         ThemeChange(isNight);
 
+        bgmSource.mute = !SecurityPlayerPrefs.GetBool("inGame.BGM", true);
+        sfxSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+
         bgmSource.clip = isNight ? nightBGM : dayBGM;
         bgmSource.Play();
     }

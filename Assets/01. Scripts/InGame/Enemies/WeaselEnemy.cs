@@ -235,6 +235,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         //Debug.Log("isAttacking" + isAttacking);
         if (isGround && canAnything)
         {
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Weasel_Growl, 1f, true);
             Debug.Log("АјАн!!!!!!!");
             canAnything = false;
             animator.Play("Enemy_Attack");
@@ -250,6 +251,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         rb.AddForce(Vector2.up * attackHorizonJumpPower * 100);
         Vector2 direct = spriteRenderer.flipX ? Vector2.left : Vector2.right;
         rb.AddForce(direct * attackHorizonJumpPower * 100);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
         Invoke("AttackCancel", 0.2f);
     }
 

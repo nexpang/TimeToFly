@@ -79,12 +79,13 @@ public class BatBoss : Boss
 
     IEnumerator BossPattern()
     {
+        int loopCount = 0;
         while (true)
         {
             yield return new WaitUntil(() => patternReady);
             patternReady = false;
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
 
             if (!GameManager.Instance.isBossStart) yield break;
 
@@ -101,6 +102,7 @@ public class BatBoss : Boss
             switch (currentPattern)
             {
                 case 1:
+                    if(loopCount > 0) StartCoroutine(Pattern4());
                     transform.DOMoveY(-2, 0.5f).SetRelative();
                     ParticleManager.CreateWarningAnchorBox(new Vector2(-476, -5), new Vector2(952, 790), 2f, Color.yellow, Color.red, 0.2f, 200);
                     yield return new WaitForSeconds(2f);
@@ -111,14 +113,17 @@ public class BatBoss : Boss
                     StartCoroutine(Pattern2());
                     break;
                 case 3:
+                    if (loopCount > 0) StartCoroutine(Pattern4());
                     StartCoroutine(Pattern3());
                     break;
                 case 4:
                     StartCoroutine(Pattern4());
+                    patternReady = true;
                     break;
                 case 5:
                     StartCoroutine(Pattern5());
                     currentPattern = 0;
+                    loopCount++;
                     break;
             }
         }
@@ -167,6 +172,7 @@ public class BatBoss : Boss
             ParticleManager.CreateWarningPosBox(new Vector2(targetPos.x, targetPos.y), new Vector2(100, 100), 0.3f, Color.yellow, Color.red, 0.08f, 75);
             yield return new WaitForSeconds(0.3f);
             ParticleManager.CreateParticle<Effect_Tooth>(targetPos);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatBite, 1f, true);
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -176,6 +182,7 @@ public class BatBoss : Boss
             ParticleManager.CreateWarningPosBox(new Vector2(targetPos.x, targetPos.y), new Vector2(100, 100), 0.1f, Color.yellow, Color.red, 0.08f, 75);
             yield return new WaitForSeconds(0.1f);
             ParticleManager.CreateParticle<Effect_Tooth>(targetPos);
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatBite, 1f, true);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -206,7 +213,7 @@ public class BatBoss : Boss
         GlitchEffect.Instance.colorIntensity = 0.100f;
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
-        patternReady = true;
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatScream, 1f, true);
         yield return new WaitForSeconds(25);
         GameManager.Instance.player.reverseKey = false;
         GlitchEffect.Instance.colorIntensity = 0f;
@@ -242,6 +249,7 @@ public class BatBoss : Boss
             ParticleManager.CreateWarningAnchorBox(new Vector2(675, -3.8f), new Vector2(560, 1080), 1f, Color.yellow, Color.red, 0.2f, 200);
             yield return new WaitForSeconds(2);
             transform.DOMoveY(-6, 1f).SetRelative();
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Bat, 1f, true);
             yield return new WaitForSeconds(2f);
             transform.DOMoveY(-20, 1.5f).SetRelative().OnComplete(() =>
             {
@@ -272,6 +280,7 @@ public class BatBoss : Boss
     {
         int count = animator.GetInteger("SwingCount");
         animator.SetInteger("SwingCount", count - 1);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatSwing, 1f, true);
     }
 
     private void Warning_Default_Event() // 패턴 1 이벤트
@@ -304,9 +313,9 @@ public class BatBoss : Boss
         }
     }
 
-    private void Bat_ShoutingSound() // 박쥐 샤우팅 사운드
+    private void Bat_WingSound() // 박쥐 날개 사운드
     {
-        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBat, 1f, true);
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BossBatWing, 1f, true);
     }
 
     #endregion

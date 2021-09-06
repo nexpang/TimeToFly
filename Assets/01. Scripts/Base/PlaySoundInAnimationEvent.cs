@@ -20,7 +20,10 @@ public class PlaySoundInAnimationEvent : MonoBehaviour
 
     public void Awake()
     {
-        sfxSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+        if (sfxSource != null)
+        {
+            sfxSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+        }
     }
 
     public void PlaySound(int index)

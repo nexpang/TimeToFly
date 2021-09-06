@@ -70,9 +70,12 @@ public class MoveTrap : ResetAbleTrap
         if (isRealTrigger) return;
 
         isTrigger = false;
+        childRb.velocity = Vector2.zero;
+        childRb.angularVelocity = 0;
         childRb.simulated = false;
         child.position = originPos;
         child.rotation = originRotation;
         child.tag = "DEADABLE";
+        child.gameObject.layer = LayerMask.NameToLayer("DEADABLE");
     }
 }

@@ -320,7 +320,15 @@ public class Ability_FutureCreate : Ability, IAbility
 
         // 소리 바꾸고
         GameManager.Instance.SetAudio(audioSource, Audio_presentEnter, 1);
-        GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.curChapterInfo.chapterBGM, GameManager.Instance.defaultBGMvolume, true);
+
+        if (!GameManager.Instance.isBossStart)
+        {
+            GameManager.Instance.SetAudio(bgAudioSource, GameManager.Instance.curChapterInfo.chapterBGM, GameManager.Instance.defaultBGMvolume, true);
+        }
+        else
+        {
+            GameManager.Instance.SetAudio(bgAudioSource, ObjectManager.Instance.soundData.BGM_Boss, GameManager.Instance.defaultBGMvolume, true);
+        }
     }
 
     IEnumerator Clock()

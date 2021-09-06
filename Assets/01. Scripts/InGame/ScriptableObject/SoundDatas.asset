@@ -19,16 +19,22 @@ MonoBehaviour:
   Audio_Cat_Meow: {fileID: 8300000, guid: 99c621522b330cb469d519923d1849af, type: 3}
   Audio_Cat_Die: {fileID: 8300000, guid: 90f573a762228644aae7ddacb615185e, type: 3}
   Audio_Cat_Purring: {fileID: 8300000, guid: ee2908359ac200c458a7feb27dc15094, type: 3}
+  Audio_Weasel_Growl: {fileID: 8300000, guid: f8c9495f135bcd947a9133cfbb7fd6cf, type: 3}
   Audio_Eagle_Crying: {fileID: 8300000, guid: adeb8b06829d52047a49958eaffde675, type: 3}
+  Audio_Eagle_Die: {fileID: 8300000, guid: 438e0c6247fac2243b6feb8e88b78adc, type: 3}
   Audio_Rock_Breaking: {fileID: 8300000, guid: dc5149895ebe49d4c98609b786afa9d5, type: 3}
   Audio_StarSpirit_Rusing: {fileID: 8300000, guid: 9680c8c384406c44a88781c93e669a31, type: 3}
   Audio_BrickBreak: {fileID: 8300000, guid: db13301e181ffa348b1325052a045cfc, type: 3}
   Audio_BlockItem: {fileID: 8300000, guid: 8a98769d4087a0143ac960f8ab561ba1, type: 3}
   Audio_BlockHit: {fileID: 8300000, guid: c90cd98b2ee435740a7e9c0e7d0bd63d, type: 3}
   Audio_BossAppear: {fileID: 8300000, guid: b8e8cb94cd615ae4a836953d7b3e24a1, type: 3}
-  Audio_BossBat: {fileID: 8300000, guid: b1ba67de383b1af4e8562e7a800b2fd9, type: 3}
+  Audio_Bat: {fileID: 8300000, guid: b1ba67de383b1af4e8562e7a800b2fd9, type: 3}
   Audio_BossEagleShout: {fileID: 8300000, guid: a38403f80a5715743bd811843f3743d1, type: 3}
   Audio_BossEagleAmbient: {fileID: 8300000, guid: 40826835e4dbccc4c9a7042ea58f57df, type: 3}
   Audio_BossJokJeBiShout: {fileID: 8300000, guid: a5cf06062ea05314b93b140cf4827051, type: 3}
   Audio_BossJokJeBiSmallSmash: {fileID: 8300000, guid: a5cbf3c0cf2b12441aaadaa3a9549161, type: 3}
+  Audio_BossBatWing: {fileID: 8300000, guid: 7e0cc85cba78ddf4cbf87fc924b02c87, type: 3}
+  Audio_BossBatBite: {fileID: 8300000, guid: 2477bae2f20b74440abc52f4afe950b7, type: 3}
+  Audio_BossBatScream: {fileID: 8300000, guid: 3fe5da006d56cd843ab2dac681784e7a, type: 3}
+  Audio_BossBatSwing: {fileID: 8300000, guid: ea1935f7611c7204d901b2c059df64bd, type: 3}
   Audio_GameClear: {fileID: 8300000, guid: a6f354c44d9842a48bc17064cd005310, type: 3}
