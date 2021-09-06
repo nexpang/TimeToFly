@@ -155,12 +155,12 @@ public class DokSuRiBoss : Boss
         //print("거리 : " + dist);
         if(dist <= 0.1f)
         {
-            print("2 패턴 시작");
+            //print("2 패턴 시작");
             return true;
         }
         else if(dist <= 10f)
         {
-            print("다른 패턴 캔슬");
+            //print("다른 패턴 캔슬");
             isPattern2 = true;
         }
         return false;

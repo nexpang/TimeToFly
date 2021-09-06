@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossEagleRock : MonoBehaviour
 {
-    private bool isground = false;
 
     void Start()
     {
@@ -14,16 +13,14 @@ public class BossEagleRock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(DistroyThis());
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Ground"))
         {
-            isground = true;
-            ParticleManager.CreateParticle<Effect_StoneFrag>(transform.position);
-            print("³ª ´êÀ½");
+            Invoke("ReturnCool", 3f);
         }
     }
 
@@ -31,18 +28,13 @@ public class BossEagleRock : MonoBehaviour
     {
         if (collision.CompareTag("FALLINGABLE"))
         {
-            isground = true;
-            print("³ª ´êÀ½");
+            gameObject.SetActive(false);
         }
     }
 
-    IEnumerator DistroyThis()
+    private void ReturnCool()
     {
-        while(!isground)
-        {
-            yield return new WaitForSeconds(1f);
-        }
-        isground = false;
+        ParticleManager.CreateParticle<Effect_StoneFrag>(transform.position);
         gameObject.SetActive(false);
     }
 }
