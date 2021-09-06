@@ -13114,6 +13114,7 @@ GameObject:
   - component: {fileID: 708326293}
   - component: {fileID: 708326296}
   - component: {fileID: 708326297}
+  - component: {fileID: 708326298}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13239,6 +13240,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &708326298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708326292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13db4915ae854943bdc004167231347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMapIdChange: 1
+  inGame_tempLife: 9
+  inGame_remainChicken: 1
+  inGame_saveMapid: 9
+  newbie: 1
+  inGame_saveCurrentChickenIndex: 2
 --- !u!1 &722872731
 GameObject:
   m_ObjectHideFlags: 0
@@ -20908,7 +20927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1033574373
 Transform:
   m_ObjectHideFlags: 0
@@ -46826,7 +46845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2b6b73e1939924580cffa7bad24eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutScenes: 0
+  cutScenes: 3
   Timelines:
   - {fileID: 11400000, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
   - {fileID: 11400000, guid: e55a060b21fa9ac468e65cb27210026b, type: 2}
@@ -46837,6 +46856,30 @@ MonoBehaviour:
   - {fileID: 2075324843}
   - {fileID: 274110539}
   - {fileID: 1456252844}
+  dieChickenObjs:
+  - {fileID: 2059679812}
+  - {fileID: 1218280302}
+  - {fileID: 1792731827}
+  - {fileID: 1335196662}
+  scene:
+  - dack:
+    - {fileID: 2059679815}
+    - {fileID: 1153222392}
+    - {fileID: 912730393}
+    - {fileID: 9694312}
+    - {fileID: 1810394148}
+  - dack:
+    - {fileID: 1218280306}
+    - {fileID: 361120729}
+    - {fileID: 2015231612}
+    - {fileID: 1634250678}
+  - dack:
+    - {fileID: 1792731831}
+    - {fileID: 1694233798}
+    - {fileID: 616622720}
+  - dack:
+    - {fileID: 1335196666}
+    - {fileID: 1131587574}
 --- !u!1 &1960090891
 GameObject:
   m_ObjectHideFlags: 0
@@ -51724,7 +51767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978551456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.868749, y: 0.5133333, z: 0}
+  m_LocalPosition: {x: 6.3566666, y: 0.5133333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1033574373}
