@@ -48,10 +48,13 @@ public class OptionUIManager : MonoBehaviour
 
     [NonSerialized] public bool BGMSound = true;
     [NonSerialized] public bool SFXSound = true;
+
+    private float beforeTimeScale = 1;
     void Start()
     {
         pauseBtn.onClick.AddListener(() =>
         {
+            beforeTimeScale = Time.timeScale;
             Time.timeScale = 0;
             foreach( AudioSource item in GameManager.Instance.SFXSources)
             {
@@ -62,7 +65,7 @@ public class OptionUIManager : MonoBehaviour
 
         resumeBtn.onClick.AddListener(() =>
         {
-            Time.timeScale = 1;
+            Time.timeScale = beforeTimeScale;
             foreach (AudioSource item in GameManager.Instance.SFXSources)
             {
                 item.volume = 1;
@@ -106,7 +109,21 @@ public class OptionUIManager : MonoBehaviour
         RefreshSoundBtn();
     }
 
-    void OpenUI(CanvasGroup cvsGroup, bool isOpen,  float time)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && pausePanel.alpha == 0 && Time.timeScale != 0)
+        {
+            beforeTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+            foreach (AudioSource item in GameManager.Instance.SFXSources)
+            {
+                item.volume = 0;
+            }
+            OnBtn(OptionBtnIdx.PAUSE);
+        }
+    }
+
+    void OpenUI(CanvasGroup cvsGroup, bool isOpen, float time)
     {
         cvsGroup.gameObject.SetActive(isOpen);
         cvsGroup.interactable = isOpen;
@@ -120,7 +137,12 @@ public class OptionUIManager : MonoBehaviour
         switch (btnIdx)
         {
             case OptionBtnIdx.EXIT:
-                OpenUI(pausePanel, false, 0.3f);
+                pausePanel.interactable = false;
+                pausePanel.blocksRaycasts = false;
+                optionSequence.Append(DOTween.To(() => pausePanel.alpha, x => pausePanel.alpha = x, 0, 0.3f).SetUpdate(true)).OnComplete(() =>
+                {
+                    pausePanel.gameObject.SetActive(false);
+                });
                 break;
             case OptionBtnIdx.PAUSE:
                 OpenUI(pausePanel, true, 0.3f);
