@@ -17,6 +17,12 @@ public class ChickenSelectScript : MonoBehaviour
 
     private AudioSource audioSource = null;
 
+    private int[] randChicken;
+    private int[] randChickenIdx;
+    private int[] randTalk;
+
+    private bool canSkipTalk = false;
+
     [SerializeField] Transform[] chickens;
     [Header("스프라이트 넣을거 너무 많음")]
     [SerializeField] Sprite[] chickens_0BtnSprites;
@@ -59,8 +65,49 @@ public class ChickenSelectScript : MonoBehaviour
             "태일이는 순간이동을 합니다.\n 발동시 시간이 느려지며 버튼을 드래그하여 이동할 지점을 조이스틱으로 선택합니다."
         }
     };
+    private string[,] deadTalking;
     private float defaultAbilityPanelPosX;
     private float movedAbilityPanelPosX;
+    private void Awake()
+    {
+        deadTalking = new string[5, 5] {
+        {
+            "나는 왜 능력이 없지?",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]} 어딨는지 알아?",
+            "...?",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 우리 마음속에 남아있어...",
+            ""
+        },
+        {
+            "내가 미래를 봤더라면...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 좋은 친구였어...",
+            "...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 우릴 위해 희생했어...",
+            "윙크가 귀여운 친구였는데..."
+        },
+        {
+            "내가 좀만 더 빨랐더라도...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}가 어디갔지?",
+            "...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 우릴 위해 희생했어...",
+            "뒤를 잘 확인 하면서 갔어야 했는데..."
+        },
+        {
+            "그때 부수고 갔어야 했는데...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 좋은 친구였어...",
+            "...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 우리 마음속에 남아있어...",
+            "내 능력이 백숙이한테 갔더라면.."
+        },
+        {
+            "내가 좀만 더 빨랐더라도...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}가 어디갔지?",
+            "...",
+            $"{chickenName[SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1)]}는 우릴 위해 희생했어...",
+            "같이 순간이동 할 수 있었으면..."
+        }
+    };
+    }
     void Start()
     {
         Time.timeScale = 1;
@@ -74,11 +121,11 @@ public class ChickenSelectScript : MonoBehaviour
         {
             livingChicken[i] = int.Parse(chicken[i]);
         }
-        curChapter = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) / 3;
+        curChapter = SceneController.targetMapId / 3;
 
         SetSprite(curChapter);
         Stage[curChapter].SetActive(true);
-        StartCoroutine(SelectReady());
+        //StartCoroutine(SelectReady());
     }
 
     public void SetSprite(int curStage)
@@ -96,6 +143,45 @@ public class ChickenSelectScript : MonoBehaviour
         else if( curStage != 4)
         {
             selectImgs.transform.GetChild(1).rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+
+        // 살아있는 닭들 리스트로 만듬
+        List<int> livingChickenRandList = new List<int>();
+
+        for (int i = 0; i < livingChicken.Length; i++)
+        {
+            livingChickenRandList.Add(livingChicken[i]);
+        }
+        int randCount = Random.Range(livingChicken.Length/2, (livingChicken.Length+1-livingChicken.Length/2));
+        randCount = Mathf.Clamp(randCount, 1, livingChicken.Length);
+        randChicken = new int[randCount];
+        randChickenIdx = new int[randCount];
+        for (int i = 0; i < randCount; i++)
+        {
+            int rand = Random.Range(0, livingChickenRandList.Count);
+            randChicken[i] = livingChickenRandList[rand];
+            randChickenIdx[i] = rand;
+            livingChickenRandList.RemoveAt(rand);
+        }
+
+        List<int> randTalkList = new List<int>() { 0, 1, 2, 3 };
+        randTalk = new int[randCount];
+        for (int i = 0; i < randCount; i++)
+        {
+            int rand = Random.Range(0, randTalkList.Count);
+            randTalk[i] = randTalkList[rand];
+            randTalkList.RemoveAt(rand);
+        }
+
+        if(SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1) == 0)
+        {
+            randTalk[0] = 4;
+        }
+
+        for (int i = 0; i < livingChicken.Length; i++)
+        {
+            chickens[curStage].GetChild(i).GetChild(2).gameObject.SetActive(false);
+            //chickens[curStage].GetChild(livingChicken[i]).GetChild(2).gameObject.SetActive(false);
         }
 
         switch(curStage)
@@ -127,8 +213,21 @@ public class ChickenSelectScript : MonoBehaviour
                 break;
         }
 
-        blackBG.gameObject.SetActive(true);
-        selectTxt.gameObject.SetActive(true);
+        StartCoroutine(ShowTalk(randCount));
+    }
+
+    private IEnumerator ShowTalk(int randCount)
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < randCount; i++)
+        {
+            chickens[curChapter].GetChild(randChickenIdx[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
+            chickens[curChapter].GetChild(randChickenIdx[i]).GetChild(2).gameObject.SetActive(true);
+            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
+            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).gameObject.SetActive(true);
+        }
+        yield return new WaitForSeconds(1f);
+        canSkipTalk = true;
     }
 
     public void StartPanel(int abilityNum)
@@ -156,8 +255,19 @@ public class ChickenSelectScript : MonoBehaviour
         }
     }
 
+    public void SelectReadyBtn()
+    {
+        for (int i = 0; i < livingChicken.Length; i++)
+        {
+            chickens[curChapter].GetChild(i).GetChild(2).gameObject.SetActive(false);
+        }
+        StartCoroutine(SelectReady());
+    }
+
     IEnumerator SelectReady()
     {
+        if(!canSkipTalk)
+            yield break;
         blackBG.gameObject.SetActive(true);
         blackBG.color = new Color(0, 0, 0, 0);
         selectTxt.gameObject.SetActive(true);
@@ -174,6 +284,11 @@ public class ChickenSelectScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        for (int i = 0; i < livingChicken.Length; i++)
+        {
+            chickens[curChapter].GetChild(i).GetChild(1).gameObject.SetActive(true);
+            //chickens[curChapter].GetChild(livingChicken[i]).GetChild(1).gameObject.SetActive(true);
+        }
         DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 1f, 1f);
     }
 
