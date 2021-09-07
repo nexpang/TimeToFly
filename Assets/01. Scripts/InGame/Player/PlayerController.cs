@@ -79,6 +79,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isTeleportAble = true;
     public ItemBlock collisionBlock;
 
+    [Header("아이템 이펙트")]
+    [SerializeField] GameObject effect_1up;
+    [SerializeField] TimerMinusEffect timerMinusEffect;
+
     //TO DO : 튜토리얼
     // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
 
@@ -441,5 +445,20 @@ public class PlayerController : MonoBehaviour
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
+    }
+
+    public void EffectShow_1up()
+    {
+        effect_1up.transform.DOKill();
+        effect_1up.transform.localPosition = Vector3.zero;
+        effect_1up.SetActive(true);
+        effect_1up.GetComponent<RectTransform>().DOAnchorPosY(100f, 1f).OnComplete(()=> {
+            effect_1up.SetActive(false);
+        });
+    }
+
+    public void EffectShow_TimerUp(int timer)
+    {
+        StartCoroutine(timerMinusEffect.OnEffect(timer, false));
     }
 }
