@@ -17,6 +17,12 @@ public class ChickenSelectScript : MonoBehaviour
 
     private AudioSource audioSource = null;
 
+    private int[] randChicken;
+    private int[] randChickenIdx;
+    private int[] randTalk;
+
+    private bool canSkipTalk = false;
+
     [SerializeField] Transform[] chickens;
     [Header("스프라이트 넣을거 너무 많음")]
     [SerializeField] Sprite[] chickens_0BtnSprites;
@@ -148,8 +154,8 @@ public class ChickenSelectScript : MonoBehaviour
         }
         int randCount = Random.Range(livingChicken.Length/2, (livingChicken.Length+1-livingChicken.Length/2));
         randCount = Mathf.Clamp(randCount, 1, livingChicken.Length);
-        int[] randChicken = new int[randCount];
-        int[] randChickenIdx = new int[randCount];
+        randChicken = new int[randCount];
+        randChickenIdx = new int[randCount];
         for (int i = 0; i < randCount; i++)
         {
             int rand = Random.Range(0, livingChickenRandList.Count);
@@ -159,7 +165,7 @@ public class ChickenSelectScript : MonoBehaviour
         }
 
         List<int> randTalkList = new List<int>() { 0, 1, 2, 3 };
-        int[] randTalk = new int[randCount];
+        randTalk = new int[randCount];
         for (int i = 0; i < randCount; i++)
         {
             int rand = Random.Range(0, randTalkList.Count);
@@ -176,14 +182,6 @@ public class ChickenSelectScript : MonoBehaviour
         {
             chickens[curStage].GetChild(i).GetChild(2).gameObject.SetActive(false);
             //chickens[curStage].GetChild(livingChicken[i]).GetChild(2).gameObject.SetActive(false);
-        }
-
-        for (int i = 0; i < randCount; i++)
-        {
-            chickens[curStage].GetChild(randChickenIdx[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
-            chickens[curStage].GetChild(randChickenIdx[i]).GetChild(2).gameObject.SetActive(true);
-            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
-            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).gameObject.SetActive(true);
         }
 
         switch(curStage)
@@ -214,6 +212,22 @@ public class ChickenSelectScript : MonoBehaviour
                 chickens[curStage].GetChild(0).GetComponent<Image>().sprite = chickens_0BtnSprites[livingChicken[0]];
                 break;
         }
+
+        StartCoroutine(ShowTalk(randCount));
+    }
+
+    private IEnumerator ShowTalk(int randCount)
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < randCount; i++)
+        {
+            chickens[curChapter].GetChild(randChickenIdx[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
+            chickens[curChapter].GetChild(randChickenIdx[i]).GetChild(2).gameObject.SetActive(true);
+            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).GetChild(0).GetComponent<Text>().text = deadTalking[randChicken[i], randTalk[i]];
+            //chickens[curStage].GetChild(randChicken[i]).GetChild(2).gameObject.SetActive(true);
+        }
+        yield return new WaitForSeconds(1f);
+        canSkipTalk = true;
     }
 
     public void StartPanel(int abilityNum)
@@ -252,6 +266,8 @@ public class ChickenSelectScript : MonoBehaviour
 
     IEnumerator SelectReady()
     {
+        if(!canSkipTalk)
+            yield break;
         blackBG.gameObject.SetActive(true);
         blackBG.color = new Color(0, 0, 0, 0);
         selectTxt.gameObject.SetActive(true);
