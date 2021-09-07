@@ -25,6 +25,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
 
     public RectTransform abilityImgRectTrm;
 
+    private Vector3 abilityImgDefault;
+
     private void Start()
     {
         controllerBtn = GetComponent<Image>();
@@ -34,6 +36,11 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
             abilityImgRectTrm.gameObject.GetComponent<Image>().color = new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, 0.7f);
 
         defaultAhlpa = controllerBtn.color.a;
+
+        if (abilityImgRectTrm != null)
+        {
+            abilityImgDefault = abilityImgRectTrm.localPosition;
+        }
     }
 
     private void Update()
@@ -84,11 +91,13 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 PlayerInput.Instance.JoyStickJump();
                 break;
             case ControllerType.ABILITY:
+                abilityImgRectTrm.localPosition = abilityImgDefault;
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down*15);
                 PlayerInput.Instance.JoyStickAbility();
                 break;
             case ControllerType.INTERACTION:
                 PlayerInput.Instance.JoyStickInteration();
+                abilityImgRectTrm.localPosition = abilityImgDefault;
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down * 15);
                 break;
             case ControllerType.LEFT:
@@ -115,12 +124,12 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 PlayerInput.Instance.joystickKeyHorizontal = 0;
                 break;
             case ControllerType.ABILITY:
-                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up*15);
+                abilityImgRectTrm.localPosition = abilityImgDefault;
                 abilityImgRectTrm.gameObject.GetComponent<Image>().DOColor(new Color(controllerBtn.color.r, controllerBtn.color.g, controllerBtn.color.b, defaultAhlpa), 0.5f);
                 PlayerInput.Instance.JoyStickAbilityOn();
                 break;
             case ControllerType.INTERACTION:
-                abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.up * 15);
+                abilityImgRectTrm.localPosition = abilityImgDefault;
                 break;
         }
     }

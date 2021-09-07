@@ -63,7 +63,8 @@ public class IntroCutScene : MonoBehaviour
 
     private void Awake()
     {
-        if(SecurityPlayerPrefs.GetBool("inGame.ending", false))
+        // TO DO : 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로
+        if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             type = CutSceneType.ENDING;
         }
