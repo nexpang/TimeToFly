@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using DG.Tweening;
 
 public class IntroCutScene : MonoBehaviour
@@ -49,6 +50,21 @@ public class IntroCutScene : MonoBehaviour
     public CanvasGroup[] ending_cutScenes;
     public Image ending_halfBlack;
     public Image ending_cutScene_bg;
+    public CanvasGroup ending_clockBG;
+    public CanvasGroup ending_farmBG;
+
+    [Space(20)]
+    public string godnessColor;
+    public string[] chickenColors;
+
+    [System.Serializable]
+    public struct CutScenes
+    {
+        public Sprite[] chickenSprites;
+    }
+    public CutScenes[] ending_cutScenes_sprites;
+    public Image[] ending_chickenImgs;
+
 
     private string currentText;
 
@@ -56,8 +72,12 @@ public class IntroCutScene : MonoBehaviour
 
     private bool isTextEnd = false;
     private bool isFinished = false;
+
     private bool isImageKeep = false;
+    private UnityAction action = null;
+
     private int cutSceneIndex = 0;
+    private int chickenIndex = 0;
 
     private Tweener textTween = null;
 
@@ -72,6 +92,9 @@ public class IntroCutScene : MonoBehaviour
 
     void Start()
     {
+        chickenIndex = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
+        if (chickenIndex == -1) chickenIndex = 3;
+
         if (type == CutSceneType.INTRO)
         {
             intro.SetActive(true);
@@ -96,6 +119,11 @@ public class IntroCutScene : MonoBehaviour
             for (int i = 0; i < ending_cutScenes.Length; i++)
             {
                 ending_cutScenes[i].alpha = 0;
+            }
+
+            for(int i = 0; i< ending_chickenImgs.Length;i++)
+            {
+                ending_chickenImgs[i].sprite = ending_cutScenes_sprites[i].chickenSprites[chickenIndex];
             }
 
             ending_blockPanelAll.color = Color.black;
@@ -161,6 +189,10 @@ public class IntroCutScene : MonoBehaviour
 
     private IEnumerator Ending()
     {
+        string chickenColor = chickenColors[chickenIndex];
+        string[] chickenNames = new string[5] { "백숙이", "토닭이", "퍼렁이", "딸기", "태일이" };
+        string[] chickenCallNames = new string[5] { "백숙아", "토닭아", "퍼렁아", "딸기야", "태일아" };
+
         yield return new WaitForSeconds(2);
         endingMoveBG.DOAnchorPos(Vector2.zero, 3);
         yield return new WaitForSeconds(4);
@@ -169,45 +201,98 @@ public class IntroCutScene : MonoBehaviour
 
         HidePanel(false, 2f);
         ending_cutScene_bg.gameObject.SetActive(true);
-        ending_cutScene_bg.DOFade(1, 2);
+        ending_cutScene_bg.DOFade(0.65f, 2);
         yield return new WaitForSeconds(2);
 
-        ShowText("<color=\"#ff0000\">자막1</color>", 2f, true);
+        ShowText($"<color=\"{godnessColor}\">어머, 너는 누구니?</color>", 1f, true);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("<color=\"#ffff00\">자막2</color>", 2f, true);
+        ShowText($"<color=\"{chickenColor}\">저는 {chickenNames[chickenIndex]}에요..</color>", 1f, true);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("자막2", 2f);
+        ShowText($"<color=\"{godnessColor}\">여긴 어떻게 온거야?</color>", 1f, true);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("자막3", 2f);
+        ShowText($"<color=\"{chickenColor}\">어떤 여자가 시간의 힘을 주면서 알려줬어요!</color>", 2f, false);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("자막4", 2f);
+        ShowText($"<color=\"{godnessColor}\">뭐? 그녀석은 악마야! 내 힘을 훔쳐간 녀석이라구!\n너를 왜 여기로 보내..</color>", 2.5f, true);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("자막5", 2f);
+        ShowText($"<color=\"{chickenColor}\">..오는 동안 친구들이 모두 죽었어요...\n친구들이 보고 싶어요...</color>", 2.25f, true);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
-        ShowText("자막6", 2f);
+        ShowText($"<color=\"{godnessColor}\">어머, 친구들이 있었나 보구나.</color>", 1.5f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{godnessColor}\">친구들이 보고싶니?</color>", 1f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">네...</color>", 0.5f, false, () =>
+        {
+            ending_clockBG.DOFade(1f, 1);
+        });
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{godnessColor}\">알았어. 지금부터 시간을 되돌릴꺼야.</color>", 1f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">...!</color>", 0.5f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{godnessColor}\">너희들이 모두 있었던 시간으로 되돌릴꺼야.\n정신 똑바로 차리고 기억해 내야 해!</color>", 2.5f, false);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">으아아아아!</color>", 0.5f, false, () =>
+        {
+            ending_clockBG.DOFade(0f, 1);
+            ending_farmBG.DOFade(1f, 1);
+        });
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">(꿈뻑꿈뻑)</color>", 0.5f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">으으음..</color>", 0.5f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"어서 일어나 {chickenCallNames[chickenIndex]}! 어서 모험을 떠나야지!", 2f, true);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"<color=\"{chickenColor}\">맞다! 어서 갈 준비를 해야지!</color>", 1.25f, false);
+        yield return new WaitUntil(() => isFinished);
+        isFinished = false;
+
+        ShowText($"자! 날기 위해 모험을 떠나자!!", 1f, false);
         yield return new WaitUntil(() => isFinished);
         isFinished = false;
 
         HidePanel(true, 2f);
+        ending_cutScene_bg.DOFade(0, 2);
     }
 
-    private void ShowText(string text, float dur = 1f, bool keepImg = false)
+    private void ShowText(string text, float dur = 1f, bool keepImg = false, UnityAction afterAction = null)
     {
         isText = true;
         isTextEnd = false;
         isImageKeep = keepImg;
+        action = afterAction;
 
         currentText = text;
 
@@ -322,6 +407,7 @@ public class IntroCutScene : MonoBehaviour
                 {
                     isFinished = true;
                 }
+                action();
                 intro_godnessBless.DOFade(0, 1);
             }
             else
@@ -338,6 +424,11 @@ public class IntroCutScene : MonoBehaviour
                 else
                 {
                     isFinished = true;
+                }
+
+                if (action != null)
+                {
+                    action();
                 }
             }
         }
