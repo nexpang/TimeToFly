@@ -13255,8 +13255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMapIdChange: 1
   inGame_tempLife: 9
-  inGame_remainChicken: '1 '
-  inGame_saveMapid: 9
+  inGame_remainChicken: 1
+  inGame_saveMapid: 13
   newbie: 1
   inGame_saveCurrentChickenIndex: 4
 --- !u!1 &722872731
@@ -19891,13 +19891,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 944289117}
+  - component: {fileID: 944289118}
   m_Layer: 0
   m_Name: EndingCheckObjct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &944289117
 Transform:
   m_ObjectHideFlags: 0
@@ -19912,6 +19913,18 @@ Transform:
   m_Father: {fileID: 1456252845}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &944289118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944289116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de16f545ad3b844a8302dc4510f26ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &945041463
 GameObject:
   m_ObjectHideFlags: 0
@@ -21245,13 +21258,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1104000995}
+  - component: {fileID: 1104000996}
   m_Layer: 0
   m_Name: EndingCheckObjct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1104000995
 Transform:
   m_ObjectHideFlags: 0
@@ -21266,6 +21280,18 @@ Transform:
   m_Father: {fileID: 2075324844}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1104000996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104000994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de16f545ad3b844a8302dc4510f26ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1116867759
 GameObject:
   m_ObjectHideFlags: 0
@@ -46595,7 +46621,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1951757827}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 8192aad8c1499cb4383e81d6f997b2ac, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: effca92456d4fcc498be86badbec29ea, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -52026,13 +52052,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000142183}
+  - component: {fileID: 2000142184}
   m_Layer: 0
   m_Name: EndingCheckObjct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2000142183
 Transform:
   m_ObjectHideFlags: 0
@@ -52047,6 +52074,18 @@ Transform:
   m_Father: {fileID: 1033574373}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000142184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000142182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de16f545ad3b844a8302dc4510f26ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2005489379
 GameObject:
   m_ObjectHideFlags: 0
@@ -52534,13 +52573,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030059035}
+  - component: {fileID: 2030059036}
   m_Layer: 0
   m_Name: EndingCheckObjct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2030059035
 Transform:
   m_ObjectHideFlags: 0
@@ -52555,6 +52595,18 @@ Transform:
   m_Father: {fileID: 274110540}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030059036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030059034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de16f545ad3b844a8302dc4510f26ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2054850359
 GameObject:
   m_ObjectHideFlags: 3

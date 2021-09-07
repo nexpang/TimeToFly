@@ -37,7 +37,7 @@ public class CutScene : MonoBehaviour
 
     void Start()
     {
-        cutScenes = (CutScenes)(SceneController.targetMapId / 3);
+        cutScenes = (CutScenes)(SceneController.targetMapId / 3 - 1);
 
         Time.timeScale = 1;
 

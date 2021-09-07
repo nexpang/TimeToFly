@@ -433,9 +433,9 @@ public class PlayerController : MonoBehaviour
             else if (GameManager.Instance.curStageInfo.stageId == 3)
             {
                 // ¿©±ä ³óÀå ÄÆ¾À
-
-                SceneManager.LoadScene("CutScenes");
+                SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMapId);
                 GameManager.Instance.RemoveRemainChicken(abilityNumber);
+                SceneManager.LoadScene("CutScenes");
                 return;
             }
 

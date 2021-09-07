@@ -133,7 +133,14 @@ public class TitleIntro : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("TextCutScenes");
+        if (SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
+        {
+            SceneManager.LoadScene("TextCutScenes");
+        }
+        else
+        {
+            SceneController.LoadScene("InGame");
+        }
     }
 
     private void ThemeChange(bool isNight)
@@ -158,9 +165,12 @@ public class TitleIntro : MonoBehaviour
     public void NewbieOn()
     {
         SecurityPlayerPrefs.SetBool("newbie", true);
+        SecurityPlayerPrefs.SetInt("inGame.tempLife", 9);
         SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
-        SecurityPlayerPrefs.SetBool("newbie", true);
+        SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
+        SecurityPlayerPrefs.SetBool("inGame.ending", false);
+        SecurityPlayerPrefs.SetBool("inGame.isFirst", true);
     }
 
     [ContextMenu("뉴비 오프")]
