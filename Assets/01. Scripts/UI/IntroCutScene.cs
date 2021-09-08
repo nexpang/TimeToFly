@@ -409,7 +409,11 @@ public class IntroCutScene : MonoBehaviour
                 {
                     isFinished = true;
                 }
-                action();
+
+                if (action != null)
+                {
+                    action();
+                }
                 intro_godnessBless.DOFade(0, 1);
             }
             else
