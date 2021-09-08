@@ -86,6 +86,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject effect_1up;
     [SerializeField] TimerMinusEffect timerMinusEffect;
 
+    [Header("광고들")]
+    [SerializeField]
+    ADs ads;
+
     //TO DO : 튜토리얼
     // abilityNumber, 아이콘 스프라이트, 능력 SetActive, 스프라이트 시트까지 바꿔줘야함
 
@@ -449,6 +453,7 @@ public class PlayerController : MonoBehaviour
         DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.9f).SetUpdate(true);
         GameManager.Instance.FadeInOut(2, 0, 2, () =>
         {
+            ads.CallFUllSizeAD();
             SceneController.targetMapId++;
             PoolManager.ResetPool();
 
