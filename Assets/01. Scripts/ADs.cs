@@ -12,6 +12,11 @@ public class ADs : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void CallFUllSizeAD()
+    {
         InitAD();
         StartCoroutine(ShowAd());
     }
@@ -28,6 +33,7 @@ public class ADs : MonoBehaviour
         screenAd.OnAdClosed += (sender, e) => Debug.Log("±¤°í°¡ ´ÝÈû");
         screenAd.OnAdLoaded += (sender, e) => Debug.Log("±¤°í°¡ ·ÎµåµÊ");
     }
+
 
     private IEnumerator ShowAd()
     {
