@@ -16,6 +16,15 @@ public class IntroCutScene : MonoBehaviour
 
     public CutSceneType type;
 
+    [Header("Sounds")]
+    public AudioSource BGMSource;
+    public AudioSource SFXSource;
+    public SoundDatas soundData;
+
+    [Space(20)]
+    public AudioClip IntroBGM;
+    public AudioClip EndingBGM;
+
     [Header("Objects")]
     public GameObject intro;
     public GameObject ending;
@@ -84,6 +93,9 @@ public class IntroCutScene : MonoBehaviour
 
     private void Awake()
     {
+        SFXSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+        BGMSource.mute = !SecurityPlayerPrefs.GetBool("inGame.BGM", true);
+
         // TO DO : 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로
         if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
@@ -99,6 +111,8 @@ public class IntroCutScene : MonoBehaviour
         if (type == CutSceneType.INTRO)
         {
             intro.SetActive(true);
+            BGMSource.clip = IntroBGM;
+            BGMSource.Play();
             for (int i = 0; i < intro_cutScenes.Length; i++)
             {
                 intro_cutScenes[i].color = new Color(1, 1, 1, 0);
@@ -117,6 +131,8 @@ public class IntroCutScene : MonoBehaviour
         else
         {
             ending.SetActive(true);
+            BGMSource.clip = EndingBGM;
+            BGMSource.Play();
             for (int i = 0; i < ending_cutScenes.Length; i++)
             {
                 ending_cutScenes[i].alpha = 0;
