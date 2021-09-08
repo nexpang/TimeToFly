@@ -137,8 +137,7 @@ public class GameManager : MonoBehaviour
 
                             stageName.text = $"STAGE - {curStageInfo.stageName}";
 
-                            Camera.main.transform.position = curStageInfo.cameraStartPos;
-                            curStageInfo.virtualCamera.transform.position = curStageInfo.virtualCameraStartPos;
+                            StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
                             timer = curStageInfo.stageTimer;
                         }
                         else
@@ -168,7 +167,6 @@ public class GameManager : MonoBehaviour
                 bgAudioSource.clip = curChapterInfo.chapterBGM;
                 bgAudioSource.volume = defaultBGMvolume;
                 bgAudioSource.Play();
-                StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
             }).SetUpdate(true).SetDelay(2);
         }
         else
@@ -176,7 +174,6 @@ public class GameManager : MonoBehaviour
             bgAudioSource.clip = curChapterInfo.chapterBGM;
             bgAudioSource.volume = defaultBGMvolume;
             bgAudioSource.Play();
-            StartCoroutine(CameraSetting(curStageInfo.virtualCamera));
             Time.timeScale = 1;
         }
     }
@@ -184,11 +181,13 @@ public class GameManager : MonoBehaviour
     IEnumerator CameraSetting(CinemachineVirtualCamera virtualCamera)
     {
         virtualCamera.Follow = player.transform;
+        Time.timeScale = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
         virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;

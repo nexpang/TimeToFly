@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip Audio_playerJump = null;
     [SerializeField] AudioClip Audio_playerDead = null;
     [SerializeField] AudioClip Audio_playerWing = null;
+    public AudioClip Audio_playerHeartEat = null;
+    public AudioClip Audio_playerTimeEat = null;
     public AudioClip getAudioWing() => Audio_playerWing; // 잠시 get좀 하겠습니다. PlayerAnimation.cs
 
     [Header("데스 스크린")]
