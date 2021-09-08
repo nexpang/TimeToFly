@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroup bossBar;
     public RectTransform bossBarChicken;
     public RectTransform bossBarFill;
+    public CanvasGroup todakBossAbilityTip;
+    public Button todakBossAbilityTipExit;
     public Image fadeScreen;
     public GameObject cameraLimitWall;
     public RectTransform timeOverUI;
@@ -167,15 +169,38 @@ public class GameManager : MonoBehaviour
                 bgAudioSource.clip = curChapterInfo.chapterBGM;
                 bgAudioSource.volume = defaultBGMvolume;
                 bgAudioSource.Play();
+
+                if(player.abilityNumber == 1 && isBossStage)
+                {
+                    DOTween.To(() => todakBossAbilityTip.alpha, value => todakBossAbilityTip.alpha = value, 1, 0.5f);
+                    todakBossAbilityTip.blocksRaycasts = true;
+                    todakBossAbilityTip.interactable = true;
+                }
+
             }).SetUpdate(true).SetDelay(2);
         }
         else
         {
+            Time.timeScale = 1;
+
             bgAudioSource.clip = curChapterInfo.chapterBGM;
             bgAudioSource.volume = defaultBGMvolume;
             bgAudioSource.Play();
-            Time.timeScale = 1;
+
+            if (player.abilityNumber == 1 && isBossStage)
+            {
+                DOTween.To(() => todakBossAbilityTip.alpha, value => todakBossAbilityTip.alpha = value, 1, 0.5f);
+                todakBossAbilityTip.blocksRaycasts = true;
+                todakBossAbilityTip.interactable = true;
+            }
         }
+
+        todakBossAbilityTipExit.onClick.AddListener(() =>
+        {
+            DOTween.To(() => todakBossAbilityTip.alpha, value => todakBossAbilityTip.alpha = value, 0, 0.5f);
+            todakBossAbilityTip.blocksRaycasts = false;
+            todakBossAbilityTip.interactable = false;
+        });
     }
 
     IEnumerator CameraSetting(CinemachineVirtualCamera virtualCamera)
@@ -255,13 +280,11 @@ public class GameManager : MonoBehaviour
         PoolManager.ResetPool();
         player.deathScreen.gameObject.SetActive(false);
         player.gameObject.SetActive(false);
-        lifeOverScreen.alpha = 1f;
-        Image llifeOverScreen = lifeOverScreen.GetComponent<Image>();
-        llifeOverScreen.DOColor(new Color(0f, 0f, 0f, 1f), 0.5f).OnComplete(() =>
-           {
-               lifeOverScreen.interactable = true;
-               lifeOverScreen.blocksRaycasts = true;
-           });
+        DOTween.To(() => lifeOverScreen.alpha, value => lifeOverScreen.alpha = value, 1, 0.5f).OnComplete(() =>
+        {
+            lifeOverScreen.interactable = true;
+            lifeOverScreen.blocksRaycasts = true;
+        });
     }
 
     public void SceneReset()
