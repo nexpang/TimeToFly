@@ -51,6 +51,7 @@ public class IntroCutScene : MonoBehaviour
     public Image ending_halfBlack;
     public Image ending_cutScene_bg;
     public CanvasGroup ending_clockBG;
+    public GameObject ending_clockBG_warpEnter;
     public CanvasGroup ending_farmBG;
 
     [Space(20)]
@@ -257,6 +258,7 @@ public class IntroCutScene : MonoBehaviour
 
         ShowText($"<color=\"{chickenColor}\">으아아아아!</color>", 0.5f, false, () =>
         {
+            ending_clockBG_warpEnter.SetActive(true);
             ending_clockBG.DOFade(0f, 1);
             ending_farmBG.DOFade(1f, 1);
         });
