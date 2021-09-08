@@ -5,14 +5,10 @@ using DG.Tweening;
 
 public class Item_1up : MonoBehaviour, IItemAble
 {
-
     private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
-
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +23,8 @@ public class Item_1up : MonoBehaviour, IItemAble
                     return;
                 }
             }
+
+            ObjectManager.PlaySound(GameManager.Instance.player.Audio_playerHeartEat, 1, true);
             ParticleManager.CreateParticle<Effect_Heart>(transform.position);
             GameManager.Instance.player.EffectShow_1up();
             SecurityPlayerPrefs.SetInt(GameManager.Instance.tempLifekey, GameManager.Instance.tempLife++);
@@ -37,8 +35,6 @@ public class Item_1up : MonoBehaviour, IItemAble
 
     public void CreateReset(ItemBlockType type)
     {
-
-        rb.simulated = false;
         spriteRenderer.color = new Color(1, 1, 1, 0);
         transform.localScale = Vector2.zero;
 
@@ -52,9 +48,6 @@ public class Item_1up : MonoBehaviour, IItemAble
         }
 
         transform.DOScale(1, 0.5f);
-        spriteRenderer.DOFade(1, 0.5f).OnComplete(() =>
-        {
-            rb.simulated = true;
-        });
+        spriteRenderer.DOFade(1, 0.5f);
     }
 }
