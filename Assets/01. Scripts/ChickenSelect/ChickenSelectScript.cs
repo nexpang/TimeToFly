@@ -9,13 +9,14 @@ public class ChickenSelectScript : MonoBehaviour
     private bool isPanelShow = false;
     private int curAbility = 0;
 
+    public AudioSource BGMSource;
+    private AudioSource SFXSource = null;
+
     public GameObject[] Stage = null;
 
     private string[] chicken;
     public int[] livingChicken;
     private int curChapter;
-
-    private AudioSource audioSource = null;
 
     private int[] randChicken;
     private int[] randChickenIdx;
@@ -111,7 +112,11 @@ public class ChickenSelectScript : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        audioSource = GetComponent<AudioSource>();
+        SFXSource = GetComponent<AudioSource>();
+        SFXSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
+        BGMSource.mute = !SecurityPlayerPrefs.GetBool("inGame.BGM", true);
+
+
         defaultAbilityPanelPosX = abilityPanel.position.x;
         movedAbilityPanelPosX = defaultAbilityPanelPosX - 11f;
         chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
@@ -235,7 +240,7 @@ public class ChickenSelectScript : MonoBehaviour
         if (abilityNum != -1)
         {
             if (isPanelShow) return;
-            audioSource.Play();
+            SFXSource.Play();
             curAbility = livingChicken[abilityNum];
             playerSprite.sprite = chickenSprites[livingChicken[abilityNum]];
             abilityIcon.sprite = abilityIconSprites[livingChicken[abilityNum]];
