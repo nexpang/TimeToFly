@@ -300,6 +300,8 @@ public class ChickenSelectScript : MonoBehaviour
 
     public void SelectReadyBtn()
     {
+        if (!canSkipTalk)
+            return;
         for (int i = 0; i < livingChicken.Length; i++)
         {
             chickens[curChapter].GetChild(i).GetChild(1).gameObject.SetActive(false);
@@ -309,8 +311,6 @@ public class ChickenSelectScript : MonoBehaviour
 
     IEnumerator SelectReady()
     {
-        if(!canSkipTalk)
-            yield break;
         blackBG.gameObject.SetActive(true);
         blackBG.color = new Color(0, 0, 0, 0);
         selectTxt.gameObject.SetActive(true);
@@ -339,22 +339,13 @@ public class ChickenSelectScript : MonoBehaviour
 
     IEnumerator ClickAnimation()
     {
-        while(true)
+        print("ÀÌ°Å µÊ?");
+        yield return new WaitForSeconds(1.5f);
+        DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 0f, 1.5f).SetLoops(-1,LoopType.Yoyo);
+        for (int i = 0; i < livingChicken.Length; i++)
         {
-            yield return new WaitForSeconds(1.5f);
-            DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 1f, 0f);
-            for (int i = 0; i < livingChicken.Length; i++)
-            {
-                CanvasGroup cvsG = chickens[curChapter].GetChild(i).GetChild(0).GetChild(0).GetComponent<CanvasGroup>();
-                DOTween.To(() => cvsG.alpha, x => cvsG.alpha = x, 1f, 0f);
-            }
-            yield return new WaitForSeconds(1.5f);
-            DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 1f, 1f);
-            for (int i = 0; i < livingChicken.Length; i++)
-            {
-                CanvasGroup cvsG = chickens[curChapter].GetChild(i).GetChild(0).GetChild(0).GetComponent<CanvasGroup>();
-                DOTween.To(() => cvsG.alpha, x => cvsG.alpha = x, 1f, 1f);
-            }
+            CanvasGroup cvsG = chickens[curChapter].GetChild(i).GetChild(0).GetChild(0).GetComponent<CanvasGroup>();
+            DOTween.To(() => cvsG.alpha, x => cvsG.alpha = x, 0f, 1.5f).SetLoops(-1, LoopType.Yoyo);
         }
     }
 
