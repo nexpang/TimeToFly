@@ -144,6 +144,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d5ef748838125e46ba4ce99345c8f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 495763712927536262, guid: db77beaea71eb3241aed339d62db8641, type: 3}
-  triggeredSprite: {fileID: 4153470887812155010, guid: db77beaea71eb3241aed339d62db8641, type: 3}
-  Audio_bearTrap: {fileID: 8300000, guid: 54d03f6167841a648bbcf8916e0efbb1, type: 3}
