@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public bool reverseKey = false; // 이걸 true로 하면 이동키가 반대로 바뀐다.
 
     private bool isStun;
+    private bool isSlide;
 
     public PlayerState playerState = PlayerState.NORMAL;
 
@@ -168,6 +169,30 @@ public class PlayerController : MonoBehaviour
             }
             else an.SetBool("walk", false);
         }
+    }
+
+    public IEnumerator MoveSlide()
+    {
+        isSlide = true;
+        float setKetHorizontalRaw = PlayerInput.Instance.KeyHorizontalRaw;
+        while (isSlide)
+        {
+            if (Mathf.Abs(PlayerInput.Instance.KeyHorizontalRaw) >= Mathf.Abs(setKetHorizontalRaw) || (PlayerInput.Instance.KeyHorizontalRaw<0 && setKetHorizontalRaw>0) || (PlayerInput.Instance.KeyHorizontalRaw > 0 && setKetHorizontalRaw < 0))
+            {
+                setKetHorizontalRaw = PlayerInput.Instance.KeyHorizontalRaw;
+            }
+
+            float axis = setKetHorizontalRaw * moveSpeed * speed * speed * Time.fixedDeltaTime; // speed 능력2를 구현하기위함
+            float simpleAxis = Mathf.Round(axis * 1000) / 1000;
+            transform.Translate(new Vector2(simpleAxis, 0));
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void MoveSlideStop()
+    {
+        isSlide = false;
     }
 
     void AnimParametersSet()
