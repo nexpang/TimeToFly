@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class ShutDownPopup : MonoBehaviour
 {
     [SerializeField] CanvasGroup popup;
+    [SerializeField] Sprite[] chickenCrySprs;
+    public Image chicken;
+ 
     private bool popupIsOpen = false;
-    Sequence mySequence;
     private void Awake()
     {
         ShutDownPopup[] obj = FindObjectsOfType<ShutDownPopup>();
@@ -22,30 +25,14 @@ public class ShutDownPopup : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        mySequence = DOTween.Sequence();
-        //if (SceneManager.GetActiveScene().name == "InGame")
-        //{
-        //    popup.alpha = 0;
-        //    popup.blocksRaycasts = false;
-        //    popup.interactable = false;
-        //}
-        //else
-        //{
-        //    popup.alpha = 0;
-        //    popup.blocksRaycasts = false;
-        //    popup.interactable = false;
-        //}
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "InGame"&&SceneManager.GetActiveScene().name != "Loading")
+        if(SceneManager.GetActiveScene().name != "InGame"&&SceneManager.GetActiveScene().name != "Loading" && !popupIsOpen)
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
+                int random = Random.Range(0, chickenCrySprs.Length);
+                chicken.sprite = chickenCrySprs[random];
                 PopupOpen();
             }
         }
@@ -58,16 +45,15 @@ public class ShutDownPopup : MonoBehaviour
     public void PopupOpen()
     {
         popupIsOpen = !popupIsOpen;
-        mySequence.Kill();
-        if(popupIsOpen)
+        if(!popupIsOpen)
         {
-            mySequence.Append(DOTween.To(() => popup.alpha, x => popup.alpha = x, 0f, 1f));
+            popup.alpha = 0;
             popup.blocksRaycasts = false;
             popup.interactable = false;
         }
         else
         {
-            mySequence.Append(DOTween.To(() => popup.alpha, x => popup.alpha = x, 1f, 1f));
+            popup.alpha = 1;
             popup.blocksRaycasts = true;
             popup.interactable = true;
         }
