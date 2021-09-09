@@ -52,13 +52,18 @@ public class TrapObj : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+
+        if(trapType == TrapType.RepeatTrap && collision.CompareTag("FALLINGABLE"))
+        {
+            StartCoroutine(returnCool(1.5f));
+        }
     }
 
     private IEnumerator returnCool(float time)
     {
         isAlreadyReset = true;
         yield return new WaitForSeconds(time);
-        print("리셋");
+        //print("리셋");
         moveTrap.Reset();
         isAlreadyReset = false;
     }
