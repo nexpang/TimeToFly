@@ -25,12 +25,12 @@ public class Effect_WarningBox : Effect
         rectTransform.anchoredPosition = position;
         rectTransform.sizeDelta = size;
         image.color = startColor;
-        image.transform.GetChild(0).GetComponent<Image>().color = startColor;
+        image.transform.GetChild(1).GetComponent<Image>().color = startColor;
 
-        image.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(signSize, signSize);
+        image.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(signSize, signSize);
 
         image.DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
-        image.transform.GetChild(0).GetComponent<Image>().DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
+        image.transform.GetChild(1).GetComponent<Image>().DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
 
         lifeWait = new WaitForSeconds(waitTime);
 
@@ -42,12 +42,12 @@ public class Effect_WarningBox : Effect
         rectTransform.transform.position = position;
         rectTransform.sizeDelta = size;
         image.color = startColor;
-        image.transform.GetChild(0).GetComponent<Image>().color = startColor;
+        image.transform.GetChild(1).GetComponent<Image>().color = startColor;
 
-        image.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(signSize, signSize);
+        image.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(signSize, signSize);
 
         image.DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
-        image.transform.GetChild(0).GetComponent<Image>().DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
+        image.transform.GetChild(1).GetComponent<Image>().DOColor(endColor, colorInterval).SetLoops(-1, LoopType.Yoyo);
 
         lifeWait = new WaitForSeconds(waitTime);
 
@@ -59,7 +59,7 @@ public class Effect_WarningBox : Effect
         yield return lifeWait;
 
         image.DOKill();
-        image.transform.GetChild(0).GetComponent<Image>().DOKill();
+        image.transform.GetChild(1).GetComponent<Image>().DOKill();
         gameObject.SetActive(false);
     }
 }

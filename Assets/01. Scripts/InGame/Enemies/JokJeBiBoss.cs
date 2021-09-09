@@ -61,7 +61,6 @@ public class JokJeBiBoss : Boss
             switch(currentPattern)
             {
                 case 1:
-                    ParticleManager.CreateWarningAnchorBox(new Vector2(-500, 30), new Vector2(800, 720), 2, Color.yellow, Color.red, 0.5f);
                     int count = 0;
                     while(count < 7)
                     {

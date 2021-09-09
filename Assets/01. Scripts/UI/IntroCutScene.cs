@@ -74,6 +74,7 @@ public class IntroCutScene : MonoBehaviour
     }
     public CutScenes[] ending_cutScenes_sprites;
     public Image[] ending_chickenImgs;
+    public Image[] ending_subImages;
 
 
     private string currentText;
@@ -96,18 +97,31 @@ public class IntroCutScene : MonoBehaviour
         SFXSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
         BGMSource.mute = !SecurityPlayerPrefs.GetBool("inGame.BGM", true);
 
-        // TO DO : 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로
+        chickenIndex = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
+        if (chickenIndex == -1) chickenIndex = 3;
+
+        // TO DO : 엔딩 컷씬보려면 ending true후 씬 변경 + 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로, 닭도 원래상태로
         if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             type = CutSceneType.ENDING;
+            int bakSukEndingCount = SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0);
+            int otherEndingCount = SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0);
+
+            if(chickenIndex == 0)
+            {
+                SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", bakSukEndingCount + 1);
+            }
+            else
+            {
+                SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", otherEndingCount + 1);
+            }
+
         }
+
     }
 
     void Start()
     {
-        chickenIndex = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
-        if (chickenIndex == -1) chickenIndex = 3;
-
         if (type == CutSceneType.INTRO)
         {
             intro.SetActive(true);
@@ -145,7 +159,16 @@ public class IntroCutScene : MonoBehaviour
 
             ending_blockPanelAll.color = Color.black;
             ending_blockPanelAll.DOFade(0, 1.5f);
-            StartCoroutine(Ending());
+
+            if (chickenIndex == 0 && SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0) > 1
+                || chickenIndex != 0 && SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0) > 1)
+            {
+                StartCoroutine(EndingSec());
+            }
+            else
+            {
+                StartCoroutine(Ending());
+            }
         }
     }
 
@@ -346,44 +369,44 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">네... 다시 왔어요.. 어라, 이번이 한번이 아니군요?</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">네... 다시 왔어요.. 어라, 이번이 한번이 아니군요?</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">음.. 역시나 니 능력은 모든 시간을 기억하는건가 보구나?</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">음.. 역시나 니 능력은 모든 시간을 기억하는건가 보구나?</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">제 능력이 보이지 않던게 그것 때문이었나요? 그것마저 여기에 와서 알게 되다니 얼마나 힘들었다고요...\n그리고 그런 일들을 기억을 못할리 없잖아요...</color>", 4f, true);
+            ShowText($"<color=\"{chickenColor}\">제 능력이 보이지 않던게 그것 때문이었나요?\n그것마저 여기에 와서 알게 되다니 얼마나 힘들었다고요...\n그리고 그런 일들을 기억을 못할리 없잖아요...</color>", 5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">음... 미안, 많이 힘들었지?</color>", 1f, false);
+            ShowText($"<color=\"{godnessColor}\">음... 미안, 많이 힘들었지?</color>", 1.5f, false);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
             // 2번 씬
-            ShowText($"<color=\"{chickenColor}\">다시 시간을 돌려주세요! 이번에는 친구들을 죽게 두지 않을꺼에요..</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">다시 시간을 돌려주세요! 이번에는 친구들을 죽게 두지 않을꺼에요..</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">음.. 아마도 힘들꺼야. 지금 니가 여기에 와서 기억을 떠올린것도 그렇고,\n어차피 너희가 모험을 떠나는 이상 친구들은 모두 죽을꺼야.</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">음.. 아마도 힘들꺼야. 지금 니가 여기에 와서 기억을 떠올린것도 그렇고,\n어차피 너희가 모험을 떠나는 이상 친구들은 모두 죽을꺼야.</color>", 4f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">그렇다면 모험을 떠나지 않으면 되잖아요!</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">그렇다면 모험을 떠나지 않으면 되잖아요!</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">너희 꿈이 나는거 아니였어? 너희 친구들이 다시 모험을 안 떠나게 말릴 수 있어?</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">너희 꿈이 나는거 아니였어? 너희 친구들이 다시 모험을 안 떠나게 말릴 수 있어?</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">네...?</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">네...?</color>", 0.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">니가 모험을 떠나지 않아도, 친구들은 여행을 떠날꺼야.</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">니가 모험을 떠나지 않아도, 친구들은 여행을 떠날꺼야.</color>", 2f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
@@ -399,15 +422,23 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">하지만 미래를 바꿀수 없다고 하셨잖아요!</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">하지만 미래를 바꿀수 없다고 하셨잖아요!</color>", 1.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">정신 똑바로 차려! 슬픈 일이 일어나지 않는 방법을 알고 있어.\n..대신 기억 해내야 해.</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">정신 똑바로 차려! 슬픈 일이 일어나지 않는 방법을 알고 있어.\n..대신 기억 해내야 해.</color>", 2f, true, () => {
+                ending_subImages[0].gameObject.SetActive(true);
+                ending_subImages[0].DOFade(1, 1);
+            });
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">..선물이야.</color>", 1f, false); // 여기서 깃털 보여주고 (아직 안함)
+            ShowText($"<color=\"{godnessColor}\">..이건 선물이야.</color>", 1f, false, () => {
+                ending_subImages[0].DOFade(0, 1).OnComplete(() =>
+                {
+                    ending_subImages[0].gameObject.SetActive(false);
+                });
+            });
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
@@ -426,11 +457,11 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"어서 일어나 {chickenCallNames[chickenIndex]}! 어서 모험을 떠나야지!", 2f, true);
+            ShowText($"어서 일어나 {chickenCallNames[chickenIndex]}! 어서 모험을 떠나야지!", 1f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">(음? 모두가 죽었던 것 같은데 꿈이었나..?)</color>", 0.5f, true);
+            ShowText($"<color=\"{chickenColor}\">(음? 모두가 죽었던 것 같은데 꿈이었나..?)</color>", 1.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
@@ -438,7 +469,7 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">음.. 그래, 어서.....</color>", 0.5f, true);
+            ShowText($"<color=\"{chickenColor}\">음.. 그래, 어서.....</color>", 1f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
@@ -447,28 +478,28 @@ public class IntroCutScene : MonoBehaviour
             isFinished = false;
 
             // 6번 씬
-            ShowText($"무슨 일이야?", 1f, true); // 이미지가 다르다고 합니다
+            ShowText($"무슨 일이야?", 0.5f, true); // 이미지가 다르다고 합니다
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">...나는.. 여행의 끝에서 왔어.</color>", 0.5f, true);
+            ShowText($"<color=\"{chickenColor}\">...나는.. 여행의 끝에서 왔어.</color>", 1f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"무슨 소리야?", 1f, true);
+            ShowText($"무슨 소리야?", 0.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">다들 나는 연습을 하러 가보자!</color>", 0.5f, false);
+            ShowText($"<color=\"{chickenColor}\">다들 나는 연습을 하러 가보자!</color>", 1.25f, false);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
             // 7번 씬
-            ShowText($"<color=\"{chickenColor}\">우리 모두 날 수 있어!!</color>", 0.5f, true);
+            ShowText($"<color=\"{chickenColor}\">우리 모두 날 수 있어!!</color>", 1f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"무슨 말이야?", 1f, true); // 나는 애니메이션 놓고 트루 엔딩
+            ShowText($"무슨 말이야?", 0.5f, true); // 나는 애니메이션 놓고 트루 엔딩
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
         }
@@ -478,7 +509,7 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">저를 아세요...?</color>", 1f, true);
+            ShowText($"<color=\"{chickenColor}\">저를 아세요...?</color>", 0.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
@@ -494,11 +525,11 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{chickenColor}\">이번에도 라니요..?</color>", 2.25f, true);
+            ShowText($"<color=\"{chickenColor}\">이번에도 라니요..?</color>", 1f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">음 아니야.. 친구들이 보고싶니?</color>", 1f, true);
+            ShowText($"<color=\"{godnessColor}\">음 아니야.. 친구들이 보고싶니?</color>", 1.5f, true);
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
