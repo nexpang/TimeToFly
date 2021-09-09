@@ -96,18 +96,31 @@ public class IntroCutScene : MonoBehaviour
         SFXSource.mute = !SecurityPlayerPrefs.GetBool("inGame.SFX", true);
         BGMSource.mute = !SecurityPlayerPrefs.GetBool("inGame.BGM", true);
 
-        // TO DO : 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로
+        chickenIndex = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
+        if (chickenIndex == -1) chickenIndex = 3;
+
+        // TO DO : 엔딩 컷씬보려면 ending true후 씬 변경 + 엔딩 끝나고 타이틀 갈때 ending false 해줘야됨 + saveMapid도 0으로, 닭도 원래상태로
         if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             type = CutSceneType.ENDING;
+            int bakSukEndingCount = SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0);
+            int otherEndingCount = SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0);
+
+            if(chickenIndex == 0)
+            {
+                SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", bakSukEndingCount + 1);
+            }
+            else
+            {
+                SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", otherEndingCount + 1);
+            }
+
         }
+
     }
 
     void Start()
     {
-        chickenIndex = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
-        if (chickenIndex == -1) chickenIndex = 3;
-
         if (type == CutSceneType.INTRO)
         {
             intro.SetActive(true);
@@ -145,7 +158,16 @@ public class IntroCutScene : MonoBehaviour
 
             ending_blockPanelAll.color = Color.black;
             ending_blockPanelAll.DOFade(0, 1.5f);
-            StartCoroutine(Ending());
+
+            if (chickenIndex == 0 && SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0) > 1
+                || chickenIndex != 0 && SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0) > 1)
+            {
+                StartCoroutine(EndingSec());
+            }
+            else
+            {
+                StartCoroutine(Ending());
+            }
         }
     }
 
@@ -407,7 +429,7 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"<color=\"{godnessColor}\">..선물이야.</color>", 1f, false); // 여기서 깃털 보여주고 (아직 안함)
+            ShowText($"<color=\"{godnessColor}\">..이건 선물이야.</color>", 1f, false); // 여기서 깃털 보여주고 (아직 안함)
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
