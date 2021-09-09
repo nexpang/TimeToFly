@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2836846481271254518}
   - component: {fileID: 2836846481271254519}
   - component: {fileID: 2836846481271254512}
-  - component: {fileID: 264689526333061390}
+  - component: {fileID: 142179437729702811}
   m_Layer: 10
   m_Name: NongGiGu
   m_TagString: DEADABLE
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapType: 0
---- !u!58 &264689526333061390
-CircleCollider2D:
+--- !u!60 &142179437729702811
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,9 +132,35 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02661534, y: -0.0009325644}
-  serializedVersion: 2
-  m_Radius: 0.8135732
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.1875, y: 0.9375}
+      - {x: -0.4375, y: 0.875}
+      - {x: -0.6875, y: 0.75}
+      - {x: -0.8125, y: 0.625}
+      - {x: -0.875, y: 0.4375}
+      - {x: -0.875, y: -0.3125}
+      - {x: -0.4375, y: -0.75}
+      - {x: -0.1875, y: -0.875}
+      - {x: 0, y: -0.9375}
+      - {x: 0.1875, y: -0.9375}
+      - {x: 0.3125, y: -0.875}
+      - {x: 0.4375, y: -0.75}
+      - {x: 0.6875, y: -0.6875}
+      - {x: 0.875, y: -0.5}
+      - {x: 0.875, y: 0.375}
+      - {x: 0.8125, y: 0.5625}
+      - {x: 0.4375, y: 0.9375}
 --- !u!1 &2836846481542654494
 GameObject:
   m_ObjectHideFlags: 0
