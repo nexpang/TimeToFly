@@ -5,12 +5,22 @@ using UnityEngine;
 public enum TrapType
 {
     NongGiGu,
-    Stalactite
+    Stalactite,
+    RepeatTrap
 }
 
 public class TrapObj : MonoBehaviour
 {
     public TrapType trapType = TrapType.NongGiGu;
+
+    private MoveRepeatTrap moveTrap;
+    private bool isAlreadyReset;
+
+    private void Awake()
+    {
+        if(trapType == TrapType.RepeatTrap)
+            moveTrap = transform.parent.GetComponent<MoveRepeatTrap>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -20,6 +30,14 @@ public class TrapObj : MonoBehaviour
             {
                 gameObject.tag = "Object";
                 gameObject.layer = LayerMask.NameToLayer("Object");
+            }
+            else if(trapType == TrapType.RepeatTrap)
+            {
+                if (isAlreadyReset)
+                    return;
+                gameObject.tag = "Object";
+                gameObject.layer = LayerMask.NameToLayer("Object");
+                StartCoroutine(returnCool(1.5f));
             }
         }
     }
@@ -34,5 +52,14 @@ public class TrapObj : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator returnCool(float time)
+    {
+        isAlreadyReset = true;
+        yield return new WaitForSeconds(time);
+        print("¸®¼Â");
+        moveTrap.Reset();
+        isAlreadyReset = false;
     }
 }
