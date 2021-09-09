@@ -456,7 +456,6 @@ public class PlayerController : MonoBehaviour
     }
     public void ClearFuncOnCloseAd()
     {
-        Time.timeScale = 1;
         SceneController.targetMapId++;
         PoolManager.ResetPool();
 

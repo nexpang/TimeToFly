@@ -31,7 +31,11 @@ public class ADs : MonoBehaviour
         screenAd.OnAdClosed += (sender, e) => Debug.Log("±¤°í°¡ ´ÝÈû");
         screenAd.OnAdLoaded += (sender, e) => Debug.Log("±¤°í°¡ ·ÎµåµÊ");
         //screenAd.OnAdLoaded += (sender, e) => { isFullSizeAdloaded = true; };
-        screenAd.OnAdClosed += (sender, e) => PlayerController.ClearFuncOnCloseAd();
+        screenAd.OnAdClosed += (sender, e) =>
+        {
+            Time.timeScale = 1;
+            PlayerController.ClearFuncOnCloseAd();
+        };
     }
 
 /*    public bool GetAdState()
