@@ -8,13 +8,11 @@ public class ADs : MonoBehaviour
     private readonly string unitID = "ca-app-pub-5031676656577007/8177359685";
     private readonly string testUnitID = "ca-app-pub-3940256099942544/1033173712";
 
-    private InterstitialAd screenAd;
+    public InterstitialAd screenAd;
 
-    private void Start()
-    {
-        
-    }
+    private bool isFullSizeAdloaded = false;
 
+    public PlayerController PlayerController;
     public void CallFUllSizeAD()
     {
         InitAD();
@@ -32,7 +30,19 @@ public class ADs : MonoBehaviour
         screenAd.LoadAd(request);
         screenAd.OnAdClosed += (sender, e) => Debug.Log("±¤°í°¡ ´ÝÈû");
         screenAd.OnAdLoaded += (sender, e) => Debug.Log("±¤°í°¡ ·ÎµåµÊ");
+        //screenAd.OnAdLoaded += (sender, e) => { isFullSizeAdloaded = true; };
+        screenAd.OnAdClosed += (sender, e) => PlayerController.ClearFuncOnCloseAd();
     }
+
+/*    public bool GetAdState()
+    {
+        if (isFullSizeAdloaded)
+            return true;
+        else
+            return false;
+    }
+*/
+    
 
 
     private IEnumerator ShowAd()
