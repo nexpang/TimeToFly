@@ -12,6 +12,7 @@ public class Ability_Barrier : Ability, IAbility
     [SerializeField] RectTransform clockUIClock = null;
     [SerializeField] RectTransform clockUISandClock = null;
     [SerializeField] RectTransform clockUISecondHand = null;
+    [SerializeField] GameObject clockUIShield = null;
     [SerializeField] RawImage stringEffect = null;
     [SerializeField] RawImage featherEffect = null;
     [SerializeField] ParticleSystem abilityParticle = null;
@@ -70,6 +71,8 @@ public class Ability_Barrier : Ability, IAbility
 
         abilityCurrentCoolDown = abilityCooldown;
         abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
+
+        clockUIShield.SetActive(true);
 
         clockUI.SetActive(true); // 시계 UI를 켜준다.
         tween.Kill(); // 트윈 초기화 
@@ -190,6 +193,8 @@ public class Ability_Barrier : Ability, IAbility
         //playerAn.GetComponent<SpriteRenderer>().color = Color.white;
         playerAn.GetComponent<SpriteRenderer>().DOKill();
         playerAn.GetComponent<SpriteRenderer>().DOColor(Color.white, 1.5f);
+
+        clockUIShield.SetActive(false);
 
         // 카메라 글리치 효과 초기화
         GlitchEffect.Instance.colorIntensity = 0;
