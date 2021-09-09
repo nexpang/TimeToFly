@@ -5187,7 +5187,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &424340704
 GameObject:
@@ -14863,10 +14863,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMapIdChange: 1
   inGame_tempLife: 9
-  inGame_remainChicken: 1 2 3 4
+  inGame_remainChicken: 1 2 4
   inGame_saveMapid: 4
   newbie: 1
-  inGame_saveCurrentChickenIndex: 0
+  inGame_saveCurrentChickenIndex: 3
+  inGame_ending: 0
+  inGame_bakSukEndingCount: 0
+  inGame_otherEndingCount: 0
 --- !u!1 &1286064108
 GameObject:
   m_ObjectHideFlags: 0

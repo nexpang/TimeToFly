@@ -80,41 +80,41 @@ public class ChickenSelectScript : MonoBehaviour
         deadTalking = new string[5, 6] {
         {
             "내가 능력만 있었어도..",
-            $"{deadChickenIdx} 어딨는지 알아?",
+            $"{chickenName[deadChickenIdx]} 어딨는지 알아?",
             "...?",
-            $"{deadChickenIdx}는 우리 마음속에 남아있어...",
+            $"{chickenName[deadChickenIdx]}는 우리 마음속에 남아있어...",
             "",
             "나는 왜 능력이 없지?"
         },
         {
             "내가 미래를 봤더라면...",
-            $"{deadChickenIdx}는 좋은 친구였어...",
+            $"{chickenName[deadChickenIdx]}는 좋은 친구였어...",
             "...",
-            $"{deadChickenIdx}는 우릴 위해 희생했어...",
+            $"{chickenName[deadChickenIdx]}는 우릴 위해 희생했어...",
             "윙크가 귀여운 친구였는데...",
             "앞을 미리 확인하고 가보자!!"
         },
         {
             "내가 좀만 더 빨랐더라도...",
-            $"{deadChickenIdx}가 어디갔지?",
+            $"{chickenName[deadChickenIdx]}가 어디갔지?",
             "...",
-            $"{deadChickenIdx}는 우릴 위해 희생했어...",
+            $"{chickenName[deadChickenIdx]}는 우릴 위해 희생했어...",
             "뒤를 잘 확인 하면서 갔어야 했는데...",
             "빠르게 가보자구!!"
         },
         {
             "그때 부수고 갔어야 했는데...",
-            $"{deadChickenIdx}는 좋은 친구였어...",
+            $"{chickenName[deadChickenIdx]}는 좋은 친구였어...",
             "...",
-            $"{deadChickenIdx}는 우리 마음속에 남아있어...",
+            $"{chickenName[deadChickenIdx]}는 우리 마음속에 남아있어...",
             "내 능력이 백숙이한테 갔더라면..",
             "장애물은 나에게 맞기라구!!"
         },
         {
             "내가 좀만 더 빨랐더라도...",
-            $"{deadChickenIdx}가 어디갔지?",
+            $"{chickenName[deadChickenIdx]}가 어디갔지?",
             "...",
-            $"{deadChickenIdx}는 우릴 위해 희생했어...",
+            $"{chickenName[deadChickenIdx]}는 우릴 위해 희생했어...",
             "같이 순간이동 할 수 있었으면...",
             "나는 하늘을 날꺼야!!"
         }
@@ -345,7 +345,7 @@ public class ChickenSelectScript : MonoBehaviour
 
     IEnumerator ClickAnimation()
     {
-        print("이거 됨?");
+        //print("이거 됨?");
         yield return new WaitForSeconds(1.5f);
         DOTween.To(() => selectImgs.alpha, x => selectImgs.alpha = x, 0f, 1.5f).SetLoops(-1,LoopType.Yoyo);
         for (int i = 0; i < livingChicken.Length; i++)
