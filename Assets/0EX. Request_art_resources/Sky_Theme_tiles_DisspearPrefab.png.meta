@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: bc9d53d4f55b0f24487cb6836f98bf97
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6539052856349513589
+    second: Sky_Theme_tiles_DisspearPrefab_0
+  - first:
+      213: 1391215251324259979
+    second: Sky_Theme_tiles_DisspearPrefab_1
+  - first:
+      213: -6228653214934752902
+    second: Sky_Theme_tiles_DisspearPrefab_2
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sky_Theme_tiles_DisspearPrefab_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 0, z: 3, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -36, y: 24}
+        - {x: -40, y: 20}
+        - {x: -40, y: 8}
+        - {x: -48, y: 8}
+        - {x: -53, y: 3}
+        - {x: -53, y: -3}
+        - {x: -48, y: -8}
+        - {x: -40, y: -8}
+        - {x: -40, y: -20}
+        - {x: -36, y: -24}
+        - {x: 36, y: -24}
+        - {x: 40, y: -20}
+        - {x: 40, y: -8}
+        - {x: 53, y: -8}
+        - {x: 53, y: 8}
+        - {x: 40, y: 8}
+        - {x: 40, y: 20}
+        - {x: 36, y: 24}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88a8c1921e9045a0800000000000000
+      internalID: -6539052856349513589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky_Theme_tiles_DisspearPrefab_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 144
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 0, z: 3, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 56, y: 12}
+        - {x: 52, y: 16}
+        - {x: 24, y: 16}
+        - {x: 24, y: 28}
+        - {x: 19, y: 32}
+        - {x: -20, y: 32}
+        - {x: -24, y: 28}
+        - {x: -24, y: 16}
+        - {x: -52, y: 16}
+        - {x: -56, y: 12}
+        - {x: -56, y: 0}
+        - {x: -64, y: 0}
+        - {x: -69, y: -5}
+        - {x: -69, y: -11}
+        - {x: -64, y: -16}
+        - {x: -56, y: -16}
+        - {x: -56, y: -28}
+        - {x: -52, y: -32}
+        - {x: -12, y: -32}
+        - {x: -8, y: -28}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 8, y: -28}
+        - {x: 12, y: -32}
+        - {x: 52, y: -32}
+        - {x: 56, y: -28}
+        - {x: 56, y: -16}
+        - {x: 64, y: -16}
+        - {x: 69, y: -11}
+        - {x: 69, y: -5}
+        - {x: 64, y: 0}
+        - {x: 56, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ec94d66e69e4310800000000000000
+      internalID: 1391215251324259979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky_Theme_tiles_DisspearPrefab_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 0, z: 5, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 26}
+        - {x: -1, y: 22}
+        - {x: -2, y: 18}
+        - {x: -2, y: 16}
+        - {x: -20, y: 16}
+        - {x: -24, y: 15}
+        - {x: -28, y: 13}
+        - {x: -30, y: 11}
+        - {x: -31, y: 10}
+        - {x: -33, y: 6}
+        - {x: -34, y: 2}
+        - {x: -34, y: 0}
+        - {x: -42, y: 0}
+        - {x: -47, y: -5}
+        - {x: -47, y: -11}
+        - {x: -42, y: -16}
+        - {x: -34, y: -16}
+        - {x: -34, y: -18}
+        - {x: -33, y: -22}
+        - {x: -31, y: -26}
+        - {x: -28, y: -29}
+        - {x: -24, y: -31}
+        - {x: -20, y: -32}
+        - {x: -16, y: -32}
+        - {x: -12, y: -31}
+        - {x: -8, y: -29}
+        - {x: -5, y: -26}
+        - {x: -3, y: -22}
+        - {x: -2, y: -18}
+        - {x: -2, y: -16}
+        - {x: 16, y: -16}
+        - {x: 20, y: -15}
+        - {x: 24, y: -13}
+        - {x: 27, y: -10}
+        - {x: 29, y: -6}
+        - {x: 30, y: -2}
+        - {x: 30, y: 0}
+        - {x: 38, y: 0}
+        - {x: 43, y: 5}
+        - {x: 43, y: 11}
+        - {x: 38, y: 16}
+        - {x: 30, y: 16}
+        - {x: 30, y: 18}
+        - {x: 29, y: 22}
+        - {x: 27, y: 26}
+        - {x: 24, y: 29}
+        - {x: 20, y: 31}
+        - {x: 16, y: 32}
+        - {x: 12, y: 32}
+        - {x: 8, y: 31}
+        - {x: 4, y: 29}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7128bed6e06f89a0800000000000000
+      internalID: -6228653214934752902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
