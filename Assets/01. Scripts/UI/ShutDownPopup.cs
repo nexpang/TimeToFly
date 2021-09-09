@@ -8,8 +8,6 @@ using DG.Tweening;
 public class ShutDownPopup : MonoBehaviour
 {
     [SerializeField] CanvasGroup popup;
-    [SerializeField] Sprite[] chickenCrySprs;
-    public Image chicken;
  
     private bool popupIsOpen = false;
     private void Awake()
@@ -31,8 +29,6 @@ public class ShutDownPopup : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                int random = Random.Range(0, chickenCrySprs.Length);
-                chicken.sprite = chickenCrySprs[random];
                 PopupOpen();
             }
         }
