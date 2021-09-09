@@ -5,7 +5,7 @@ using GoogleMobileAds.Api;
 
 public class ADs : MonoBehaviour
 {
-    private readonly string unitID = "ca-app-pub-5031676656577007/8177359685";
+    private readonly string unitID = "ca-app-pub-3131514107827460/4413745622";
     private readonly string testUnitID = "ca-app-pub-3940256099942544/1033173712";
 
     public InterstitialAd screenAd;
@@ -43,7 +43,7 @@ public class ADs : MonoBehaviour
     }
 */
     
-
+        
 
     private IEnumerator ShowAd()
     {
