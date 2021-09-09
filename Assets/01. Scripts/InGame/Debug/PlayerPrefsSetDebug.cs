@@ -10,6 +10,9 @@ public class PlayerPrefsSetDebug : MonoBehaviour
     public int inGame_saveMapid = 0;
     public bool newbie = true;
     public int inGame_saveCurrentChickenIndex = -1;
+    public bool inGame_ending = false;
+    public int inGame_bakSukEndingCount = 0;
+    public int inGame_otherEndingCount = 0;
 
     private void Awake()
     {
@@ -35,6 +38,9 @@ public class PlayerPrefsSetDebug : MonoBehaviour
         SecurityPlayerPrefs.SetInt("inGame.saveMapid", inGame_saveMapid);
         SecurityPlayerPrefs.SetBool("newbie", newbie);
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", inGame_saveCurrentChickenIndex);
+        SecurityPlayerPrefs.SetBool("inGame.ending", inGame_ending);
+        SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", inGame_bakSukEndingCount);
+        SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", inGame_otherEndingCount);
         Debug.Log("¿Ï·á");
     }
 }

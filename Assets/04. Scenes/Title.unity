@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -312, y: 86}
-  m_SizeDelta: {x: 470.4, y: 194.4}
+  m_AnchoredPosition: {x: -450, y: 86}
+  m_SizeDelta: {x: 376.32, y: 155.52}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &13594826
 MonoBehaviour:
@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 305, y: 84}
-  m_SizeDelta: {x: 474, y: 201.6}
+  m_AnchoredPosition: {x: 490, y: 84}
+  m_SizeDelta: {x: 379.2, y: 161.28}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &43543653
 MonoBehaviour:
@@ -926,13 +926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 1476200017}
-  chickenCrySprs:
-  - {fileID: 4856460084487284753, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
-  - {fileID: -3082509838049475783, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
-  - {fileID: 4430983000829934347, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
-  - {fileID: 4012524309855959548, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
-  - {fileID: -1575646042709671684, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
-  chicken: {fileID: 1162633759}
 --- !u!1 &592275556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1182,7 @@ GameObject:
   - component: {fileID: 1162633760}
   - component: {fileID: 1162633759}
   m_Layer: 5
-  m_Name: Chicken
+  m_Name: Godness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1211,8 +1204,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -476}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: 165, y: -17}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1162633759
 MonoBehaviour:
@@ -1234,7 +1227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4856460084487284753, guid: 70a8156aefe8791468bab0c2313f2a2b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 563721d0ae070f5468382c8a46ae27d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1286,8 +1279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -148}
-  m_SizeDelta: {x: 1121, y: 214}
+  m_AnchoredPosition: {x: 0, y: -583}
+  m_SizeDelta: {x: 896.8, y: 171.2}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1175326532
 MonoBehaviour:
@@ -1436,8 +1429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 1596, y: 1268}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 1276.8, y: 1014.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1318382269
 MonoBehaviour:
