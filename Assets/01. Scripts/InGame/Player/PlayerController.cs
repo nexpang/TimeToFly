@@ -450,35 +450,35 @@ public class PlayerController : MonoBehaviour
     IEnumerator ClearCoroutine()
     {
         yield return new WaitForSecondsRealtime(4);
+        ads.CallFUllSizeAD();
         DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.9f).SetUpdate(true);
-        GameManager.Instance.FadeInOut(2, 0, 2, () =>
-        {
-            ads.CallFUllSizeAD();
-            SceneController.targetMapId++;
-            PoolManager.ResetPool();
-
-            if (GameManager.Instance.curStageInfo.stageId == 0)
-            {
-                // Æ©Åä¸®¾ó ÈÄ Ä³¸¯ÅÍ ¼±ÅÃ
-
-                SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
-                SceneManager.LoadScene("ChickenSelectScene");
-
-                return;
-            }
-            else if (GameManager.Instance.curStageInfo.stageId == 3)
-            {
-                // ¿©±ä ³óÀå ÄÆ¾À
-                SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMapId);
-                GameManager.Instance.RemoveRemainChicken(abilityNumber);
-                SceneManager.LoadScene("CutScenes");
-                return;
-            }
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        });
+        GameManager.Instance.FadeInOut(2, 0, 2, () => { });
     }
+    public void ClearFuncOnCloseAd()
+    {
+        SceneController.targetMapId++;
+        PoolManager.ResetPool();
 
+        if (GameManager.Instance.curStageInfo.stageId == 0)
+        {
+            // Æ©Åä¸®¾ó ÈÄ Ä³¸¯ÅÍ ¼±ÅÃ
+
+            SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
+            SceneManager.LoadScene("ChickenSelectScene");
+
+            return;
+        }
+        else if (GameManager.Instance.curStageInfo.stageId == 3)
+        {
+            // ¿©±ä ³óÀå ÄÆ¾À
+            SecurityPlayerPrefs.SetInt("inGame.saveMapid", SceneController.targetMapId);
+            GameManager.Instance.RemoveRemainChicken(abilityNumber);
+            SceneManager.LoadScene("CutScenes");
+            return;
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void EffectShow_1up()
     {
         effect_1up.transform.DOKill();

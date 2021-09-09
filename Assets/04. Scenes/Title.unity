@@ -637,6 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494969178}
   - component: {fileID: 494969179}
+  - component: {fileID: 494969180}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -691,6 +692,24 @@ MonoBehaviour:
   dayBGM: {fileID: 8300000, guid: 2b8818ffffc331441b68b01ea9b19b3b, type: 3}
   nightBGM: {fileID: 8300000, guid: d9f42bc9d7eb92b4aac7565b07f024b9, type: 3}
   gameStartSFX: {fileID: 8300000, guid: d92f8a7de3acee348958dafa3a703a18, type: 3}
+--- !u!114 &494969180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494969177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13db4915ae854943bdc004167231347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMapIdChange: 0
+  inGame_tempLife: 9
+  inGame_remainChicken: 0 1 2 3 4
+  inGame_saveMapid: 0
+  newbie: 1
+  inGame_saveCurrentChickenIndex: -1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,49 +1899,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634410810}
   m_CullTransparentMesh: 1
---- !u!1 &1650885354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1650885355}
-  - component: {fileID: 1650885356}
-  m_Layer: 0
-  m_Name: AD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1650885355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650885354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1650885356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650885354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 893d4a70f8fa85945961084da634af2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1790283322
 GameObject:
   m_ObjectHideFlags: 0
