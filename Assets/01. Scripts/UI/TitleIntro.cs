@@ -133,7 +133,7 @@ public class TitleIntro : MonoBehaviour
 
     public void NextScene()
     {
-        if (SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
+        if (SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0 || SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             SceneManager.LoadScene("TextCutScenes");
         }
@@ -170,7 +170,8 @@ public class TitleIntro : MonoBehaviour
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
         SecurityPlayerPrefs.SetBool("inGame.ending", false);
-        SecurityPlayerPrefs.SetBool("inGame.isFirst", true);
+        SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", 0);
+        SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", 0);
     }
 
     [ContextMenu("뉴비 오프")]
