@@ -353,7 +353,7 @@ public class IntroCutScene : MonoBehaviour
         ending_blockPanelAll.DOFade(1, 1.5f);
         yield return new WaitForSeconds(4);
 
-        EndScene();
+        EndingEnd();
     }
 
     private IEnumerator EndingSec() // 닭들이 각각 두번쨰 엔딩일때
@@ -604,7 +604,7 @@ public class IntroCutScene : MonoBehaviour
         ending_blockPanelAll.DOFade(1, 1.5f);
         yield return new WaitForSeconds(4);
 
-        EndScene();
+        EndingEnd();
     }
 
     private void ShowText(string text, float dur = 1f, bool keepImg = false, UnityAction afterAction = null)
@@ -774,11 +774,20 @@ public class IntroCutScene : MonoBehaviour
         LoadScene();
     }
 
+    void EndingEnd()
+    {
+        SecurityPlayerPrefs.SetBool("ending", false);
+        SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
+        SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
+        SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
+        SceneManager.LoadScene("Title");
+    }
+
     void LoadScene()
     { 
         if (SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1) == -1 && SceneController.targetMapId != 0)
         {
-            SceneController.LoadScene("ChickenSelectScene");
+            SceneManager.LoadScene("ChickenSelectScene");
         }
         else
         {
