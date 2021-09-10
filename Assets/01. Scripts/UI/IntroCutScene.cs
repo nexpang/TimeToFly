@@ -59,6 +59,7 @@ public class IntroCutScene : MonoBehaviour
     public CanvasGroup[] ending_cutScenes;
     public Image ending_halfBlack;
     public Image ending_cutScene_bg;
+    public Image ending_logoImg;
     public CanvasGroup ending_clockBG;
     public GameObject ending_clockBG_warpEnter;
     public CanvasGroup ending_farmBG;
@@ -343,6 +344,16 @@ public class IntroCutScene : MonoBehaviour
 
         HidePanel(true, 2f);
         ending_cutScene_bg.DOFade(0, 2);
+        yield return new WaitForSeconds(2.5f);
+        ending_logoImg.gameObject.SetActive(true);
+        ending_logoImg.DOFade(1, 1);
+        yield return new WaitForSeconds(4);
+        ending_logoImg.DOFade(0, 1);
+        yield return new WaitForSeconds(2);
+        ending_blockPanelAll.DOFade(1, 1.5f);
+        yield return new WaitForSeconds(4);
+
+        EndScene();
     }
 
     private IEnumerator EndingSec() // 닭들이 각각 두번쨰 엔딩일때
@@ -584,6 +595,16 @@ public class IntroCutScene : MonoBehaviour
 
         HidePanel(true, 2f);
         ending_cutScene_bg.DOFade(0, 2);
+        yield return new WaitForSeconds(2.5f);
+        ending_logoImg.gameObject.SetActive(true);
+        ending_logoImg.DOFade(1, 1);
+        yield return new WaitForSeconds(4);
+        ending_logoImg.DOFade(0, 1);
+        yield return new WaitForSeconds(2);
+        ending_blockPanelAll.DOFade(1, 1.5f);
+        yield return new WaitForSeconds(4);
+
+        EndScene();
     }
 
     private void ShowText(string text, float dur = 1f, bool keepImg = false, UnityAction afterAction = null)
