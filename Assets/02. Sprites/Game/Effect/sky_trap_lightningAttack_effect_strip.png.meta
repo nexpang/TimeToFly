@@ -20,6 +20,24 @@ TextureImporter:
   - first:
       213: 8215120172365831190
     second: sky_trap_lightningAttack_effect_strip_5
+  - first:
+      213: -8167768102803059854
+    second: sky_trap_lightningAttack_effect_strip_6
+  - first:
+      213: -8810893388051525245
+    second: sky_trap_lightningAttack_effect_strip_7
+  - first:
+      213: -8491911590108151800
+    second: sky_trap_lightningAttack_effect_strip_8
+  - first:
+      213: -1226168032623936766
+    second: sky_trap_lightningAttack_effect_strip_9
+  - first:
+      213: -2666668418727597136
+    second: sky_trap_lightningAttack_effect_strip_10
+  - first:
+      213: -1527408826019437816
+    second: sky_trap_lightningAttack_effect_strip_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -138,8 +156,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +175,10 @@ TextureImporter:
       name: sky_trap_lightningAttack_effect_strip_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +196,10 @@ TextureImporter:
       name: sky_trap_lightningAttack_effect_strip_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 320
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,10 +217,10 @@ TextureImporter:
       name: sky_trap_lightningAttack_effect_strip_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 480
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,10 +238,10 @@ TextureImporter:
       name: sky_trap_lightningAttack_effect_strip_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 640
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +259,10 @@ TextureImporter:
       name: sky_trap_lightningAttack_effect_strip_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 800
         y: 0
-        width: 128
-        height: 150
+        width: 160
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,6 +272,132 @@ TextureImporter:
       bones: []
       spriteID: 61cd20d6548f10270800000000000000
       internalID: 8215120172365831190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27b48a86f2246ae80800000000000000
+      internalID: -8167768102803059854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 381d95b452b69b580800000000000000
+      internalID: -8810893388051525245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 800c49f966ba62a80800000000000000
+      internalID: -8491911590108151800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20bb28cbba6cbfee0800000000000000
+      internalID: -1226168032623936766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb2df7a3371efad0800000000000000
+      internalID: -2666668418727597136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sky_trap_lightningAttack_effect_strip_11
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 0
+        width: 160
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 803a05ae3cd8dcae0800000000000000
+      internalID: -1527408826019437816
       vertices: []
       indices: 
       edges: []

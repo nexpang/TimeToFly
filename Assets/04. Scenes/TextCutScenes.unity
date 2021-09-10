@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4127,7 +4127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1512858072
 Transform:
   m_ObjectHideFlags: 0
@@ -5402,7 +5402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9aaaa6fedf00f4dbe4dd88b8712e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   BGMSource: {fileID: 492267491}
   SFXSource: {fileID: 173714172}
   soundData: {fileID: 11400000, guid: 41c77b240db9fa84399962965b02da7f, type: 2}
@@ -5448,6 +5448,7 @@ MonoBehaviour:
   - {fileID: 587032980}
   ending_halfBlack: {fileID: 1764281885}
   ending_cutScene_bg: {fileID: 1613769107}
+  ending_logoImg: {fileID: 282306159}
   ending_clockBG: {fileID: 1128616494}
   ending_clockBG_warpEnter: {fileID: 72074533}
   ending_farmBG: {fileID: 1716376389}
