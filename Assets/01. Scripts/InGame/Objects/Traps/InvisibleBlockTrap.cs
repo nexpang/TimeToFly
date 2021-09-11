@@ -50,9 +50,7 @@ public class InvisibleBlockTrap : ResetAbleTrap
                 isTrigger = true;
 
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
-
-                // TO DO :소리가 있다면 실행
-
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_AppearBlock, 1, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {
@@ -78,9 +76,7 @@ public class InvisibleBlockTrap : ResetAbleTrap
                 isTrigger = true;
                 bc.isTrigger = false;
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
-
-                // TO DO :소리가 있다면 실행
-
+                ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_AppearBlock, 1, true);
 
                 if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
                 {

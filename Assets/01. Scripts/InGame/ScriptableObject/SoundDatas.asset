@@ -24,6 +24,7 @@ MonoBehaviour:
   Audio_Eagle_Die: {fileID: 8300000, guid: 438e0c6247fac2243b6feb8e88b78adc, type: 3}
   Audio_Rock_Breaking: {fileID: 8300000, guid: dc5149895ebe49d4c98609b786afa9d5, type: 3}
   Audio_StarSpirit_Rusing: {fileID: 8300000, guid: 9680c8c384406c44a88781c93e669a31, type: 3}
+  Audio_AppearBlock: {fileID: 8300000, guid: b740726cb8cf57541a14082af1444951, type: 3}
   Audio_BrickBreak: {fileID: 8300000, guid: db13301e181ffa348b1325052a045cfc, type: 3}
   Audio_BlockItem: {fileID: 8300000, guid: 8a98769d4087a0143ac960f8ab561ba1, type: 3}
   Audio_BlockHit: {fileID: 8300000, guid: c90cd98b2ee435740a7e9c0e7d0bd63d, type: 3}
