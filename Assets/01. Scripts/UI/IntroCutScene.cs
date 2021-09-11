@@ -779,7 +779,7 @@ public class IntroCutScene : MonoBehaviour
 
     void EndingEnd()
     {
-        SecurityPlayerPrefs.SetBool("ending", false);
+        SecurityPlayerPrefs.SetBool("inGame.ending", false);
         SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
