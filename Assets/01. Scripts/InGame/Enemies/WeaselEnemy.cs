@@ -309,11 +309,17 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     {
         if (collision.collider.CompareTag("Player"))
         {
+            if (isDie && rb.simulated)
+            {
+                rb.simulated = false;
+                return;
+            }
+
             if (GameManager.Instance.player.transform.position.y > transform.position.y + 0.2f)
             {
                 GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
 
-                if (isGround) rb.simulated = false;
+                if (isGround && canAnything) rb.simulated = false;
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
