@@ -223,6 +223,7 @@ public class IntroCutScene : MonoBehaviour
         intro_logoImg.DOFade(0, 1);
         yield return new WaitForSeconds(2);
         intro_blockPanelAll.DOFade(1, 1.5f);
+        DOTween.To(() => BGMSource.volume, value => BGMSource.volume = value, 0, 1.5f);
         yield return new WaitForSeconds(4);
 
         EndScene();
@@ -351,6 +352,7 @@ public class IntroCutScene : MonoBehaviour
         ending_logoImg.DOFade(0, 1);
         yield return new WaitForSeconds(2);
         ending_blockPanelAll.DOFade(1, 1.5f);
+        DOTween.To(() => BGMSource.volume, value => BGMSource.volume = value, 0, 4f);
         yield return new WaitForSeconds(4);
 
         EndingEnd();
@@ -602,6 +604,7 @@ public class IntroCutScene : MonoBehaviour
         ending_logoImg.DOFade(0, 1);
         yield return new WaitForSeconds(2);
         ending_blockPanelAll.DOFade(1, 1.5f);
+        DOTween.To(() => BGMSource.volume, value => BGMSource.volume = value, 0, 4f);
         yield return new WaitForSeconds(4);
 
         EndingEnd();
