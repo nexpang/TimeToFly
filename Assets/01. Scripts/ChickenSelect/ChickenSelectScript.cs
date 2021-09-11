@@ -54,8 +54,8 @@ public class ChickenSelectScript : MonoBehaviour
         {
             "윙크~!"   ,
             "미래 예지" ,
-            "시간 폭탄" ,
-            "시간 가속",
+            "시간 가속" ,
+            "시간 폭탄",
             "순간이동"
         },
         {

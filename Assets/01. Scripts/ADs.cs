@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.SceneManagement;
 
 public class ADs : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class ADs : MonoBehaviour
         rewardedAd.OnUserEarnedReward += (sender, e) =>
         {
             GameManager.Instance.UserEarnedRewardFromaAD();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         };
     }
 

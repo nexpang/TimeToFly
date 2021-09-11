@@ -5547,10 +5547,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMapIdChange: 0
   inGame_tempLife: 9
-  inGame_remainChicken: 0
+  inGame_remainChicken: 1
   inGame_saveMapid: 15
   newbie: 1
-  inGame_saveCurrentChickenIndex: 0
+  inGame_saveCurrentChickenIndex: 1
   inGame_ending: 1
   inGame_bakSukEndingCount: 1
   inGame_otherEndingCount: 0

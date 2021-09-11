@@ -300,6 +300,8 @@ public class GameManager : MonoBehaviour
     public void ChapterAgain()
     {
         StageReset();
+        SceneController.targetMapId = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
+
         SceneReset();
     }
 

@@ -18,6 +18,7 @@ public class SoundDatas : ScriptableObject
     public AudioClip Audio_Eagle_Die;
     public AudioClip Audio_Rock_Breaking;
     public AudioClip Audio_StarSpirit_Rusing;
+    public AudioClip Audio_AppearBlock;
     public AudioClip Audio_BrickBreak;
     public AudioClip Audio_BlockItem;
     public AudioClip Audio_BlockHit;
