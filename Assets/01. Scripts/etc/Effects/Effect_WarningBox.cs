@@ -42,6 +42,13 @@ public class Effect_WarningBox : Effect
         rectTransform.transform.position = position;
         rectTransform.sizeDelta = size;
         image.color = startColor;
+        float sizeRatio = size.x / size.y;
+
+        if(sizeRatio <= 0.3f || sizeRatio >= 3)
+        {
+            image.transform.GetChild(0).GetComponent<Image>().pixelsPerUnitMultiplier = 0.5f;
+        }
+
         image.transform.GetChild(1).GetComponent<Image>().color = startColor;
 
         image.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(signSize, signSize);

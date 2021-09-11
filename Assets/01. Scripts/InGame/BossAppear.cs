@@ -81,6 +81,7 @@ public class BossAppear : MonoBehaviour
         
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
+        mobileControllerGroup.blocksRaycasts = false;
 
         DOTween.To(() => GameManager.Instance.curStageInfo.virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
             value => GameManager.Instance.curStageInfo.virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = value,
@@ -126,6 +127,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
+        mobileControllerGroup.blocksRaycasts = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
         GameManager.Instance.isBossStart = true;
     }
@@ -137,6 +139,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.player.SetStun(10f);
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 0, 1f);
         mobileControllerGroup.interactable = false;
+        mobileControllerGroup.blocksRaycasts = false;
 
         yield return new WaitForSeconds(3);
         GameManager.Instance.CameraImpulse(0.25f, 1f, 0.25f, 2);
@@ -164,6 +167,7 @@ public class BossAppear : MonoBehaviour
         GameManager.Instance.bgAudioSource.Play();
         DOTween.To(() => mobileControllerGroup.alpha, value => mobileControllerGroup.alpha = value, 1, 1f);
         mobileControllerGroup.interactable = true;
+        mobileControllerGroup.blocksRaycasts = true;
         DOTween.To(() => GameManager.Instance.bossBar.alpha, value => GameManager.Instance.bossBar.alpha = value, 1, 1f);
         GameManager.Instance.isBossStart = true;
     }
