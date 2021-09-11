@@ -57,6 +57,7 @@ public class Ability_Teleport : Ability, IAbility
     private float teleportPower = 10f;
     private Vector2 teleportPos;
     private int touchIdx;
+    private int touchCount;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -93,6 +94,7 @@ public class Ability_Teleport : Ability, IAbility
 
         //터치 인덱스
 #if !UNITY_EDITOR
+        touchCount = Input.touchCount;
         touchIdx = Input.touchCount - 1;
 #endif
 
@@ -221,6 +223,12 @@ public class Ability_Teleport : Ability, IAbility
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         #else // 진짜 빌드일때
+        int curTouchCount = Input.touchCount;
+        if(touchCount > curTouchCount)
+        {
+            touchIdx += (curTouchCount - touchCount);
+            touchCount = Input.touchCount;
+        }
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
 
         #endif
