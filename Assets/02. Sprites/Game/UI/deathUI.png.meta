@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: -8682905000411659149
     second: deathUI_5
+  - first:
+      213: 7975454453620587064
+    second: deathUI_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -213,7 +216,7 @@ TextureImporter:
         width: 341
         height: 331
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +232,12 @@ TextureImporter:
       name: deathUI_5
       rect:
         serializedVersion: 2
-        x: 1558
-        y: 443
-        width: 404
-        height: 382
+        x: 1571
+        y: 468
+        width: 385
+        height: 345
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,6 +245,27 @@ TextureImporter:
       bones: []
       spriteID: 3740008f7ef108780800000000000000
       internalID: -8682905000411659149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deathUI_6
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 297
+        width: 779
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83abc5ed1918eae60800000000000000
+      internalID: 7975454453620587064
       vertices: []
       indices: 
       edges: []
