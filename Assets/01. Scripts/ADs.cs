@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ADs : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class ADs : MonoBehaviour
     private bool isFullSizeAdloaded = false;
 
     public PlayerController PlayerController;
+
+    public Button watchBtn;
+    public Button goBackBtn;
     public void CallFUllSizeAD()
     {
         NomalInitAD();
@@ -45,6 +49,9 @@ public class ADs : MonoBehaviour
 
     private void RewardInitAD()
     {
+        watchBtn.gameObject.SetActive(true);
+        goBackBtn.gameObject.SetActive(false);
+
         string id = Debug.isDebugBuild ? rewardTestUnitID : rewardUnitID;
 
         rewardedAd = new RewardedAd(id);
@@ -59,8 +66,15 @@ public class ADs : MonoBehaviour
         rewardedAd.OnUserEarnedReward += (sender, e) =>
         {
             GameManager.Instance.UserEarnedRewardFromaAD();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            watchBtn.gameObject.SetActive(false);
+            goBackBtn.gameObject.SetActive(true);
         };
+    }
+
+    public void GoBackToGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.LogWarning("Restart");
     }
 
     private IEnumerator RewardADShow()
