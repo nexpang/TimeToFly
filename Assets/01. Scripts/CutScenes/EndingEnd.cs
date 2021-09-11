@@ -7,6 +7,7 @@ public class EndingEnd : MonoBehaviour
 {
     private void OnEnable()
     {
+        PoolManager.ResetPool();
         SceneManager.LoadScene("ChickenSelectScene");
     }
 }

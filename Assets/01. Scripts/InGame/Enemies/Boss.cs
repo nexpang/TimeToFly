@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
@@ -24,6 +25,15 @@ public abstract class Boss : MonoBehaviour
 
     protected bool nextPatternCancel = false;
 
+    public virtual void Start()
+    {
+        if(SceneController.targetMapId == 6 && SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0) == 0 && SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0) == 0)
+        {
+            GameManager.Instance.bossBarTuto.SetActive(true);
+            GameManager.Instance.bossBarTuto.GetComponent<Text>().DOFade(0, 3).SetDelay(10);
+        }
+    }
+
     public virtual void Update()
     {
         float barScale = GameManager.Instance.player.transform.position.x / startAndEnd.y;
@@ -35,7 +45,9 @@ public abstract class Boss : MonoBehaviour
             - GameManager.Instance.bossBar.GetComponent<RectTransform>().sizeDelta.x / 2)
             , GameManager.Instance.bossBarChicken.anchoredPosition.y);
 
-        if(barScale >= 1)
+        GameManager.Instance.bossBarChicken.GetComponent<Image>().sprite = GameManager.Instance.playerAnimObj.GetComponent<SpriteRenderer>().sprite;
+
+        if (barScale >= 1)
         {
             Time.timeScale = 0;
             DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 1.5f).SetUpdate(true);

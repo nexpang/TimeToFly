@@ -73,6 +73,7 @@ public class ADs : MonoBehaviour
 
     public void GoBackToGame()
     {
+        PoolManager.ResetPool();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.LogWarning("Restart");
     }

@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public Color timerDefaultColor;
     public CanvasGroup bossBar;
     public RectTransform bossBarChicken;
+    public GameObject bossBarTuto;
     public RectTransform bossBarFill;
     public CanvasGroup todakBossAbilityTip;
     public Button todakBossAbilityTipExit;

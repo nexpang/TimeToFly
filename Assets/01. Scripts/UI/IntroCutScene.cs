@@ -780,9 +780,11 @@ public class IntroCutScene : MonoBehaviour
     void EndingEnd()
     {
         SecurityPlayerPrefs.SetBool("inGame.ending", false);
+        SceneController.targetMapId = 0;
         SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
+        PoolManager.ResetPool();
         SceneManager.LoadScene("Title");
     }
 
@@ -790,6 +792,7 @@ public class IntroCutScene : MonoBehaviour
     { 
         if (SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1) == -1 && SceneController.targetMapId != 0)
         {
+            PoolManager.ResetPool();
             SceneManager.LoadScene("ChickenSelectScene");
         }
         else

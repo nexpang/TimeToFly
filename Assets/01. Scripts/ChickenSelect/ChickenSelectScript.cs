@@ -365,6 +365,7 @@ public class ChickenSelectScript : MonoBehaviour
             SceneController.targetMapId = 1;
             SecurityPlayerPrefs.SetInt("inGame.saveMapid", 1);
         }
+        PoolManager.ResetPool();
         SceneController.LoadScene("InGame");
     }
 }

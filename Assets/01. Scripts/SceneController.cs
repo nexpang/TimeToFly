@@ -44,6 +44,7 @@ public class SceneController : MonoBehaviour
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
+        PoolManager.ResetPool();
         SceneManager.LoadScene("Loading");
     }
 
