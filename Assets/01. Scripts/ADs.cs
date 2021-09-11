@@ -5,9 +5,13 @@ using GoogleMobileAds.Api;
 
 public class ADs : MonoBehaviour
 {
-    private readonly string unitID = "ca-app-pub-3131514107827460/4413745622";
-    private readonly string testUnitID = "ca-app-pub-3940256099942544/1033173712";
+    private readonly string nomalFullunitID = "ca-app-pub-3131514107827460/4413745622";
+    private readonly string nomalFulltestUnitID = "ca-app-pub-3940256099942544/1033173712";
 
+    private readonly string rewardUnitID = "ca-app-pub-3131514107827460/5816179400";
+    private readonly string rewardTestUnitID = "ca-app-pub-3940256099942544/5224354917";
+
+    public RewardedAd rewardedAd;
     public InterstitialAd screenAd;
 
     private bool isFullSizeAdloaded = false;
@@ -15,13 +19,19 @@ public class ADs : MonoBehaviour
     public PlayerController PlayerController;
     public void CallFUllSizeAD()
     {
-        InitAD();
-        StartCoroutine(ShowAd());
+        NomalInitAD();
+        StartCoroutine(ScreenAdShow());
     }
 
-    private void InitAD()
+    public void CallRewardAD()
     {
-        string id = Debug.isDebugBuild ? testUnitID : unitID;
+        RewardInitAD();
+        StartCoroutine(RewardADShow());
+    }
+
+    private void NomalInitAD()
+    {
+        string id = Debug.isDebugBuild ? nomalFulltestUnitID : nomalFullunitID;
 
         screenAd = new InterstitialAd(id);
 
@@ -30,26 +40,37 @@ public class ADs : MonoBehaviour
         screenAd.LoadAd(request);
         screenAd.OnAdClosed += (sender, e) => Debug.Log("±¤°í°¡ ´ÝÈû");
         screenAd.OnAdLoaded += (sender, e) => Debug.Log("±¤°í°¡ ·ÎµåµÊ");
-        //screenAd.OnAdLoaded += (sender, e) => { isFullSizeAdloaded = true; };
-        screenAd.OnAdClosed += (sender, e) =>
+    }
+
+    private void RewardInitAD()
+    {
+        string id = Debug.isDebugBuild ? rewardTestUnitID : rewardUnitID;
+
+        rewardedAd = new RewardedAd(id);
+
+        AdRequest request = new AdRequest.Builder().Build();
+
+        rewardedAd.LoadAd(request);
+
+        rewardedAd.OnAdFailedToLoad += (sender, e) => Debug.LogWarning("failed to load AD");
+        rewardedAd.OnAdFailedToShow += (sender, e) => Debug.LogWarning("failed to show AD");
+        rewardedAd.OnAdDidRecordImpression += (sender, e) => Debug.LogWarning("disconnect AD , no reward");
+        rewardedAd.OnUserEarnedReward += (sender, e) =>
         {
-            Time.timeScale = 1;
-            PlayerController.ClearFuncOnCloseAd();
+            GameManager.Instance.UserEarnedRewardFromaAD();
         };
     }
 
-/*    public bool GetAdState()
+    private IEnumerator RewardADShow()
     {
-        if (isFullSizeAdloaded)
-            return true;
-        else
-            return false;
+        while(!rewardedAd.IsLoaded())
+        {
+            yield return null;
+        }
+        rewardedAd.Show();
     }
-*/
-    
-        
 
-    private IEnumerator ShowAd()
+    private IEnumerator ScreenAdShow()
     {
         while(!screenAd.IsLoaded())
         {

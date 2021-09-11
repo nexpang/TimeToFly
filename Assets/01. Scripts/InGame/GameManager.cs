@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
     [Header("µ•Ω∫ Ω∫≈©∏∞")]
     [SerializeField] CanvasGroup lifeOverScreen = null;
 
+    [Header("±§∞Ì")]
+    [SerializeField] ADs ADs = null;
+
     private void Awake()
     {
         Instance = this; // ΩÃ±€≈Ê
@@ -376,6 +379,11 @@ public class GameManager : MonoBehaviour
         remainChickenIndex.Remove(index);
         SceneController.targetDieChicken = index;
         SaveRemainChicken();
+    }
+
+    public void UserEarnedRewardFromaAD()
+    {
+        SecurityPlayerPrefs.SetInt("inGame.tempLife", 0);
     }
 
 
