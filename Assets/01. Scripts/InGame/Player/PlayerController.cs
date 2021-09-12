@@ -101,6 +101,11 @@ public class PlayerController : MonoBehaviour
             abilityNumber = 0;
         }
 
+        if(SceneController.isSavePointChecked)
+        {
+            transform.position = SceneController.savePointPos;
+        }
+
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         playerState = PlayerState.NORMAL;
@@ -438,6 +443,7 @@ public class PlayerController : MonoBehaviour
     public void GameClear()
     {
         Time.timeScale = 0;
+        SceneController.isSavePointChecked = false;
         GameManager.Instance.isCleared = true;
         an.updateMode = AnimatorUpdateMode.UnscaledTime;
         an.SetTrigger("Clear");

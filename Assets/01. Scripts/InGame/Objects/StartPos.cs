@@ -11,7 +11,7 @@ public class StartPos : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartPosMove());
+        if(!SceneController.isSavePointChecked) StartCoroutine(StartPosMove());
     }
 
     IEnumerator StartPosMove()

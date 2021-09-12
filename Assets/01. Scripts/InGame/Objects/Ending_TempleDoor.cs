@@ -18,6 +18,7 @@ public class Ending_TempleDoor : MonoBehaviour
                 isTrigger = true;
                 DOTween.To(() => GameManager.Instance.bgAudioSource.volume, value => GameManager.Instance.bgAudioSource.volume = value, 0, 2);
                 GameManager.Instance.player.SetStun(10);
+                SceneController.isSavePointChecked = false;
                 mobileControllerGroup.interactable = false;
                 mobileControllerGroup.blocksRaycasts = false;
                 GameManager.Instance.FadeInOut(3, 2, 2, () =>

@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
     public GameObject cameraLimitWall;
     public RectTransform timeOverUI;
     public RectTransform gameClearUI;
+    public GameObject savePointEffect;
+    public GameObject savePointEffectTxt;
 
     [Header("데스 스크린")]
     [SerializeField] CanvasGroup lifeOverScreen = null;
@@ -283,6 +285,7 @@ public class GameManager : MonoBehaviour
     public void LifeOver()
     {
         PoolManager.ResetPool();
+        SceneController.isSavePointChecked = false;
         player.deathScreen.gameObject.SetActive(false);
         player.gameObject.SetActive(false);
         DOTween.To(() => lifeOverScreen.alpha, value => lifeOverScreen.alpha = value, 1, 0.5f).OnComplete(() =>

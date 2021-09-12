@@ -22,6 +22,10 @@ public class SceneController : MonoBehaviour
     public static int targetDieChicken = 0;
     public static int targetMapId = 0;
 
+    // 세이브 포인트
+    public static bool isSavePointChecked = false;
+    public static Vector3 savePointPos;
+
     private void Awake()
     {
         Init();
