@@ -108,7 +108,7 @@ public class ChickenSelectScript : MonoBehaviour
             "...",
             $"{chickenName[deadChickenIdx]}는 우리 마음속에 남아있어...",
             "내 능력이 백숙이한테 갔더라면..",
-            "장애물은 나에게 맞기라구!!"
+            "장애물은 나에게 맡기라구!!"
         },
         {
             "내가 좀만 더 빨랐더라도...",
