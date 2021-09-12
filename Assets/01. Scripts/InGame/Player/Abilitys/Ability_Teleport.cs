@@ -94,8 +94,9 @@ public class Ability_Teleport : Ability, IAbility
 
         //터치 인덱스
 #if !UNITY_EDITOR
-        touchCount = Input.touchCount;
-        touchIdx = touchCount - 1;
+        //touchCount = Input.touchCount;
+        touchIdx = PlayerInput.Instance.AbilityTouchIdx;
+        //touchIdx = touchCount - 1;
 #endif
 
         //능력 사용
@@ -222,15 +223,14 @@ public class Ability_Teleport : Ability, IAbility
 #if UNITY_EDITOR // 유니터 에디터일때
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-#else // 진짜 빌드일때
-        int curTouchCount = Input.touchCount;
-        if(touchCount > curTouchCount)
-        {
-            touchCount = curTouchCount;
-            touchIdx = touchIdx - (touchCount - curTouchCount);
-        }
+#else   // 진짜 빌드일때
+        //int curTouchCount = Input.touchCount;
+        //if(touchCount > curTouchCount)
+        //{
+        //    touchCount = curTouchCount;
+        //    touchIdx = touchIdx - (touchCount - curTouchCount);
+        //}
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
-
 #endif
         touchPos.z = 0f;
 

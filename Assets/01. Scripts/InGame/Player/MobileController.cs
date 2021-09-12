@@ -93,7 +93,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
             case ControllerType.ABILITY:
                 abilityImgRectTrm.localPosition = abilityImgDefault;
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down*15);
-                PlayerInput.Instance.JoyStickAbility();
+                int touchIdx = Input.touchCount-1;
+                PlayerInput.Instance.JoyStickAbility(touchIdx);
                 break;
             case ControllerType.INTERACTION:
                 PlayerInput.Instance.JoyStickInteration();

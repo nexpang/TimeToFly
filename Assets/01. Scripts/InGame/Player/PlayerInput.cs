@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     public bool KeyInteraction = false;
     public float KeyHorizontalRaw;
     public float KeyHorizontal;
+    public int AbilityTouchIdx = 0;
 
     private bool joystickKeyJump = false;
     private bool joystickKeyAbility = false;
@@ -95,8 +96,9 @@ public class PlayerInput : MonoBehaviour
         joystickKeyJump = true;
     }
 
-    public void JoyStickAbility()
+    public void JoyStickAbility(int touchIdx =0)
     {
+        AbilityTouchIdx = touchIdx;
         joystickKeyAbility = true;
         joystickKeyAbilityHold = true;
     }
