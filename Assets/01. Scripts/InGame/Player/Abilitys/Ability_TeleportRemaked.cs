@@ -80,6 +80,7 @@ public class Ability_TeleportRemaked : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         teleportPos = playerPos.position;
+        ShowTeleport();
 
         //능력 사용
         isAbilityEnable = true;
@@ -96,6 +97,8 @@ public class Ability_TeleportRemaked : Ability, IAbility
         Time.timeScale = 1f / timeSlow;
         GameManager.Instance.timerScale = 1f / (minusTimeForS * timeSlow);
         GameManager.Instance.player._speed = 0f;
+        teleportRangeSpr.DOKill();
+        teleportRangeSpr.DOColor(new Color(1, 1, 1, 1), 0.2f);
         GameManager.Instance.Timer();
 
         clockUI.SetActive(true);
@@ -194,15 +197,13 @@ public class Ability_TeleportRemaked : Ability, IAbility
             if(Input.GetMouseButtonDown(0))
             {
                 isTeleporting = true;
-                teleportRangeSpr.DOKill();
-                teleportRangeSpr.DOColor(new Color(1, 1, 1, 1), 0.1f);
             }
             if(isTeleporting && Input.GetMouseButtonUp(0))
             {
                 isSkillActive = false;
                 isTeleporting = false;
                 teleportRangeSpr.DOKill();
-                teleportRangeSpr.DOColor(new Color(1, 1, 1, 0), 0.1f);
+                teleportRangeSpr.DOColor(new Color(1, 1, 1, 0), 0.2f);
             }
         }
     }
