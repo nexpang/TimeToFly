@@ -10,6 +10,7 @@ public class SoundDatas : ScriptableObject
     public AudioClip Audio_bearTrap;
     public AudioClip Audio_HeosuFall;
     public AudioClip Audio_Falling;
+    public AudioClip Audio_Thunder;
     public AudioClip Audio_Cat_Meow;
     public AudioClip Audio_Cat_Die;
     public AudioClip Audio_Cat_Purring;
@@ -25,6 +26,7 @@ public class SoundDatas : ScriptableObject
     public AudioClip Audio_BlockHit;
     public AudioClip Audio_BossAppear;
     public AudioClip Audio_Bat;
+    public AudioClip Audio_Bat_Die;
     public AudioClip Audio_BossEagleShout;
     public AudioClip Audio_BossEagleAmbient;
     public AudioClip Audio_BossJokJeBiShout;

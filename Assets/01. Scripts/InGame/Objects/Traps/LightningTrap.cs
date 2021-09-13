@@ -29,4 +29,9 @@ public class LightningTrap : MonoBehaviour
             isPlaying = false;
         }
     }
+
+    private void Event_Thundering()
+    {
+        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Thunder, 1f, true);
+    }
 }
