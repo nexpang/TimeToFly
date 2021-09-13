@@ -257,8 +257,10 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < abilitys.Length; i++)
         {
-            abilitys[i].gameObject.SetActive(abilityNumber == i);
+            abilitys[i].gameObject.SetActive(false);
         }
+
+        abilitys[abilityNumber].gameObject.SetActive(true);
     }
 
     void AbilityKey()
