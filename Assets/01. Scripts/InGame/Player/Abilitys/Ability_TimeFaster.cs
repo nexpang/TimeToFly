@@ -61,9 +61,8 @@ public class Ability_TimeFaster : Ability, IAbility
         }
     }
 
-    new void Start()
+    private void Start()
     {
-        base.Start();
         currentTime = abilityDefaultTime;
         defaultClock = clockUISandClock.GetComponent<Image>().sprite;
     }

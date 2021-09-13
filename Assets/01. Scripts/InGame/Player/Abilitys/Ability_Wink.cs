@@ -12,9 +12,14 @@ public class Ability_Wink : Ability, IAbility
     [SerializeField] AudioClip Audio_playerWink2 = null;
     Animator playerAnimation = null;
 
-    new void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
+        Debug.Log("asd");
+    }
+
+    private void Start()
+    {
         playerAnimation = FindObjectOfType<PlayerAnimation>().GetComponent<Animator>();
     }
 

@@ -200,6 +200,7 @@ public class BatEnemy : ResetAbleTrap, IItemAble
                 isDie = true;
                 state = EnemyState.Die;
                 animator.Play("Enemy_Death");
+                rb.velocity = new Vector2(0, -5f);
                 ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_BlockItem, 1f, true);
                 ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Die, 1f, true);
 
@@ -221,6 +222,7 @@ public class BatEnemy : ResetAbleTrap, IItemAble
         {
             if (isDie)
             {
+                animator.Play("Enemy_DeathGround");
                 rb.simulated = false;
             }
         }

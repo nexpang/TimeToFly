@@ -50,9 +50,8 @@ public class Ability_Barrier : Ability, IAbility
     [HideInInspector] public bool isInvincible = false;
     public GameObject effect;
 
-    new void Start()
+    private void Start()
     {
-        base.Start();
         playerRb = FindObjectOfType<PlayerController>();
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;

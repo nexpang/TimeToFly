@@ -22,6 +22,9 @@ public class SceneController : MonoBehaviour
     public static int targetDieChicken = 0;
     public static int targetMapId = 0;
 
+    // 엔딩
+    public static bool isTitleToEnding = false; // 엔딩 보다가 끄고 다시 켜서 타이틀로 넘어갔을때 바로 엔딩으로 넘어갔는가?
+
     // 세이브 포인트
     public static bool isSavePointChecked = false;
     public static Vector3 savePointPos;
