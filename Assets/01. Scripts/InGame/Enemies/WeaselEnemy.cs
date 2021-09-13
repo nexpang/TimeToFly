@@ -99,7 +99,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
                 {
                     rb.velocity = Vector2.zero;
                     isAttacking = false;
-                    animator.Play("Enemy_AttackDelay");
+                    if (!isDie) animator.Play("Enemy_AttackDelay");
                     Invoke("AttackDelay", attackDelay);
                 }
             }
@@ -112,7 +112,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             {
                 if (isAttacking || !canAnything) return;
                 state = EnemyState.Chase;
-                animator.Play("Enemy_Walk");
+                if (!isDie) animator.Play("Enemy_Walk");
                 PathFollow();
             }
             else if(state == EnemyState.Chase)
@@ -139,7 +139,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
             if (state == EnemyState.Idle)
             {
                 state = EnemyState.Walk;
-                animator.Play("Enemy_Walk");
+                if (!isDie) animator.Play("Enemy_Walk");
                 targetX = Random.Range(startPosObj.transform.position.x, endPosObj.transform.position.x);
             }
 
@@ -194,7 +194,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         if (dist <= 0.1f)
         {
             state = EnemyState.Idle;
-            animator.Play("Enemy_Idle");
+            if (!isDie) animator.Play("Enemy_Idle");
             return;
         }
 
@@ -259,7 +259,8 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
     {
         if (state == EnemyState.Die) return;
         canAnything = true;
-        animator.Play("Enemy_Idle");
+
+        if(!isDie) animator.Play("Enemy_Idle");
     }
 
     void AttackCancel()
@@ -268,7 +269,7 @@ public class WeaselEnemy : ResetAbleTrap, IItemAble
         {
             rb.velocity = Vector2.zero;
             isAttacking = false;
-            animator.Play("Enemy_AttackDelay");
+            if (!isDie) animator.Play("Enemy_AttackDelay");
             Invoke("AttackDelay", attackDelay);
         }
     }
