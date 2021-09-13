@@ -5,16 +5,25 @@ using UnityEngine;
 public class SavePointFlag : MonoBehaviour
 {
     private Animator animator;
-    private bool isTrigger = false;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        if(SceneController.isSavePointChecked)
+        {
+            animator.Play("SavePoint_Off_to_On");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && GameManager.Instance.player.playerState == PlayerState.NORMAL && !isTrigger)
+        if (SceneController.isSavePointChecked) return;
+
+        if (collision.CompareTag("Player") && GameManager.Instance.player.playerState == PlayerState.NORMAL)
         {
             if (GameManager.Instance.player.abilitys[(int)Chickens.BROWN].gameObject.activeSelf)
             {
@@ -29,7 +38,6 @@ public class SavePointFlag : MonoBehaviour
             GameManager.Instance.savePointEffect.SetActive(true);
             GameManager.Instance.savePointEffectTxt.SetActive(true);
 
-            isTrigger = true;
             SceneController.isSavePointChecked = true;
             SceneController.savePointPos = transform.position;
             animator.Play("SavePoint_Off_to_On");
