@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameStartScreenChicken = null;
     [SerializeField] Text stageName = null;
     [SerializeField] Text lifeCount = null;
+    public bool isGameStart { get; private set; } = false;
     [HideInInspector] public bool isBossStage = false;
     [HideInInspector] public bool isBossStart = false;
     [HideInInspector] public bool isCleared = false;
@@ -53,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     [Header("블록 아이템 컨테이너")]
     public Transform prefabContainer;
+
+    [Header("카메라 줌 아웃 리스트")]
+    public List<CameraZoomOut> zoomOuts = new List<CameraZoomOut>();
 
     [Header("오디오 소스들")]
     private List<AudioSource> AllSources = new List<AudioSource>();
@@ -175,8 +179,9 @@ public class GameManager : MonoBehaviour
                 bgAudioSource.clip = curChapterInfo.chapterBGM;
                 bgAudioSource.volume = defaultBGMvolume;
                 bgAudioSource.Play();
+                isGameStart = true;
 
-                if(player.abilityNumber == 1 && isBossStage)
+                if (player.abilityNumber == 1 && isBossStage)
                 {
                     DOTween.To(() => todakBossAbilityTip.alpha, value => todakBossAbilityTip.alpha = value, 1, 0.5f);
                     todakBossAbilityTip.blocksRaycasts = true;
@@ -192,6 +197,7 @@ public class GameManager : MonoBehaviour
             bgAudioSource.clip = curChapterInfo.chapterBGM;
             bgAudioSource.volume = defaultBGMvolume;
             bgAudioSource.Play();
+            isGameStart = true;
 
             if (player.abilityNumber == 1 && isBossStage)
             {
@@ -280,6 +286,26 @@ public class GameManager : MonoBehaviour
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = sustainTime;
         cinemachineCamera.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = decay;
         cinemachineCamera.GenerateImpulse(force);
+    }
+
+    public void CameraZoomSet()
+    {
+        float maxValue;
+        if (zoomOuts.Count > 0)
+            maxValue = zoomOuts[0].zoomValue;
+        else
+            maxValue = 5;
+
+        for (int i = 0; i< zoomOuts.Count;i++)
+        {
+            if(maxValue < zoomOuts[i].zoomValue)
+            {
+                maxValue = zoomOuts[i].zoomValue;
+            }
+        }
+
+        DOTween.To(() => curStageInfo.virtualCamera.m_Lens.OrthographicSize,
+            value => curStageInfo.virtualCamera.m_Lens.OrthographicSize = value, maxValue, 2);
     }
 
     public void LifeOver()

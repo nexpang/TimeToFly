@@ -329,20 +329,27 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!GameManager.Instance.isGameStart) return;
+
         if(collision.CompareTag("DEADABLE") || collision.CompareTag("Boss"))
         {
+            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             GameOver();
         }
         else if(collision.CompareTag("FALLINGABLE"))
         {
+            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             FallGameOver();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("DEADABLE") || collision.collider.CompareTag("Boss"))
+        if (!GameManager.Instance.isGameStart) return;
+
+        if (collision.collider.CompareTag("DEADABLE") || collision.collider.CompareTag("Boss"))
         {
+            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             GameOver();
         }
     }
