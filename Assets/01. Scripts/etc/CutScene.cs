@@ -38,6 +38,7 @@ public class CutScene : MonoBehaviour
     void Start()
     {
         cutScenes = (CutScenes)(SceneController.targetMapId / 3 - 1);
+        SecurityPlayerPrefs.SetInt("inGame.tempLife", 9);
 
         Time.timeScale = 1;
 
@@ -58,7 +59,7 @@ public class CutScene : MonoBehaviour
         List<string> livingChickenList = livingChickenIndexs.ToList();
 
         PlayerSprites[] playerSprites = scene[(int)cutScenes].dack;
-        Debug.Log("playerSprites Length : " + playerSprites.Length);
+
         for (int i = 0; i < playerSprites.Length;i++)
         {
             if(playerSprites[i].gameObject == dieChickenObjs[(int)cutScenes])
