@@ -253,7 +253,7 @@ public class Ability_Teleport : Ability, IAbility
 
         joystick.transform.position = firstJPos + vec * fSqr;
 
-        RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.2f, Vector2.zero);
+        RaycastHit2D[] rh2ds = Physics2D.CircleCastAll(playerPos.position + vec * (fSqr * teleportPower), 0.25f, Vector2.zero);
 
         if (rh2ds != null)
         {

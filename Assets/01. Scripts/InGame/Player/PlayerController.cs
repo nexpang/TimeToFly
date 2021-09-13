@@ -457,6 +457,9 @@ public class PlayerController : MonoBehaviour
         ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_GameClear, 1, true);
         GameManager.Instance.gameClearUI.gameObject.SetActive(true);
         GameManager.Instance.gameClearUI.DOAnchorPos(new Vector2(0, -400), 1.5f).SetUpdate(true).SetEase(Ease.OutBounce).SetDelay(1);
+        GlitchEffect.Instance.colorIntensity = 0f;
+        GlitchEffect.Instance.flipIntensity = 0f;
+        GlitchEffect.Instance.intensity = 0f;
         StartCoroutine(ClearCoroutine());
     }
 
