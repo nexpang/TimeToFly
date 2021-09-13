@@ -58,6 +58,7 @@ public class Ability_Teleport : Ability, IAbility
     private Vector2 teleportPos;
     private int touchIdx;
     private int touchCount;
+    [SerializeField] SpriteRenderer teleportRangeSpr = null;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -116,6 +117,8 @@ public class Ability_Teleport : Ability, IAbility
         GameManager.Instance.timerScale = 1f / (minusTimeForS * timeSlow);
         //GameManager.Instance.player._speed = 0f;
         GameManager.Instance.Timer();
+        teleportRangeSpr.DOKill();
+        teleportRangeSpr.DOColor(new Color(1, 1, 1, 1), 0.2f);
 
         clockUI.SetActive(true);
 
@@ -193,6 +196,8 @@ public class Ability_Teleport : Ability, IAbility
         {
             if (!PlayerInput.Instance.KeyAbilityHold)
             {
+                teleportRangeSpr.DOKill();
+                teleportRangeSpr.DOColor(new Color(1, 1, 1, 0), 0.2f);
                 ResetPlayer();
                 StopCoroutine(Clock());
                 playerPos.DOScale(0, 0.25f).OnComplete(()=>
