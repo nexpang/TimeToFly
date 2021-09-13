@@ -48,6 +48,7 @@ public class Ability_TeleportRemaked : Ability, IAbility
     private Vector2 teleportPos;
     private bool isSkillActive = false;
     private bool isTeleporting = false;
+    [SerializeField] SpriteRenderer teleportRangeSpr = null;
 
     [Header("사운드 이펙트")]
     [SerializeField] AudioSource bgAudioSource = null;
@@ -193,11 +194,15 @@ public class Ability_TeleportRemaked : Ability, IAbility
             if(Input.GetMouseButtonDown(0))
             {
                 isTeleporting = true;
+                teleportRangeSpr.DOKill();
+                teleportRangeSpr.DOColor(new Color(1, 1, 1, 1), 0.1f);
             }
             if(isTeleporting && Input.GetMouseButtonUp(0))
             {
                 isSkillActive = false;
                 isTeleporting = false;
+                teleportRangeSpr.DOKill();
+                teleportRangeSpr.DOColor(new Color(1, 1, 1, 0), 0.1f);
             }
         }
     }
