@@ -88,8 +88,7 @@ public class TitleIntro : MonoBehaviour
         chickenTranform.DOScaleY(0.95f, 2f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 
         LogoRotate(true);
-
-        Invoke("EnableScreen", 3);
+        Invoke("EnableScreen", 2);
     }
 
     void EnableScreen()
