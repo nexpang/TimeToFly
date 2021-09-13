@@ -134,6 +134,11 @@ public class TitleIntro : MonoBehaviour
     {
         if (SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0 || SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
+            if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
+            {
+                SceneController.isTitleToEnding = true;
+            }
+
             PoolManager.ResetPool();
             SceneManager.LoadScene("TextCutScenes");
         }

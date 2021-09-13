@@ -105,18 +105,21 @@ public class IntroCutScene : MonoBehaviour
         if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             type = CutSceneType.ENDING;
-            int bakSukEndingCount = SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0);
-            int otherEndingCount = SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0);
 
-            if(chickenIndex == 0)
+            if (!SceneController.isTitleToEnding)
             {
-                SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", bakSukEndingCount + 1);
-            }
-            else
-            {
-                SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", otherEndingCount + 1);
-            }
+                int bakSukEndingCount = SecurityPlayerPrefs.GetInt("inGame.bakSukEndingCount", 0);
+                int otherEndingCount = SecurityPlayerPrefs.GetInt("inGame.otherEndingCount", 0);
 
+                if (chickenIndex == 0)
+                {
+                    SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", bakSukEndingCount + 1);
+                }
+                else
+                {
+                    SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", otherEndingCount + 1);
+                }
+            }
         }
 
     }
@@ -781,6 +784,7 @@ public class IntroCutScene : MonoBehaviour
     {
         SecurityPlayerPrefs.SetBool("inGame.ending", false);
         SceneController.targetMapId = 0;
+        SceneController.isTitleToEnding = false;
         SecurityPlayerPrefs.SetInt("inGame.saveMapid", 0);
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
