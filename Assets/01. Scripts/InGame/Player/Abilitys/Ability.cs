@@ -23,7 +23,7 @@ public class Ability : MonoBehaviour
     {
         if(SceneController.targetMapId == 0)
         {
-            abilityCooldown = 1;
+            abilityCooldown = 3;
             abilityCurrentCoolDown = abilityCooldown;
         }
     }
