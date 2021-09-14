@@ -98,8 +98,6 @@ public class Ability_FutureCreate : Ability, IAbility
             abilityBtn.sprite = abilityCancelBtnSpr;
             abilityCooldownCircle.gameObject.SetActive(false);
 
-            abilityCurrentCoolDown = abilityCooldown;
-            abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
 
             clockUI.SetActive(true); // 시계 UI를 켜준다.
             tween.Kill(); // 트윈 초기화
@@ -163,8 +161,6 @@ public class Ability_FutureCreate : Ability, IAbility
         }
         else
         {
-            abilityBtn.sprite = abilityBtnSpr;
-            abilityCooldownCircle.gameObject.SetActive(true);
             ResetPlayer();
         }
     }
@@ -289,6 +285,12 @@ public class Ability_FutureCreate : Ability, IAbility
 
     public void ResetPlayer()
     {
+        abilityCurrentCoolDown = abilityCooldown;
+        abilityCurrentCoolDownTime = Time.time; // 쿨타임 돌려주고
+
+        abilityBtn.sprite = abilityBtnSpr;
+        abilityCooldownCircle.gameObject.SetActive(true);
+
         isAbilityEnable = false;
         isFuturePlay = true;
 
@@ -356,6 +358,10 @@ public class Ability_FutureCreate : Ability, IAbility
             if(GameManager.Instance.player.playerState == PlayerState.DEAD)//만약 죽은상태라면
             {
                 break; // WHILE문 나가기
+            }
+            if(!isAbilityEnable)
+            {
+                yield break;
             }
         }
 
