@@ -112,7 +112,7 @@ public class Ability_Teleport : Ability, IAbility
         //GameManager.Instance.player._speed = 0f;
         GameManager.Instance.Timer();
         teleportRangeSpr.DOKill();
-        teleportRangeSpr.DOColor(new Color(1, 1, 1, 1), 0.2f);
+        teleportRangeSpr.DOColor(new Color(1, 1, 1, 0.6f), 0.2f);
 
         clockUI.SetActive(true);
 
