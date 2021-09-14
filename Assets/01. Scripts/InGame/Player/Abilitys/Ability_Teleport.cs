@@ -58,7 +58,7 @@ public class Ability_Teleport : Ability, IAbility
     private Vector2 teleportPos;
     public int touchIdx;
 
-    public Touch touch;
+    public int touchFingerId;
     [SerializeField] SpriteRenderer teleportRangeSpr = null;
 
     [Header("사운드 이펙트")]
@@ -92,13 +92,6 @@ public class Ability_Teleport : Ability, IAbility
         }// 쿨타임이 아직 안됐다.
 
         teleportPos = playerPos.position;
-
-        //터치 인덱스
-#if !UNITY_EDITOR
-        //touchCount = Input.touchCount;
-        touchIdx = PlayerInput.Instance.AbilityTouchIdx;
-        //touchIdx = touchCount - 1;
-#endif
 
         //능력 사용
         isAbilityEnable = true;
@@ -134,13 +127,11 @@ public class Ability_Teleport : Ability, IAbility
         StartCoroutine(Clock());
 
         #if !UNITY_EDITOR
-        touch = Input.touches[Input.touches.Length - 1];
+        touchFingerId = Input.touches[Input.touches.Length - 1].fingerId;
         #endif
     }
     new void Update()
     {
-        //Debug.Log(minMoveBtnPos.position);
-        //Debug.Log(maxMoveBtnPos.position);
         base.Update();
 
         if (isAbilityEnable)
@@ -227,27 +218,22 @@ public class Ability_Teleport : Ability, IAbility
 
     private void SetTeleportPos()
     {
-        //Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-#if UNITY_EDITOR // 유니터 에디터일때
+        #if UNITY_EDITOR // 유니터 에디터일때
         Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-#else   // 진짜 빌드일때
-        //int curTouchCount = Input.touchCount;
-        //if(touchCount > curTouchCount)
-        //{
-        //    touchCount = curTouchCount;
-        //    touchIdx = touchIdx - (touchCount - curTouchCount);
-        //}
+        #else   // 진짜 빌드일때
+        Vector3 touchPos = Vector3.zero;
 
-
-        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-#endif
+        for (int i = 0; i < Input.touches.Length; i++)
+        {
+            if (Input.touches[i].fingerId == touchFingerId)
+            {
+                touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
+            }
+        }
+        #endif
         touchPos.z = 0f;
 
-        //Debug.Log(Input.touchCount);
-        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
-        //Debug.Log(touchPos);
         Vector3 firstJPos = joystickBack.transform.position;
         firstJPos.z = 0f;
         Vector3 vec = (touchPos - firstJPos).normalized;
