@@ -131,6 +131,8 @@ public class ChickenSelectScript : MonoBehaviour
         defaultAbilityPanelPosX = abilityPanel.position.x;
         movedAbilityPanelPosX = defaultAbilityPanelPosX - 11f;
         chicken = SecurityPlayerPrefs.GetString("inGame.remainChicken", "0 1 2 3 4").Split(' ');
+        SecurityPlayerPrefs.SetBool("select.selecting", true);
+
         //print(chicken.Length);
         livingChicken = new int[chicken.Length];
         for (int i = 0; i < chicken.Length; i++)
@@ -358,6 +360,7 @@ public class ChickenSelectScript : MonoBehaviour
     //시작버튼으로 실행
     public void GameStart()
     {
+        SecurityPlayerPrefs.SetBool("select.selecting", false);
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", curAbility);
 
         if(SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0)
