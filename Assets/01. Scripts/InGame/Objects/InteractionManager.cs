@@ -22,22 +22,27 @@ public class InteractionManager : MonoBehaviour
     {
         foreach (InteractionObject item in objects)
         {
-            float distance = Mathf.Abs(item.transform.position.x - player.transform.position.x);
-            if(distance < item.interactionDistance)
+            if(item.isAlreadyChange == false)
             {
-                abilityBtn.SetActive(false);
-                interactionBtn.SetActive(true);
-                if (PlayerInput.Instance.KeyInteraction) {
-                    if(!item.OnInteraction())
+                float distance = Mathf.Abs(item.transform.position.x - player.transform.position.x);
+                if (distance < item.interactionDistance)
+                {
+                    abilityBtn.SetActive(false);
+                    interactionBtn.SetActive(true);
+                    if (PlayerInput.Instance.KeyInteraction)
                     {
-                        GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
-                        interactionBtn.GetComponent<Image>().DOComplete();
-                        interactionBtn.GetComponent<Image>().color = Color.red;
-                        interactionBtn.GetComponent<Image>().DOColor(Color.white, 1);
+                        item.isAlreadyChange = true;
+                        GameManager.Instance.player._speed = 1f;
+                        if (!item.OnInteraction())
+                        {
+                            GameManager.Instance.SetAudio(audioSource, Audio_deniedAbility, 0.5f, false);
+                            interactionBtn.GetComponent<Image>().DOComplete();
+                            interactionBtn.GetComponent<Image>().color = Color.red;
+                            interactionBtn.GetComponent<Image>().DOColor(Color.white, 1);
+                        }
                     }
-                   
+                    return;
                 }
-                return;
             }
         }
 
