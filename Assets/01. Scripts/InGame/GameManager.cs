@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
         StageReset();
 
         PoolManager.ResetPool();
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("ChickenSelectScene");
     }
 
     public void StageReset()
