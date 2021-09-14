@@ -132,6 +132,8 @@ public class TitleIntro : MonoBehaviour
 
     public void NextScene()
     {
+        PoolManager.ResetPool();
+
         if (SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) == 0 || SecurityPlayerPrefs.GetBool("inGame.ending", false))
         {
             if (SecurityPlayerPrefs.GetBool("inGame.ending", false))
@@ -139,8 +141,12 @@ public class TitleIntro : MonoBehaviour
                 SceneController.isTitleToEnding = true;
             }
 
-            PoolManager.ResetPool();
             SceneManager.LoadScene("TextCutScenes");
+        }
+        else if (SecurityPlayerPrefs.GetBool("select.selecting", false))
+        {
+            PoolManager.ResetPool();
+            SceneManager.LoadScene("ChickenSelectScene");
         }
         else
         {
@@ -175,6 +181,7 @@ public class TitleIntro : MonoBehaviour
         SecurityPlayerPrefs.SetString("inGame.remainChicken", "0 1 2 3 4");
         SecurityPlayerPrefs.SetInt("inGame.saveCurrentChickenIndex", -1);
         SecurityPlayerPrefs.SetBool("inGame.ending", false);
+        SecurityPlayerPrefs.SetBool("select.selecting", false);
         SecurityPlayerPrefs.SetInt("inGame.bakSukEndingCount", 0);
         SecurityPlayerPrefs.SetInt("inGame.otherEndingCount", 0);
     }
