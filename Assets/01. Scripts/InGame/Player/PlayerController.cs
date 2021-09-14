@@ -335,12 +335,10 @@ public class PlayerController : MonoBehaviour
 
         if(collision.CompareTag("DEADABLE") || collision.CompareTag("Boss"))
         {
-            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             GameOver();
         }
         else if(collision.CompareTag("FALLINGABLE"))
         {
-            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             FallGameOver();
         }
     }
@@ -351,7 +349,6 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("DEADABLE") || collision.collider.CompareTag("Boss"))
         {
-            Debug.Log(collision.gameObject.name + " ¿¡ ´ê¾Ò´Ù.");
             GameOver();
         }
     }

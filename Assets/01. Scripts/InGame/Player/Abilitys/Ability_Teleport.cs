@@ -56,8 +56,9 @@ public class Ability_Teleport : Ability, IAbility
     [SerializeField, Range(1f, 10f)]
     private float teleportPower = 10f;
     private Vector2 teleportPos;
-    private int touchIdx;
-    private int touchCount;
+    public int touchIdx;
+
+    public Touch touch;
     [SerializeField] SpriteRenderer teleportRangeSpr = null;
 
     [Header("사운드 이펙트")]
@@ -131,6 +132,10 @@ public class Ability_Teleport : Ability, IAbility
         GlitchEffect.Instance.flipIntensity = 0.194f;
         GlitchEffect.Instance.intensity = 0.194f;
         StartCoroutine(Clock());
+
+        #if !UNITY_EDITOR
+        touch = Input.touches[Input.touches.Length - 1];
+        #endif
     }
     new void Update()
     {
@@ -234,7 +239,9 @@ public class Ability_Teleport : Ability, IAbility
         //    touchCount = curTouchCount;
         //    touchIdx = touchIdx - (touchCount - curTouchCount);
         //}
-        Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(touchIdx).position);
+
+
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
 #endif
         touchPos.z = 0f;
 
