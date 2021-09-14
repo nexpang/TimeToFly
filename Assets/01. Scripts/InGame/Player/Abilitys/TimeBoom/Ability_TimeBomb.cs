@@ -44,8 +44,9 @@ public class Ability_TimeBomb : Ability, IAbility
 
     public TimerMinusEffect timerMinusEffect;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         circleCol = timeBoom.GetComponent<CircleCollider2D>();
 
         currentTime = abilityDefaultTime;

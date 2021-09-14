@@ -15,11 +15,11 @@ public class Ability_Wink : Ability, IAbility
     protected override void OnEnable()
     {
         base.OnEnable();
-        Debug.Log("asd");
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         playerAnimation = FindObjectOfType<PlayerAnimation>().GetComponent<Animator>();
     }
 
