@@ -68,8 +68,9 @@ public class Ability_FutureCreate : Ability, IAbility
 
     public TimerMinusEffect timerMinusEffect;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         playerRb = FindObjectOfType<PlayerController>();
         playerAn = FindObjectOfType<PlayerAnimation>();
         currentTime = abilityDefaultTime;

@@ -19,6 +19,15 @@ public class Ability : MonoBehaviour
     [HideInInspector] protected Tween tween; // 시계 없어지는거 방지용 트윈
     [HideInInspector] public bool isAbilityEnable;
 
+    protected virtual void Start()
+    {
+        if(SceneController.targetMapId == 0)
+        {
+            abilityCooldown = 1;
+            abilityCurrentCoolDown = abilityCooldown;
+        }
+    }
+
     protected virtual void OnEnable()
     {
         abilityBtn.sprite = abilityBtnSpr;

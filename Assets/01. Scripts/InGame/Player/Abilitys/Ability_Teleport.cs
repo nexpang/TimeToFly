@@ -71,8 +71,9 @@ public class Ability_Teleport : Ability, IAbility
     [SerializeField] AudioClip Audio_tik = null;
     [SerializeField] AudioClip Audio_tok = null;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         joystickRect = joystick.GetComponent<RectTransform>();
         teleportPosObjTrans = teleportPosObj.transform;
 
