@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
     public RectTransform gameClearUI;
     public GameObject savePointEffect;
     public GameObject savePointEffectTxt;
+    public Transform UITutorialPanel;
+    private int UITutorialIdx;
 
     [Header("데스 스크린")]
     [SerializeField] CanvasGroup lifeOverScreen = null;
@@ -187,7 +189,11 @@ public class GameManager : MonoBehaviour
                     todakBossAbilityTip.blocksRaycasts = true;
                     todakBossAbilityTip.interactable = true;
                 }
-
+                if (currentStage == 0)
+                {
+                    UITutorialIdx = 0;
+                    PassUITutoPaenl();
+                }
             }).SetUpdate(true).SetDelay(2);
         }
         else
@@ -213,6 +219,36 @@ public class GameManager : MonoBehaviour
             todakBossAbilityTip.blocksRaycasts = false;
             todakBossAbilityTip.interactable = false;
         });
+    }
+
+    public void PassUITutoPaenl()
+    {
+        if(UITutorialIdx == 0)
+        {
+            UITutorialPanel.GetChild(0).GetComponent<CanvasGroup>().DOFade(1f, 0.8f);
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().blocksRaycasts = true;
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().interactable = true;
+        }
+        else if(UITutorialIdx == 1)
+        {
+            UITutorialPanel.GetChild(0).GetComponent<CanvasGroup>().DOKill();
+            UITutorialPanel.GetChild(0).GetComponent<CanvasGroup>().blocksRaycasts = false;
+            UITutorialPanel.GetChild(0).GetComponent<CanvasGroup>().interactable = false;
+            UITutorialPanel.GetChild(0).GetComponent<CanvasGroup>().DOFade(0f, 0.8f).OnComplete(() =>
+            {
+                UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().DOFade(1f, 0.8f);
+                UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().blocksRaycasts = true;
+                UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().interactable = true;
+            });
+        }
+        else
+        {
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().DOKill();
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().blocksRaycasts = false;
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().interactable = false;
+            UITutorialPanel.GetChild(1).GetComponent<CanvasGroup>().DOFade(0f, 0.8f);
+        }
+        UITutorialIdx++;
     }
 
     IEnumerator CameraSetting(CinemachineVirtualCamera virtualCamera)
