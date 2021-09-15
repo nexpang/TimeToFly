@@ -30,6 +30,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]  private float joystickKeyHorizontalRaw = 0;
 
 
+    // Á×ÀÌ°í½Í´Ù
+    [HideInInspector] public bool isLeft = false;
+    [HideInInspector] public bool isRight = false;
+
     private void Awake()
     {
         Instance = this;
