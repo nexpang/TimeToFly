@@ -8,8 +8,9 @@ public class DisappearGround : ResetAbleTrap
 {
     private bool isActive = false;
     [SerializeField] private float disappearTime = 1f;
+    [SerializeField] private float waitDisappear = 1f;
     private SpriteRenderer spriteRenderer;
-    private PolygonCollider2D collider2D;
+    private new PolygonCollider2D collider2D;
     private bool isFutureDead = false;
 
     private void Awake()
@@ -31,7 +32,7 @@ public class DisappearGround : ResetAbleTrap
                     isFutureDead = true;
                 }
             }
-            Disappear();
+            Invoke("Disappear", waitDisappear);
         }
 
     }
