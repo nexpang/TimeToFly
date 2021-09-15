@@ -32,6 +32,7 @@ public class DisappearGround : ResetAbleTrap
                     isFutureDead = true;
                 }
             }
+            isActive = true;
             Invoke("Disappear", waitDisappear);
         }
 
