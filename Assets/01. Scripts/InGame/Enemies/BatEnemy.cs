@@ -218,7 +218,7 @@ public class BatEnemy : ResetAbleTrap, IItemAble
             }
         }
 
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             if (isDie)
             {

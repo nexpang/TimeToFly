@@ -82,7 +82,8 @@ public class TimeBoom : MonoBehaviour
         RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.up);
         foreach (var hit in raycastHit2D)
         {
-            if((hit.collider.CompareTag("DEADABLE") || hit.collider.CompareTag("TrapTrigger") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) && hit.collider.gameObject != tileMap)
+            bool isDeadAbleTileMap = hit.collider.CompareTag("DEADABLE") && hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
+            if (!isDeadAbleTileMap && (hit.collider.CompareTag("DEADABLE") || hit.collider.CompareTag("TrapTrigger") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) && hit.collider.gameObject != tileMap)
             {
                 Debug.Log(hit.collider.name + "À» ¾ø¾Ú");
                 SpriteRenderer sr = hit.collider.GetComponent<SpriteRenderer>();
