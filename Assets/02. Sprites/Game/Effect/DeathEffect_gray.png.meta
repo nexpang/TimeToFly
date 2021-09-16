@@ -125,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -145,8 +145,8 @@ TextureImporter:
       name: DeathEffect_gray_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 0
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -166,8 +166,8 @@ TextureImporter:
       name: DeathEffect_gray_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 0
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -187,8 +187,8 @@ TextureImporter:
       name: DeathEffect_gray_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 0
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -208,8 +208,8 @@ TextureImporter:
       name: DeathEffect_gray_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -229,7 +229,7 @@ TextureImporter:
       name: DeathEffect_gray_5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 0
         y: 0
         width: 16
         height: 16
