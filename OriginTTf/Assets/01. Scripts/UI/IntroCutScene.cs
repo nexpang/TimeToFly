@@ -57,6 +57,7 @@ public class IntroCutScene : MonoBehaviour
 
     [Space(20)]
     public CanvasGroup[] ending_cutScenes;
+    public CanvasGroup[] ending_trueEndings;
     public Image ending_halfBlack;
     public Image ending_cutScene_bg;
     public Image ending_logoImg;
@@ -515,9 +516,29 @@ public class IntroCutScene : MonoBehaviour
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
 
-            ShowText($"무슨 말이야?", 0.5f, true); // 나는 애니메이션 놓고 트루 엔딩
+            ShowText($"무슨 말이야?", 0.5f, false); // 나는 애니메이션 놓고 트루 엔딩
             yield return new WaitUntil(() => isFinished);
             isFinished = false;
+
+            HidePanel(true, 2f);
+            yield return new WaitForSeconds(2);
+            ending_trueEndings[0].DOFade(1, 4);
+            yield return new WaitForSeconds(8);
+            ending_trueEndings[0].DOFade(0, 2);
+            yield return new WaitForSeconds(4);
+            ending_trueEndings[1].DOFade(1, 4);
+            yield return new WaitForSeconds(10);
+            ending_trueEndings[1].DOFade(0, 4);
+            yield return new WaitForSeconds(2);
+   
+            ending_cutScene_bg.DOFade(0, 2);
+            yield return new WaitForSeconds(3.5f);
+            ending_blockPanelAll.DOFade(1, 1.5f);
+            DOTween.To(() => BGMSource.volume, value => BGMSource.volume = value, 0, 4f);
+            yield return new WaitForSeconds(4);
+
+            EndingEnd();
+            yield break;
         }
         else
         {
