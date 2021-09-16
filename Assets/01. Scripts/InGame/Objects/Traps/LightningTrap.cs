@@ -4,29 +4,47 @@ using UnityEngine;
 
 public class LightningTrap : MonoBehaviour
 {
+    public float waitTime;
+
     private Animator ani = null;
 
     private bool isPlaying = false;
+    private WaitForSeconds ws;
+    private IEnumerator myIenumerator;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
+        ws = new WaitForSeconds(waitTime);
+        myIenumerator = Lightning();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Mathf.Abs(GameManager.Instance.player.transform.position.x) - Mathf.Abs(transform.position.x) < 8)
+        //StartCoroutine(Lighting());
+    }
+    private void Update()
+    {
+        if (Mathf.Abs(GameManager.Instance.player.transform.position.x - transform.position.x) < 8)
         {
             if (isPlaying)
                 return;
             isPlaying = true;
-            ani.Play("Lightning_Play");
+            StartCoroutine(myIenumerator);
         }
         else
         {
+            StopCoroutine(myIenumerator);
             ani.Play("Lightning_Idle");
             isPlaying = false;
+        }
+    }
+
+    private IEnumerator Lightning()
+    {
+        while(true)
+        {
+            yield return ws;
+            ani.Play("Lightning_Play");
         }
     }
 
