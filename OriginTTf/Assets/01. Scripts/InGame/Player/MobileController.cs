@@ -128,6 +128,10 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     PlayerInput.Instance.JoyStickHorizontalRaw(0);
                     PlayerInput.Instance.joystickKeyHorizontal = 0;
                 }
+                else
+                {
+                    PlayerInput.Instance.JoyStickHorizontalRaw(1);
+                }
                 break;
             case ControllerType.RIGHT:
                 PlayerInput.Instance.isRight = false;
@@ -135,6 +139,10 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 {
                     PlayerInput.Instance.JoyStickHorizontalRaw(0);
                     PlayerInput.Instance.joystickKeyHorizontal = 0;
+                }
+                else
+                {
+                    PlayerInput.Instance.JoyStickHorizontalRaw(-1);
                 }
                 break;
             case ControllerType.ABILITY:
@@ -187,6 +195,10 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                     PlayerInput.Instance.JoyStickHorizontalRaw(0);
                     PlayerInput.Instance.joystickKeyHorizontal = 0;
                 }
+                else
+                {
+                    PlayerInput.Instance.JoyStickHorizontalRaw(1);
+                }
                 break;
             case ControllerType.RIGHT:
                 PlayerInput.Instance.isRight = false;
@@ -194,6 +206,10 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
                 {
                     PlayerInput.Instance.JoyStickHorizontalRaw(0);
                     PlayerInput.Instance.joystickKeyHorizontal = 0;
+                }
+                else
+                {
+                    PlayerInput.Instance.JoyStickHorizontalRaw(-1);
                 }
                 break;
         }
