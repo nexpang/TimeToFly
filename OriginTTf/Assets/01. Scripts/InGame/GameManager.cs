@@ -260,7 +260,8 @@ public class GameManager : MonoBehaviour
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
         virtualCamera.GetComponent<CinemachineConfiner>().m_Damping = 0;
 
-        yield return new WaitForSecondsRealtime(0.15f);
+        yield return new WaitForSecondsRealtime(0.5f);
+
         Time.timeScale = 0;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
         virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
