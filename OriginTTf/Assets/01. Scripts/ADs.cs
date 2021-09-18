@@ -19,6 +19,7 @@ public class ADs : MonoBehaviour
     private bool isFullSizeAdloaded = false;
 
     public PlayerController PlayerController;
+    public GameObject pleaseWaitPanel;
 
     public Button watchBtn;
     public Button goBackBtn;
@@ -51,6 +52,7 @@ public class ADs : MonoBehaviour
     {
         watchBtn.gameObject.SetActive(true);
         goBackBtn.gameObject.SetActive(false);
+        pleaseWaitPanel.SetActive(true);
 
         string id = Debug.isDebugBuild ? rewardTestUnitID : rewardUnitID;
 
@@ -60,14 +62,26 @@ public class ADs : MonoBehaviour
 
         rewardedAd.LoadAd(request);
 
-        rewardedAd.OnAdFailedToLoad += (sender, e) => Debug.LogWarning("failed to load AD");
-        rewardedAd.OnAdFailedToShow += (sender, e) => Debug.LogWarning("failed to show AD");
-        rewardedAd.OnAdDidRecordImpression += (sender, e) => Debug.LogWarning("disconnect AD , no reward");
+        rewardedAd.OnAdFailedToLoad += (sender, e) => {
+            Debug.LogWarning("failed to load AD");
+            pleaseWaitPanel.SetActive(false);
+        };
+        rewardedAd.OnAdFailedToShow += (sender, e) =>
+        {
+            Debug.LogWarning("failed to show AD");
+            pleaseWaitPanel.SetActive(false);
+        };
+        rewardedAd.OnAdDidRecordImpression += (sender, e) =>
+        {
+            Debug.LogWarning("disconnect AD , no reward");
+            pleaseWaitPanel.SetActive(false);
+        };
         rewardedAd.OnUserEarnedReward += (sender, e) =>
         {
             GameManager.Instance.UserEarnedRewardFromaAD();
             watchBtn.gameObject.SetActive(false);
             goBackBtn.gameObject.SetActive(true);
+            pleaseWaitPanel.SetActive(false);
         };
     }
 
