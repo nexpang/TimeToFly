@@ -44,7 +44,7 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
     {
         if (!isDie)
         {
-            if (state == EnemyState.Walk)
+            if (state == EnemyState.Walk&& checkTargetInDist())
             {
                 Move();
             }
@@ -74,6 +74,12 @@ public class EagleEnemy : ResetAbleTrap, IItemAble
             float delay = Random.Range(2, 3);
             yield return new WaitForSeconds(delay);
         }
+    }
+
+    private bool checkTargetInDist()
+    {
+        float dist = Mathf.Abs(target.position.x - transform.position.x);
+        return (dist < 20f);
     }
 
     IEnumerator ReroadRockDelay()

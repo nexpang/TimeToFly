@@ -33,7 +33,7 @@ public class ShopPanel : MonoBehaviour
 
         for (int i = 0; i < isBuyContents.Length; i++)
         {
-            if(isBuyContents[i] == false)
+            if(isBuyContents[i] == true)
             {
                 ChangeAlreadyBuy(Contents[i].transform.GetChild(0));
                 Contents[i].interactable = false;
