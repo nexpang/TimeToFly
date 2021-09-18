@@ -25,7 +25,20 @@ public class ShopPanel : MonoBehaviour
         defaultXPos = rT.anchoredPosition.x;
         Contents = ContentsParent.GetComponentsInChildren<Button>();
         isBuyContents = new bool[Contents.Length];
-        //TODO 구매한 상품 받아와서 적용하기
+        for (int i = 0; i < isBuyContents.Length; i++)
+        {
+            isBuyContents[i] = false;
+        }
+        //TODO 구매한 상품 받아와서 적용하기 위에꺼 지우셈
+
+        for (int i = 0; i < isBuyContents.Length; i++)
+        {
+            if(isBuyContents[i] == false)
+            {
+                ChangeAlreadyBuy(Contents[i].transform.GetChild(0));
+                Contents[i].interactable = false;
+            }
+        }
     }
 
     // Update is called once per frame
