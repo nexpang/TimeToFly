@@ -13635,12 +13635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13db4915ae854943bdc004167231347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMapIdChange: 1
   inGame_tempLife: 9
-  inGame_remainChicken: 1 2 3 4
-  inGame_saveMapid: 4
+  inGame_remainChicken: 1 2
+  inGame_saveMapid: 10
   newbie: 0
-  inGame_saveCurrentChickenIndex: 0
+  inGame_saveCurrentChickenIndex: 3
   inGame_ending: 0
   inGame_bakSukEndingCount: 0
   inGame_otherEndingCount: 0

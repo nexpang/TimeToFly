@@ -53,7 +53,10 @@ public class MoveRepeatTrap : ResetAbleTrap
             isTrigger = true;
         }
 
-        ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
+        if (Mathf.Abs(GameManager.Instance.player.transform.position.x - transform.position.x) < 12)
+        {
+            ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Falling, 1f, true);
+        }
     }
 
     public override void Reset()

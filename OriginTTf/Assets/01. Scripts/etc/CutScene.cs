@@ -37,7 +37,7 @@ public class CutScene : MonoBehaviour
 
     void Start()
     {
-        cutScenes = (CutScenes)(SceneController.targetMapId / 3 - 1);
+        cutScenes = (CutScenes)(SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0) / 3 - 1);
         SecurityPlayerPrefs.SetInt("inGame.tempLife", 9);
 
         Time.timeScale = 1;
@@ -64,7 +64,6 @@ public class CutScene : MonoBehaviour
         {
             if(playerSprites[i].gameObject == dieChickenObjs[(int)cutScenes])
             {
-                Debug.Log(playerSprites[i].name);
                 playerSprites[i].targetSheet = SecurityPlayerPrefs.GetInt("inGame.saveCurrentChickenIndex", -1);
             }
             else

@@ -57,7 +57,6 @@ public class BatEnemy : ResetAbleTrap, IItemAble
     {
         //StartCoroutine(CheckState());
         //StartCoroutine(CantGoCheck());
-        StartCoroutine(PlaySFX());
         //startPosVec = startPosObj.transform.position;
         //endPosVec = endPosObj.transform.position;
 
@@ -142,27 +141,6 @@ public class BatEnemy : ResetAbleTrap, IItemAble
     //    }
     //}
 
-    IEnumerator PlaySFX()
-    {
-        while (!isDie)
-        {
-            if (state == EnemyState.Die) yield break; // 코루틴 종료
-
-            if (Vector2.Distance(transform.position, GameManager.Instance.player.transform.position) <= 10)
-            {
-                int soundIdx = Random.Range(0, 2);
-
-                if (soundIdx == 0)
-                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Meow, 1f, true);
-                else if (soundIdx == 1)
-                    ObjectManager.PlaySound(ObjectManager.Instance.soundData.Audio_Cat_Purring, 1f, true);
-            }
-
-            float delay = Random.Range(5, 15);
-            yield return new WaitForSeconds(delay);
-        }
-    }
-
     public override void Reset()
     {
         if (!isFutureDead) return;
@@ -173,7 +151,6 @@ public class BatEnemy : ResetAbleTrap, IItemAble
         animator.Play("Enemy_Idle");
         //StartCoroutine(CheckState());
         //StartCoroutine(CantGoCheck());
-        StartCoroutine(PlaySFX());
     }
 
     void OnDrawGizmos()
@@ -282,8 +259,6 @@ public class BatEnemy : ResetAbleTrap, IItemAble
         if (Mathf.Abs(direction.x) > 0.1f)
             moveX = direction.x < 0 ? -1f : 1f;
 
-
-        Debug.Log((Vector2)path.vectorPath[currentWaupoint]);
         transform.position = Vector2.MoveTowards(transform.position, (Vector2)path.vectorPath[currentWaupoint], enemySpeed * Time.deltaTime);
         //rb.AddForce(force);
 

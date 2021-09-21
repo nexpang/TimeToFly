@@ -23,6 +23,8 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
     [SerializeField] private Sprite defaultSpr = null;
     [SerializeField] private Sprite pressedSpr = null;
 
+    public static int abilityPointerId = 0;
+
     public RectTransform abilityImgRectTrm;
 
     private Vector3 abilityImgDefault;
@@ -93,6 +95,7 @@ public class MobileController : MonoBehaviour, IPointerDownHandler, IPointerEnte
             case ControllerType.ABILITY:
                 abilityImgRectTrm.localPosition = abilityImgDefault;
                 abilityImgRectTrm.localPosition = abilityImgRectTrm.localPosition + (Vector3.down*15);
+                abilityPointerId = eventData.pointerId;
                 int touchIdx = Input.touchCount-1;
                 PlayerInput.Instance.JoyStickAbility(touchIdx);
                 break;

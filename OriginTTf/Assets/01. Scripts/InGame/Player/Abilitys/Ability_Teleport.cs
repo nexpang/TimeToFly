@@ -128,7 +128,7 @@ public class Ability_Teleport : Ability, IAbility
         StartCoroutine(Clock());
 
         #if !UNITY_EDITOR
-        touchFingerId = Input.touches[Input.touches.Length - 1].fingerId;
+        touchFingerId = MobileController.abilityPointerId;
         #endif
     }
     new void Update()

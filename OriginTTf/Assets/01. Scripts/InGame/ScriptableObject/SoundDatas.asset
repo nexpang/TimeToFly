@@ -16,6 +16,7 @@ MonoBehaviour:
   Audio_bearTrap: {fileID: 8300000, guid: 54d03f6167841a648bbcf8916e0efbb1, type: 3}
   Audio_HeosuFall: {fileID: 8300000, guid: 2aac99b48f7c1a44ea32157ff98bbd51, type: 3}
   Audio_Falling: {fileID: 8300000, guid: 2de4188f719ac1847b1efbf3db4e27af, type: 3}
+  Audio_Thunder: {fileID: 8300000, guid: 565d9cf6f99de714d9ea5f757ea23896, type: 3}
   Audio_Cat_Meow: {fileID: 8300000, guid: 99c621522b330cb469d519923d1849af, type: 3}
   Audio_Cat_Die: {fileID: 8300000, guid: 90f573a762228644aae7ddacb615185e, type: 3}
   Audio_Cat_Purring: {fileID: 8300000, guid: ee2908359ac200c458a7feb27dc15094, type: 3}
@@ -31,6 +32,7 @@ MonoBehaviour:
   Audio_BlockHit: {fileID: 8300000, guid: c90cd98b2ee435740a7e9c0e7d0bd63d, type: 3}
   Audio_BossAppear: {fileID: 8300000, guid: b8e8cb94cd615ae4a836953d7b3e24a1, type: 3}
   Audio_Bat: {fileID: 8300000, guid: b1ba67de383b1af4e8562e7a800b2fd9, type: 3}
+  Audio_Bat_Die: {fileID: 8300000, guid: 257bec36590cc184fb8a47b26d62e55e, type: 3}
   Audio_BossEagleShout: {fileID: 8300000, guid: a38403f80a5715743bd811843f3743d1, type: 3}
   Audio_BossEagleAmbient: {fileID: 8300000, guid: 40826835e4dbccc4c9a7042ea58f57df, type: 3}
   Audio_BossJokJeBiShout: {fileID: 8300000, guid: a5cf06062ea05314b93b140cf4827051, type: 3}
