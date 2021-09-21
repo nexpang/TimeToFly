@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerPrefsSetDebug : MonoBehaviour
 {
-    public bool targetMapIdChange = false;
+    public static bool firstInit = false;
+
     public int inGame_tempLife = 9;
     public string inGame_remainChicken = "0 1 2 3 4";
     public int inGame_saveMapid = 0;
@@ -14,10 +15,13 @@ public class PlayerPrefsSetDebug : MonoBehaviour
     public int inGame_bakSukEndingCount = 0;
     public int inGame_otherEndingCount = 0;
 
-    private void Awake()
+    public void Init()
     {
-        if(targetMapIdChange)
-        SceneController.targetMapId = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
+        if (!firstInit)
+        {
+            firstInit = true;
+            SceneController.targetMapId = SecurityPlayerPrefs.GetInt("inGame.saveMapid", 0);
+        }
     }
 
     [ContextMenu("디버그 / 플레이어 프랩스 표시")]

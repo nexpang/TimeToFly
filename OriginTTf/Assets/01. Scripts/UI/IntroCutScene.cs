@@ -222,10 +222,10 @@ public class IntroCutScene : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         intro_logoImg.gameObject.SetActive(true);
         Camera.main.transform.DOMove(intro_cameraPositions[intro_cameraPositions.Length - 1].transform.position, 2).SetEase(Ease.Linear);
-        intro_logoImg.DOFade(1, 5);
-        yield return new WaitForSeconds(9);
-        intro_logoImg.DOFade(0, 5);
+        intro_logoImg.DOFade(1, 4);
         yield return new WaitForSeconds(7);
+        intro_logoImg.DOFade(0, 4);
+        yield return new WaitForSeconds(6);
         intro_blockPanelAll.DOFade(1, 1.5f);
         DOTween.To(() => BGMSource.volume, value => BGMSource.volume = value, 0, 1.5f);
         yield return new WaitForSeconds(4);

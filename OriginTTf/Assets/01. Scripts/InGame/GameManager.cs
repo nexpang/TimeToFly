@@ -92,7 +92,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this; // 싱글톤
+
         Time.timeScale = 0;
+
+#if UNITY_EDITOR
+        GetComponent<PlayerPrefsSetDebug>().Init(); // 에디터에서 쓰는 디버그
+#endif
 
         if (currentStage == -1)
         {
